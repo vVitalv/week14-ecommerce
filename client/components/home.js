@@ -1,16 +1,15 @@
 import React from 'react'
 import Header from './header'
 import Head from './head'
-// import wave from '../assets/images/wave.jpg'
+import Content from './content'
 
 const Home = () => {
   return (
-    <div>
+    <main className="bg-yellow-300">
       <Header title="Hello" />
       <Head />
-      <button type="button">updateCountert</button>
-      <div> Hello World Dashboardthghg </div>
-    </div>
+      <Content />
+    </main>
   )
 }
 
