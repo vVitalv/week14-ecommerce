@@ -225,7 +225,7 @@ const config = {
         }
       )
     ),
-    //  new HardSourceWebpackPlugin(),
+    // new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
 }

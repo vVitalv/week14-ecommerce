@@ -1,22 +1,29 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
 
-const Head = (props) => (
-  <Helmet>
-    <title>SkillCrucial Boilerplate - {props.title}</title>
-    <meta charSet="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#FF0000" />
-  </Helmet>
-)
+import USDButton from './btn-USD'
+import EURButton from './btn-EUR'
+import CADButton from './btn-CAD'
+import BasketButton from './btn-basket'
 
-Head.propTypes = {
-  title: PropTypes.string
+const Head = () => {
+  return (
+    <div>
+      <div className="flex fixed flex-row items-end content-center justify-around h-32 w-screen bg-yellow-700">
+        <div className="text-6xl font-extrabold text-opacity-75 text-white align-middle">
+          <Link to="/">E-COMMERCE</Link>
+        </div>
+        <div>
+          <USDButton />
+          <EURButton />
+          <CADButton />
+        </div>
+        <BasketButton />
+      </div>
+    </div>
+  )
 }
 
-Head.defaultProps = {
-  title: 'skillcrucial.com'
-}
+Head.propTypes = {}
 
-export default Head
+export default React.memo(Head)
