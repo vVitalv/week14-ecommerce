@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 
 const Header = (props) => (
   <Helmet>
-    <title>SkillCrucial Boilerplate - {props.title}</title>
+    <title>SkillCrucial E-commerce - {props.title}</title>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#FF0000" />

@@ -5,7 +5,7 @@ import Content from './content'
 
 const Home = () => {
   return (
-    <main className="bg-yellow-300">
+    <main className="flex flex-col bg-yellow-300">
       <Header title="Hello" />
       <Head />
       <Content />

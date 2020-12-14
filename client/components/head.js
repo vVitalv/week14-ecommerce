@@ -9,9 +9,9 @@ import SortMenu from './menu-sorting'
 
 const Head = () => {
   return (
-    <header className="flex fixed flex-col h-36 bg-yellow-700">
-      <div className="flex flex-row items-end content-center justify-around h-28 w-screen">
-        <h1 className="text-6xl font-extrabold text-opacity-75 text-white align-middle">
+    <header className="flex fixed flex-col h-36 w-screen bg-yellow-700">
+      <div className="flex flex-row items-end justify-around h-28">
+        <h1 className="text-6xl font-extrabold text-opacity-75 text-white">
           <Link to="/">E-COMMERCE</Link>
         </h1>
         <div>
