@@ -1,23 +1,24 @@
 import React from 'react'
-// import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import PlusButton from './btn-plus'
 import MinusButton from './btn-minus'
+import { addToCart, removeFromCart } from '../redux/reducers/basket'
 
 const Card = (props) => {
-  //  const cardId = useSelector((s) => s.cardData.dataList)
-  //  const dispatch = useDispatch()
+  // const basketList = useSelector((store) => store.basket.basketList)
+  const dispatch = useDispatch()
 
   const { data } = props
   return (
-    <div className="flex flex-col h-48 rounded-lg bg-yellow-500 font-bold text-gray-700 p-2 m-1">
+    <div className="flex flex-col h-48 rounded-b-xl bg-yellow-500 font-bold text-gray-700 p-2 m-1">
       <div>{data.image}</div>
       <div>{data.title}</div>
       <div className="flex justify-between">
         {data.price}
-        <div className="flex space-x-1">
-          <PlusButton />
-          <div>489</div>
-          <MinusButton />
+        <div className="flex items-center space-x-1">
+          <PlusButton onclick={() => dispatch(addToCart(data))} />
+          <div>25</div>
+          <MinusButton onclick={() => dispatch(removeFromCart(data))} />
         </div>
       </div>
     </div>

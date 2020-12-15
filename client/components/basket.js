@@ -4,13 +4,15 @@ import Head from './head'
 
 const Basket = () => {
   return (
-    <div>
-      <Header title="Hello" />
+    <div className="flex flex-col bg-yellow-300">
+      <Header title="Cart" />
       <Head />
-      <div className="flex items-center justify-center h-screen">
-        <div className="bg-indigo-800 hover:text-red-500 text-white font-bold rounded-lg border shadow-lg p-10">
-          This is BASKET component
-        </div>
+      <div className="flex flex-row justify-items-center justify-center divide-x-2 divide-gray-500 text-gray-700 text-xl font-bold pt-40">
+        <div className="px-4">Position</div>
+        <div className="px-56">Name</div>
+        <div className="px-4">Amount</div>
+        <div className="px-4">Cost</div>
+        <div className="px-4">Price</div>
       </div>
     </div>
   )
