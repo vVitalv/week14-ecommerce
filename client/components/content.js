@@ -5,7 +5,7 @@ import { getCardData } from '../redux/reducers/cardData'
 import Card from './card'
 
 const Content = () => {
-  const dataList = useSelector((store) => store.cardData.goodsList.slice(0, 20))
+  const dataList = useSelector((store) => store.cardData.goodsList.slice(0, 10))
 
   const dispatch = useDispatch()
 
@@ -15,13 +15,9 @@ const Content = () => {
   }, [dispatch])
 
   return (
-    <div className="flex flex-wrap justify-around pt-40">
+    <div className="flex flex-wrap justify-evenly mt-40">
       {dataList.map((item) => {
-        return (
-          <div key={item.id}>
-            <Card data={item} />
-          </div>
-        )
+        return <Card data={item} key={item.id} />
       })}
     </div>
   )

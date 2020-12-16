@@ -24,7 +24,13 @@ export function getCardData() {
     axios('/api/v1/card').then(({ data }) => {
       dispatch({
         type: GET_GOODS,
-        goodsList: data
+        goodsList: data.map((rec) => {
+          return {
+            ...rec,
+            amount: 0,
+            image: `https://source.unsplash.com/800x600/?${/\w+(?=\s)/gi.exec(rec.title)}`
+          }
+        })
       })
     })
   }

@@ -8,14 +8,11 @@ import LowSortButton from './btn-sortLow'
 
 const SortMenu = () => {
   return (
-    <div className="flex flex-row relative justify-around h-10">
-      <div className="inline-grid grid-cols-10 gap-x-10">
-        <AZSortButton />
-        <ZASortButton />
-        <UpSortButton />
-        <LowSortButton />
-      </div>
-      <div className="text-xl font-extrabold text-opacity-75 text-white">=price</div>
+    <div className="inline-flex space-x-4 pt-4">
+      <AZSortButton />
+      <ZASortButton />
+      <UpSortButton />
+      <LowSortButton />
     </div>
   )
 }
