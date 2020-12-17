@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCardData } from '../redux/reducers/cardData'
+import { getCurrency } from '../redux/reducers/currency'
 
 import Card from './card'
 
@@ -11,15 +12,16 @@ const Content = () => {
 
   useEffect(() => {
     dispatch(getCardData())
+    dispatch(getCurrency())
     return () => {}
   }, [dispatch])
 
   return (
-    <div className="flex flex-wrap justify-evenly mt-40">
+    <body className="flex flex-wrap justify-evenly mt-40">
       {dataList.map((item) => {
         return <Card data={item} key={item.id} />
       })}
-    </div>
+    </body>
   )
 }
 

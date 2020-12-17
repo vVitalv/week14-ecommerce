@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import USDButton from './btn-USD'
-import EURButton from './btn-EUR'
-import CADButton from './btn-CAD'
+import CurrencyButtons from './btns-currency'
 import BasketButton from './btn-basket'
 import SortMenu from './menu-sorting'
 import logo from './src/logo.png'
@@ -12,17 +10,13 @@ const Head = () => {
   return (
     <header className="flex fixed flex-col w-screen">
       <div className="flex flex-row items-center justify-around h-36 w-screen bg-yellow-700">
-        <h1 className="transition ease-in duration-1000 text-6xl font-extrabold text-opacity-75 text-white hover:text-yellow-500">
+        <h1 className="transition ease-in duration-1000 text-6xl font-extrabold text-yellow-400 hover:text-yellow-100">
           <Link to="/" className="flex items-center space-x-4">
             <img src={logo} alt="Logo" className="h-16 w-16" />
-            <span>E-COMMERCE</span>
+            <p>E-COMMERCE</p>
           </Link>
         </h1>
-        <div>
-          <USDButton />
-          <EURButton />
-          <CADButton />
-        </div>
+        <CurrencyButtons />
         <div className="flex flex-col content-center justify-center">
           <BasketButton />
           <div>=price</div>

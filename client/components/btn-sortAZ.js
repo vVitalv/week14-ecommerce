@@ -5,6 +5,7 @@ const AZSortButton = () => {
   return (
     <button
       type="button"
+      id="AZ-sort-button"
       className="transition-opacity duration-300 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100 h-4 w-10"
     >
       <img src={sortAZ} alt="AZ-sorting" className="object-fill h-full w-full" />

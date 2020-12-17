@@ -5,6 +5,7 @@ const UpSortButton = () => {
   return (
     <button
       type="button"
+      id="up-sort-button"
       className="transition-opacity duration-300 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100 h-4 w-10"
     >
       <img src={sortUp} alt="Up-sorting" className="object-fill h-full w-full" />

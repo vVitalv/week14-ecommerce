@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const GET_GOODS = 'GET_GOODS'
+const CHANGE_SORT = 'CHANGE_SORT'
 
 const initialState = {
   goodsList: []
@@ -32,6 +33,15 @@ export function getCardData() {
           }
         })
       })
+    })
+  }
+}
+
+export function setSort(sort) {
+  return (dispatch) => {
+    dispatch({
+      type: CHANGE_SORT,
+      sort
     })
   }
 }

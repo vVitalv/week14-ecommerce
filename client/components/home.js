@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './header'
 import Head from './head'
 import Content from './content'
+import Footer from './footer'
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <Header title="Hello" />
       <Head />
       <Content />
+      <Footer />
     </main>
   )
 }

@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
+import axios from 'axios'
 
 import cookieParser from 'cookie-parser'
 import config from './config'
@@ -47,6 +48,12 @@ server.get('/api/v1/card', async (req, res) => {
   await readFile(`${__dirname}/Data/carddata.json`, 'utf8')
     .then((data) => res.send(data))
     .catch(() => res.send({ goods: 'no' }))
+})
+
+server.get('/api/v1/currency', async (req, res) => {
+  await axios('https://api.exchangeratesapi.io/latest?base=USD').then(({ data }) =>
+    res.send(data.rates)
+  )
 })
 
 server.use('/api/', (req, res) => {
