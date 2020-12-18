@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import CurrencyButtons from './btns-currency'
 import BasketButton from './btn-basket'
 import SortMenu from './menu-sorting'
-import logo from './src/logo.png'
+import logo from './src/logo-2.png'
 
 const Head = () => {
   return (
@@ -12,7 +12,7 @@ const Head = () => {
       <div className="flex flex-row items-center justify-around h-36 w-screen bg-yellow-700">
         <h1 className="transition ease-in duration-1000 text-6xl font-extrabold text-yellow-400 hover:text-yellow-100">
           <Link to="/" className="flex items-center space-x-4">
-            <img src={logo} alt="Logo" className="h-16 w-16" />
+            <img src={logo} alt="Logo" className="h-20 w-28" />
             <p>E-COMMERCE</p>
           </Link>
         </h1>

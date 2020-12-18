@@ -15,6 +15,31 @@ export default (state = initialState, action) => {
         goodsList: action.goodsList
       }
     }
+    case CHANGE_SORT: {
+      const sortedList = [...state.goodsList].sort((a, b) => {
+        if (action.sortType === 'AZ') {
+          if (a.title < b.title) {
+            return -1
+          }
+        }
+        if (action.sortType === 'ZA') {
+          if (a.title > b.title) {
+            return -1
+          }
+        }
+        if (action.sortType === 'up') {
+          return a.price - b.price
+        }
+        if (action.sortType === 'low') {
+          return b.price - a.price
+        }
+        return 0
+      })
+      return {
+        ...state,
+        goodsList: sortedList
+      }
+    }
     default:
       return state
   }
@@ -37,11 +62,11 @@ export function getCardData() {
   }
 }
 
-export function setSort(sort) {
+export function setSort(sortType) {
   return (dispatch) => {
     dispatch({
       type: CHANGE_SORT,
-      sort
+      sortType
     })
   }
 }

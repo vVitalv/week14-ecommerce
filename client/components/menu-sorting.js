@@ -8,8 +8,8 @@ import sortLow from './src/sort-low.png'
 
 const SortMenu = () => {
   const dispatch = useDispatch()
-  const sortOnClick = (sort) => {
-    return dispatch(setSort(sort))
+  const sortOnClick = (sortType) => {
+    return dispatch(setSort(sortType))
   }
   return (
     <div className="inline-flex space-x-4 pt-4">
