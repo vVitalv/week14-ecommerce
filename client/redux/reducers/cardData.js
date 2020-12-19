@@ -16,12 +16,6 @@ export default (state = initialState, action) => {
         goodsList: action.goodsList
       }
     }
-    case ADD_GOODS: {
-      return {
-        ...state,
-        goodsList: action.goodsList
-      }
-    }
     case CHANGE_SORT: {
       const sortedList = [...state.goodsList].sort((a, b) => {
         if (action.sortType === 'AZ') {
@@ -47,6 +41,21 @@ export default (state = initialState, action) => {
         goodsList: sortedList
       }
     }
+    case ADD_GOODS: {
+      const newGoodsList = state.goodsList.reduce((acc, rec) => {
+        if (rec.id === action.goodsID) {
+          if (action.act === 'plus') {
+            return [...acc, { ...rec, amount: rec.amount + 1 }]
+          }
+          return [...acc, { ...rec, amount: Math.max(rec.amount - 1, 0) }]
+        }
+        return [...acc, rec]
+      }, [])
+      return {
+        ...state,
+        goodsList: newGoodsList
+      }
+    }
     default:
       return state
   }
@@ -69,20 +78,21 @@ export function getCardData() {
   }
 }
 
-export function addGoods(goodsID) {
-  return (dispatch) => {
-    dispatch({
-      type: ADD_GOODS,
-      goodsID
-    })
-  }
-}
-
 export function setSort(sortType) {
   return (dispatch) => {
     dispatch({
       type: CHANGE_SORT,
       sortType
+    })
+  }
+}
+
+export function addGoods(goodsID, act) {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_GOODS,
+      goodsID,
+      act
     })
   }
 }

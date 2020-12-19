@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
   }
 }
 
-export function addToCart(data) {
+export function addingGoods(data) {
   return (dispatch) => {
     dispatch({
       type: ADD_TO_CART,

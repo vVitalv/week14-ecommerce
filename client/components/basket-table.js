@@ -17,6 +17,19 @@ const BasketTable = () => {
       <tbody>
         <tr>
           <th>3454</th>
+          <th>3454</th>
+          <th>3454</th>
+          <th>3454</th>
+          <th>3454</th>
+          <th>3454</th>
+        </tr>
+        <tr>
+          <th>3454</th>
+          <th>3454</th>
+          <th>3454</th>
+          <th>3454</th>
+          <th>3454</th>
+          <th>3454</th>
         </tr>
       </tbody>
     </table>

@@ -1,14 +1,11 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { addGoods } from '../redux/reducers/cardData'
+import { useSelector } from 'react-redux'
+import AddButtons from './btns-plus-minus'
 
 const Card = (props) => {
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
-  const dispatch = useDispatch()
-  const addGoodsOnClick = (goodsID) => {
-    return dispatch(addGoods(goodsID))
-  }
+
   const { data } = props
 
   return (
@@ -20,25 +17,7 @@ const Card = (props) => {
         <div className="text-3xl p-2">
           {(data.price * rate[currency]).toFixed(2)} {currency}
         </div>
-        <div className="inline-flex items-center space-x-2 p-2">
-          <button
-            type="button"
-            id="plus-button"
-            className="transition-colors duration-300 hover:border-yellow-300 border-yellow-400 border-2 h-8 w-8 rounded-xl focus:outline-none text-xl font-bold text-gray-700"
-            onClick={() => addGoodsOnClick(data.id)}
-          >
-            +
-          </button>
-          <div>{data.amount}</div>
-          <button
-            type="button"
-            id="minus-button"
-            className="transition-colors duration-300 hover:border-yellow-300 border-yellow-400 border-2 h-8 w-8 rounded-xl focus:outline-none text-xl font-bold text-gray-700"
-            onClick={() => addGoodsOnClick(data.id)}
-          >
-            -
-          </button>
-        </div>
+        <AddButtons data={data} />
       </div>
     </div>
   )
