@@ -11,6 +11,9 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_GOODS: {
+      if (state.goodsList.length > 0) {
+        return state
+      }
       return {
         ...state,
         goodsList: action.goodsList
