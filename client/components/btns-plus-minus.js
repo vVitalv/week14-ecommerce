@@ -1,10 +1,16 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { addGoods } from '../redux/reducers/cardData'
+import { useSelector, useDispatch } from 'react-redux'
+import { addToCart, removeFromCart } from '../redux/reducers/basket'
 
 const AddButtons = (props) => {
   const dispatch = useDispatch()
   const { data } = props
+  const basketAmount = useSelector((store) => store.basket.basketList)
+
+  const findAmount = basketAmount.find((item) => {
+    return data.id === item.id
+  })
+  const amount = typeof findAmount === 'undefined' ? 0 : findAmount.amount
 
   return (
     <div className="inline-flex items-center space-x-2 p-2">
@@ -12,16 +18,16 @@ const AddButtons = (props) => {
         type="button"
         id="minus-button"
         className="transition-colors duration-300 hover:border-yellow-300 border-yellow-400 border-2 h-8 w-8 rounded-xl focus:outline-none text-xl font-bold text-gray-700"
-        onClick={() => dispatch(addGoods(data.id, 'minus'))}
+        onClick={() => dispatch(removeFromCart(data.id))}
       >
         -
       </button>
-      <div className="flex w-6 justify-center">{data.amount}</div>
+      <div className="flex w-6 justify-center">{amount}</div>
       <button
         type="button"
         id="plus-button"
         className="transition-colors duration-300 hover:border-yellow-300 border-yellow-400 border-2 h-8 w-8 rounded-xl focus:outline-none text-xl font-bold text-gray-700"
-        onClick={() => dispatch(addGoods(data.id, 'plus'))}
+        onClick={() => dispatch(addToCart(data))}
       >
         +
       </button>

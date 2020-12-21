@@ -7,7 +7,6 @@ import Card from './card'
 
 const Content = () => {
   const dataList = useSelector((store) => store.cardData.goodsList.slice(0, 10))
-
   const dispatch = useDispatch()
 
   useEffect(() => {

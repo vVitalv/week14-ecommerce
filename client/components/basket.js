@@ -11,6 +11,10 @@ const Basket = () => {
       return product.amount > 0
     })
   )
+  const amount = basketList.reduce((acc, rec) => {
+    return acc + rec.amount
+  }, 0)
+
   return (
     <div className="flex flex-col bg-yellow-300 h-screen">
       <Header title="Cart" />
@@ -30,6 +34,11 @@ const Basket = () => {
           {basketList.map((item) => {
             return <BasketTable data={item} key={item.id} />
           })}
+          <tr>
+            <td />
+            <td />
+            <td>{amount}</td>
+          </tr>
         </tbody>
       </table>
     </div>

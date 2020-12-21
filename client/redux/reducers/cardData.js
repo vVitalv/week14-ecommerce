@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const GET_GOODS = 'GET_GOODS'
 const CHANGE_SORT = 'CHANGE_SORT'
-const ADD_GOODS = 'ADD_GOODS'
+// const ADD_GOODS = 'ADD_GOODS'
 
 const initialState = {
   goodsList: []
@@ -44,7 +44,7 @@ export default (state = initialState, action) => {
         goodsList: sortedList
       }
     }
-    case ADD_GOODS: {
+    /*    case ADD_GOODS: {
       const newGoodsList = state.goodsList.reduce((acc, rec) => {
         if (rec.id === action.goodsID) {
           if (action.act === 'plus') {
@@ -59,6 +59,7 @@ export default (state = initialState, action) => {
         goodsList: newGoodsList
       }
     }
+*/
     default:
       return state
   }
@@ -72,7 +73,6 @@ export function getCardData() {
         goodsList: data.map((rec) => {
           return {
             ...rec,
-            amount: 0,
             image: `https://source.unsplash.com/800x600/?${/\w+(?=\s)/gi.exec(rec.title)}`
           }
         })
@@ -90,7 +90,7 @@ export function setSort(sortType) {
   }
 }
 
-export function addGoods(goodsID, act) {
+/* export function addGoods(goodsID, act) {
   return (dispatch) => {
     dispatch({
       type: ADD_GOODS,
@@ -99,3 +99,4 @@ export function addGoods(goodsID, act) {
     })
   }
 }
+*/

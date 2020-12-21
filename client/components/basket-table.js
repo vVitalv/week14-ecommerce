@@ -4,12 +4,12 @@ const BasketTable = (props) => {
   const { data } = props
   return (
     <tr>
-      <th>3454</th>
-      <th>{data.title}</th>
-      <th>{data.amount}</th>
-      <th>{data.price}</th>
-      <th>{data.price * data.amount}</th>
-      <th>3454</th>
+      <td>3454</td>
+      <td>{data.title}</td>
+      <td>{data.amount}</td>
+      <td>{data.price}</td>
+      <td>{data.price * data.amount}</td>
+      <td>3454</td>
     </tr>
   )
 }
