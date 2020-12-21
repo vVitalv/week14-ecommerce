@@ -1,15 +1,21 @@
 import React from 'react'
 
+import AddButtons from './btns-plus-minus'
+
 const BasketTable = (props) => {
   const { data } = props
   return (
     <tr>
-      <td>3454</td>
+      <td>
+        <img src={data.image} alt={data.title} className="object-fill w-20 h-20 rounded-full" />
+      </td>
       <td>{data.title}</td>
-      <td>{data.amount}</td>
       <td>{data.price}</td>
       <td>{data.price * data.amount}</td>
-      <td>3454</td>
+      <td>{data.amount}</td>
+      <td>
+        <AddButtons data={data} />
+      </td>
     </tr>
   )
 }

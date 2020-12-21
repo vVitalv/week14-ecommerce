@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const GET_GOODS = 'GET_GOODS'
 const CHANGE_SORT = 'CHANGE_SORT'
-// const ADD_GOODS = 'ADD_GOODS'
 
 const initialState = {
   goodsList: []
@@ -20,46 +19,11 @@ export default (state = initialState, action) => {
       }
     }
     case CHANGE_SORT: {
-      const sortedList = [...state.goodsList].sort((a, b) => {
-        if (action.sortType === 'AZ') {
-          if (a.title < b.title) {
-            return -1
-          }
-        }
-        if (action.sortType === 'ZA') {
-          if (a.title > b.title) {
-            return -1
-          }
-        }
-        if (action.sortType === 'up') {
-          return a.price - b.price
-        }
-        if (action.sortType === 'low') {
-          return b.price - a.price
-        }
-        return 0
-      })
       return {
         ...state,
-        goodsList: sortedList
+        goodsList: action.goodsList
       }
     }
-    /*    case ADD_GOODS: {
-      const newGoodsList = state.goodsList.reduce((acc, rec) => {
-        if (rec.id === action.goodsID) {
-          if (action.act === 'plus') {
-            return [...acc, { ...rec, amount: rec.amount + 1 }]
-          }
-          return [...acc, { ...rec, amount: Math.max(rec.amount - 1, 0) }]
-        }
-        return [...acc, rec]
-      }, [])
-      return {
-        ...state,
-        goodsList: newGoodsList
-      }
-    }
-*/
     default:
       return state
   }
@@ -82,21 +46,31 @@ export function getCardData() {
 }
 
 export function setSort(sortType) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const store = getState()
+    const { goodsList } = store.cardData
+    const sortedList = [...goodsList].sort((a, b) => {
+      if (sortType === 'AZ') {
+        if (a.title < b.title) {
+          return -1
+        }
+      }
+      if (sortType === 'ZA') {
+        if (a.title > b.title) {
+          return -1
+        }
+      }
+      if (sortType === 'up') {
+        return a.price - b.price
+      }
+      if (sortType === 'low') {
+        return b.price - a.price
+      }
+      return 0
+    })
     dispatch({
       type: CHANGE_SORT,
-      sortType
+      goodsList: sortedList
     })
   }
 }
-
-/* export function addGoods(goodsID, act) {
-  return (dispatch) => {
-    dispatch({
-      type: ADD_GOODS,
-      goodsID,
-      act
-    })
-  }
-}
-*/
