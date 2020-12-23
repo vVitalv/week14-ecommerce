@@ -7,9 +7,11 @@ import BasketTable from './basket-table'
 import basketNeedEat from './src/basket-eat.gif'
 
 const Basket = () => {
-  const basket = useSelector((store) => store.basket)
+  const basket = useSelector((store) => store.basket.basketList)
 
-  const amount = basket.basketAmount
+  const amount = basket.reduce((acc, rec) => {
+    return acc + rec.amount
+  }, 0)
 
   if (amount === 0) {
     return (
@@ -36,7 +38,7 @@ const Basket = () => {
           </tr>
         </thead>
         <tbody>
-          {basket.basketList.map((item) => {
+          {basket.map((item) => {
             return <BasketTable data={item} key={`basket${item.id}`} />
           })}
           <tr>

@@ -6,7 +6,7 @@ import Footer from './footer'
 
 const Home = () => {
   return (
-    <main className="flex flex-col bg-yellow-300">
+    <main className="flex flex-col bg-yellow-300 w-screen">
       <Header title="Hello" />
       <Head />
       <Content />

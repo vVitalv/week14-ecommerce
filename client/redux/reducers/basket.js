@@ -2,8 +2,7 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
 const initialState = {
-  basketList: [],
-  basketAmount: 0
+  basketList: []
 }
 
 export default (state = initialState, action) => {
@@ -11,8 +10,7 @@ export default (state = initialState, action) => {
     case ADD_TO_CART: {
       return {
         ...state,
-        basketList: action.basketList,
-        basketAmount: state.basketAmount + 1
+        basketList: action.basketList
       }
     }
     case REMOVE_FROM_CART: {
