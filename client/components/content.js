@@ -16,7 +16,7 @@ const Content = () => {
   }, [dispatch])
 
   return (
-    <body className="flex flex-wrap justify-evenly mt-40">
+    <body className="flex flex-wrap justify-evenly space-x-5 mt-40">
       {dataList.map((item) => {
         return <Card data={item} key={item.id} />
       })}

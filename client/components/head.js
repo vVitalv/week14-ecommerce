@@ -30,8 +30,8 @@ const Head = () => {
   const basketImg = basket.amount > 0 ? basket_full : basket_empty
   const basketAmountVisible =
     basket.amount === 0
-      ? 'absolute opacity-0'
-      : 'absolute font-bold text-sm text-center text-white bg-pink-300 rounded-full w-6 h-6'
+      ? 'absolute invisible'
+      : 'absolute font-bold text-sm text-center text-white bg-blue-500 rounded-full w-6 h-6'
 
   return (
     <header className="flex fixed flex-col w-screen">
