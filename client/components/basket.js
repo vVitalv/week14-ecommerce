@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 
 import Header from './header'
 import Head from './head'
+import Footer from './footer'
 import BasketTable from './basket-table'
 import basketNeedEat from './src/basket-eat.gif'
 
@@ -33,24 +34,24 @@ const Basket = () => {
     )
   }
   return (
-    <div className="flex flex-col bg-yellow-300">
+    <div className="flex flex-col bg-yellow-300 min-h-screen">
       <Header title="Cart" />
       <Head />
-      <table className="table-auto mt-40 text-gray-700 fond-bold border-collapse border-gray-300">
-        <thead className="bg-yellow-500 text-lg">
+      <table className="table-auto mt-40 text-gray-700 fond-bold">
+        <thead className="bg-yellow-400 text-lg">
           <tr>
             <th className="opacity-0">Image</th>
             <th>Product</th>
             <th>Price</th>
             <th>Amount</th>
-            <th>Total price</th>
+            <th className="w-48">Total price</th>
           </tr>
         </thead>
         <tbody className="text-center font-semibold">
           {basketList.map((item) => {
             return <BasketTable data={item} key={`basket${item.id}`} />
           })}
-          <tr className="font-bold border-white">
+          <tr className="font-bold text-lg bg-yellow-400">
             <td />
             <td />
             <td />
@@ -64,10 +65,11 @@ const Basket = () => {
       <button
         type="button"
         id="buy-button"
-        className="text-3xl font-bold self-end w-40 h-20 bg-indigo-700 rounded-xl focus:outline-none mr-8 mt-8"
+        className="text-3xl font-bold self-end w-40 h-20 bg-indigo-700 rounded-xl focus:outline-none m-8"
       >
         Buy
       </button>
+      <Footer />
     </div>
   )
 }

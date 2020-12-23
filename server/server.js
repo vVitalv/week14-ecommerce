@@ -11,7 +11,20 @@ import cookieParser from 'cookie-parser'
 import config from './config'
 import Html from '../client/html'
 
-const { readFile } = require('fs').promises
+const { readFile, writeFile, unlink } = require('fs').promises
+
+const getLog = () => {
+  return readFile(`${__dirname}/Data/log.json`, 'utf8')
+    .then((data) => JSON.parse(data))
+    .catch(async () => {
+      await writeFile(`${__dirname}/Data/log.json`, '[]', 'utf8')
+      return []
+    })
+}
+
+const setLog = (logs = [], body = {}) => {
+  writeFile(`${__dirname}/data/log.json`, JSON.stringify([body, ...logs]), 'utf8')
+}
 
 const Root = () => ''
 
@@ -54,6 +67,22 @@ server.get('/api/v1/currency', async (req, res) => {
   await axios('https://api.exchangeratesapi.io/latest?base=USD').then(({ data }) =>
     res.send(data.rates)
   )
+})
+
+server.get('/api/v1/log', async (req, res) => {
+  const logs = await getLog()
+  res.send(logs)
+})
+
+server.post('/api/v1/log', async (req, res) => {
+  const logs = await getLog()
+  setLog(logs, req.body)
+  res.send('Logs updated')
+})
+
+server.delete('/api/v1/log', (req, res) => {
+  unlink(`${__dirname}/data/log.json`)
+  res.send('Logs removed')
 })
 
 server.use('/api/', (req, res) => {

@@ -8,7 +8,7 @@ const BasketTable = (props) => {
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
   return (
-    <tr className="border-b-2">
+    <tr className="border-b-4 border-yellow-300 rounded-pill bg-yellow-200">
       <td align="center">
         <img src={data.image} alt={data.title} className="object-fill w-20 h-20 rounded-full" />
       </td>

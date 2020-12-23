@@ -25,7 +25,7 @@ const Head = () => {
   )
   const basketInfo =
     basket.amount === 0
-      ? 'basket empty'
+      ? 'Cart empty'
       : `total ${(basket.price * rate[currency]).toFixed(2)} ${currency}`
   const basketImg = basket.amount > 0 ? basket_full : basket_empty
   const basketAmountVisible =

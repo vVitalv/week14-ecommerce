@@ -28,6 +28,14 @@ export default (state = initialState, action) => {
 }
 
 export function setCurrency(currency) {
+  axios({
+    method: 'post',
+    url: '/api/v1/log',
+    data: {
+      time: +new Date().toLocaleString(),
+      action: `change currency to ${currency}`
+    }
+  })
   return (dispatch) => {
     dispatch({
       type: CHANGE_CURRENCY,
