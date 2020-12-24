@@ -1,9 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className="w-screen bottom-0 text-xl font-bold text-gray-300 p-4 bg-yellow-500">
-      {'\u00A9'} 2020 SkillCrucial Wave#3
+    <div className="flex justify-between items-center h-16 w-screen text-xl font-bold text-gray-300 bg-yellow-500">
+      <p className="ml-4">{'\u00A9'} 2020 SkillCrucial Wave#3</p>
+      <p className="mr-12">
+        <Link to="/logs">Logs</Link>
+      </p>
     </div>
   )
 }

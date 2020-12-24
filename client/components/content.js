@@ -6,7 +6,7 @@ import { getCurrency } from '../redux/reducers/currency'
 import Card from './card'
 
 const Content = () => {
-  const dataList = useSelector((store) => store.cardData.goodsList.slice(0, 10))
+  const dataList = useSelector((store) => store.cardData.goodsList.slice(0, 5))
   const dispatch = useDispatch()
 
   useEffect(() => {

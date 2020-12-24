@@ -4,7 +4,8 @@ const GET_GOODS = 'GET_GOODS'
 const CHANGE_SORT = 'CHANGE_SORT'
 
 const initialState = {
-  goodsList: []
+  goodsList: [],
+  sortType: ''
 }
 
 export default (state = initialState, action) => {
@@ -21,7 +22,8 @@ export default (state = initialState, action) => {
     case CHANGE_SORT: {
       return {
         ...state,
-        goodsList: action.goodsList
+        goodsList: action.goodsList,
+        sortType: action.sortType
       }
     }
     default:
@@ -46,6 +48,14 @@ export function getCardData() {
 }
 
 export function setSort(sortType) {
+  axios({
+    method: 'post',
+    url: '/api/v1/log',
+    data: {
+      time: +new Date(),
+      action: `change sortType to ${sortType}`
+    }
+  })
   return (dispatch, getState) => {
     const store = getState()
     const { goodsList } = store.cardData
@@ -70,7 +80,8 @@ export function setSort(sortType) {
     })
     dispatch({
       type: CHANGE_SORT,
-      goodsList: sortedList
+      goodsList: sortedList,
+      sortType
     })
   }
 }

@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
@@ -25,6 +27,14 @@ export default (state = initialState, action) => {
 }
 
 export function addToCart(data) {
+  axios({
+    method: 'post',
+    url: '/api/v1/log',
+    data: {
+      time: +new Date(),
+      action: `Product with ID ${data.id} added to cart`
+    }
+  })
   return (dispatch, getState) => {
     const store = getState()
     const { basketList } = store.basket
@@ -48,6 +58,14 @@ export function addToCart(data) {
 }
 
 export function removeFromCart(dataID) {
+  axios({
+    method: 'post',
+    url: '/api/v1/log',
+    data: {
+      time: +new Date(),
+      action: `Product with ID ${dataID} removed from cart`
+    }
+  })
   return (dispatch, getState) => {
     const store = getState()
     const { basketList } = store.basket

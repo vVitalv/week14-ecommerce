@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { setSort } from '../redux/reducers/cardData'
 import sortAZ from './src/sort-AZ.png'
 import sortZA from './src/sort-ZA.png'
@@ -7,9 +7,13 @@ import sortUp from './src/sort-up.png'
 import sortLow from './src/sort-low.png'
 
 const SortMenu = () => {
+  const currentSortType = useSelector((store) => store.cardData.sortType)
   const dispatch = useDispatch()
   const sortOnClick = (sortType) => {
-    return dispatch(setSort(sortType))
+    if (currentSortType !== sortType) {
+      return dispatch(setSort(sortType))
+    }
+    return null
   }
   return (
     <div className="inline-flex space-x-4 pt-4">

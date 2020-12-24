@@ -1,11 +1,15 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { setCurrency } from '../redux/reducers/currency'
 
 const CurrencyButtons = () => {
+  const currentCurrency = useSelector((store) => store.currency.currency)
   const dispatch = useDispatch()
   const changeCurrencyOnClick = (currency) => {
-    return dispatch(setCurrency(currency))
+    if (currentCurrency !== currency) {
+      return dispatch(setCurrency(currency))
+    }
+    return null
   }
 
   return (
