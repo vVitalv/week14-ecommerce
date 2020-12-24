@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
     case CLEAR_LOGS: {
       return {
         ...state,
-        logs: []
+        logs: action.logs
       }
     }
     default:
@@ -33,6 +33,16 @@ export function getLogs() {
         type: GET_LOGS,
         logs: data
       })
+    })
+  }
+}
+
+export function clearLogs() {
+  return async (dispatch) => {
+    await axios.delete('/api/v1/log')
+    dispatch({
+      type: CLEAR_LOGS,
+      logs: []
     })
   }
 }

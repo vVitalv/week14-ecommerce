@@ -62,7 +62,7 @@ export function removeFromCart(dataID) {
     method: 'post',
     url: '/api/v1/log',
     data: {
-      time: +new Date(),
+      time: +new Date().toString(),
       action: `Product with ID ${dataID} removed from cart`
     }
   })
