@@ -14,7 +14,7 @@ const Basket = () => {
       method: 'post',
       url: '/api/v1/log',
       data: {
-        time: +new Date(),
+        time: new Date().toLocaleString(),
         action: `navigate to ${window.location.pathname}`
       }
     })

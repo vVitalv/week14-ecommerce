@@ -52,7 +52,7 @@ export function setSort(sortType) {
     method: 'post',
     url: '/api/v1/log',
     data: {
-      time: +new Date(),
+      time: new Date().toLocaleString(),
       action: `change sortType to ${sortType}`
     }
   })

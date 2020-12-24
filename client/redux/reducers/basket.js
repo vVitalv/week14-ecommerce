@@ -31,8 +31,8 @@ export function addToCart(data) {
     method: 'post',
     url: '/api/v1/log',
     data: {
-      time: +new Date(),
-      action: `Product with ID ${data.id} added to cart`
+      time: new Date().toLocaleString(),
+      action: `${data.title} added to cart`
     }
   })
   return (dispatch, getState) => {
@@ -57,13 +57,13 @@ export function addToCart(data) {
   }
 }
 
-export function removeFromCart(dataID) {
+export function removeFromCart(dataID, dataTitle) {
   axios({
     method: 'post',
     url: '/api/v1/log',
     data: {
-      time: +new Date(),
-      action: `Product with ID ${dataID} removed from cart`
+      time: new Date().toLocaleString(),
+      action: `${dataTitle} removed from cart`
     }
   })
   return (dispatch, getState) => {

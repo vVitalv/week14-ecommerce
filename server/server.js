@@ -71,7 +71,7 @@ server.get('/api/v1/currency', async (req, res) => {
 
 server.get('/api/v1/log', async (req, res) => {
   const logs = await getLog()
-  res.send(logs)
+  res.json(logs)
 })
 
 server.post('/api/v1/log', async (req, res) => {

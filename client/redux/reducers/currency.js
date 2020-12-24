@@ -32,7 +32,7 @@ export function setCurrency(currency) {
     method: 'post',
     url: '/api/v1/log',
     data: {
-      time: +new Date(),
+      time: new Date().toLocaleString(),
       action: `change currency to ${currency}`
     }
   })

@@ -20,7 +20,7 @@ const AddButtons = (props) => {
         className="transition-colors duration-300 hover:border-yellow-300 border-yellow-400 border-2 h-8 w-8 rounded-xl focus:outline-none text-xl font-bold text-gray-700"
         onClick={() => {
           if (typeof findAmount !== 'undefined') {
-            return dispatch(removeFromCart(data.id))
+            return dispatch(removeFromCart(data.id, data.title))
           }
           return null
         }}

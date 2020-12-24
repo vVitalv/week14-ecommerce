@@ -17,7 +17,7 @@ const Logs = () => {
       method: 'post',
       url: '/api/v1/log',
       data: {
-        time: +new Date(),
+        time: new Date().toLocaleString(),
         action: `navigate to ${window.location.pathname}`
       }
     })
@@ -32,7 +32,7 @@ const Logs = () => {
         <thead className="bg-yellow-400 text-lg">
           <tr>
             <th>Time</th>
-            <th className="w-2/3">Log name</th>
+            <th>Log name</th>
           </tr>
         </thead>
         <tbody className="text-center font-semibold">
