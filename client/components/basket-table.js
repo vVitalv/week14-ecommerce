@@ -17,7 +17,7 @@ const BasketTable = (props) => {
       <td>
         <AddButtons data={data} />
       </td>
-      <td>{(data.price * rate[currency]).toFixed(2) * data.amount}</td>
+      <td>{(data.price * rate[currency] * data.amount).toFixed(2)}</td>
     </tr>
   )
 }
