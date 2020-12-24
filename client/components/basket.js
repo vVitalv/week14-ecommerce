@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 import Header from './header'
@@ -8,6 +9,17 @@ import BasketTable from './basket-table'
 import basketNeedEat from './src/basket-eat.gif'
 
 const Basket = () => {
+  useEffect(() => {
+    axios({
+      method: 'post',
+      url: '/api/v1/log',
+      data: {
+        time: +new Date(),
+        action: `navigate to ${window.location.pathname}`
+      }
+    })
+    return () => {}
+  }, [])
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
   const basketList = useSelector((store) => store.basket.basketList)

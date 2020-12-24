@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Header from './header'
@@ -12,19 +13,17 @@ const Logs = () => {
 
   useEffect(() => {
     dispatch(getLogs())
+    axios({
+      method: 'post',
+      url: '/api/v1/log',
+      data: {
+        time: +new Date(),
+        action: `navigate to ${window.location.pathname}`
+      }
+    })
     return () => {}
   }, [dispatch])
 
-  if (logs.length === 0) {
-    return (
-      <div className="flex flex-col bg-yellow-300 w-screen h-screen">
-        <Header title="Logs" />
-        <Head />
-        <p className="text-center text-5xl font-black text-gray-300 mt-40 mb-40">NO LOGS</p>
-        <Footer />
-      </div>
-    )
-  }
   return (
     <div className="flex flex-col bg-yellow-300 w-screen min-h-screen">
       <Header title="Logs" />
