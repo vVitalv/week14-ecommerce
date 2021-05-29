@@ -13,14 +13,13 @@ import Html from '../client/html'
 
 const { readFile, writeFile, unlink } = require('fs').promises
 
-const getLog = async () => {
-  const logData = await readFile(`${__dirname}/Data/log.json`, 'utf8')
+const getLog = () => {
+  return readFile(`${__dirname}/Data/log.json`, 'utf8')
     .then((data) => JSON.parse(data))
     .catch(async () => {
       await writeFile(`${__dirname}/Data/log.json`, '[]', 'utf8')
       return []
     })
-  return logData
 }
 
 const setLog = (logs = [], body = {}) => {
@@ -65,8 +64,8 @@ server.get('/api/v1/card', async (req, res) => {
 })
 
 server.get('/api/v1/currency', async (req, res) => {
-  await axios('https://api.exchangeratesapi.io/latest?base=USD').then(({ data }) =>
-    res.send(data.rates)
+  await axios('https://api.exchangerate.host/latest?base=USD&symbols=USD,EUR,CAD').then(
+    ({ data }) => res.send(data.rates)
   )
 })
 
