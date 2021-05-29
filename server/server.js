@@ -13,13 +13,14 @@ import Html from '../client/html'
 
 const { readFile, writeFile, unlink } = require('fs').promises
 
-const getLog = () => {
-  return readFile(`${__dirname}/Data/log.json`, 'utf8')
+const getLog = async () => {
+  const logData = await readFile(`${__dirname}/Data/log.json`, 'utf8')
     .then((data) => JSON.parse(data))
     .catch(async () => {
       await writeFile(`${__dirname}/Data/log.json`, '[]', 'utf8')
       return []
     })
+  return logData
 }
 
 const setLog = (logs = [], body = {}) => {
