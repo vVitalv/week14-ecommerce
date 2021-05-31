@@ -10,8 +10,8 @@ const Content = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getCardData())
     dispatch(getCurrency())
+    dispatch(getCardData())
     return () => {}
   }, [dispatch])
 

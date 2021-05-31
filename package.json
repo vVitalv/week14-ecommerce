@@ -69,7 +69,7 @@
         "@babel/register": "^7.11.5",
         "@babel/runtime": "^7.11.2",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-        "axios": "^0.21.0",
+        "axios": "0.20.0",
         "babel-core": "7.0.0-bridge.0",
         "babel-eslint": "10.1.0",
         "babel-jest": "^26.3.0",
@@ -164,7 +164,8 @@
     },
     "nodemonConfig": {
         "ignore": [
-            "*.hot-update.json"
+            "*.hot-update.json",
+            "log.json"
         ]
     },
     "husky": {

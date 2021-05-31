@@ -13,19 +13,6 @@ import Html from '../client/html'
 
 const { readFile, writeFile, unlink } = require('fs').promises
 
-const getLog = () => {
-  return readFile(`${__dirname}/Data/log.json`, 'utf8')
-    .then((data) => JSON.parse(data))
-    .catch(async () => {
-      await writeFile(`${__dirname}/Data/log.json`, '[]', 'utf8')
-      return []
-    })
-}
-
-const setLog = (logs = [], body = {}) => {
-  writeFile(`${__dirname}/data/log.json`, JSON.stringify([body, ...logs]), 'utf8')
-}
-
 const Root = () => ''
 
 try {
@@ -64,19 +51,28 @@ server.get('/api/v1/card', async (req, res) => {
 })
 
 server.get('/api/v1/currency', async (req, res) => {
-  await axios('https://api.exchangerate.host/latest?base=USD&symbols=USD,EUR,CAD').then(
-    ({ data }) => res.send(data.rates)
-  )
+  await axios({
+    method: 'get',
+    baseURL: 'https://api.exchangerate.host/latest',
+    params: {
+      base: 'USD',
+      symbols: 'USD,EUR,CAD'
+    }
+  }).then(({data}) => res.send(data.rates))
 })
 
 server.get('/api/v1/log', async (req, res) => {
-  const logs = await getLog()
-  res.json(logs)
+  await readFile(`${__dirname}/Data/log.json`, 'utf8')
+    .then((data) => res.send(JSON.parse(data)))
+    .catch(() => res.send({ status: 'no logs' }))
 })
 
 server.post('/api/v1/log', async (req, res) => {
-  const logs = await getLog()
-  setLog(logs, req.body)
+  console.log(req.body)
+  await readFile(`${__dirname}/Data/log.json`, 'utf8').then((data) => {
+    const logs = JSON.parse(data)
+    writeFile(`${__dirname}/Data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
+  })
   res.send('Logs updated')
 })
 
