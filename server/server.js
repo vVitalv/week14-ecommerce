@@ -58,7 +58,7 @@ server.get('/api/v1/currency', async (req, res) => {
       base: 'USD',
       symbols: 'USD,EUR,CAD'
     }
-  }).then(({data}) => res.send(data.rates))
+  }).then(({ data }) => res.send(data.rates))
 })
 
 server.get('/api/v1/log', async (req, res) => {

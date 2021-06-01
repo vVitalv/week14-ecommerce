@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 
-import Header from './header'
 import Head from './head'
+import Header from './header'
 import Content from './content'
 import Footer from './footer'
 
@@ -19,12 +19,12 @@ const Home = () => {
     return () => {}
   }, [])
   return (
-    <main className="flex flex-col bg-yellow-300 w-screen">
-      <Header title="Hello" />
-      <Head />
+    <body className="relative bg-yellow-300 max-w-full">
+      <Head title="Hello" />
+      <Header />
       <Content />
       <Footer />
-    </main>
+    </body>
   )
 }
 

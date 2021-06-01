@@ -6,7 +6,7 @@ import { getCurrency } from '../redux/reducers/currency'
 import Card from './card'
 
 const Content = () => {
-  const dataList = useSelector((store) => store.cardData.goodsList.slice(0, 20))
+  const dataList = useSelector((store) => store.cardData.goodsList.slice(0, 10))
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -16,11 +16,11 @@ const Content = () => {
   }, [dispatch])
 
   return (
-    <body className="flex flex-wrap justify-evenly space-x-5 mt-40">
+    <main className="flex flex-wrap justify-evenly space-x-5">
       {dataList.map((item) => {
         return <Card data={item} key={item.id} />
       })}
-    </body>
+    </main>
   )
 }
 
