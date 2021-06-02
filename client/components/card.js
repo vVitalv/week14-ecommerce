@@ -9,11 +9,11 @@ const Card = (props) => {
   const { data } = props
 
   return (
-    <div className="flex flex-col h-80 w-80 rounded-xl bg-yellow-500 font-bold text-gray-700 mb-8 shadow-2xl">
+    <div className="flex flex-col h-80 w-80 rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2">
       <img className="object-contain h-64 w-80 rounded-t-xl" src={data.image} alt={data.title} />
       <div className="text-lg pl-2">{data.title}</div>
       <div className="text-sm pl-2">{data.description}</div>
-      <div className="flex justify-between">
+      <div className="inline-flex justify-between">
         <div className="text-3xl p-2">
           {(data.price * rate[currency]).toFixed(2)} {currency}
         </div>

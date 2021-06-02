@@ -32,14 +32,14 @@ export default (state = initialState, action) => {
 }
 
 export function getCardData() {
-  return (dispatch) => {
-    axios('/api/v1/card').then(({ data }) => {
+  return async (dispatch) => {
+    await axios('/api/v1/card').then(({ data }) => {
       dispatch({
         type: GET_GOODS,
         goodsList: data.map((rec) => {
           return {
             ...rec,
-            image: `https://source.unsplash.com/800x600/?${/\w+(?=\s)/gi.exec(rec.title)}`
+            image: `https://source.unsplash.com/600x400/?${/\w+(?=\s)/gi.exec(rec.title)}`
           }
         })
       })

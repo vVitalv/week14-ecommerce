@@ -35,15 +35,15 @@ const Header = () => {
 
   return (
     <header className="flex fixed flex-col max-w-full inset-x-0 top-0">
-      <div className="flex flex-row items-center justify-around h-36 max-w-full bg-yellow-700">
-        <h1 className="text-6xl font-extrabold text-yellow-400">
-          <Link to="/" className="flex items-center space-x-4">
+      <div className="inline-flex flex-nowrap items-center justify-around h-36 max-w-full bg-yellow-700">
+        <div className="text-6xl font-extrabold text-yellow-400">
+          <Link to="/" className="inline-flex flex-nowrap items-center space-x-4">
             <img
               src={logo}
               alt="Logo"
               className="transition transform duration-500 hover:-translate-y-1 hover:scale-110 opacity-75 hover:opacity-100 h-16 w-24"
             />
-            <p>
+            <div className="inline-flex flex-nowrap">
               <span className="transition ease-in duration-300 hover:text-red-500">E</span>
               <span className="transition ease-in duration-300 hover:text-indigo-600">-</span>
               <span className="transition ease-in duration-300 hover:text-purple-500">C</span>
@@ -54,9 +54,9 @@ const Header = () => {
               <span className="transition ease-in duration-300 hover:text-purple-600">R</span>
               <span className="transition ease-in duration-300 hover:text-pink-500">C</span>
               <span className="transition ease-in duration-300 hover:text-red-600">E</span>
-            </p>
+            </div>
           </Link>
-        </h1>
+        </div>
         <CurrencyButtons />
         <div className="flex flex-col items-center w-40">
           <button

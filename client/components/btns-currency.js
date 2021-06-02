@@ -13,7 +13,7 @@ const CurrencyButtons = () => {
   }
 
   return (
-    <div>
+    <div className="inline-flex flex-nowrap">
       <button
         type="button"
         id="USD-button"

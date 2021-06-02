@@ -16,10 +16,12 @@ const Content = () => {
   }, [dispatch])
 
   return (
-    <main className="flex flex-wrap justify-evenly space-x-5">
-      {dataList.map((item) => {
-        return <Card data={item} key={item.id} />
-      })}
+    <main className="min-h-screen pt-40 pb-40">
+      <div className="flex flex-wrap justify-center items-center">
+        {dataList.map((item) => {
+          return <Card data={item} key={item.id} />
+        })}
+      </div>
     </main>
   )
 }

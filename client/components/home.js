@@ -19,7 +19,7 @@ const Home = () => {
     return () => {}
   }, [])
   return (
-    <body className="relative bg-yellow-300 max-w-full">
+    <body className="bg-yellow-300 max-w-full">
       <Head title="Hello" />
       <Header />
       <Content />
