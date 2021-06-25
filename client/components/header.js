@@ -41,19 +41,19 @@ const Header = () => {
             <img
               src={logo}
               alt="Logo"
-              className="transition transform duration-500 hover:-translate-y-1 hover:scale-110 opacity-75 hover:opacity-100 h-16 w-24"
+              className="logo"
             />
-            <div className="logo-letter inline-flex flex-nowrap">
-              <span className="logo-letter_red">E</span>
-              <span className="logo-letter_indigo">-</span>
-              <span className="logo-letter_purple">C</span>
-              <span className="logo-letter_green">O</span>
-              <span className="logo-letter_blue">M</span>
-              <span className="logo-letter_pink">M</span>
-              <span className="logo-letter_red">E</span>
-              <span className="logo-letter_indigo">R</span>
-              <span className="logo-letter_purple">C</span>
-              <span className="logo-letter_green">E</span>
+            <div className="inline-flex flex-nowrap">
+              <span className="logo-letter logo-letter_red">E</span>
+              <span className="logo-letter logo-letter_indigo">-</span>
+              <span className="logo-letter logo-letter_purple">C</span>
+              <span className="logo-letter logo-letter_green">O</span>
+              <span className="logo-letter logo-letter_blue">M</span>
+              <span className="logo-letter logo-letter_pink">M</span>
+              <span className="logo-letter logo-letter_red">E</span>
+              <span className="logo-letter logo-letter_indigo">R</span>
+              <span className="logo-letter logo-letter_purple">C</span>
+              <span className="logo-letter logo-letter_green">E</span>
             </div>
           </Link>
         </div>
