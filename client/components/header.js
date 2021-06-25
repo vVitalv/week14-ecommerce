@@ -36,24 +36,24 @@ const Header = () => {
   return (
     <header className="flex fixed flex-col max-w-full inset-x-0 top-0">
       <div className="inline-flex flex-nowrap items-center justify-around h-36 max-w-full bg-yellow-700">
-        <div className="text-6xl font-extrabold text-yellow-400">
+        <div>
           <Link to="/" className="inline-flex flex-nowrap items-center space-x-4">
             <img
               src={logo}
               alt="Logo"
               className="transition transform duration-500 hover:-translate-y-1 hover:scale-110 opacity-75 hover:opacity-100 h-16 w-24"
             />
-            <div className="inline-flex flex-nowrap">
-              <span className="transition ease-in duration-300 hover:text-red-500">E</span>
-              <span className="transition ease-in duration-300 hover:text-indigo-600">-</span>
-              <span className="transition ease-in duration-300 hover:text-purple-500">C</span>
-              <span className="transition ease-in duration-300 hover:text-green-500">O</span>
-              <span className="transition ease-in duration-300 hover:text-blue-500">M</span>
-              <span className="transition ease-in duration-300 hover:text-pink-600">M</span>
-              <span className="transition ease-in duration-300 hover:text-green-600">E</span>
-              <span className="transition ease-in duration-300 hover:text-purple-600">R</span>
-              <span className="transition ease-in duration-300 hover:text-pink-500">C</span>
-              <span className="transition ease-in duration-300 hover:text-red-600">E</span>
+            <div className="logo-letter inline-flex flex-nowrap">
+              <span className="logo-letter_red">E</span>
+              <span className="logo-letter_indigo">-</span>
+              <span className="logo-letter_purple">C</span>
+              <span className="logo-letter_green">O</span>
+              <span className="logo-letter_blue">M</span>
+              <span className="logo-letter_pink">M</span>
+              <span className="logo-letter_red">E</span>
+              <span className="logo-letter_indigo">R</span>
+              <span className="logo-letter_purple">C</span>
+              <span className="logo-letter_green">E</span>
             </div>
           </Link>
         </div>
