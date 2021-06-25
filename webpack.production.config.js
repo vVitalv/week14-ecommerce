@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
 const StringReplacePlugin = require('string-replace-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const { v4: uuidv4 } = require('uuid')
 
@@ -18,10 +18,15 @@ const config = {
     minimize: true,
     minimizer: [
       new TerserJSPlugin({ parallel: true }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }]
+      new CssMinimizerPlugin({
+        exclude: /node_modules/,
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true }
+            }
+          ]
         }
       })
     ]
@@ -42,7 +47,7 @@ const config = {
   },
   mode: 'production',
   context: resolve(__dirname, 'client'),
-  devtool: false,
+  // devtool: false,
   performance: {
     hints: 'warning',
     maxEntrypointSize: 512000,
@@ -51,7 +56,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /.html$/,
+        test: /\.html$/,
         loader: StringReplacePlugin.replace({
           replacements: [
             {
@@ -64,21 +69,8 @@ const config = {
         })
       },
       {
-        enforce: 'pre',
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: [
-          {
-            loader: 'eslint-loader',
-            options: {
-              cache: true
-            }
-          }
-        ]
-      },
-      {
-        test: /\.js$/,
-        loaders: ['babel-loader'],
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {

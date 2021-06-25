@@ -1,6 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  body {
+    @apply bg-yellow-300 max-w-full;
+  }
+  header {
+    @apply flex fixed flex-col max-w-full inset-x-0 top-0;
+  }
+}
+
+.header-menu {
+  @apply inline-flex flex-nowrap items-center justify-around max-w-full bg-yellow-700;
+  & a {
+    @apply inline-flex items-center flex-nowrap space-x-4;
+  }
+}
 
 .logo {
   @apply transition ease-in duration-500 transform opacity-50 h-16 w-24;

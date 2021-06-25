@@ -34,29 +34,23 @@ const Header = () => {
       : 'absolute font-bold text-sm text-center text-white bg-blue-500 rounded-full w-6 h-6'
 
   return (
-    <header className="flex fixed flex-col max-w-full inset-x-0 top-0">
-      <div className="inline-flex flex-nowrap items-center justify-around h-36 max-w-full bg-yellow-700">
-        <div>
-          <Link to="/" className="inline-flex flex-nowrap items-center space-x-4">
-            <img
-              src={logo}
-              alt="Logo"
-              className="logo"
-            />
-            <div className="inline-flex flex-nowrap">
-              <span className="logo-letter logo-letter_red">E</span>
-              <span className="logo-letter logo-letter_indigo">-</span>
-              <span className="logo-letter logo-letter_purple">C</span>
-              <span className="logo-letter logo-letter_green">O</span>
-              <span className="logo-letter logo-letter_blue">M</span>
-              <span className="logo-letter logo-letter_pink">M</span>
-              <span className="logo-letter logo-letter_red">E</span>
-              <span className="logo-letter logo-letter_indigo">R</span>
-              <span className="logo-letter logo-letter_purple">C</span>
-              <span className="logo-letter logo-letter_green">E</span>
-            </div>
-          </Link>
-        </div>
+    <header>
+      <div className="header-menu">
+        <Link to="/" className="logo-link">
+          <img src={logo} alt="Logo" className="logo" />
+          <div className="inline-flex flex-nowrap">
+            <span className="logo-letter logo-letter_red">E</span>
+            <span className="logo-letter logo-letter_indigo">-</span>
+            <span className="logo-letter logo-letter_purple">C</span>
+            <span className="logo-letter logo-letter_green">O</span>
+            <span className="logo-letter logo-letter_blue">M</span>
+            <span className="logo-letter logo-letter_pink">M</span>
+            <span className="logo-letter logo-letter_red">E</span>
+            <span className="logo-letter logo-letter_indigo">R</span>
+            <span className="logo-letter logo-letter_purple">C</span>
+            <span className="logo-letter logo-letter_green">E</span>
+          </div>
+        </Link>
         <CurrencyButtons />
         <div className="flex flex-col items-center w-40">
           <button

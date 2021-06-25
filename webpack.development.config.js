@@ -1,6 +1,7 @@
 const { resolve } = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
@@ -11,8 +12,7 @@ require('dotenv').config()
 
 const version = 'development'
 const config = {
-  devtool: 'cheap-module-eval-source-map',
-
+  devtool: 'eval',
   entry: ['./main.js'],
   resolve: {
     alias: {
@@ -47,36 +47,20 @@ const config = {
         target: `http://localhost:${process.env.PORT || 8090}`,
         secure: false,
         changeOrigin: true,
-        ws: (process.env.ENABLE_SOCKETS || false)
+        ws: process.env.ENABLE_SOCKETS || false
       }
     ]
   },
   module: {
     rules: [
       {
-        enforce: 'pre',
         test: /\.js$/,
-        exclude: /node_modules/,
-        include: [/client/, /server/],
-        loader: [
-          {
-            loader: 'eslint-loader',
-            options: {
-              cache: false,
-
-              cacheIdentifer: eslintCacheIdentifier
-            }
-          }
-        ]
-      },
-      {
-        test: /\.js$/,
-        loaders: ['babel-loader'],
+        loader: 'babel-loader',
         include: [/client/, /stories/],
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/i,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -85,39 +69,14 @@ const config = {
               hmr: process.env.NODE_ENV === 'development'
             }
           },
-          { loader: 'css-loader', options: { sourceMap: true } },
-          {
-            loader: 'postcss-loader'
-          }
+          { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } },
+          'postcss-loader',
+          'sass-loader'
         ]
       },
       {
         test: /\.txt$/i,
         use: 'raw-loader'
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../',
-              hmr: process.env.NODE_ENV === 'development'
-            }
-          },
-
-          { loader: 'css-loader', options: { sourceMap: true } },
-          {
-            loader: 'postcss-loader'
-          },
-          {
-            loader: 'sass-loader',
-            query: {
-              sourceMap: false
-            }
-          }
-        ]
       },
       {
         test: /\.(jpg|png|gif|svg|webp)$/,
@@ -173,6 +132,10 @@ const config = {
 
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new ESLintPlugin({
+      extensions: ['js', 'jsx'],
+      exclude: 'node_modules'
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/main.css',
       chunkFilename: 'css/[id].css',
