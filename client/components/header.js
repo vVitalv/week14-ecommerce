@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import CurrencyButtons from './btns-currency'
+import CurrencyPanel from './currency-panel'
 import SortMenu from './menu-sorting'
 import logo from './src/logo-2.png'
 import basket_empty from './src/basket-empty.png'
@@ -51,7 +51,7 @@ const Header = () => {
             <span className="logo-letter logo-letter_green">E</span>
           </div>
         </Link>
-        <CurrencyButtons />
+        <CurrencyPanel />
         <div className="flex flex-col items-center w-40">
           <button
             type="button"

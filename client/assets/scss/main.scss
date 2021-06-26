@@ -13,8 +13,38 @@
 
 .header-menu {
   @apply inline-flex flex-nowrap items-center justify-around max-w-full bg-yellow-700;
-  & a {
-    @apply inline-flex items-center flex-nowrap space-x-4;
+}
+.logo-link {
+  @apply inline-flex items-center flex-nowrap space-x-4;
+}
+.currency-panel {
+  @apply inline-flex flex-nowrap;
+  & button {
+    @apply transition-opacity duration-300 opacity-50 h-12 w-20 border-2 text-2xl font-bold text-white;
+    &:hover {
+      @apply opacity-100;
+    }
+    &:focus {
+      @apply outline-none opacity-100;
+    }
+  }
+  & button:first-child {
+    @apply transition-opacity duration-300 opacity-50 h-12 w-20 rounded-l-lg border-2 text-2xl font-bold text-white;
+    &:hover {
+      @apply opacity-100;
+    }
+    &:focus {
+      @apply outline-none opacity-100;
+    }
+  }
+  & button:last-child {
+    @apply transition-opacity duration-300 opacity-50 h-12 w-20 rounded-r-lg border-2 text-2xl font-bold text-white;
+    &:hover {
+      @apply opacity-100;
+    }
+    &:focus {
+      @apply outline-none opacity-100;
+    }
   }
 }
 
