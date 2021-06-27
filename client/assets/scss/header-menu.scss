@@ -1,5 +1,5 @@
 .header-menu {
-  @apply inline-flex flex-nowrap items-center justify-around max-w-full bg-yellow-700;
+  @apply inline-flex flex-nowrap items-center justify-around max-w-full bg-gradient-to-b from-yellow-900 to-yellow-600 h-28;
 }
 
 .logo-link {
@@ -67,5 +67,23 @@
     &:focus {
       @apply outline-none opacity-100;
     }
+  }
+}
+
+.basket-plate {
+  @apply flex flex-col items-center w-40;
+  & button {
+    @apply h-12 w-12;
+    &:focus {
+      @apply outline-none;
+    }
+    & a {
+      & img {
+        @apply object-fill h-full w-full;
+      }
+    }
+  }
+  & div:last-child {
+    @apply font-bold text-white opacity-75;
   }
 }

@@ -15,20 +15,6 @@ const { readFile, writeFile, unlink } = require('fs').promises
 
 const Root = () => ''
 
-try {
-  // eslint-disable-next-line import/no-unresolved
-  // ;(async () => {
-  //   const items = await import('../dist/assets/js/root.bundle')
-  //   console.log(JSON.stringify(items))
-
-  //   Root = (props) => <items.Root {...props} />
-  //   console.log(JSON.stringify(items.Root))
-  // })()
-  console.log(Root)
-} catch (ex) {
-  console.log(' run yarn build:prod to enable ssr')
-}
-
 let connections = []
 
 const port = process.env.PORT || 8090
@@ -68,7 +54,6 @@ server.get('/api/v1/log', async (req, res) => {
 })
 
 server.post('/api/v1/log', async (req, res) => {
-  console.log(req.body)
   await readFile(`${__dirname}/Data/log.json`, 'utf8').then((data) => {
     const logs = JSON.parse(data)
     writeFile(`${__dirname}/Data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')

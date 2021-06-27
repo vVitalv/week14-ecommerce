@@ -7,7 +7,6 @@ import SortMenu from './menu-sorting'
 import logo from './src/logo-2.png'
 
 const Header = () => {
-
   return (
     <header>
       <div className="header-menu">
@@ -29,7 +28,7 @@ const Header = () => {
         <CurrencyPanel />
         <BasketButton />
       </div>
-      <div className="h-10 bg-gradient-to-b from-yellow-800 to-yellow-300 opacity-75 pl-8">
+      <div className="h-10 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75 pl-8">
         <SortMenu />
       </div>
     </header>
