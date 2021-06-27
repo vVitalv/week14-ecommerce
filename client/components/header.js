@@ -38,7 +38,7 @@ const Header = () => {
       <div className="header-menu">
         <Link to="/" className="logo-link">
           <img src={logo} alt="Logo" className="logo" />
-          <div className="inline-flex flex-nowrap">
+          <div className="logo-text">
             <span className="logo-letter logo-letter_red">E</span>
             <span className="logo-letter logo-letter_indigo">-</span>
             <span className="logo-letter logo-letter_purple">C</span>
