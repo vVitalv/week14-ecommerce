@@ -4,7 +4,9 @@
 
 .logo-link {
   @apply inline-flex items-center flex-nowrap space-x-4;
-  .logo {
+}
+
+.logo {
   @apply transition ease-in duration-500 transform opacity-50 h-16 w-24;
   &:hover {
     @apply opacity-100 -translate-y-1 scale-110;
@@ -13,6 +15,7 @@
 
 .logo-text {
   @apply inline-flex flex-nowrap;
+
   .logo-letter {
     @apply transition ease-out duration-300 text-6xl font-extrabold text-yellow-400;
   }
@@ -34,7 +37,6 @@
   .logo-letter_pink:hover {
     @apply text-pink-600;
   }
-}
 }
 
 .currency-panel {
