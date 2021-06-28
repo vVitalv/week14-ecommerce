@@ -1,9 +1,9 @@
 import React from 'react'
 
 import Logotype from './logotype'
-import CurrencyPanel from './currency-panel'
+import CurrencyPanel from './panel-currency'
 import BasketButton from './btn-basket'
-import SortMenu from './menu-sorting'
+import SortPanel from './panel-sorting'
 
 const Header = () => {
   return (
@@ -14,7 +14,7 @@ const Header = () => {
         <BasketButton />
       </div>
       <div className="sort-panel">
-        <SortMenu />
+        <SortPanel />
       </div>
     </header>
   )
