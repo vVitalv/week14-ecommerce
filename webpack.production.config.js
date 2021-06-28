@@ -74,48 +74,22 @@ const config = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/i,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '../',
-              hmr: process.env.NODE_ENV === 'development'
+              publicPath: '../'
             }
           },
-          { loader: 'css-loader', options: { sourceMap: false } },
-          {
-            loader: 'postcss-loader'
-          }
+          { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } },
+          'postcss-loader',
+          'sass-loader'
         ]
       },
       {
         test: /\.txt$/i,
         use: 'raw-loader'
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../',
-              hmr: process.env.NODE_ENV === 'development'
-            }
-          },
-
-          { loader: 'css-loader', options: { sourceMap: false } },
-          {
-            loader: 'postcss-loader'
-          },
-          {
-            loader: 'sass-loader',
-            query: {
-              sourceMap: false
-            }
-          }
-        ]
       },
       {
         test: /\.(jpg|png|gif|svg|webp)$/,

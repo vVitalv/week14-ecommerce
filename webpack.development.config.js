@@ -65,8 +65,7 @@ const config = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '../',
-              hmr: process.env.NODE_ENV === 'development'
+              publicPath: '../'
             }
           },
           { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } },
