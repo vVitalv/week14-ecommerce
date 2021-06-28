@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { setSort } from '../redux/reducers/cardData'
+import SortButton from './btn-sorting'
 import sortAZ from './src/sort-AZ.png'
 import sortZA from './src/sort-ZA.png'
 import sortUp from './src/sort-up.png'
@@ -16,39 +18,11 @@ const SortMenu = () => {
     return null
   }
   return (
-    <div className="inline-flex space-x-4 pt-4">
-      <button
-        type="button"
-        id="AZ-sort-button"
-        className="transition-opacity duration-300 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100 h-4 w-10"
-        onClick={() => sortOnClick('AZ')}
-      >
-        <img src={sortAZ} alt="AZ-sorting" className="object-fill h-full w-full" />
-      </button>
-      <button
-        type="button"
-        id="ZA-sort-button"
-        className="transition-opacity duration-300 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100 h-4 w-10"
-        onClick={() => sortOnClick('ZA')}
-      >
-        <img src={sortZA} alt="ZA-sorting" className="object-fill h-full w-full" />
-      </button>
-      <button
-        type="button"
-        id="up-sort-button"
-        className="transition-opacity duration-300 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100 h-4 w-10"
-        onClick={() => sortOnClick('up')}
-      >
-        <img src={sortUp} alt="Up-sorting" className="object-fill h-full w-full" />
-      </button>
-      <button
-        type="button"
-        id="low-sort-button"
-        className="transition-opacity duration-300 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100 h-4 w-10"
-        onClick={() => sortOnClick('low')}
-      >
-        <img src={sortLow} alt="Low-sorting" className="object-fill h-full w-full" />
-      </button>
+    <div className="sort-menu">
+      <SortButton sort="AZ" onClickFunction="sortOnClick" sortImg={sortAZ} />
+      <SortButton sort="ZA" onClickFunction="sortOnClick" sortImg={sortZA} />
+      <SortButton sort="up" onClickFunction="sortOnClick" sortImg={sortUP} />
+      <SortButton sort="low" onClickFunction="sortOnClick" sortImg={sortLow} />
     </div>
   )
 }

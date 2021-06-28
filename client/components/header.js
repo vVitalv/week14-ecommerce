@@ -8,12 +8,12 @@ import SortMenu from './menu-sorting'
 const Header = () => {
   return (
     <header>
-      <div className="header-menu">
+      <div className="header-panel">
         <Logotype />
         <CurrencyPanel />
         <BasketButton />
       </div>
-      <div className="h-10 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75 pl-8">
+      <div className="sort-panel">
         <SortMenu />
       </div>
     </header>
