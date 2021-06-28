@@ -18,6 +18,7 @@ const Home = () => {
     })
     return () => {}
   }, [])
+  
   return (
     <body>
       <Head title="Hello" />

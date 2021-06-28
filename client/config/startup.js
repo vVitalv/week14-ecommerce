@@ -1,8 +1,17 @@
 import { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+
+import { getCardData } from '../redux/reducers/cardData'
+import { getCurrency } from '../redux/reducers/currency'
 
 const Startup = (props) => {
-  useEffect(() => {}, [])
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCurrency())
+    dispatch(getCardData())
+    return () => {}
+  }, [dispatch])
 
   return props.children
 }

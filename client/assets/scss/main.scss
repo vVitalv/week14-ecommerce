@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "./header-menu.scss";
+@import "./content.scss";
 
 @layer base {
   body {
@@ -9,5 +10,8 @@
   }
   header {
     @apply flex fixed flex-col max-w-full inset-x-0 top-0;
+  }
+  main {
+    @apply min-h-screen pt-40 pb-40;
   }
 }
