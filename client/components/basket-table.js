@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import AddButtons from './btns-plus-minus'
+import AmountButtons from './btns-amount'
 
 const BasketTable = (props) => {
   const { data } = props
@@ -15,7 +15,7 @@ const BasketTable = (props) => {
       <td>{data.title}</td>
       <td>{(data.price * rate[currency]).toFixed(2)}</td>
       <td>
-        <AddButtons data={data} />
+        <AmountButtons data={data} />
       </td>
       <td>{(data.price * rate[currency] * data.amount).toFixed(2)}</td>
     </tr>

@@ -35,7 +35,7 @@ const BasketButton = () => {
       <button type="button">
         <div className={basketAmountVisible}>{basket.amount}</div>
         <Link to="/basket">
-          <img src={basketImg} alt="basket" />
+          <img src={basketImg} alt="cart" />
         </Link>
       </button>
       <div>{basketInfo}</div>

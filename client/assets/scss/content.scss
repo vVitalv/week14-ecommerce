@@ -1,3 +1,36 @@
 .content {
   @apply flex flex-wrap justify-center items-center;
 }
+.content-card {
+  @apply flex flex-col h-80 w-80 rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;
+  & img {
+    @apply object-contain h-64 w-80 rounded-t-xl;
+  }
+  & div:nth-child(2) {
+    @apply text-lg pl-2;
+  }
+  & div:nth-child(3) {
+    @apply text-sm pl-2;
+  }
+  & div:nth-child(4) {
+    @apply inline-flex justify-between;
+    & div:nth-child(1) {
+      @apply text-3xl p-2;
+    }
+    & div:nth-child(2) {
+      @apply inline-flex items-center space-x-2 p-2;
+      & button {
+        @apply transition-colors duration-300 border-yellow-400 border-2 h-8 w-8 rounded-xl text-xl font-bold text-gray-700;
+        &:hover {
+          @apply border-yellow-300;
+        }
+        &:focus {
+          @apply outline-none;
+        }
+      }
+      & div {
+        @apply flex w-6 justify-center;
+      }
+    }
+  }
+}
