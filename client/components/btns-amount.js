@@ -26,7 +26,7 @@ const AmountButtons = (props) => {
   }
 
   return (
-    <div>
+    <div className="amount-buttons">
       <MinusButton
         operation="minus"
         id={data.id}

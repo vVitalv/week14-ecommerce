@@ -17,20 +17,20 @@
     & div:nth-child(1) {
       @apply text-3xl p-2;
     }
-    & div:nth-child(2) {
-      @apply inline-flex items-center space-x-2 p-2;
-      & button {
-        @apply transition-colors duration-300 border-yellow-400 border-2 h-8 w-8 rounded-xl text-xl font-bold text-gray-700;
-        &:hover {
-          @apply border-yellow-300;
-        }
-        &:focus {
-          @apply outline-none;
-        }
-      }
-      & div {
-        @apply flex w-6 justify-center;
-      }
+  }
+}
+.amount-buttons {
+  @apply inline-flex items-center space-x-2 p-2;
+  & button {
+    @apply transition-colors duration-300 border-yellow-400 border-2 h-8 w-8 rounded-xl text-xl font-bold text-gray-700;
+    &:hover {
+      @apply border-yellow-300;
     }
+    &:focus {
+      @apply outline-none;
+    }
+  }
+  & div {
+    @apply flex w-6 justify-center;
   }
 }

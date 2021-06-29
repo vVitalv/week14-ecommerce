@@ -4,7 +4,6 @@ const webpack = require('webpack')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const { v4: uuidv4 } = require('uuid')
 const eslintCacheIdentifier = JSON.stringify(fs.statSync('.eslintrc').mtimeMs)
@@ -54,8 +53,11 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/i,
         loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        },
         include: [/client/, /stories/],
         exclude: /node_modules/
       },
@@ -68,7 +70,13 @@ const config = {
               publicPath: '../'
             }
           },
-          { loader: 'css-loader', options: { importLoaders: 2, sourceMap: true } },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              sourceMap: true
+            }
+          },
           'postcss-loader',
           'sass-loader'
         ]
@@ -84,30 +92,6 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|webp)$/,
-        use: [
-          {
-            loader: 'file-loader'
-          }
-        ]
-      },
-      {
-        test: /\.eot$/,
-        use: [
-          {
-            loader: 'file-loader'
-          }
-        ]
-      },
-      {
-        test: /\.woff(2)$/,
-        use: [
-          {
-            loader: 'file-loader'
-          }
-        ]
-      },
-      {
-        test: /\.[ot]tf$/,
         use: [
           {
             loader: 'file-loader'
@@ -187,7 +171,6 @@ const config = {
         }
       )
     ),
-    // new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
 }

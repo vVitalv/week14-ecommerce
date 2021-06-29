@@ -1,0 +1,6 @@
+.basket-empty {
+  @apply flex justify-center container;
+  & img {
+    @apply rounded-full;
+  }
+}

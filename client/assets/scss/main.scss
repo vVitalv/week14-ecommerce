@@ -1,8 +1,11 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
 @import "./header-menu.scss";
 @import "./content.scss";
+@import "./basket.scss";
+@import "./footer.scss";
 
 @layer base {
   body {

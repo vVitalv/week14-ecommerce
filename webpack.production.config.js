@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const TerserJSPlugin = require('terser-webpack-plugin')
 const { v4: uuidv4 } = require('uuid')
 
 const gitRevisionPlugin = new GitRevisionPlugin()
@@ -16,7 +15,7 @@ const config = {
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserJSPlugin({ parallel: true }),
+      '...',
       new CssMinimizerPlugin({
         exclude: /node_modules/,
         minimizerOptions: {
@@ -55,8 +54,11 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/i,
         loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        },
         exclude: /node_modules/
       },
       {
