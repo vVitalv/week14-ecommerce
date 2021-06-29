@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlStringReplace = require('html-string-replace-webpack-plugin-webpack-4')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const { v4: uuidv4 } = require('uuid')
@@ -48,7 +47,7 @@ const config = {
   },
   mode: 'production',
   context: resolve(__dirname, 'client'),
-  // devtool: false,
+  devtool: false,
   performance: {
     hints: 'warning',
     maxEntrypointSize: 512000,
@@ -141,18 +140,6 @@ const config = {
 
   plugins: [
     new HtmlWebpackPlugin(),
-    new HtmlStringReplace({
-      enable: true,
-      patterns: [
-        {
-          match: /href/g,
-          replacement: function(match) {
-            return match;
-          }
-        }
-      ]
-    }),
-
     new CopyWebpackPlugin(
       {
         patterns: [
