@@ -68,7 +68,7 @@ const config = {
               publicPath: '../'
             }
           },
-          { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } },
+          { loader: 'css-loader', options: { importLoaders: 2, sourceMap: true } },
           'postcss-loader',
           'sass-loader'
         ]
