@@ -5,7 +5,8 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
-const StringReplacePlugin = require('string-replace-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlStringReplace = require('html-string-replace-webpack-plugin-webpack-4')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const { v4: uuidv4 } = require('uuid')
@@ -55,19 +56,6 @@ const config = {
   },
   module: {
     rules: [
-      {
-        test: /\.html$/,
-        loader: StringReplacePlugin.replace({
-          replacements: [
-            {
-              pattern: /COMMITHASH/gi,
-              replacement() {
-                return gitRevisionPlugin.commithash()
-              }
-            }
-          ]
-        })
-      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -152,7 +140,18 @@ const config = {
   },
 
   plugins: [
-    new StringReplacePlugin(),
+    new HtmlWebpackPlugin(),
+    new HtmlStringReplace({
+      enable: true,
+      patterns: [
+        {
+          match: /href/g,
+          replacement: function(match) {
+            return match;
+          }
+        }
+      ]
+    }),
 
     new CopyWebpackPlugin(
       {
