@@ -5,7 +5,6 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const { v4: uuidv4 } = require('uuid')
@@ -139,7 +138,11 @@ const config = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/main.css',
+      chunkFilename: 'css/[id].css',
+      ignoreOrder: false
+    }),
     new CopyWebpackPlugin(
       {
         patterns: [
@@ -175,11 +178,6 @@ const config = {
       },
       { parallel: 100 }
     ),
-    new MiniCssExtractPlugin({
-      filename: 'css/main.css',
-      chunkFilename: 'css/[id].css',
-      ignoreOrder: false
-    }),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(
         (res, key) => ({ ...res, [key]: JSON.stringify(process.env[key]) }),
