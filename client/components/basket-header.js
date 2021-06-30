@@ -13,11 +13,11 @@ const BasketHeader = (props) => {
         <CurrencyPanel />
         <BasketButton />
       </div>
-      {props.amount > 0 &&
+      {props.amount > 0 && (
         <div className="basket-panel">
           <HeaderThead />
         </div>
-      }
+      )}
     </header>
   )
 }

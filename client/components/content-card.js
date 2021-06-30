@@ -17,7 +17,7 @@ const Card = (props) => {
         <div>
           {(data.price * rate[currency]).toFixed(2)} {currency}
         </div>
-        <AmountButtons data={data} />
+        <AmountButtons productData={data} />
       </div>
     </div>
   )

@@ -8,10 +8,10 @@ import MinusButton from './btn-amount-minus'
 const AmountButtons = (props) => {
   const dispatch = useDispatch()
   const basketAmount = useSelector((store) => store.basket.basketList)
-  const { data } = props
+  const { productData } = props
 
-  const findAmount = basketAmount.find((item) => {
-    return data.id === item.id
+  const findAmount = basketAmount.find((product) => {
+    return productData.id === product.id
   })
   const amount = typeof findAmount === 'undefined' ? 0 : findAmount.amount
 
@@ -29,12 +29,12 @@ const AmountButtons = (props) => {
     <div className="amount-buttons">
       <MinusButton
         operation="minus"
-        id={data.id}
-        title={data.title}
+        id={productData.id}
+        title={productData.title}
         onClickFunction={removeOnClick}
       />
       <div>{amount}</div>
-      <PlusButton operation="plus" cardData={data} onClickFunction={addOnClick} />
+      <PlusButton operation="plus" cardData={productData} onClickFunction={addOnClick} />
     </div>
   )
 }

@@ -4,20 +4,20 @@ import { useSelector } from 'react-redux'
 import AmountButtons from './btns-amount'
 
 const BasketTable = (props) => {
-  const { data } = props
+  const { productData } = props
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
   return (
-    <tr className="border-b-4 border-yellow-300 rounded-pill bg-yellow-200">
+    <tr>
       <td align="center">
-        <img src={data.image} alt={data.title} className="object-fill w-20 h-20 rounded-full" />
+        <img src={productData.image} alt={productData.title} />
       </td>
-      <td>{data.title}</td>
-      <td>{(data.price * rate[currency]).toFixed(2)}</td>
+      <td>{productData.title}</td>
+      <td>{(productData.price * rate[currency]).toFixed(2)}</td>
       <td>
-        <AmountButtons data={data} />
+        <AmountButtons productData={productData} />
       </td>
-      <td>{(data.price * rate[currency] * data.amount).toFixed(2)}</td>
+      <td>{(productData.price * rate[currency] * productData.amount).toFixed(2)}</td>
     </tr>
   )
 }

@@ -21,19 +21,19 @@ const BasketStuff = () => {
   return (
     <main>
       <table className="basket-table">
-        <tbody className="text-center font-semibold">
-          {basketList.map((item) => {
-            return <BasketTable data={item} key={`basket${item.id}`} />
+        <tfoot>
+          <td />
+          <td />
+          <td />
+          <td>{basket.amount}</td>
+          <td>
+            {(basket.price * rate[currency]).toFixed(2)} {currency}
+          </td>
+        </tfoot>
+        <tbody>
+          {basketList.map((product) => {
+            return <BasketTable productData={product} key={`basket${product.id}`} />
           })}
-          <tr className="font-bold text-lg bg-yellow-400">
-            <td />
-            <td />
-            <td />
-            <td>{basket.amount}</td>
-            <td>
-              {(basket.price * rate[currency]).toFixed(2)} {currency}
-            </td>
-          </tr>
         </tbody>
       </table>
       <button

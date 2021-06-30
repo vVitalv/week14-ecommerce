@@ -1,7 +1,6 @@
 import express from 'express'
 import path from 'path'
 import cors from 'cors'
-import bodyParser from 'body-parser'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
@@ -23,8 +22,8 @@ const server = express()
 const middleware = [
   cors(),
   express.static(path.resolve(__dirname, '../dist/assets')),
-  bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }),
-  bodyParser.json({ limit: '50mb', extended: true }),
+  express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }),
+  express.json({ limit: '50mb', extended: true }),
   cookieParser()
 ]
 
@@ -44,7 +43,9 @@ server.get('/api/v1/currency', async (req, res) => {
       base: 'USD',
       symbols: 'USD,EUR,CAD'
     }
-  }).then(({ data }) => res.send(data.rates))
+  })
+    .then(({ data }) => res.send(data.rates))
+    .catch(() => res.send({ status: 'rates unavailable' }))
 })
 
 server.get('/api/v1/log', async (req, res) => {
@@ -54,10 +55,12 @@ server.get('/api/v1/log', async (req, res) => {
 })
 
 server.post('/api/v1/log', async (req, res) => {
-  await readFile(`${__dirname}/Data/log.json`, 'utf8').then((data) => {
-    const logs = JSON.parse(data)
-    writeFile(`${__dirname}/Data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
-  })
+  await readFile(`${__dirname}/Data/log.json`, 'utf8')
+    .then((data) => {
+      const logs = JSON.parse(data)
+      writeFile(`${__dirname}/Data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
+    })
+    .catch(() => res.send({ status: 'no logs' }))
   res.send('Logs updated')
 })
 
