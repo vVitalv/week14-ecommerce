@@ -20,16 +20,7 @@ const BasketStuff = () => {
 
   return (
     <main>
-      <table className="table-auto mt-40 text-gray-700 fond-bold">
-        <thead className="bg-yellow-400 text-lg">
-          <tr>
-            <th className="opacity-0">Image</th>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th className="w-48">Total price</th>
-          </tr>
-        </thead>
+      <table className="basket-table">
         <tbody className="text-center font-semibold">
           {basketList.map((item) => {
             return <BasketTable data={item} key={`basket${item.id}`} />

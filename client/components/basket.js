@@ -2,12 +2,11 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
-import Header from './header'
+import BasketHeader from './basket-header'
 import Head from './head'
 import BasketEmpty from './basket-empty'
 import BasketStuff from './basket-full'
 import Footer from './footer'
-
 
 const Basket = () => {
   useEffect(() => {
@@ -33,22 +32,13 @@ const Basket = () => {
     },
     { amount: 0, price: 0 }
   )
+  const headTitle = basket.amount === 0 ? 'Cart is Empty' : 'Cart'
 
-  if (basket.amount === 0) {
-    return (
-      <body>
-        <Header title="Cart is Empty" />
-        <Head />
-        <BasketEmpty />
-        <Footer />
-      </body>
-    )
-  }
   return (
     <body>
-      <Header title="Cart" />
-      <Head />
-      <BasketStuff />
+      <Head title={headTitle} />
+      <BasketHeader amount={basket.amount} />
+      {basket.amount === 0 ? <BasketEmpty /> : <BasketStuff />}
       <Footer />
     </body>
   )
