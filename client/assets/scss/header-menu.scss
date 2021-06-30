@@ -41,7 +41,7 @@
 
 .currency-panel {
   @apply inline-flex flex-nowrap;
-  & button {
+  button {
     @apply transition-opacity duration-300 opacity-50 h-12 w-20 border-2 text-2xl font-bold text-white;
     &:hover {
       @apply opacity-100;
@@ -50,7 +50,7 @@
       @apply outline-none opacity-100;
     }
   }
-  & button:first-child {
+  button:first-child {
     @apply transition-opacity duration-300 opacity-50 h-12 w-20 rounded-l-lg border-2 text-2xl font-bold text-white;
     &:hover {
       @apply opacity-100;
@@ -59,7 +59,7 @@
       @apply outline-none opacity-100;
     }
   }
-  & button:last-child {
+  button:last-child {
     @apply transition-opacity duration-300 opacity-50 h-12 w-20 rounded-r-lg border-2 text-2xl font-bold text-white;
     &:hover {
       @apply opacity-100;
@@ -72,18 +72,18 @@
 
 .basket-plate {
   @apply flex flex-col items-center w-40;
-  & button {
+  button {
     @apply h-12 w-12;
     &:focus {
       @apply outline-none;
     }
-    & a {
-      & img {
+    a {
+      img {
         @apply object-fill h-full w-full;
       }
     }
   }
-  & div:last-child {
+  div:last-child {
     @apply font-bold text-white opacity-75;
   }
 }
@@ -94,7 +94,7 @@
 
 .sort-menu {
   @apply inline-flex space-x-4 pt-4;
-  & button {
+  button {
     @apply transition-opacity duration-300 opacity-50 h-4 w-10;
     &:hover {
       @apply opacity-100;
@@ -102,8 +102,8 @@
     &:focus {
       @apply outline-none opacity-100;
     }
-  }
-  & img {
-    @apply object-fill h-full w-full;
+    img {
+      @apply object-fill h-full w-full;
+    }
   }
 }

@@ -1,9 +1,9 @@
 .footer {
   @apply flex justify-between items-center h-16 max-w-full text-xl font-bold text-gray-300 bg-yellow-500;
-  & p:nth-child(1) {
+  p:nth-child(1) {
     @apply ml-4;
   }
-  & p:nth-child(2) {
+  p:nth-child(2) {
     @apply mr-12;
   }
 }
