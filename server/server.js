@@ -32,26 +32,33 @@ middleware.forEach((it) => server.use(it))
 server.get('/api/v1/card', async (req, res) => {
   await readFile(`${__dirname}/Data/carddata.json`, 'utf8')
     .then((data) => res.send(data))
-    .catch(() => res.send({ goods: 'no' }))
+    .catch(() => res.status(500).send('Product data file unavailable'))
 })
 
 server.get('/api/v1/currency', async (req, res) => {
   await axios({
     method: 'get',
     baseURL: 'https://api.exchangerate.host/latest',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': 'GET',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8; application/json'
+    },
     params: {
       base: 'USD',
       symbols: 'USD,EUR,CAD'
     }
   })
     .then(({ data }) => res.send(data.rates))
-    .catch(() => res.send({ status: 'rates unavailable' }))
+    .catch(() => res.status(524).send('Currency server timeout'))
 })
 
 server.get('/api/v1/log', async (req, res) => {
-  await readFile(`${__dirname}/Data/log.json`, 'utf8')
-    .then((data) => res.send(JSON.parse(data)))
-    .catch(() => res.send({ status: 'no logs' }))
+  const logs = await readFile(`${__dirname}/Data/log.json`, 'utf8')
+    .then((logArr) => JSON.parse(logArr))
+    .catch(() => res.status(500).send('Logs get unavailable'))
+  res.json(logs)
 })
 
 server.post('/api/v1/log', async (req, res) => {
@@ -60,13 +67,12 @@ server.post('/api/v1/log', async (req, res) => {
       const logs = JSON.parse(data)
       writeFile(`${__dirname}/Data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
     })
-    .catch(() => res.send({ status: 'no logs' }))
-  res.send('Logs updated')
+    .catch(() => res.status(500).send('Logs post unavailable'))
 })
 
 server.delete('/api/v1/log', (req, res) => {
   writeFile(`${__dirname}/Data/log.json`, JSON.stringify([]), 'utf8')
-  res.send('Logs removed')
+  res.send('Logs cleared')
 })
 
 server.use('/api/', (req, res) => {

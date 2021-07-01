@@ -30,6 +30,11 @@ export function addToCart(data) {
   axios({
     method: 'post',
     url: '/api/v1/log',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': 'POST'
+    },
     data: {
       time: new Date().toLocaleString(),
       action: `${data.title} added to cart`
@@ -61,6 +66,11 @@ export function removeFromCart(dataID, dataTitle) {
   axios({
     method: 'post',
     url: '/api/v1/log',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': 'POST'
+    },
     data: {
       time: new Date().toLocaleString(),
       action: `${dataTitle} removed from cart`

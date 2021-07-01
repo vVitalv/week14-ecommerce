@@ -32,8 +32,16 @@ export default (state = initialState, action) => {
 }
 
 export function getCardData() {
-  return async (dispatch) => {
-    await axios('/api/v1/card').then(({ data }) => {
+  return (dispatch) => {
+    axios({
+      method: 'get',
+      baseURL: '/api/v1/card',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': 'GET'
+      }
+    }).then(({ data }) => {
       dispatch({
         type: GET_GOODS,
         goodsList: data.map((rec) => {
@@ -51,6 +59,11 @@ export function setSort(sortType) {
   axios({
     method: 'post',
     url: '/api/v1/log',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': 'GET, POST'
+    },
     data: {
       time: new Date().toLocaleString(),
       action: `change sortType to ${sortType}`

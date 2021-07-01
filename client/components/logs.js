@@ -36,9 +36,9 @@ const Logs = () => {
           </tr>
         </thead>
         <tbody className="text-center font-semibold">
-          {logs.map((log) => {
+          {logs.map((log, index) => {
             return (
-              <tr key={log.time}>
+              <tr key={`log-${index}`}>
                 <td>{log.time}</td>
                 <td>{log.action}</td>
               </tr>

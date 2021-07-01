@@ -27,19 +27,29 @@ export default (state = initialState, action) => {
 }
 
 export function getLogs() {
-  return async (dispatch) => {
-    await axios('/api/v1/log').then(({ data }) => {
-      dispatch({
-        type: GET_LOGS,
-        logs: data
+  return (dispatch) => {
+    fetch('/api/v1/log')
+      .then((res) => res.json())
+      .then((logArr) => {
+        dispatch({
+          type: GET_LOGS,
+          logs: logArr
+        })
       })
-    })
   }
 }
 
 export function clearLogs() {
-  return async (dispatch) => {
-    await axios.delete('/api/v1/log')
+  return (dispatch) => {
+    axios({
+      method: 'delete',
+      baseURL: '/api/v1/log',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': 'DELETE'
+      }
+    })
     dispatch({
       type: CLEAR_LOGS,
       logs: []

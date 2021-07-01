@@ -11,7 +11,7 @@ require('dotenv').config()
 
 const version = 'development'
 const config = {
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   entry: ['./main.js'],
   resolve: {
     alias: {
@@ -28,13 +28,12 @@ const config = {
   mode: 'development',
   context: resolve(__dirname, 'client'),
   devServer: {
-    hot: false,
+    hotOnly: true,
     contentBase: resolve(__dirname, 'dist/assets'),
     watchContentBase: true,
     host: 'localhost',
     port: 8087,
-    disableHostCheck: true,
-    open: true,
+    useLocalIp: true,
     historyApiFallback: true,
     overlay: {
       warnings: false,
@@ -43,7 +42,7 @@ const config = {
     proxy: [
       {
         context: ['/api', '/auth', '/ws'],
-        target: `http://localhost:${process.env.PORT || 8090}`,
+        target: 'http://0.0.0.0:8090',
         secure: false,
         changeOrigin: true,
         ws: process.env.ENABLE_SOCKETS || false
