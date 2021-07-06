@@ -26,28 +26,23 @@ export default (state = initialState, action) => {
   }
 }
 
-export function addToCart(data) {
+export function addToCart(product) {
   axios({
     method: 'post',
     url: '/api/v1/log',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Methods': 'POST'
-    },
     data: {
       time: new Date().toLocaleString(),
-      action: `${data.title} added to cart`
+      action: `${product.title} added to cart`
     }
   })
   return (dispatch, getState) => {
     const store = getState()
     const { basketList } = store.basket
     const findProduct = basketList.find((rec) => {
-      return data.id === rec.id
+      return product.id === rec.id
     })
     const addProduct = basketList.reduce((acc, rec) => {
-      if (data.id === rec.id) {
+      if (product.id === rec.id) {
         return [...acc, { ...rec, amount: rec.amount + 1 }]
       }
       return [...acc, rec]
@@ -56,31 +51,26 @@ export function addToCart(data) {
       type: ADD_TO_CART,
       basketList:
         basketList.length === 0 || typeof findProduct === 'undefined'
-          ? [...basketList, { ...data, amount: 1 }]
+          ? [...basketList, { ...product, amount: 1 }]
           : addProduct
     })
   }
 }
 
-export function removeFromCart(dataID, dataTitle) {
+export function removeFromCart(productID, productName) {
   axios({
     method: 'post',
     url: '/api/v1/log',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Methods': 'POST'
-    },
     data: {
       time: new Date().toLocaleString(),
-      action: `${dataTitle} removed from cart`
+      action: `${productName} removed from cart`
     }
   })
   return (dispatch, getState) => {
     const store = getState()
     const { basketList } = store.basket
     const removeProduct = basketList.reduce((acc, rec) => {
-      if (dataID === rec.id) {
+      if (productID === rec.id) {
         if (rec.amount > 1) {
           return [...acc, { ...rec, amount: Math.max(rec.amount - 1, 0) }]
         }

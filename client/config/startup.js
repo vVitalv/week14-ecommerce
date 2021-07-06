@@ -11,7 +11,7 @@ const Startup = (props) => {
     dispatch(getCurrency())
     dispatch(getCardData())
     return () => {}
-  }, [dispatch])
+  })
 
   return props.children
 }

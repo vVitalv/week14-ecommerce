@@ -29,11 +29,13 @@ const config = {
   context: resolve(__dirname, 'client'),
   devServer: {
     hotOnly: true,
+    open: true,
+    allowedHosts: ['api.exchangerate.host'],
     contentBase: resolve(__dirname, 'dist/assets'),
     watchContentBase: true,
     host: 'localhost',
     port: 8087,
-    useLocalIp: true,
+    useLocalIp: false,
     historyApiFallback: true,
     overlay: {
       warnings: false,
@@ -42,7 +44,7 @@ const config = {
     proxy: [
       {
         context: ['/api', '/auth', '/ws'],
-        target: 'http://0.0.0.0:8090',
+        target: 'http://localhost:8090',
         secure: false,
         changeOrigin: true,
         ws: process.env.ENABLE_SOCKETS || false

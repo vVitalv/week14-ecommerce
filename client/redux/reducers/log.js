@@ -41,15 +41,7 @@ export function getLogs() {
 
 export function clearLogs() {
   return (dispatch) => {
-    axios({
-      method: 'delete',
-      baseURL: '/api/v1/log',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Methods': 'DELETE'
-      }
-    })
+    axios.delete('/api/v1/log')
     dispatch({
       type: CLEAR_LOGS,
       logs: []

@@ -5,8 +5,8 @@ import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
 import axios from 'axios'
-
 import cookieParser from 'cookie-parser'
+
 import config from './config'
 import Html from '../client/html'
 
@@ -31,7 +31,7 @@ middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/card', async (req, res) => {
   await readFile(`${__dirname}/Data/carddata.json`, 'utf8')
-    .then((data) => res.send(data))
+    .then((productData) => res.status(200).send(productData))
     .catch(() => res.status(500).send('Product data file unavailable'))
 })
 
@@ -39,26 +39,19 @@ server.get('/api/v1/currency', async (req, res) => {
   await axios({
     method: 'get',
     baseURL: 'https://api.exchangerate.host/latest',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Methods': 'GET',
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8; application/json'
-    },
     params: {
       base: 'USD',
       symbols: 'USD,EUR,CAD'
     }
   })
-    .then(({ data }) => res.send(data.rates))
+    .then(({ data }) => res.status(200).send(data.rates))
     .catch(() => res.status(524).send('Currency server timeout'))
 })
 
 server.get('/api/v1/log', async (req, res) => {
-  const logs = await readFile(`${__dirname}/Data/log.json`, 'utf8')
-    .then((logArr) => JSON.parse(logArr))
+  await readFile(`${__dirname}/Data/log.json`, 'utf8')
+    .then((logArr) => res.status(200).send(logArr))
     .catch(() => res.status(500).send('Logs get unavailable'))
-  res.json(logs)
 })
 
 server.post('/api/v1/log', async (req, res) => {
@@ -67,12 +60,14 @@ server.post('/api/v1/log', async (req, res) => {
       const logs = JSON.parse(data)
       writeFile(`${__dirname}/Data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
     })
+    .then(() => res.status(200).send('Logs updated'))
     .catch(() => res.status(500).send('Logs post unavailable'))
 })
 
 server.delete('/api/v1/log', (req, res) => {
   writeFile(`${__dirname}/Data/log.json`, JSON.stringify([]), 'utf8')
-  res.send('Logs cleared')
+    .then(() => res.status(200).send('Logs cleared'))
+    .catch(() => res.status(500).send('Logs clear unavailable'))
 })
 
 server.use('/api/', (req, res) => {

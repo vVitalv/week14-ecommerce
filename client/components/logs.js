@@ -12,7 +12,6 @@ const Logs = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getLogs())
     axios({
       method: 'post',
       url: '/api/v1/log',
@@ -21,6 +20,7 @@ const Logs = () => {
         action: `navigate to ${window.location.pathname}`
       }
     })
+    dispatch(getLogs())
     return () => {}
   }, [dispatch])
 
@@ -36,9 +36,9 @@ const Logs = () => {
           </tr>
         </thead>
         <tbody className="text-center font-semibold">
-          {logs.map((log, index) => {
+          {logs.map((log) => {
             return (
-              <tr key={`log-${index}`}>
+              <tr key={`log-${log.time}`}>
                 <td>{log.time}</td>
                 <td>{log.action}</td>
               </tr>
@@ -48,7 +48,7 @@ const Logs = () => {
       </table>
       <button
         type="button"
-        id="buy-button"
+        id="log-clean"
         className="text-xl font-bold self-end w-32 h-20 bg-indigo-700 rounded-xl focus:outline-none m-8"
         onClick={() => dispatch(clearLogs())}
       >

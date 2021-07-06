@@ -31,11 +31,6 @@ export function setCurrency(currency) {
   axios({
     method: 'post',
     url: '/api/v1/log',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Methods': 'GET, POST'
-    },
     data: {
       time: new Date().toLocaleString(),
       action: `change currency to ${currency}`
@@ -51,15 +46,7 @@ export function setCurrency(currency) {
 
 export function getCurrency() {
   return async (dispatch) => {
-    await axios({
-      method: 'get',
-      baseURL: '/api/v1/currency',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Methods': 'GET'
-      }
-    }).then(({ data }) => {
+    await axios('/api/v1/currency').then(({ data }) => {
       dispatch({
         type: GET_CURRENCY,
         rates: data
