@@ -4,7 +4,7 @@
 .content-card {
   @apply flex flex-col h-80 w-80 rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;
   img {
-    @apply object-contain h-64 w-80 rounded-t-xl;
+    @apply object-contain rounded-t-xl;
   }
   div:nth-child(2) {
     @apply text-lg pl-2;

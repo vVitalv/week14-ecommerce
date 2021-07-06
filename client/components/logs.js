@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 
-import Header from './header'
+import Header from './hat/header'
 import Head from './head'
 import Footer from './footer'
 import { getLogs, clearLogs } from '../redux/reducers/log'

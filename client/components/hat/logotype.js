@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import logo from './src/logo-2.png'
+import logo from '../../assets/images/logo-2.png'
 
 const Logotype = () => {
   return (

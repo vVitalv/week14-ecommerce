@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import AmountButtons from './btns-amount'
+import AmountButtons from '../content/btns-amount'
 
 const BasketTable = (props) => {
   const { productData } = props

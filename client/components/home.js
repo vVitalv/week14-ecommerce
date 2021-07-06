@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 
 import Head from './head'
-import Header from './header'
-import Content from './content'
+import Header from './hat/header'
+import Content from './content/content'
 import Footer from './footer'
 
 const Home = () => {
@@ -20,12 +20,12 @@ const Home = () => {
   }, [])
 
   return (
-    <body>
+    <div>
       <Head title="Hello" />
       <Header />
       <Content />
       <Footer />
-    </body>
+    </div>
   )
 }
 

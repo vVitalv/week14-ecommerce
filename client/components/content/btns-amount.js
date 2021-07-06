@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addToCart, removeFromCart } from '../redux/reducers/basket'
+import { addToCart, removeFromCart } from '../../redux/reducers/basket'
 
 import PlusButton from './btn-amount-plus'
 import MinusButton from './btn-amount-minus'

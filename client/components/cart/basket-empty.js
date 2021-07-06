@@ -1,6 +1,6 @@
 import React from 'react'
 
-import basketNeedEat from './src/basket-eat.gif'
+import basketNeedEat from '../src/basket-eat.gif'
 
 const BasketEmpty = () => {
   return (

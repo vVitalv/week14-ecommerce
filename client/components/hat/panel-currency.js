@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCurrency } from '../redux/reducers/currency'
+import { setCurrency } from '../../redux/reducers/currency'
 import CurrencyButton from './btn-currency'
 
 const CurrencyPanel = () => {

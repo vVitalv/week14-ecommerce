@@ -2,8 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import basket_empty from './src/basket-empty.png'
-import basket_full from './src/basket-full.png'
+import basket_empty from '../../assets/images/basket-empty.png'
+import basket_full from '../../assets/images/basket-full.png'
 
 const BasketButton = () => {
   const rate = useSelector((store) => store.currency.rates)

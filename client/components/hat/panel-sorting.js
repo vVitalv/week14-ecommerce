@@ -1,12 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setSort } from '../redux/reducers/cardData'
+import { setSort } from '../../redux/reducers/cardData'
 import SortButton from './btn-sorting'
-import sortAZ from './src/sort-AZ.png'
-import sortZA from './src/sort-ZA.png'
-import sortUp from './src/sort-up.png'
-import sortLow from './src/sort-low.png'
+import sortAZ from '../../assets/images/sort-AZ.png'
+import sortZA from '../../assets/images/sort-ZA.png'
+import sortUp from '../../assets/images/sort-up.png'
+import sortLow from '../../assets/images/sort-low.png'
 
 const SortPanel = () => {
   const currentSortType = useSelector((store) => store.cardData.sortType)

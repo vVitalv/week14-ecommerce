@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Logotype from './logotype'
-import CurrencyPanel from './panel-currency'
-import BasketButton from './btn-basket'
+import Logotype from '../hat/logotype'
+import CurrencyPanel from '../hat/panel-currency'
+import BasketButton from '../hat/btn-basket'
 import HeaderThead from './basket-header-thead'
 
 const BasketHeader = (props) => {
