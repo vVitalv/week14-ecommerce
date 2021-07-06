@@ -3,7 +3,8 @@
     "version": "0.0.2",
     "description": "E-commerce SkillCrucial-boiler",
     "engines": {
-    "node": "12.x"
+    "node": "12.18.x",
+    "yarn": "1.22.x"
   },
     "main": "index.js",
     "scripts": {
