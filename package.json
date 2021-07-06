@@ -1,7 +1,10 @@
 {
-    "name": "boilerplate-skillcrucial",
+    "name": "e-commerce",
     "version": "0.0.2",
-    "description": "Boilerplate SkillCrucial",
+    "description": "E-commerce SkillCrucial-boiler",
+    "engines": {
+    "node": "12.x"
+  },
     "main": "index.js",
     "scripts": {
         "docker-start-dev": "docker-compose -f \"docker\\DEV.docker-compose.yml\" up",
