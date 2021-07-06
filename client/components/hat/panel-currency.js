@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrency } from '../../redux/reducers/currency'
-import CurrencyButton from './btn-currency'
+import Button from '../btns/btn'
 
 const CurrencyPanel = () => {
   const currentCurrency = useSelector((store) => store.currency.currency)
@@ -15,9 +15,9 @@ const CurrencyPanel = () => {
 
   return (
     <div className="currency-panel">
-      <CurrencyButton currency="USD" onClickFunction={changeCurrencyOnClick} />
-      <CurrencyButton currency="EUR" onClickFunction={changeCurrencyOnClick} />
-      <CurrencyButton currency="CAD" onClickFunction={changeCurrencyOnClick} />
+      <Button operation="USD" sign="USD" data="USD" onClickFunction={changeCurrencyOnClick} />
+      <Button operation="EUR" sign="EUR" data="EUR" onClickFunction={changeCurrencyOnClick} />
+      <Button operation="CAD" sign="CAD" data="CAD" onClickFunction={changeCurrencyOnClick} />
     </div>
   )
 }

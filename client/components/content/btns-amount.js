@@ -2,8 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart, removeFromCart } from '../../redux/reducers/basket'
 
-import PlusButton from './btn-amount-plus'
-import MinusButton from './btn-amount-minus'
+import Button from '../btns/btn'
 
 const AmountButtons = (props) => {
   const dispatch = useDispatch()
@@ -18,23 +17,23 @@ const AmountButtons = (props) => {
   const addOnClick = (cardData) => {
     return dispatch(addToCart(cardData))
   }
-  const removeOnClick = (id, title) => {
+  const removeOnClick = (productIDTitle) => {
     if (typeof findAmount !== 'undefined') {
-      return dispatch(removeFromCart(id, title))
+      return dispatch(removeFromCart(productIDTitle[0], productIDTitle[1]))
     }
     return null
   }
 
   return (
     <div className="amount-buttons">
-      <MinusButton
+      <Button
         operation="minus"
-        id={productData.id}
-        title={productData.title}
+        sign="-"
+        data={[productData.id, productData.title]}
         onClickFunction={removeOnClick}
       />
       <div>{amount}</div>
-      <PlusButton operation="plus" cardData={productData} onClickFunction={addOnClick} />
+      <Button operation="plus" sign="+" data={productData} onClickFunction={addOnClick} />
     </div>
   )
 }
