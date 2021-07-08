@@ -17,6 +17,7 @@ const BasketStuff = () => {
     },
     { amount: 0, price: 0 }
   )
+  const summaryCost = (basket.price * rate[currency]).toFixed(2)
 
   return (
     <main>
@@ -27,7 +28,7 @@ const BasketStuff = () => {
           <td />
           <td>{basket.amount}</td>
           <td>
-            {(basket.price * rate[currency]).toFixed(2)} {currency}
+            {summaryCost} {currency}
           </td>
         </tfoot>
         <tbody>
@@ -36,11 +37,7 @@ const BasketStuff = () => {
           })}
         </tbody>
       </table>
-      <button
-        type="button"
-        id="buy-button"
-        className="text-3xl font-bold self-end w-40 h-20 bg-indigo-700 rounded-xl focus:outline-none m-8"
-      >
+      <button type="button" id="buy-button" className="buy-btn">
         Buy
       </button>
     </main>

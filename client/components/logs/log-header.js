@@ -3,9 +3,9 @@ import React from 'react'
 import Logotype from '../hat/logotype'
 import CurrencyPanel from '../hat/panel-currency'
 import BasketButton from '../hat/btn-basket'
-import CartHeaderThead from './basket-header-thead'
+import LogThead from './log-header-thead'
 
-const BasketHeader = (props) => {
+const LogHeader = () => {
   return (
     <header>
       <div className="header-panel">
@@ -13,11 +13,11 @@ const BasketHeader = (props) => {
         <CurrencyPanel />
         <BasketButton />
       </div>
-      {props.amount > 0 && <CartHeaderThead />}
+      <LogThead />
     </header>
   )
 }
 
-BasketHeader.propTypes = {}
+LogHeader.propTypes = {}
 
-export default React.memo(BasketHeader)
+export default React.memo(LogHeader)

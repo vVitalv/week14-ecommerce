@@ -3,7 +3,7 @@ import React from 'react'
 import Logotype from './logotype'
 import CurrencyPanel from './panel-currency'
 import BasketButton from './btn-basket'
-import SortPanel from './panel-sorting'
+import UnderHeader from './under-header'
 
 const Header = () => {
   return (
@@ -13,9 +13,7 @@ const Header = () => {
         <CurrencyPanel />
         <BasketButton />
       </div>
-      <div className="sort-panel">
-        <SortPanel />
-      </div>
+      <UnderHeader />
     </header>
   )
 }

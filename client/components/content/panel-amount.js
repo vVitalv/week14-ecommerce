@@ -4,7 +4,7 @@ import { addToCart, removeFromCart } from '../../redux/reducers/basket'
 
 import Button from '../btns/btn'
 
-const AmountButtons = (props) => {
+const AmountPanel = (props) => {
   const dispatch = useDispatch()
   const basketAmount = useSelector((store) => store.basket.basketList)
   const { productData } = props
@@ -38,6 +38,6 @@ const AmountButtons = (props) => {
   )
 }
 
-AmountButtons.propTypes = {}
+AmountPanel.propTypes = {}
 
-export default React.memo(AmountButtons)
+export default React.memo(AmountPanel)

@@ -1,21 +1,23 @@
 import React from 'react'
 
-const HeaderThead = () => {
+const CartHeaderThead = () => {
   return (
-    <table className="basket-table">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Amount</th>
-          <th>Total price</th>
-        </tr>
-      </thead>
-    </table>
+    <div className="basket-underheader">
+      <table className="basket-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Total price</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
   )
 }
 
-HeaderThead.propTypes = {}
+CartHeaderThead.propTypes = {}
 
-export default React.memo(HeaderThead)
+export default React.memo(CartHeaderThead)

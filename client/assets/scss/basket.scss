@@ -4,7 +4,7 @@
     @apply rounded-full;
   }
 }
-.basket-panel {
+.basket-underheader {
   @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75;
 }
 .basket-table {
@@ -53,4 +53,8 @@
         }
       }
   }
+}
+
+.buy-btn {
+  @apply text-3xl font-bold self-end w-40 h-20 bg-indigo-700 rounded-xl focus:outline-none m-8;
 }
