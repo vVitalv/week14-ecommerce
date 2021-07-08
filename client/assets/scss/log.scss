@@ -22,8 +22,8 @@
       }
     }
   }
+  &+button {
+    @apply text-xl font-bold self-end w-32 h-20 bg-indigo-700 rounded-xl;
+  }
 }
 
-.clear-log-btn {
-  @apply text-xl font-bold self-end w-32 h-20 bg-indigo-700 rounded-xl focus:outline-none m-8;
-}

@@ -24,13 +24,7 @@ const LogTable = () => {
           })}
         </tbody>
       </table>
-      <Button
-        className="clear-log-btn"
-        operation="clear-logs"
-        sign="Clear logs"
-        data={null}
-        onClickFunction={clearOnClick}
-      />
+      <Button operation="clear-logs" sign="Clear logs" data={null} onClickFunction={clearOnClick} />
     </main>
   )
 }
