@@ -16,7 +16,7 @@ const Logs = () => {
   }, [dispatch])
 
   return (
-    <div className="flex flex-col bg-yellow-300 w-screen min-h-screen">
+    <div>
       <Head title="Logs" />
       <LogHeader />
       <LogTable />

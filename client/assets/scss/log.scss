@@ -23,7 +23,7 @@
     }
   }
   &+button {
-    @apply text-xl font-bold self-end w-32 h-20 bg-indigo-700 rounded-xl;
+    @apply object-right text-xl font-bold w-32 h-20 bg-indigo-700 rounded-xl m-6;
   }
 }
 

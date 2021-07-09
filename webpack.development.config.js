@@ -35,7 +35,7 @@ const config = {
     watchContentBase: true,
     host: 'localhost',
     port: 8087,
-    useLocalIp: true,
+    useLocalIp: false,
     historyApiFallback: true,
     overlay: {
       warnings: false,
