@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import Head from './head'
+import Head from './hat/head'
 import LogHeader from './logs/log-header'
 import LogTable from './logs/log-table'
-import Footer from './footer'
+import Footer from './foot/footer'
 import { getLogs } from '../redux/reducers/log'
 
 const Logs = () => {

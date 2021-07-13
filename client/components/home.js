@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 
-import Head from './head'
+import Head from './hat/head'
 import Header from './hat/header'
 import Content from './content/content'
-import Footer from './footer'
+import Footer from './foot/footer'
 
 const Home = () => {
   useEffect(() => {
