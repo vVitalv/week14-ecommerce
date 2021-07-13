@@ -28,7 +28,7 @@ const BasketButton = () => {
   const basketAmountVisible =
     basket.amount === 0
       ? 'absolute invisible'
-      : 'absolute font-bold text-sm text-center text-white bg-blue-500 rounded-full w-7 h-6'
+      : 'absolute font-bold text-xs text-white bg-blue-500 rounded-full w-5 h-4'
 
   return (
     <div className="basket-plate">

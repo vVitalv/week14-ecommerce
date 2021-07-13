@@ -1,5 +1,5 @@
 .header-panel {
-  @apply grid grid-cols-4 max-w-full bg-gradient-to-b from-yellow-900 to-yellow-600 p-2 space-y-2 items-center;
+  @apply grid grid-cols-4 max-w-full bg-gradient-to-b from-yellow-900 to-yellow-600 p-2 gap-2 items-center;
 }
 
 .logo-link {
@@ -83,10 +83,10 @@
 }
 
 .under-header {
-  @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75 pl-4;
+  @apply inline-flex justify-between items-center h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75 px-4;
 
   .sort-menu {
-    @apply inline-flex align-middle space-x-4;
+    @apply inline-flex space-x-4;
     button {
       @apply transition-opacity duration-300 opacity-50;
       &:hover {
@@ -98,6 +98,12 @@
       img {
         @apply h-4 w-6;
       }
+    }
+  }
+  input {
+    @apply h-6 opacity-50 bg-yellow-100 rounded-md pl-2;
+    &:focus {
+      @apply outline-none opacity-100;
     }
   }
 }

@@ -10,7 +10,7 @@
 .basket-table {
   @apply table-fixed text-gray-700 font-bold w-full text-center;
   thead {
-    @apply text-lg;
+    @apply text-sm sm:text-lg;
     tr {
       th {
         @apply w-1/6;
@@ -24,7 +24,7 @@
     }
   }
   tfoot {
-    @apply font-bold text-lg bg-yellow-400;
+    @apply font-bold text-sm sm:text-lg bg-yellow-400;
       td {
         @apply w-1/6;
       }

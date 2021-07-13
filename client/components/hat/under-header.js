@@ -45,6 +45,7 @@ const UnderHeader = () => {
           onClickFunction={sortOnClick}
         />
       </div>
+      <input type="search" autoComplete="on" placeholder="search product" />
     </div>
   )
 }
