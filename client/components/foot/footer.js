@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer>
       <p>{'\u00A9'} 2020 SkillCrucial Wave#3</p>
       <p>
         <Link to="/logs">Logs</Link>
       </p>
-    </div>
+    </footer>
   )
 }
 

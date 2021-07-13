@@ -6,24 +6,22 @@ const NotFound = () => {
   useEffect(() => {}, [])
   const dispatch = useDispatch()
   return (
-    <div className="container main-wrapper aligner">
-      <div className="aligner-item text-center ">
-        <h1 className="display-1">404</h1>
-        <p className="lead text-gray-800 mb-5">Page Not Found</p>
-        <p className="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-        <br />
-        <button
-          className="btn btn-secondary btn-lg"
-          type="button"
-          tabIndex="0"
-          onClick={() => {
-            dispatch(push('/'))
-          }}
-        >
-          {' '}
-          Back to Dashboard
-        </button>
-      </div>
+    <div className="container text-center">
+      <h1 className="text-2xl font-bold text-blue-600">404</h1>
+      <p className="text-gray-800 mb-5">Page Not Found</p>
+      <p className="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
+      <br />
+      <button
+        className="text-blue-800"
+        type="button"
+        tabIndex="0"
+        onClick={() => {
+          dispatch(push('/'))
+        }}
+      >
+        {' '}
+        Back to Dashboard
+      </button>
     </div>
   )
 }

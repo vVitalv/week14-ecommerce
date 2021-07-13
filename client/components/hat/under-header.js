@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { setSort } from '../../redux/reducers/cardData'
 import Button from '../btns/btn'
-import Login from './login'
 import sortAZ from '../../assets/images/sort-AZ.png'
 import sortZA from '../../assets/images/sort-ZA.png'
 import sortUp from '../../assets/images/sort-up.png'
@@ -46,7 +45,6 @@ const UnderHeader = () => {
           onClickFunction={sortOnClick}
         />
       </div>
-      <Login />
     </div>
   )
 }
