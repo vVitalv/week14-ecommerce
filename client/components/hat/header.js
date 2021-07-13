@@ -10,14 +10,10 @@ const Header = () => {
   return (
     <header>
       <div className="header-panel">
-        <div className="first-line">
-          <Logotype />
-          <Login />
-        </div>
-        <div className="second-line">
-          <CurrencyPanel />
-          <BasketButton />
-        </div>
+        <Logotype />
+        <Login />
+        <CurrencyPanel />
+        <BasketButton />
       </div>
       <UnderHeader />
     </header>
