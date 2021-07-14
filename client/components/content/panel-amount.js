@@ -32,7 +32,7 @@ const AmountPanel = (props) => {
         data={[productData.id, productData.title]}
         onClickFunction={removeOnClick}
       />
-      <div>{amount}</div>
+      <p>{amount}</p>
       <Button operation="plus" sign="+" data={productData} onClickFunction={addOnClick} />
     </div>
   )

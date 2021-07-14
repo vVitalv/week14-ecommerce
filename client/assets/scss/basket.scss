@@ -8,7 +8,7 @@
   @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75;
 }
 .basket-table {
-  @apply table-fixed text-gray-700 font-bold w-full text-center;
+  @apply table-fixed text-gray-700 sm:font-bold w-full text-center;
   thead {
     @apply text-sm sm:text-lg;
     tr {
@@ -33,7 +33,7 @@
       }
   }
   tbody {
-    @apply font-semibold;
+    @apply text-xs sm:text-lg sm:font-semibold;
       tr {
         @apply border-b-4 border-yellow-300 rounded-3xl bg-yellow-200;
         td {
@@ -42,7 +42,7 @@
         td:first-child {
           @apply rounded-l-3xl;
           img {
-            @apply object-fill w-20 h-20 rounded-full;
+            @apply object-fill w-10 h-10 sm:w-20 sm:h-20 rounded-full;
           }
         }
         td:last-child {

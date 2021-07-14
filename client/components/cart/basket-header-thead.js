@@ -10,7 +10,7 @@ const CartHeaderThead = () => {
             <th>Product</th>
             <th>Price</th>
             <th>Amount</th>
-            <th>Total price</th>
+            <th>Total</th>
           </tr>
         </thead>
       </table>
