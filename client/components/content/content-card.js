@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+
 import AmountPanel from './panel-amount'
 
 const Card = (props) => {
@@ -10,11 +12,13 @@ const Card = (props) => {
 
   return (
     <div className="content-card">
-      <img src={data.image} alt={data.title} />
-      <div>{data.title}</div>
-      <div>{data.description}</div>
-      <div>
-        <div>
+      <Link to={`/product/${data.id}`}>
+        <img src={data.image} alt={data.title} />
+        <div className="prod-title">{data.title}</div>
+        <div className="prod-description">{data.description}</div>
+      </Link>
+      <div className="prod-amount">
+        <div className="prod-price">
           {(data.price * rate[currency]).toFixed(2)} {currency}
         </div>
         <AmountPanel productData={data} />

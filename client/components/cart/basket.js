@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
-import BasketHeader from './cart/basket-header'
-import Head from './hat/head'
-import BasketEmpty from './cart/basket-empty'
-import BasketStuff from './cart/basket-full'
-import Footer from './foot/footer'
+import BasketHeader from './basket-header'
+import Head from '../hat/head'
+import BasketEmpty from './basket-empty'
+import BasketStuff from './basket-full'
+import Footer from '../foot/footer'
 
 const Basket = () => {
   useEffect(() => {
