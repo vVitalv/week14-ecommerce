@@ -132,7 +132,6 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "eslint-webpack-plugin": "^2.5.4",
         "file-loader": "^6.2.0",
-        "git-revision-webpack-plugin": "^5.0.0",
         "glob": "^7.1.7",
         "husky": "^7.0.1",
         "image-webpack-loader": "^7.0.1",

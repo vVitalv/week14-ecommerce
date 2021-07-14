@@ -1,12 +1,10 @@
 const { resolve } = require('path')
-const fs = require('fs')
 const webpack = require('webpack')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const { v4: uuidv4 } = require('uuid')
-const eslintCacheIdentifier = JSON.stringify(fs.statSync('.eslintrc').mtimeMs)
 require('dotenv').config()
 
 const version = 'development'
