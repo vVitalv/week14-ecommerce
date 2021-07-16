@@ -8,7 +8,7 @@ import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
 import store, { history } from '../redux'
 
 import Home from '../components/home'
-import Product from '../components/content/product'
+import Product from '../components/content/product/product'
 import Basket from '../components/cart/basket'
 import Logs from '../components/logs/logs'
 import NotFound from '../components/404'

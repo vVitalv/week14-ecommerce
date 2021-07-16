@@ -2,6 +2,11 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
+import Head from '../../hat/head'
+import ProdHeader from './product-header'
+import ProdDescription from './product-description'
+import Footer from '../../foot/footer'
+
 const Product = () => {
   useEffect(() => {
     axios({
@@ -16,7 +21,14 @@ const Product = () => {
   }, [])
   const { id } = useParams()
 
-  return <div className="login">product {id}</div>
+  return (
+    <div>
+      <Head title="About product" />
+      <ProdHeader />
+      <ProdDescription title={id} />
+      <Footer />
+    </div>
+  )
 }
 
 Product.propTypes = {}

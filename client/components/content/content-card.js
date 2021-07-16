@@ -12,7 +12,7 @@ const Card = (props) => {
 
   return (
     <div className="content-card">
-      <Link to={`/product/${data.id}`}>
+      <Link to={`/product/${data.title}`}>
         <img src={data.image} alt={data.title} />
         <div className="prod-title">{data.title}</div>
         <div className="prod-description">{data.description}</div>
