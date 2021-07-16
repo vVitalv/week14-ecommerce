@@ -1,0 +1,9 @@
+.product {
+  @apply flex w-full px-6;
+  .product-image {
+    @apply w-1/2 rounded-l-3xl;
+  }
+  .product-description {
+    @apply w-1/2 pl-6 bg-gradient-to-r from-yellow-500 to-yellow-300;
+  }
+}

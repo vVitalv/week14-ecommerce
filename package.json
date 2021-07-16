@@ -162,7 +162,8 @@
         "ignore": [
             "*.hot-update.json",
             "log.json"
-        ]
+        ],
+        "delay": 5000
     },
     "husky": {
         "hooks": {

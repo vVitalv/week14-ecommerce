@@ -25,7 +25,7 @@ const Product = () => {
     <div>
       <Head title="About product" />
       <ProdHeader />
-      <ProdDescription title={id} />
+      <ProdDescription id={id} />
       <Footer />
     </div>
   )
