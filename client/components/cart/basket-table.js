@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import AmountPanel from '../content/panel-amount'
@@ -10,9 +11,14 @@ const BasketTable = (props) => {
   return (
     <tr>
       <td align="center">
-        <img src={productData.image} alt={productData.title} />
+        <Link to={`/product/${productData.id}`}>
+          <img src={productData.image} alt={productData.title} />
+        </Link>
       </td>
-      <td>{productData.title}</td>
+      <td>
+        <Link to={`/product/${productData.id}`}>{productData.title}</Link>
+      </td>
+
       <td>{(productData.price * rate[currency]).toFixed(2)}</td>
       <td>
         <AmountPanel productData={productData} />

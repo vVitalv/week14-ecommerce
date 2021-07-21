@@ -8,20 +8,20 @@ const Card = (props) => {
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
 
-  const { data } = props
+  const { productData } = props
 
   return (
     <div className="content-card">
-      <Link to={`/product/${data.id}`}>
-        <img src={data.image} alt={data.title} />
-        <div className="prod-title">{data.title}</div>
-        <div className="prod-description">{data.description}</div>
+      <Link to={`/product/${productData.id}`}>
+        <img src={productData.image} alt={productData.title} />
+        <div className="prod-title">{productData.title}</div>
+        <div className="prod-description">{productData.description}</div>
       </Link>
       <div className="prod-amount">
         <div className="prod-price">
-          {(data.price * rate[currency]).toFixed(2)} {currency}
+          {(productData.price * rate[currency]).toFixed(2)} {currency}
         </div>
-        <AmountPanel productData={data} />
+        <AmountPanel productData={productData} />
       </div>
     </div>
   )

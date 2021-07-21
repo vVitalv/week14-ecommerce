@@ -10,7 +10,7 @@ const Content = () => {
     <main>
       <div className="content">
         {contentList.map((product) => {
-          return <Card data={product} key={product.id} />
+          return <Card productData={product} key={product.id} />
         })}
       </div>
     </main>
