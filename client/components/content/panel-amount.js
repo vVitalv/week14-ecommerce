@@ -17,21 +17,16 @@ const AmountPanel = (props) => {
   const addOnClick = (cardData) => {
     return dispatch(addToCart(cardData))
   }
-  const removeOnClick = (productIDTitle) => {
+  const removeOnClick = (cardData) => {
     if (typeof findAmount !== 'undefined') {
-      return dispatch(removeFromCart(productIDTitle[0], productIDTitle[1]))
+      return dispatch(removeFromCart(cardData))
     }
     return null
   }
 
   return (
     <div className="amount-buttons">
-      <Button
-        operation="minus"
-        sign="-"
-        data={[productData.id, productData.title]}
-        onClickFunction={removeOnClick}
-      />
+      <Button operation="minus" sign="-" data={productData} onClickFunction={removeOnClick} />
       <p>{amount}</p>
       <Button operation="plus" sign="+" data={productData} onClickFunction={addOnClick} />
     </div>

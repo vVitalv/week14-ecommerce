@@ -57,20 +57,20 @@ export function addToCart(product) {
   }
 }
 
-export function removeFromCart(productID, productName) {
+export function removeFromCart(product) {
   axios({
     method: 'post',
     url: '/api/v1/log',
     data: {
       time: new Date().toLocaleString(),
-      action: `${productName} removed from cart`
+      action: `${product.title} removed from cart`
     }
   })
   return (dispatch, getState) => {
     const store = getState()
     const { basketList } = store.basket
     const removeProduct = basketList.reduce((acc, rec) => {
-      if (productID === rec.id) {
+      if (product.id === rec.id) {
         if (rec.amount > 1) {
           return [...acc, { ...rec, amount: Math.max(rec.amount - 1, 0) }]
         }
