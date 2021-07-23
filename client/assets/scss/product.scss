@@ -5,6 +5,9 @@
   }
   .product-description {
     @apply sm:w-1/2 pl-6 bg-gradient-to-b sm:bg-gradient-to-r from-yellow-500 to-yellow-300;
+    p {
+      @apply text-base font-semibold;
+    }
     .product-title {
       @apply text-xl pt-6 sm:text-3xl md:text-5xl font-bold text-gray-800;
     }

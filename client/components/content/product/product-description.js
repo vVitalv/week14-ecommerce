@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 import AmountPanel from '../panel-amount'
 
 const ProdDescription = (props) => {
+  const rate = useSelector((store) => store.currency.rates)
+  const currency = useSelector((store) => store.currency.currency)
   const productStore = useSelector((store) => store.cardData.goodsList)
   const productData = productStore.find((product) => {
     return props.id === product.id
@@ -17,6 +19,10 @@ const ProdDescription = (props) => {
           <p className="product-title">{productData.title}</p>
           <br />
           <p>{productData.description}</p>
+          <br />
+          <p>
+            {(productData.price * rate[currency]).toFixed(2)} {currency}
+          </p>
           <br />
           <AmountPanel productData={productData} />
         </div>
