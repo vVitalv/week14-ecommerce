@@ -36,12 +36,7 @@ export function getCardData() {
     axios('/api/v1/card').then(({ data }) => {
       dispatch({
         type: GET_GOODS,
-        goodsList: data.map((rec) => {
-          return {
-            ...rec,
-            image: `https://source.unsplash.com/600x400/?${/\w+(?=\s)/gi.exec(rec.title)}`
-          }
-        })
+        goodsList: data
       })
     })
   }

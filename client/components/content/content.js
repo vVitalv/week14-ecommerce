@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Card from './content-card'
 
 const Content = () => {
-  const contentList = useSelector((store) => store.cardData.goodsList.slice(0, 10))
+  const contentList = useSelector((store) => store.cardData.goodsList)
 
   return (
     <main>

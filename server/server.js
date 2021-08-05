@@ -4,11 +4,13 @@ import cors from 'cors'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
+// import { MongoClient } from 'mongodb'
 import axios from 'axios'
 import cookieParser from 'cookie-parser'
 
 import config from './config'
 import Html from '../client/html'
+const mongo = require('./DB/connectDB')
 
 const { readFile, writeFile } = require('fs').promises
 
@@ -18,6 +20,8 @@ let connections = []
 
 const port = process.env.PORT || 8090
 const server = express()
+
+mongo.mongoConnect()
 
 const middleware = [
   cors(),
@@ -30,9 +34,8 @@ const middleware = [
 middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/card', async (req, res) => {
-  await readFile(`${__dirname}/Data/carddata.json`, 'utf8')
-    .then((productData) => res.status(200).send(productData))
-    .catch(() => res.status(500).send('Product data file unavailable'))
+  const productData = await mongo.prodList.find({}).limit(10).toArray()
+  res.status(200).send(productData)
 })
 
 server.get('/api/v1/currency', async (req, res) => {
