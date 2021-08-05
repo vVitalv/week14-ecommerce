@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const GET_CURRENCY = 'GET_CURRENCY'
 const CHANGE_CURRENCY = 'CHANGE_CURRENCY'
 
@@ -28,13 +26,15 @@ export default (state = initialState, action) => {
 }
 
 export function setCurrency(currency) {
-  axios({
-    method: 'post',
-    url: '/api/v1/log',
-    data: {
+  fetch('/api/v1/log', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
       time: new Date().toLocaleString(),
       action: `change currency to ${currency}`
-    }
+    })
   })
   return (dispatch) => {
     dispatch({
@@ -46,11 +46,13 @@ export function setCurrency(currency) {
 
 export function getCurrency() {
   return async (dispatch) => {
-    await axios('/api/v1/currency').then(({ data }) => {
-      dispatch({
-        type: GET_CURRENCY,
-        rates: data
+    await fetch('/api/v1/currency')
+      .then((res) => res.json())
+      .then((currencyData) => {
+        dispatch({
+          type: GET_CURRENCY,
+          rates: currencyData
+        })
       })
-    })
   }
 }

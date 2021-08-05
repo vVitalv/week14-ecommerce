@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const GET_GOODS = 'GET_GOODS'
 const CHANGE_SORT = 'CHANGE_SORT'
 
@@ -33,23 +31,27 @@ export default (state = initialState, action) => {
 
 export function getCardData() {
   return (dispatch) => {
-    axios('/api/v1/card').then(({ data }) => {
-      dispatch({
-        type: GET_GOODS,
-        goodsList: data
+    fetch('/api/v1/card')
+      .then((res) => res.json())
+      .then((prodArr) => {
+        dispatch({
+          type: GET_GOODS,
+          goodsList: prodArr
+        })
       })
-    })
   }
 }
 
 export function setSort(sortType) {
-  axios({
-    method: 'post',
-    url: '/api/v1/log',
-    data: {
+  fetch('/api/v1/log', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
       time: new Date().toLocaleString(),
       action: `change sortType to ${sortType}`
-    }
+    })
   })
   return (dispatch, getState) => {
     const store = getState()

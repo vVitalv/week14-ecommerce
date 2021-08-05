@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const GET_LOGS = 'GET_LOGS'
 const CLEAR_LOGS = 'CLEAR_LOGS'
 
@@ -39,9 +37,24 @@ export function getLogs() {
   }
 }
 
+export function setLog() {
+  fetch('/api/v1/log', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      time: new Date().toLocaleString(),
+      action: `navigate to ${window.location.pathname}`
+    })
+  })
+}
+
 export function clearLogs() {
   return (dispatch) => {
-    axios.delete('/api/v1/log')
+    fetch('/api/v1/log', {
+      method: 'DELETE'
+    })
     dispatch({
       type: CLEAR_LOGS,
       logs: []

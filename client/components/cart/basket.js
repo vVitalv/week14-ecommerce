@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 import BasketHeader from './basket-header'
@@ -7,17 +6,11 @@ import Head from '../hat/head'
 import BasketEmpty from './basket-empty'
 import BasketStuff from './basket-full'
 import Footer from '../foot/footer'
+import { setLog } from '../../redux/reducers/log'
 
 const Basket = () => {
   useEffect(() => {
-    axios({
-      method: 'post',
-      url: '/api/v1/log',
-      data: {
-        time: new Date().toLocaleString(),
-        action: `navigate to ${window.location.pathname}`
-      }
-    })
+    setLog()
     return () => {}
   }, [])
 

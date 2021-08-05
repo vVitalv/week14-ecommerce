@@ -5,12 +5,13 @@ import Head from '../hat/head'
 import LogHeader from './log-header'
 import LogTable from './log-table'
 import Footer from '../foot/footer'
-import { getLogs } from '../../redux/reducers/log'
+import { getLogs, setLog } from '../../redux/reducers/log'
 
 const Logs = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    setLog()
     dispatch(getLogs())
     return () => {}
   }, [dispatch])

@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
@@ -27,13 +25,15 @@ export default (state = initialState, action) => {
 }
 
 export function addToCart(product) {
-  axios({
-    method: 'post',
-    url: '/api/v1/log',
-    data: {
+  fetch('/api/v1/log', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
       time: new Date().toLocaleString(),
       action: `${product.title} added to cart`
-    }
+    })
   })
   return (dispatch, getState) => {
     const store = getState()
@@ -58,13 +58,15 @@ export function addToCart(product) {
 }
 
 export function removeFromCart(product) {
-  axios({
-    method: 'post',
-    url: '/api/v1/log',
-    data: {
+  fetch('/api/v1/log', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
       time: new Date().toLocaleString(),
       action: `${product.title} removed from cart`
-    }
+    })
   })
   return (dispatch, getState) => {
     const store = getState()
