@@ -34,8 +34,25 @@ const middleware = [
 middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/card', async (req, res) => {
-  const productData = await mongo.prodList.find({}).limit(10).toArray()
-  res.status(200).send(productData)
+  try {
+    const productData = await mongo.prodList.find({}).limit(10).toArray()
+    res.status(200).send(productData)
+  } catch (e) {
+    console.error('Database access error. Error:', e.message)
+  }
+})
+
+server.get('/api/v1/search', async (req, res) => {
+  try {
+    const productData = await mongo.prodList
+      .find({ $text: { $search: req.body.searchValue } }, { score: { $meta: "textScore" } })
+      .limit(10)
+      .sort({ score: { $meta: "textScore" } })
+      .toArray()
+    res.status(200).send(productData)
+  } catch (e) {
+    console.error('Database access error. Error:', e.message)
+  }
 })
 
 server.get('/api/v1/currency', async (req, res) => {
