@@ -1,4 +1,5 @@
 const GET_GOODS = 'GET_GOODS'
+const GET_SEARCH = 'GET_SEARCH'
 const CHANGE_SORT = 'CHANGE_SORT'
 
 const initialState = {
@@ -12,6 +13,12 @@ export default (state = initialState, action) => {
       if (state.goodsList.length > 0) {
         return state
       }
+      return {
+        ...state,
+        goodsList: action.goodsList
+      }
+    }
+    case GET_SEARCH: {
       return {
         ...state,
         goodsList: action.goodsList
@@ -80,5 +87,28 @@ export function setSort(sortType) {
       goodsList: sortedList,
       sortType
     })
+  }
+}
+
+export function getSearch(searchValue) {
+  return (dispatch) => {
+    fetch('/api/v1/search', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        searchValue
+      })
+    })
+      .then((res) => res.json())
+      .then((prodArr) => {
+        if (prodArr.length !== 0) {
+          dispatch({
+            type: GET_SEARCH,
+            goodsList: prodArr
+          })
+        } else alert('Not found. Try some "beer")')
+      })
   }
 }

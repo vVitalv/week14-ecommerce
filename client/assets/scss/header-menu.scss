@@ -100,10 +100,15 @@
       }
     }
   }
-  input {
-    @apply h-6 w-28 sm:w-48 opacity-50 bg-yellow-100 rounded-md pl-2;
-    &:focus {
-      @apply outline-none opacity-100;
+  div {
+    input {
+      @apply h-6 w-28 sm:w-48 opacity-50 bg-yellow-100 rounded-md pl-2;
+      &:focus {
+        @apply outline-none opacity-100;
+      }
+    }
+    button {
+      @apply mx-1
     }
   }
 }

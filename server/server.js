@@ -42,7 +42,7 @@ server.get('/api/v1/card', async (req, res) => {
   }
 })
 
-server.get('/api/v1/search', async (req, res) => {
+server.put('/api/v1/search', async (req, res) => {
   try {
     const productData = await mongo.prodList
       .find({ $text: { $search: req.body.searchValue } }, { score: { $meta: "textScore" } })
