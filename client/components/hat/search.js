@@ -25,7 +25,7 @@ const SearchField = () => {
   }
 
   return (
-    <div>
+    <div id="search_field">
       <input
         type="search"
         value={value}

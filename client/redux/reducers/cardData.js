@@ -92,6 +92,13 @@ export function setSort(sortType) {
 
 export function getSearch(searchValue) {
   return (dispatch) => {
+    function ifNotFound () {
+      const contentElem = document.querySelector('.content')
+      const notFoundMsg = document.createElement('div')
+      notFoundMsg.className = 'not_found_msg'
+      notFoundMsg.innerText = 'Not found. Try some "beer")'
+      contentElem.appendChild(notFoundMsg)
+    }
     fetch('/api/v1/search', {
       method: 'PUT',
       headers: {
@@ -108,7 +115,7 @@ export function getSearch(searchValue) {
             type: GET_SEARCH,
             goodsList: prodArr
           })
-        } else alert('Not found. Try some "beer")')
+        } else ifNotFound()
       })
   }
 }
