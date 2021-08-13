@@ -13,7 +13,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div>
+    <div className="body-section">
       <Head title="Hello" />
       <Header />
       <Content />

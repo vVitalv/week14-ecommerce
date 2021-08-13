@@ -113,7 +113,14 @@
   }
 }
 
-.not_found_msg {
-  @apply fixed right-0 bg-green-400 rounded-md border-2 border-blue-500 mt-12;
+.not-found-msg {
+  @apply fixed h-10 right-0 bg-green-400 rounded-md border-2 border-blue-500 mt-28 px-4 text-sm font-bold text-white;
+  animation: animate_msg 5s ease-in-out;
 }
 
+@keyframes animate_msg {
+  0% { opacity: 0; transform: translateX(-40px); }
+  10% { opacity: 80; transform: translateX(0px); }
+  90% { opacity: 80; transform: translateX(0px); }
+  100% { opacity: 0; transform: translateX(-40px); }
+}

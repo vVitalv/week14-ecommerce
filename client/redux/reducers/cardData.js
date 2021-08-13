@@ -92,13 +92,19 @@ export function setSort(sortType) {
 
 export function getSearch(searchValue) {
   return (dispatch) => {
-    function ifNotFound () {
-      const contentElem = document.querySelector('.content')
+    function isNotFound() {
+      const contentElem = document.querySelector('main')
+      const bodyElem = document.querySelector('.body-section')
       const notFoundMsg = document.createElement('div')
-      notFoundMsg.className = 'not_found_msg'
+      notFoundMsg.className = 'not-found-msg'
       notFoundMsg.innerText = 'Not found. Try some "beer")'
-      contentElem.appendChild(notFoundMsg)
+      bodyElem.insertBefore(notFoundMsg, contentElem)
+      setTimeout(() => {
+        const m = document.querySelector('.not-found-msg')
+        bodyElem.removeChild(m)
+      }, 5000)
     }
+
     fetch('/api/v1/search', {
       method: 'PUT',
       headers: {
@@ -115,7 +121,7 @@ export function getSearch(searchValue) {
             type: GET_SEARCH,
             goodsList: prodArr
           })
-        } else ifNotFound()
+        } else isNotFound()
       })
   }
 }

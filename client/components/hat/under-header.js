@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-
 import SearchField from './search'
 import { setSort } from '../../redux/reducers/cardData'
 import Button from '../btns/btn'
