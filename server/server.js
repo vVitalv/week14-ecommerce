@@ -4,7 +4,6 @@ import cors from 'cors'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
-// import { MongoClient } from 'mongodb'
 import axios from 'axios'
 import cookieParser from 'cookie-parser'
 
@@ -35,7 +34,6 @@ middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/card', async (req, res) => {
   const sortTypeHeader = req.get('sortType')
-  console.log(sortTypeHeader)
   let sortType
   switch (sortTypeHeader) {
     case 'AZ':
@@ -51,16 +49,16 @@ server.get('/api/v1/card', async (req, res) => {
       sortType = { price: -1 }
   }
 
-  if (sortType === undefined) {
+  if (sortType) {
     try {
-      const productData = await mongo.prodList.find({}).limit(10).toArray()
+      const productData = await mongo.prodList.find({}).sort(sortType).limit(10).toArray()
       res.status(200).send(productData)
     } catch (e) {
       console.error('Database access error. Error:', e.message)
     }
   } else {
     try {
-      const productData = await mongo.prodList.find({}).sort(sortType).limit(10).toArray()
+      const productData = await mongo.prodList.find({}).limit(10).toArray()
       res.status(200).send(productData)
     } catch (e) {
       console.error('Database access error. Error:', e.message)

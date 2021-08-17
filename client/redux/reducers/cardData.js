@@ -1,6 +1,5 @@
 const GET_GOODS = 'GET_GOODS'
 const GET_SEARCH = 'GET_SEARCH'
-const CHANGE_SORT = 'CHANGE_SORT'
 
 const initialState = {
   goodsList: [],
@@ -12,7 +11,8 @@ export default (state = initialState, action) => {
     case GET_GOODS: {
       return {
         ...state,
-        goodsList: action.goodsList
+        goodsList: action.goodsList,
+        sortType: action.sortType
       }
     }
     case GET_SEARCH: {
@@ -21,20 +21,25 @@ export default (state = initialState, action) => {
         goodsList: action.goodsList
       }
     }
-    case CHANGE_SORT: {
-      return {
-        ...state,
-        sortType: action.sortType
-      }
-    }
     default:
       return state
   }
 }
 
 export function getCardData(sortType) {
-  console.log(sortType)
   return (dispatch) => {
+    if (sortType) {
+      fetch('/api/v1/log', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          time: new Date().toLocaleString(),
+          action: `change sortType to ${sortType}`
+        })
+      })
+    }
     fetch('/api/v1/card', {
       method: 'GET',
       headers: {
@@ -46,29 +51,10 @@ export function getCardData(sortType) {
       .then((prodArr) =>
         dispatch({
           type: GET_GOODS,
-          goodsList: prodArr
+          goodsList: prodArr,
+          sortType
         })
       )
-  }
-}
-
-export function setSort(sortType) {
-  fetch('/api/v1/log', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      time: new Date().toLocaleString(),
-      action: `change sortType to ${sortType}`
-    })
-  })
-  getCardData(sortType)
-  return (dispatch) => {
-    dispatch({
-      type: CHANGE_SORT,
-      sortType
-    })
   }
 }
 
@@ -86,6 +72,16 @@ export function getSearch(searchValue) {
         bodyElem.removeChild(notFoundMsg)
       }, 5000)
     }
+    fetch('/api/v1/log', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        time: new Date().toLocaleString(),
+        action: `searched for "${searchValue}"`
+      })
+    })
 
     fetch('/api/v1/search', {
       method: 'PUT',
