@@ -10,9 +10,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_GOODS: {
-      if (state.goodsList.length > 0) {
-        return state
-      }
       return {
         ...state,
         goodsList: action.goodsList
@@ -27,7 +24,6 @@ export default (state = initialState, action) => {
     case CHANGE_SORT: {
       return {
         ...state,
-        goodsList: action.goodsList,
         sortType: action.sortType
       }
     }
@@ -37,6 +33,7 @@ export default (state = initialState, action) => {
 }
 
 export function getCardData(sortType) {
+  console.log(sortType)
   return (dispatch) => {
     fetch('/api/v1/card', {
       method: 'GET',
@@ -46,16 +43,15 @@ export function getCardData(sortType) {
       }
     })
       .then((res) => res.json())
-      .then((prodArr) => {
+      .then((prodArr) =>
         dispatch({
           type: GET_GOODS,
-          goodsList: prodArr,
-          sortType
+          goodsList: prodArr
         })
-      })
+      )
   }
 }
-/*
+
 export function setSort(sortType) {
   fetch('/api/v1/log', {
     method: 'POST',
@@ -67,45 +63,15 @@ export function setSort(sortType) {
       action: `change sortType to ${sortType}`
     })
   })
-  fetch('/api/v1/sort', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      sortType
-    })
-  })
-  return (dispatch, getState) => {
-    const store = getState()
-    const { goodsList } = store.cardData
-    const sortedList = [...goodsList].sort((a, b) => {
-      if (sortType === 'AZ') {
-        if (a.title < b.title) {
-          return -1
-        }
-      }
-      if (sortType === 'ZA') {
-        if (a.title > b.title) {
-          return -1
-        }
-      }
-      if (sortType === 'up') {
-        return a.price - b.price
-      }
-      if (sortType === 'low') {
-        return b.price - a.price
-      }
-      return 0
-    })
+  getCardData(sortType)
+  return (dispatch) => {
     dispatch({
       type: CHANGE_SORT,
-      goodsList: sortedList,
       sortType
     })
   }
 }
-*/
+
 export function getSearch(searchValue) {
   return (dispatch) => {
     function isNotFound() {

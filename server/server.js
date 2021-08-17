@@ -35,6 +35,7 @@ middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/card', async (req, res) => {
   const sortTypeHeader = req.get('sortType')
+  console.log(sortTypeHeader)
   let sortType
   switch (sortTypeHeader) {
     case 'AZ':
