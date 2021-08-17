@@ -120,7 +120,7 @@
 
 @keyframes animate_msg {
   0% { opacity: 0; transform: translateX(-40px); }
-  10% { opacity: 80; transform: translateX(0px); }
-  90% { opacity: 80; transform: translateX(0px); }
+  15% { opacity: 80; transform: translateX(0px); }
+  85% { opacity: 80; transform: translateX(0px); }
   100% { opacity: 0; transform: translateX(-40px); }
 }

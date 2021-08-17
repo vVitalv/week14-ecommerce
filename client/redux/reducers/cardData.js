@@ -36,19 +36,26 @@ export default (state = initialState, action) => {
   }
 }
 
-export function getCardData() {
+export function getCardData(sortType) {
   return (dispatch) => {
-    fetch('/api/v1/card')
+    fetch('/api/v1/card', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        sortType
+      }
+    })
       .then((res) => res.json())
       .then((prodArr) => {
         dispatch({
           type: GET_GOODS,
-          goodsList: prodArr
+          goodsList: prodArr,
+          sortType
         })
       })
   }
 }
-
+/*
 export function setSort(sortType) {
   fetch('/api/v1/log', {
     method: 'POST',
@@ -58,6 +65,15 @@ export function setSort(sortType) {
     body: JSON.stringify({
       time: new Date().toLocaleString(),
       action: `change sortType to ${sortType}`
+    })
+  })
+  fetch('/api/v1/sort', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      sortType
     })
   })
   return (dispatch, getState) => {
@@ -89,19 +105,19 @@ export function setSort(sortType) {
     })
   }
 }
-
+*/
 export function getSearch(searchValue) {
   return (dispatch) => {
     function isNotFound() {
-      const contentElem = document.querySelector('main')
+      const mainElem = document.querySelector('main')
       const bodyElem = document.querySelector('.body-section')
-      const notFoundMsg = document.createElement('div')
-      notFoundMsg.className = 'not-found-msg'
-      notFoundMsg.innerText = 'Not found. Try some "beer")'
-      bodyElem.insertBefore(notFoundMsg, contentElem)
+      const notFoundElem = document.createElement('div')
+      notFoundElem.className = 'not-found-msg'
+      notFoundElem.innerText = 'Not found. Try some "beer")'
+      bodyElem.insertBefore(notFoundElem, mainElem)
       setTimeout(() => {
-        const m = document.querySelector('.not-found-msg')
-        bodyElem.removeChild(m)
+        const notFoundMsg = document.querySelector('.not-found-msg')
+        bodyElem.removeChild(notFoundMsg)
       }, 5000)
     }
 

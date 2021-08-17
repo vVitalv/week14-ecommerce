@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import SearchField from './search'
-import { setSort } from '../../redux/reducers/cardData'
+import { getCardData } from '../../redux/reducers/cardData'
 import Button from '../btns/btn'
 import sortAZ from '../../assets/images/sort-AZ.png'
 import sortZA from '../../assets/images/sort-ZA.png'
@@ -14,7 +14,7 @@ const UnderHeader = () => {
   const dispatch = useDispatch()
   const sortOnClick = (sortType) => {
     if (currentSortType !== sortType) {
-      return dispatch(setSort(sortType))
+      return dispatch(getCardData(sortType))
     }
     return null
   }

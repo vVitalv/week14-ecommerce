@@ -34,20 +34,45 @@ const middleware = [
 middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/card', async (req, res) => {
-  try {
-    const productData = await mongo.prodList.find({}).limit(10).toArray()
-    res.status(200).send(productData)
-  } catch (e) {
-    console.error('Database access error. Error:', e.message)
+  const sortTypeHeader = req.get('sortType')
+  let sortType
+  switch (sortTypeHeader) {
+    case 'AZ':
+      sortType = { title: 1 }
+      break
+    case 'ZA':
+      sortType = { title: -1 }
+      break
+    case 'up':
+      sortType = { price: 1 }
+      break
+    case 'low':
+      sortType = { price: -1 }
+  }
+
+  if (sortType === undefined) {
+    try {
+      const productData = await mongo.prodList.find({}).limit(10).toArray()
+      res.status(200).send(productData)
+    } catch (e) {
+      console.error('Database access error. Error:', e.message)
+    }
+  } else {
+    try {
+      const productData = await mongo.prodList.find({}).sort(sortType).limit(10).toArray()
+      res.status(200).send(productData)
+    } catch (e) {
+      console.error('Database access error. Error:', e.message)
+    }
   }
 })
 
 server.put('/api/v1/search', async (req, res) => {
   try {
     const productData = await mongo.prodList
-      .find({ $text: { $search: req.body.searchValue } }, { score: { $meta: "textScore" } })
+      .find({ $text: { $search: req.body.searchValue } }, { score: { $meta: 'textScore' } })
       .limit(10)
-      .sort({ score: { $meta: "textScore" } })
+      .sort({ score: { $meta: 'textScore' } })
       .toArray()
     res.status(200).send(productData)
   } catch (e) {
@@ -56,22 +81,25 @@ server.put('/api/v1/search', async (req, res) => {
 })
 
 server.get('/api/v1/currency', async (req, res) => {
-  await axios({
-    method: 'get',
-    baseURL: 'https://api.exchangerate.host/latest',
-    params: {
-      base: 'USD',
-      symbols: 'USD,EUR,CAD'
-    }
-  })
-    .then(({ data }) => res.status(200).send(data.rates))
-    .catch(() => res.status(524).send('Currency server timeout'))
+  try {
+    const { data } = await axios({
+      method: 'get',
+      baseURL: 'https://api.exchangerate.host/latest',
+      params: {
+        base: 'USD',
+        symbols: 'USD,EUR,CAD'
+      }
+    })
+    res.status(200).send(data.rates)
+  } catch (e) {
+    console.error('Currency server timeout. Error:', e.message)
+  }
 })
 
 server.get('/api/v1/log', async (req, res) => {
   await readFile(`${__dirname}/Data/log.json`, 'utf8')
     .then((logArr) => res.status(200).send(logArr))
-    .catch(() => res.status(500).send('Logs get unavailable'))
+    .catch((e) => console.error('Logs unavailable. Error:', e.message))
 })
 
 server.post('/api/v1/log', async (req, res) => {
