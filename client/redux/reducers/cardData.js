@@ -1,8 +1,11 @@
 const GET_GOODS = 'GET_GOODS'
+const GET_SCROLL = 'GET_SCROLL'
 const GET_SEARCH = 'GET_SEARCH'
+
 
 const initialState = {
   goodsList: [],
+  scroll: 0,
   sortType: ''
 }
 
@@ -13,6 +16,12 @@ export default (state = initialState, action) => {
         ...state,
         goodsList: action.goodsList,
         sortType: action.sortType
+      }
+    }
+    case GET_SCROLL: {
+      return {
+        ...state,
+        scroll: action.scroll
       }
     }
     case GET_SEARCH: {
@@ -55,6 +64,15 @@ export function getCardData(sortType) {
           sortType
         })
       )
+  }
+}
+
+export function getScroll(position) {
+  return (dispatch) => {
+    dispatch({
+      type: GET_SCROLL,
+      scroll: position
+    })
   }
 }
 

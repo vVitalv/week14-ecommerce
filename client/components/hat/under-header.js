@@ -11,6 +11,7 @@ import sortLow from '../../assets/images/sort-low.png'
 
 const UnderHeader = () => {
   const currentSortType = useSelector((store) => store.cardData.sortType)
+  const scrollPosition = useSelector((store) => store.cardData.scroll)
   const dispatch = useDispatch()
   const sortOnClick = (sortType) => {
     if (currentSortType !== sortType) {
@@ -45,6 +46,7 @@ const UnderHeader = () => {
           data="low"
           onClickFunction={sortOnClick}
         />
+        {scrollPosition}
       </div>
       <SearchField />
     </div>
