@@ -7,7 +7,13 @@ const Content = () => {
   const contentList = useSelector((store) => store.cardData.goodsList)
 
   return (
-    <main>
+    <main
+//    onScroll={
+//      (e) => {
+
+//      }
+//    }
+    >
       <div className="content">
         {contentList.map((product) => {
           return <Card productData={product} key={product.id} />

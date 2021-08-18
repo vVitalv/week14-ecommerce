@@ -67,10 +67,9 @@ export function getSearch(searchValue) {
       notFoundElem.className = 'not-found-msg'
       notFoundElem.innerText = 'Not found. Try some "beer")'
       bodyElem.insertBefore(notFoundElem, mainElem)
-      setTimeout(() => {
-        const notFoundMsg = document.querySelector('.not-found-msg')
-        bodyElem.removeChild(notFoundMsg)
-      }, 5000)
+      notFoundElem.addEventListener('animationend', () => {
+        bodyElem.removeChild(notFoundElem)
+      })
     }
     fetch('/api/v1/log', {
       method: 'POST',

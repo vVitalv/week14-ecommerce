@@ -49,20 +49,16 @@ server.get('/api/v1/card', async (req, res) => {
       sortType = { price: -1 }
   }
 
-  if (sortType) {
-    try {
-      const productData = await mongo.prodList.find({}).sort(sortType).limit(10).toArray()
-      res.status(200).send(productData)
-    } catch (e) {
-      console.error('Database access error. Error:', e.message)
-    }
-  } else {
-    try {
+  try {
+    if (!sortType) {
       const productData = await mongo.prodList.find({}).limit(10).toArray()
       res.status(200).send(productData)
-    } catch (e) {
-      console.error('Database access error. Error:', e.message)
+    } else {
+      const productDataSorted = await mongo.prodList.find({}).sort(sortType).limit(10).toArray()
+      res.status(200).send(productDataSorted)
     }
+  } catch (e) {
+    console.error('Database access error. Error:', e.message)
   }
 })
 
