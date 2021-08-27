@@ -5,7 +5,7 @@
   @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75;
 }
 .basket-table {
-  @apply table-fixed text-gray-700 sm:font-bold w-full text-center;
+  @apply table-fixed text-gray-700 sm:font-bold w-full text-center align-middle;
   thead {
     @apply text-sm sm:text-lg;
     tr {
@@ -39,8 +39,9 @@
         td:first-child {
           @apply rounded-l-3xl;
           a {
+            @apply inline;
             img {
-              @apply object-fill w-10 h-10 sm:w-20 sm:h-20 rounded-full;
+              @apply inline object-contain rounded-full w-10 sm:w-20 my-1;
             }
           }
         }

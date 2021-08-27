@@ -10,7 +10,7 @@ const BasketTable = (props) => {
   const currency = useSelector((store) => store.currency.currency)
   return (
     <tr>
-      <td align="center">
+      <td>
         <Link to={`/product/${productData.id}`}>
           <img src={productData.image} alt={productData.title} />
         </Link>
@@ -18,7 +18,6 @@ const BasketTable = (props) => {
       <td>
         <Link to={`/product/${productData.id}`}>{productData.title}</Link>
       </td>
-
       <td>{(productData.price * rate[currency]).toFixed(2)}</td>
       <td>
         <AmountPanel productData={productData} />
