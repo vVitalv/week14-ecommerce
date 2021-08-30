@@ -1,8 +1,12 @@
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const SORT_BY_NAME = 'SORT_BY_NAME'
+// const SORT_BY_PRICE = 'SORT_BY_PRICE'
+// const SORT_BY_AMOUNT = 'SORT_BY_AMOUNT'
 
 const initialState = {
-  basketList: []
+  basketList: [],
+  sorting: ''
 }
 
 export default (state = initialState, action) => {
@@ -17,6 +21,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         basketList: action.basketList
+      }
+    }
+    case SORT_BY_NAME: {
+      return {
+        ...state,
+        basketList: action.basketList,
+        sorting: action.sorting
       }
     }
     default:
@@ -83,6 +94,45 @@ export function removeFromCart(product) {
     dispatch({
       type: REMOVE_FROM_CART,
       basketList: removeProduct
+    })
+  }
+}
+
+export function sortBy(type) {
+  fetch('/api/v1/log', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      time: new Date().toLocaleString(),
+      action: `Cart sorted by ${type}`
+    })
+  })
+  return (dispatch, getState) => {
+    const store = getState()
+    const { basketList } = store.basket
+    const { sorting } = store.basket
+    if (sorting) basketList.reverse()
+    else
+      basketList.sort((a, b) => {
+        if (type === 'name') {
+          if (a.title < b.title) return -1
+          if (a.title > b.title) return 1
+          return 0
+        }
+        if (type === 'price') {
+          return a.price - b.price
+        }
+        if (type === 'amount') {
+          return a.amount - b.amount
+        }
+        return 0
+      })
+    dispatch({
+      type: SORT_BY_NAME,
+      basketList,
+      sorting: type
     })
   }
 }
