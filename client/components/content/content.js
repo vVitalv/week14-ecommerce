@@ -22,7 +22,7 @@ const Content = () => {
     return function () {
       document.removeEventListener('scroll', scrollHandler)
     }
-  }, [])
+  }, scrollHandler)
 
   return (
     <main>

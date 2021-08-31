@@ -1,8 +1,6 @@
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-const SORT_BY_NAME = 'SORT_BY_NAME'
-// const SORT_BY_PRICE = 'SORT_BY_PRICE'
-// const SORT_BY_AMOUNT = 'SORT_BY_AMOUNT'
+const SORT_BY = 'SORT_BY'
 
 const initialState = {
   basketList: [],
@@ -14,16 +12,18 @@ export default (state = initialState, action) => {
     case ADD_TO_CART: {
       return {
         ...state,
-        basketList: action.basketList
+        basketList: action.basketList,
+        sorting: action.sorting
       }
     }
     case REMOVE_FROM_CART: {
       return {
         ...state,
-        basketList: action.basketList
+        basketList: action.basketList,
+        sorting: action.sorting
       }
     }
-    case SORT_BY_NAME: {
+    case SORT_BY: {
       return {
         ...state,
         basketList: action.basketList,
@@ -60,6 +60,7 @@ export function addToCart(product) {
     }, [])
     dispatch({
       type: ADD_TO_CART,
+      sorting: '',
       basketList:
         basketList.length === 0 || typeof findProduct === 'undefined'
           ? [...basketList, { ...product, amount: 1 }]
@@ -93,7 +94,8 @@ export function removeFromCart(product) {
     }, [])
     dispatch({
       type: REMOVE_FROM_CART,
-      basketList: removeProduct
+      basketList: removeProduct,
+      sorting: ''
     })
   }
 }
@@ -112,26 +114,35 @@ export function sortBy(type) {
   return (dispatch, getState) => {
     const store = getState()
     const { basketList } = store.basket
+    const sortedList = [...basketList]
     const { sorting } = store.basket
-    if (sorting) basketList.reverse()
-    else
-      basketList.sort((a, b) => {
-        if (type === 'name') {
+    if (type === 'name') {
+      if (sorting !== 'name') {
+        sortedList.sort((a, b) => {
           if (a.title < b.title) return -1
           if (a.title > b.title) return 1
           return 0
-        }
-        if (type === 'price') {
+        })
+      } else sortedList.reverse()
+    }
+    if (type === 'price') {
+      if (sorting !== 'price') {
+        sortedList.sort((a, b) => {
           return a.price - b.price
-        }
-        if (type === 'amount') {
+        })
+      } else sortedList.reverse()
+    }
+    if (type === 'amount') {
+      if (sorting !== 'amount') {
+        sortedList.sort((a, b) => {
           return a.amount - b.amount
-        }
-        return 0
-      })
+        })
+      } else sortedList.reverse()
+    }
+
     dispatch({
-      type: SORT_BY_NAME,
-      basketList,
+      type: SORT_BY,
+      basketList: sortedList,
       sorting: type
     })
   }
