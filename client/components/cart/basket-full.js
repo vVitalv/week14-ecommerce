@@ -23,13 +23,15 @@ const BasketStuff = () => {
     <main>
       <table className="basket-table">
         <tfoot>
-          <td />
-          <td />
-          <td />
-          <td>{basket.amount}</td>
-          <td>
-            {summaryCost} {currency}
-          </td>
+          <tr>
+            <td />
+            <td />
+            <td />
+            <td>{basket.amount}</td>
+            <td>
+              {summaryCost} {currency}
+            </td>
+          </tr>
         </tfoot>
         <tbody>
           {basketList.map((product) => {

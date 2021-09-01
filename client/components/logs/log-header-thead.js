@@ -3,7 +3,7 @@ import React from 'react'
 const LogHeaderThead = () => {
   return (
     <div className="log-underheader">
-      <table className="log-table">
+      <table>
         <thead>
           <tr>
             <th>Time</th>

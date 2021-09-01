@@ -3,31 +3,39 @@
 }
 .basket-underheader {
   @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75;
-}
-.basket-table {
-  @apply table-fixed text-gray-700 sm:font-bold w-full text-center align-middle;
-  thead {
-    @apply text-sm sm:text-lg;
-    tr {
-      th {
-        @apply w-1/6;
-      }
-      th:first-child {
-        @apply opacity-0;
-      }
-      th:nth-child(2) {
-        @apply w-2/6;
+  table {
+    @apply table-fixed text-gray-700 sm:font-bold w-full text-center align-middle;
+    thead {
+      @apply text-sm sm:text-lg;
+      tr {
+        th {
+          @apply w-1/6;
+          button {
+            @apply sm:font-bold;
+          }
+        }
+        th:first-child {
+          @apply opacity-0;
+        }
+        th:nth-child(2) {
+          @apply w-2/6;
+        }
       }
     }
   }
+}
+.basket-table {
+  @apply table-fixed text-gray-700 sm:font-bold w-full text-center align-middle mt-36;
   tfoot {
     @apply font-bold text-sm sm:text-lg bg-yellow-400;
+    tr {
       td {
         @apply w-1/6;
       }
       td:nth-child(2) {
         @apply w-2/6;
       }
+    }
   }
   tbody {
     @apply text-xs sm:text-lg sm:font-semibold;
@@ -56,5 +64,5 @@
 }
 
 .buy-btn {
-  @apply object-right text-3xl font-bold w-40 h-20 bg-indigo-700 rounded-xl m-6;
+  @apply text-3xl font-bold w-40 h-20 bg-indigo-700 rounded-xl m-6 mb-28;
 }

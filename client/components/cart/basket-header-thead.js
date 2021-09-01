@@ -12,7 +12,7 @@ const CartHeaderThead = () => {
 
   return (
     <div className="basket-underheader">
-      <table className="basket-table">
+      <table>
         <thead>
           <tr>
             <th>Image</th>

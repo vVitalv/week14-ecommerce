@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import throttle from 'lodash.throttle'
 
@@ -8,25 +8,15 @@ import { getScroll } from '../../redux/reducers/cardData'
 const Content = () => {
   const contentList = useSelector((store) => store.cardData.goodsList)
   const dispatch = useDispatch()
-  const scrollHandler = (e) => {
-    const position = {
-      height: e.target.documentElement.scrollHeight,
-      fromTop: e.target.documentElement.scrollTop
-    }
-    const loadPosition = position.height - position.fromTop
+
+  const onScroll = (e) => {
+    const loadPosition = e.target.scrollHeight - e.target.scrollTop
     dispatch(getScroll(loadPosition))
   }
 
-  useEffect(() => {
-    document.addEventListener('scroll', throttle(scrollHandler, 1000))
-    return function () {
-      document.removeEventListener('scroll', scrollHandler)
-    }
-  }, scrollHandler)
-
   return (
     <main>
-      <div className="content">
+      <div className="content" onScroll={throttle(onScroll, 1000)}>
         {contentList.map((product) => {
           return <Card productData={product} key={product.id} />
         })}
@@ -38,3 +28,22 @@ const Content = () => {
 Content.propTypes = {}
 
 export default React.memo(Content)
+
+/*
+  const scrollHandler = (e) => {
+    const position = {
+      height: e.target.documentElement.scrollHeight,
+      fromTop: e.target.documentElement.scrollTop
+    }
+    const loadPosition = position.height - position.fromTop
+    dispatch(getScroll(loadPosition))
+  }
+  const throttledScrollHandler = throttle(scrollHandler, 1000)
+
+  useEffect(() => {
+    document.addEventListener('scroll', throttledScrollHandler)
+    return function () {
+      document.removeEventListener('scroll', throttledScrollHandler)
+    }
+  }, [])
+*/
