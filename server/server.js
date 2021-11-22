@@ -51,7 +51,7 @@ server.get('/api/v1/card', async (req, res) => {
 
   try {
     if (!sortType) {
-      const productData = await mongo.prodList.find({}).limit(20).toArray()
+      const productData = await mongo.prodList.find({}).limit(100).toArray()
       res.status(200).send(productData)
     } else {
       const productDataSorted = await mongo.prodList.find({}).sort(sortType).limit(10).toArray()

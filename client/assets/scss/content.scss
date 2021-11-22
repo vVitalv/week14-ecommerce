@@ -1,5 +1,5 @@
 .content {
-  @apply flex flex-wrap justify-center items-center h-screen overflow-y-scroll pt-36 pb-28;
+  @apply flex flex-wrap justify-center items-center h-screen max-w-6xl pt-36 pb-28;
 }
 .content-card {
   @apply flex flex-col h-80 w-80 rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;

@@ -17,10 +17,13 @@ const Content = () => {
   return (
     <main>
       <div className="content" onScroll={throttle(onScroll, 1000)}>
-        {contentList.map((product) => {
-          return <Card productData={product} key={product.id} />
-        })}
+        {contentList
+          .map((product) => {
+            return <Card productData={product} key={product.id} />
+          })
+          .slice(0, 24)}
       </div>
+      <Pagination />
     </main>
   )
 }

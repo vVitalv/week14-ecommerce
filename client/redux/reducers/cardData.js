@@ -5,7 +5,8 @@ const GET_SEARCH = 'GET_SEARCH'
 
 const initialState = {
   goodsList: [],
-  scroll: 0,
+  scroll: 2000,
+  page: 0,
   sortType: ''
 }
 
