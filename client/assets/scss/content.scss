@@ -1,5 +1,5 @@
 .content {
-  @apply flex flex-wrap justify-center items-center h-screen max-w-6xl pt-36 pb-28;
+  @apply flex flex-wrap justify-center items-center max-w-6xl mt-36;
 }
 .content-card {
   @apply flex flex-col h-80 w-80 rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;
@@ -35,5 +35,18 @@
   }
   p {
     @apply w-6 text-center;
+  }
+}
+
+.pagination {
+  @apply inline-flex items-center space-x-2 mb-32 mt-16;
+  button {
+    @apply transition-colors duration-300 border-yellow-400 sm:border h-8 w-8 rounded-xl text-xl font-bold text-gray-700;
+    &:hover {
+      @apply border-yellow-300;
+    }
+    &:focus {
+      @apply outline-none;
+    }
   }
 }
