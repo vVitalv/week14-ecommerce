@@ -81,8 +81,8 @@ const config = {
         ]
       },
       {
-        test: /\.txt$/i,
-        use: 'raw-loader'
+        test: /\.txt$/,
+        type: 'asset/source'
       },
       {
         test: /\.(jpg|png|gif|svg|webp)$/,
@@ -91,23 +91,11 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|webp)$/,
-        use: [
-          {
-            loader: 'file-loader'
-          }
-        ]
+        type: 'asset/resource'
       },
       {
         test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-url-loader',
-            options: {
-              limit: 10 * 1024,
-              noquotes: true
-            }
-          }
-        ]
+        type: 'asset/inline'
       }
     ]
   },

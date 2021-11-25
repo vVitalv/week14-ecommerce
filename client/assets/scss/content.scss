@@ -41,9 +41,9 @@
 .pagination {
   @apply inline-flex items-center space-x-2 mb-32 mt-16;
   button {
-    @apply transition-colors duration-300 border-yellow-400 sm:border h-8 w-8 rounded-xl text-xl font-bold text-gray-700;
+    @apply transition-colors duration-300 border-yellow-400 border h-8 w-8 rounded-lg text-base text-gray-700;
     &:hover {
-      @apply border-yellow-300;
+      @apply border-yellow-600;
     }
     &:focus {
       @apply outline-none;

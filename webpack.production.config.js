@@ -71,8 +71,8 @@ const config = {
         ]
       },
       {
-        test: /\.txt$/i,
-        use: 'raw-loader'
+        test: /\.txt$/,
+        type: 'asset/source'
       },
       {
         test: /\.(jpg|png|gif|svg|webp)$/,
@@ -81,55 +81,11 @@ const config = {
       },
       {
         test: /\.(jpg|png|gif|webp)$/,
-        use: [
-          {
-            loader: 'file-loader'
-          }
-        ]
-      },
-      {
-        test: /\.eot$/,
-        use: [
-          {
-            loader: 'file-loader'
-          }
-        ]
-      },
-      {
-        test: /\.woff(2)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.[ot]tf$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
+        type: 'asset/resource'
       },
       {
         test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-url-loader',
-            options: {
-              limit: 10 * 1024,
-              noquotes: true
-            }
-          }
-        ]
+        type: 'asset/inline'
       }
     ]
   },
