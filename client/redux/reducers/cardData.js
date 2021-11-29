@@ -1,10 +1,10 @@
 const GET_GOODS = 'GET_GOODS'
 const GET_SEARCH = 'GET_SEARCH'
 
-
 const initialState = {
   goodsList: [],
-  currentPage: 1,
+  currentPage: 0,
+  cardsOnPage: 24,
   sortType: ''
 }
 
@@ -28,8 +28,10 @@ export default (state = initialState, action) => {
   }
 }
 
-export function getCardData(sortType) {
-  return (dispatch) => {
+export function getCardData(currentPage, sortType) {
+  return (dispatch, getState) => {
+    const store = getState()
+    const { cardsOnPage } = store.cardData
     if (sortType) {
       fetch('/api/v1/log', {
         method: 'POST',
@@ -46,6 +48,8 @@ export function getCardData(sortType) {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        currentPage,
+        cardsOnPage,
         sortType
       }
     })
@@ -54,6 +58,7 @@ export function getCardData(sortType) {
         dispatch({
           type: GET_GOODS,
           goodsList: prodArr,
+          currentPage,
           sortType
         })
       )

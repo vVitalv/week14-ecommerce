@@ -33,9 +33,11 @@ const middleware = [
 middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/card', async (req, res) => {
-  const sortTypeHeader = req.get('sortType')
+  const sortType_Header = req.get('sortType')
+  const currentPage_Header = req.get('currentPage') * 1
+  const cardsOnPage_Header = req.get('cardsOnPage') * 1
   let sortType
-  switch (sortTypeHeader) {
+  switch (sortType_Header) {
     case 'AZ':
       sortType = { title: 1 }
       break
@@ -51,7 +53,11 @@ server.get('/api/v1/card', async (req, res) => {
 
   try {
     if (!sortType) {
-      const productData = await mongo.prodList.find({}).limit(100).toArray()
+      const productData = await mongo.prodList
+        .find({})
+        .skip(cardsOnPage_Header * currentPage_Header)
+        .limit(cardsOnPage_Header)
+        .toArray()
       res.status(200).send(productData)
     } else {
       const productDataSorted = await mongo.prodList.find({}).sort(sortType).limit(10).toArray()

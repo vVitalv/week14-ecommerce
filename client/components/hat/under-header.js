@@ -14,7 +14,7 @@ const UnderHeader = () => {
   const dispatch = useDispatch()
   const sortOnClick = (sortType) => {
     if (currentSortType !== sortType) {
-      return dispatch(getCardData(sortType))
+      return dispatch(getCardData(null, sortType))
     }
     return null
   }

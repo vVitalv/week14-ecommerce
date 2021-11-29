@@ -5,10 +5,9 @@ import Card from './content-card'
 import Pagination from './pagination'
 
 const Content = () => {
-  const cardsOnPage = 24
-
   const contentList = useSelector((store) => store.cardData.goodsList)
-//  const dispatch = useDispatch()
+  const cardsOnPage = useSelector((store) => store.cardData.cardsOnPage)
+  //  const dispatch = useDispatch()
 
   return (
     <main>
