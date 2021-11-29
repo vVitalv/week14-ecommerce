@@ -1,25 +1,18 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import throttle from 'lodash.throttle'
+import { useSelector } from 'react-redux'
 
 import Card from './content-card'
 import Pagination from './pagination'
-import { getScroll } from '../../redux/reducers/cardData'
 
 const Content = () => {
   const cardsOnPage = 24
 
   const contentList = useSelector((store) => store.cardData.goodsList)
-  const dispatch = useDispatch()
-
-  const onScroll = (e) => {
-    const loadPosition = e.target.scrollHeight - e.target.scrollTop
-    dispatch(getScroll(loadPosition))
-  }
+//  const dispatch = useDispatch()
 
   return (
     <main>
-      <div className="content" onScroll={throttle(onScroll, 1000)}>
+      <div className="content">
         {contentList
           .map((product) => {
             return <Card productData={product} key={product.id} />

@@ -91,7 +91,6 @@
         "express": "^4.17.1",
         "history": "4.10.1",
         "image-webpack-loader": "^8.0.1",
-        "lodash.throttle": "^4.1.1",
         "mongodb": "^4.0.1",
         "prop-types": "^15.7.2",
         "react": "^17.0.2",
