@@ -70,8 +70,8 @@ server.get('/api/v1/sorting', async (req, res) => {
   try {
     const productDataSorted = await mongo.prodList
       .find({})
-      .skip(cardsOnPage_Header * currentPage_Header)
       .sort(sortType)
+      .skip(cardsOnPage_Header * currentPage_Header)
       .limit(cardsOnPage_Header)
       .toArray()
     res.status(200).send(productDataSorted)

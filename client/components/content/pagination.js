@@ -1,15 +1,16 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { getCardData } from '../../redux/reducers/cardData'
+import { getCardData, getSorted } from '../../redux/reducers/cardData'
 import Button from '../btns/btn'
 
 const Pagination = () => {
   const dispatch = useDispatch()
   const currentPage = useSelector((store) => store.cardData.currentPage)
+  const currentSortType = useSelector((store) => store.cardData.sortType)
   const changePageOnClick = (nextPage) => {
-    console.log(nextPage)
-    return dispatch(getCardData(nextPage))
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    return dispatch(currentSortType ? getSorted(currentSortType, nextPage) : getCardData(nextPage))
   }
   return (
     <div className="pagination">

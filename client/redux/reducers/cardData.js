@@ -22,7 +22,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         goodsList: action.goodsList,
-        sortType: action.sortType
+        sortType: action.sortType,
+        currentPage: action.currentPage
       }
     }
     case GET_SEARCH: {
@@ -60,8 +61,10 @@ export function getCardData(currentPage) {
   }
 }
 
-export function getSort(sortType) {
-  return (dispatch) => {
+export function getSorted(sortType, currentPage) {
+  return (dispatch, getState) => {
+    const store = getState()
+    const { cardsOnPage } = store.cardData
     fetch('/api/v1/sorting', {
       method: 'GET',
       headers: {
@@ -74,9 +77,10 @@ export function getSort(sortType) {
       .then((res) => res.json())
       .then((prodArr) =>
         dispatch({
-          type: GET_GOODS,
+          type: GET_SORTED,
           goodsList: prodArr,
-          sortType
+          sortType,
+          currentPage
         })
       )
 
