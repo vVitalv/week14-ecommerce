@@ -1,4 +1,5 @@
 const GET_GOODS = 'GET_GOODS'
+const GET_SORTED = 'GET_SORTED'
 const GET_SEARCH = 'GET_SEARCH'
 
 const initialState = {
@@ -11,6 +12,13 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_GOODS: {
+      return {
+        ...state,
+        goodsList: action.goodsList,
+        currentPage: action.currentPage
+      }
+    }
+    case GET_SORTED: {
       return {
         ...state,
         goodsList: action.goodsList,
@@ -28,29 +36,17 @@ export default (state = initialState, action) => {
   }
 }
 
-export function getCardData(currentPage, sortType) {
+export function getCardData(currentPage) {
   return (dispatch, getState) => {
     const store = getState()
     const { cardsOnPage } = store.cardData
-    if (sortType) {
-      fetch('/api/v1/log', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          time: new Date().toLocaleString(),
-          action: `change sortType to ${sortType}`
-        })
-      })
-    }
+
     fetch('/api/v1/card', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         currentPage,
-        cardsOnPage,
-        sortType
+        cardsOnPage
       }
     })
       .then((res) => res.json())
@@ -58,10 +54,42 @@ export function getCardData(currentPage, sortType) {
         dispatch({
           type: GET_GOODS,
           goodsList: prodArr,
-          currentPage,
+          currentPage
+        })
+      )
+  }
+}
+
+export function getSort(sortType) {
+  return (dispatch) => {
+    fetch('/api/v1/sorting', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        sortType,
+        currentPage,
+        cardsOnPage
+      }
+    })
+      .then((res) => res.json())
+      .then((prodArr) =>
+        dispatch({
+          type: GET_GOODS,
+          goodsList: prodArr,
           sortType
         })
       )
+
+    fetch('/api/v1/log', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        time: new Date().toLocaleString(),
+        action: `change sortType to ${sortType}`
+      })
+    })
   }
 }
 
@@ -78,16 +106,6 @@ export function getSearch(searchValue) {
         bodyElem.removeChild(notFoundElem)
       })
     }
-    fetch('/api/v1/log', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        time: new Date().toLocaleString(),
-        action: `searched for "${searchValue}"`
-      })
-    })
 
     fetch('/api/v1/search', {
       method: 'PUT',
@@ -107,5 +125,16 @@ export function getSearch(searchValue) {
           })
         } else isNotFound()
       })
+
+    fetch('/api/v1/log', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        time: new Date().toLocaleString(),
+        action: `searched for "${searchValue}"`
+      })
+    })
   }
 }

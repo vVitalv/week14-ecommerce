@@ -6,17 +6,14 @@ import Pagination from './pagination'
 
 const Content = () => {
   const contentList = useSelector((store) => store.cardData.goodsList)
-  const cardsOnPage = useSelector((store) => store.cardData.cardsOnPage)
   //  const dispatch = useDispatch()
 
   return (
     <main>
       <div className="content">
-        {contentList
-          .map((product) => {
-            return <Card productData={product} key={product.id} />
-          })
-          .slice(0, cardsOnPage)}
+        {contentList.map((product) => {
+          return <Card productData={product} key={product.id} />
+        })}
       </div>
       <Pagination />
     </main>

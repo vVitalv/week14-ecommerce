@@ -1,19 +1,60 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { getCardData } from '../../redux/reducers/cardData'
 import Button from '../btns/btn'
 
 const Pagination = () => {
+  const dispatch = useDispatch()
   const currentPage = useSelector((store) => store.cardData.currentPage)
+  const changePageOnClick = (nextPage) => {
+    console.log(nextPage)
+    return dispatch(getCardData(nextPage))
+  }
   return (
     <div className="pagination">
-      <Button operation="previous" sign="<" data="" onClickFunction="null" />
-      <Button operation="minus" sign="1" data="" onClickFunction="null" />
-      <Button operation="minus" sign="2" data="" onClickFunction="null" />
-      <Button operation="minus" sign={currentPage} data="" onClickFunction="null" />
-      <Button operation="minus" sign="4" data="" onClickFunction="null" />
-      <Button operation="minus" sign="4" data="" onClickFunction="null" />
-      <Button operation="next" sign=">" data="" onClickFunction="null" />
+      <Button
+        operation="previous"
+        sign="<"
+        data={currentPage - 1}
+        onClickFunction={changePageOnClick}
+      />
+      <Button
+        operation="minus"
+        sign={currentPage - 2}
+        data={currentPage - 2}
+        onClickFunction={changePageOnClick}
+      />
+      <Button
+        operation="minus"
+        sign={currentPage - 1}
+        data={currentPage - 1}
+        onClickFunction={changePageOnClick}
+      />
+      <Button
+        operation="minus"
+        sign={currentPage}
+        data={currentPage}
+        onClickFunction={changePageOnClick}
+      />
+      <Button
+        operation="minus"
+        sign={currentPage + 1}
+        data={currentPage + 1}
+        onClickFunction={changePageOnClick}
+      />
+      <Button
+        operation="minus"
+        sign={currentPage + 2}
+        data={currentPage + 2}
+        onClickFunction={changePageOnClick}
+      />
+      <Button
+        operation="next"
+        sign=">"
+        data={currentPage + 1}
+        onClickFunction={changePageOnClick}
+      />
     </div>
   )
 }

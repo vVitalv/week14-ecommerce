@@ -26,18 +26,20 @@ const config = {
   mode: 'development',
   context: resolve(__dirname, 'client'),
   devServer: {
-    hotOnly: true,
+    hot: true,
     open: true,
-    allowedHosts: ['api.exchangerate.host'],
-    contentBase: resolve(__dirname, 'dist/assets'),
-    watchContentBase: true,
+    static: {
+      directory: resolve(__dirname, 'dist/assets'),
+      watch: true
+    },
     host: 'localhost',
     port: 8087,
-    useLocalIp: false,
     historyApiFallback: true,
-    overlay: {
-      warnings: false,
-      errors: true
+    client: {
+      overlay: {
+        warnings: false,
+        errors: true
+      }
     },
     proxy: [
       {

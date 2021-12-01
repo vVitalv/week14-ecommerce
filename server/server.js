@@ -33,6 +33,22 @@ const middleware = [
 middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/card', async (req, res) => {
+  const currentPage_Header = req.get('currentPage') * 1
+  const cardsOnPage_Header = req.get('cardsOnPage') * 1
+
+  try {
+    const productData = await mongo.prodList
+      .find({})
+      .skip(cardsOnPage_Header * currentPage_Header)
+      .limit(cardsOnPage_Header)
+      .toArray()
+    res.status(200).send(productData)
+  } catch (e) {
+    console.error('Database access error. Error:', e.message)
+  }
+})
+
+server.get('/api/v1/sorting', async (req, res) => {
   const sortType_Header = req.get('sortType')
   const currentPage_Header = req.get('currentPage') * 1
   const cardsOnPage_Header = req.get('cardsOnPage') * 1
@@ -52,17 +68,13 @@ server.get('/api/v1/card', async (req, res) => {
   }
 
   try {
-    if (!sortType) {
-      const productData = await mongo.prodList
-        .find({})
-        .skip(cardsOnPage_Header * currentPage_Header)
-        .limit(cardsOnPage_Header)
-        .toArray()
-      res.status(200).send(productData)
-    } else {
-      const productDataSorted = await mongo.prodList.find({}).sort(sortType).limit(10).toArray()
-      res.status(200).send(productDataSorted)
-    }
+    const productDataSorted = await mongo.prodList
+      .find({})
+      .skip(cardsOnPage_Header * currentPage_Header)
+      .sort(sortType)
+      .limit(cardsOnPage_Header)
+      .toArray()
+    res.status(200).send(productDataSorted)
   } catch (e) {
     console.error('Database access error. Error:', e.message)
   }

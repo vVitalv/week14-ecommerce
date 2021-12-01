@@ -9,9 +9,9 @@ const Startup = (props) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCurrency())
-    dispatch(getCardData())
+    dispatch(getCardData(0))
     return () => {}
-  }, [])
+  }, dispatch)
 
   return props.children
 }
