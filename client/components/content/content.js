@@ -6,7 +6,6 @@ import Pagination from './pagination'
 
 const Content = () => {
   const contentList = useSelector((store) => store.cardData.goodsList)
-  //  const dispatch = useDispatch()
 
   return (
     <main>

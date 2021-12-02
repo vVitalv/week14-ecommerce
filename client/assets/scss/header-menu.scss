@@ -3,7 +3,7 @@
 }
 
 .logo-link {
-  @apply inline-flex items-center flex-nowrap space-x-2 col-span-3 sm:col-span-2 sm:row-span-2;
+  @apply inline-flex items-center flex-nowrap space-x-2 col-span-3 sm:col-span-2 sm:row-span-2 w-min;
 
   .logo {
     @apply transition ease-in duration-500 transform md:opacity-70 lg:opacity-50 h-8 w-8 sm:h-14 sm:w-16;
