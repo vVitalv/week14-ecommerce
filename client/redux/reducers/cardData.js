@@ -1,6 +1,5 @@
 const GET_GOODS = 'GET_GOODS'
 const GET_SORTED = 'GET_SORTED'
-const GET_SEARCH = 'GET_SEARCH'
 
 const initialState = {
   goodsList: [],
@@ -24,12 +23,6 @@ export default (state = initialState, action) => {
         goodsList: action.goodsList,
         sortType: action.sortType,
         currentPage: action.currentPage
-      }
-    }
-    case GET_SEARCH: {
-      return {
-        ...state,
-        goodsList: action.goodsList
       }
     }
     default:
@@ -92,52 +85,6 @@ export function getSorted(sortType, currentPage) {
       body: JSON.stringify({
         time: new Date().toLocaleString(),
         action: `change sortType to ${sortType}`
-      })
-    })
-  }
-}
-
-export function getSearch(searchValue) {
-  return (dispatch) => {
-    function isNotFound() {
-      const mainElem = document.querySelector('main')
-      const bodyElem = document.querySelector('.body-section')
-      const notFoundElem = document.createElement('div')
-      notFoundElem.className = 'not-found-msg'
-      notFoundElem.innerText = 'Not found. Try some "beer")'
-      bodyElem.insertBefore(notFoundElem, mainElem)
-      notFoundElem.addEventListener('animationend', () => {
-        bodyElem.removeChild(notFoundElem)
-      })
-    }
-
-    fetch('/api/v1/search', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        searchValue
-      })
-    })
-      .then((res) => res.json())
-      .then((prodArr) => {
-        if (prodArr.length !== 0) {
-          dispatch({
-            type: GET_SEARCH,
-            goodsList: prodArr
-          })
-        } else isNotFound()
-      })
-
-    fetch('/api/v1/log', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        time: new Date().toLocaleString(),
-        action: `searched for "${searchValue}"`
       })
     })
   }

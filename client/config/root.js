@@ -10,6 +10,7 @@ import store, { history } from '../redux'
 import Home from '../components/home'
 import Product from '../components/content/product/product'
 import Basket from '../components/cart/basket'
+import Search from '../components/hat/search/search'
 import Logs from '../components/logs/logs'
 import NotFound from '../components/404'
 
@@ -77,6 +78,7 @@ const RootComponent = (props) => {
             <Route exact path="/" component={() => <Home />} />
             <Route exact path="/product/:id" component={() => <Product />} />
             <Route exact path="/basket" component={() => <Basket />} />
+            <Route exact path="/search" component={() => <Search />} />
             <Route exact path="/logs" component={() => <Logs />} />
             <PrivateRoute exact path="/hidden-route" component={() => <Home />} />
             <Route component={() => <NotFound />} />

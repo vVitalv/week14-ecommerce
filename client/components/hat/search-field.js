@@ -1,8 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setSearch } from '../../redux/reducers/search'
-import { getSearch } from '../../redux/reducers/cardData'
+import { setSearch, getSearch } from '../../redux/reducers/search'
 import Button from '../btns/btn'
 
 const SearchField = () => {

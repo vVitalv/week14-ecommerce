@@ -82,12 +82,11 @@ server.get('/api/v1/sorting', async (req, res) => {
 
 server.put('/api/v1/search', async (req, res) => {
   try {
-    const productData = await mongo.prodList
+    const searchData = await mongo.prodList
       .find({ $text: { $search: req.body.searchValue } }, { score: { $meta: 'textScore' } })
-      .limit(10)
       .sort({ score: { $meta: 'textScore' } })
       .toArray()
-    res.status(200).send(productData)
+    res.status(200).send(searchData)
   } catch (e) {
     console.error('Database access error. Error:', e.message)
   }
