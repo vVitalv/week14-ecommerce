@@ -35,6 +35,7 @@ export function setSearch(searchValue) {
 }
 
 export function getSearch(searchValue) {
+
   function isNotFound() {
     const mainElem = document.querySelector('main')
     const bodyElem = document.querySelector('.body-section')
@@ -67,13 +68,12 @@ export function getSearch(searchValue) {
       })
     })
       .then((res) => res.json())
-      .then((searchData) => {
-        if (searchData.length !== 0) {
+      .then((searchDataArr) => {
+        if (searchDataArr.length) {
           dispatch({
             type: GET_SEARCH,
-            searchData
+            searchData: searchDataArr
           })
-          window.location.replace('/search')
         } else isNotFound()
       })
   }

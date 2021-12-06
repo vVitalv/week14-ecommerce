@@ -1,5 +1,5 @@
 .content {
-  @apply flex flex-wrap justify-center items-center max-w-6xl mt-36;
+  @apply flex flex-wrap justify-center items-center max-w-6xl mt-36 mb-16;
 }
 .content-card {
   @apply flex flex-col h-80 w-80 rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;
@@ -39,7 +39,7 @@
 }
 
 .pagination {
-  @apply inline-flex items-center space-x-2 mb-32 mt-16;
+  @apply inline-flex items-center space-x-2 mb-32;
   button {
     @apply transition-colors duration-300 border-yellow-400 border h-8 w-8 rounded-lg text-base text-gray-700;
     &:hover:not(:disabled) {
