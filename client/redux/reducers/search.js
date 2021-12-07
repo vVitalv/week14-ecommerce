@@ -1,5 +1,6 @@
 const SET_SEARCH = 'SET_SEARCH'
 const GET_SEARCH = 'GET_SEARCH'
+const PURGE_SEARCH = 'PURGE_SEARCH'
 
 const initialState = {
   searchValue: '',
@@ -20,6 +21,12 @@ export default (state = initialState, action) => {
         searchData: action.searchData
       }
     }
+    case PURGE_SEARCH: {
+      return {
+        ...state,
+        searchData: action.searchData
+      }
+    }
     default:
       return state
   }
@@ -35,7 +42,6 @@ export function setSearch(searchValue) {
 }
 
 export function getSearch(searchValue) {
-
   function isNotFound() {
     const mainElem = document.querySelector('main')
     const bodyElem = document.querySelector('.body-section')
@@ -58,6 +64,10 @@ export function getSearch(searchValue) {
     })
   })
   return (dispatch) => {
+    dispatch({
+      type: PURGE_SEARCH,
+      searchData: []
+    })
     fetch('/api/v1/search', {
       method: 'PUT',
       headers: {

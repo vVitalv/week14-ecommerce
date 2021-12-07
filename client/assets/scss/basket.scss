@@ -1,5 +1,8 @@
 .basket-empty {
-  @apply flex justify-center;
+  @apply container mx-auto;
+  img {
+    @apply object-none object-center h-44;
+  }
 }
 .basket-underheader {
   @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75;

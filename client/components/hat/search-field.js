@@ -8,20 +8,22 @@ import Button from '../btns/btn'
 const SearchField = () => {
   const history = useHistory()
   const value = useSelector((store) => store.search.searchValue)
+//  const searchData = useSelector((store) => store.search.searchData)
   const dispatch = useDispatch()
+
   const onChange = (e) => {
     dispatch(setSearch(e.target.value))
   }
-  const searchOnClick = (searchValue) => {
+  const searchOnClick = () => {
     if (value.length) {
-      history.replace('/search')
-      return dispatch(getSearch(searchValue))
+      history.replace(`/search?=${value}`)
+      return dispatch(getSearch(value))
     }
     return null
   }
   const searchKeyPress = (e) => {
     if (e.key === 'Enter' && value.length) {
-      history.replace('/search')
+      history.replace(`/search?=${value}`)
       return dispatch(getSearch(value))
     }
     return null
@@ -37,7 +39,7 @@ const SearchField = () => {
         autoComplete="on"
         placeholder="search product"
       />
-      <Button operation="search" sign={'\u2315'} data={value} onClickFunction={searchOnClick} />
+      <Button operation="search" sign={'\u2315'} onClickFunction={searchOnClick} />
     </div>
   )
 }
