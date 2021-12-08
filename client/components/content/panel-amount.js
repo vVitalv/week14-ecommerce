@@ -12,13 +12,13 @@ const AmountPanel = (props) => {
   const findAmount = basketAmount.find((product) => {
     return productData.id === product.id
   })
-  const amount = typeof findAmount === 'undefined' ? 0 : findAmount.amount
+  const amount = findAmount ? findAmount.amount : 0
 
   const addOnClick = (cardData) => {
     return dispatch(addToCart(cardData))
   }
   const removeOnClick = (cardData) => {
-    if (typeof findAmount !== 'undefined') {
+    if (findAmount) {
       return dispatch(removeFromCart(cardData))
     }
     return null

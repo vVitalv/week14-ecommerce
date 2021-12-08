@@ -1,11 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import basket_empty from '../../assets/images/basket-empty.png'
 import basket_full from '../../assets/images/basket-full.png'
 
 const BasketButton = () => {
+  const history = useHistory()
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
   const basketList = useSelector((store) => store.basket.basketList)
@@ -26,15 +27,19 @@ const BasketButton = () => {
       : `total ${(basket.price * rate[currency]).toFixed(2)} ${currency}`
   const basketImg = basket.amount > 0 ? basket_full : basket_empty
   const basketAmountVisible = basket.amount === 0 ? 'basket-amount_invisible' : 'basket-amount'
+  const onClickFunc = () => {
+    if (basketList.length) {
+      history.replace('/basket')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   return (
     <div className="basket-plate">
       <p>{basketInfo}</p>
-      <button type="button">
-        <Link to="/basket">
-          <div className={basketAmountVisible}>{basket.amount}</div>
-          <img src={basketImg} alt="cart" />
-        </Link>
+      <button type="button" onClick={onClickFunc}>
+        <div className={basketAmountVisible}>{basket.amount}</div>
+        <img src={basketImg} alt="cart" />
       </button>
     </div>
   )

@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux'
 
 import BasketHeader from './basket-header'
 import Head from '../hat/head'
-import BasketEmpty from './basket-empty'
-import BasketStuff from './basket-full'
+import BasketStuff from './basket-stuff'
 import Footer from '../foot/footer'
 import { setLog } from '../../redux/reducers/log'
 
@@ -25,13 +24,12 @@ const Basket = () => {
     },
     { amount: 0, price: 0 }
   )
-  const headTitle = basket.amount === 0 ? 'Cart is Empty' : 'Cart'
 
   return (
     <div>
-      <Head title={headTitle} />
+      <Head title="Cart" />
       <BasketHeader amount={basket.amount} />
-      {basket.amount === 0 ? <BasketEmpty /> : <BasketStuff />}
+      <BasketStuff />
       <Footer />
     </div>
   )

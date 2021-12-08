@@ -8,7 +8,7 @@ import Button from '../btns/btn'
 const SearchField = () => {
   const history = useHistory()
   const value = useSelector((store) => store.search.searchValue)
-//  const searchData = useSelector((store) => store.search.searchData)
+  //  const searchData = useSelector((store) => store.search.searchData)
   const dispatch = useDispatch()
 
   const onChange = (e) => {

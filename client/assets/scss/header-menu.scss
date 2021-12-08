@@ -74,16 +74,14 @@
     &:focus {
       @apply outline-none;
     }
-    a {
-      .basket-amount {
-        @apply absolute font-bold text-xs text-white bg-blue-500 rounded-full w-5 h-4;
-      }
-      .basket-amount_invisible {
-        @apply absolute invisible;
-      }
-      img {
-        @apply h-8 w-8;
-      }
+    .basket-amount {
+      @apply absolute font-bold text-xs text-white bg-blue-500 rounded-full w-5 h-4;
+    }
+    .basket-amount_invisible {
+      @apply absolute invisible;
+    }
+    img {
+      @apply h-8 w-8;
     }
   }
 }
