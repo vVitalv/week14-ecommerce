@@ -6,7 +6,7 @@ import Button from '../btns/btn'
 
 const Pagination = () => {
   const dispatch = useDispatch()
-  const productList = useSelector((store) => store.cardData.goodsList)
+  const productList = useSelector((store) => store.cardData.productList)
   const currentPage = useSelector((store) => store.cardData.currentPage)
   const cardsOnPage = useSelector((store) => store.cardData.cardsOnPage)
   const currentSortType = useSelector((store) => store.cardData.sortType)

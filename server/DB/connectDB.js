@@ -7,8 +7,12 @@ const db = client.db('products')
 const prodList = db.collection('prodList')
 
 const mongoConnect = async () => {
-  await client.connect()
-  console.log('Connected to DB server')
+  try {
+    await client.connect()
+    console.log('Connected to DB server')
+  } catch (e) {
+    console.error('Database connection error. Error:', e.message)
+  }
 }
 
 module.exports.mongoConnect = mongoConnect

@@ -5,12 +5,12 @@ import Card from './content-card'
 import Pagination from './pagination'
 
 const Content = () => {
-  const contentList = useSelector((store) => store.cardData.goodsList)
+  const productList = useSelector((store) => store.cardData.productList)
 
   return (
     <main>
       <div className="content">
-        {contentList.map((product) => {
+        {productList.map((product) => {
           return <Card productData={product} key={product.id} />
         })}
       </div>

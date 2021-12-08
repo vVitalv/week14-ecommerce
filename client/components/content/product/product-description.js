@@ -6,27 +6,31 @@ import AmountPanel from '../panel-amount'
 const ProdDescription = (props) => {
   const rates = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
+  const productList = useSelector((store) => store.cardData.productList)
   const basketList = useSelector((store) => store.basket.basketList)
+  const productData = productList.find((prod) => {
+    return props.id === prod.id
+  })
   const productInCart = basketList.find((prod) => {
     return props.id === prod.id
   })
-  const onePieceCost = (productInCart.price * rates[currency]).toFixed(2)
-  const totalCost = (onePieceCost * productInCart.amount).toFixed(2)
+  const onePieceCost = (productData.price * rates[currency]).toFixed(2)
+  const totalCost = (onePieceCost * (productInCart ? productInCart.amount : 0)).toFixed(2)
 
   return (
     <main>
       <div className="product">
-        <img src={productInCart.image} alt={productInCart.title} className="product-image" />
+        <img src={productData.image} alt={productData.title} className="product-image" />
         <div className="product-description">
-          <p className="product-title">{productInCart.title}</p>
+          <p className="product-title">{productData.title}</p>
           <br />
-          <p>{productInCart.description}</p>
+          <p>{productData.description}</p>
           <br />
           <p>
             {onePieceCost} {currency}
           </p>
           <br />
-          <AmountPanel productData={productInCart} />
+          <AmountPanel productData={productData} />
           <br />
           <br />
           <p>

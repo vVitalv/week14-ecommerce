@@ -2,7 +2,7 @@ const GET_GOODS = 'GET_GOODS'
 const GET_SORTED = 'GET_SORTED'
 
 const initialState = {
-  goodsList: [],
+  productList: [],
   currentPage: 0,
   cardsOnPage: 24,
   sortType: ''
@@ -13,14 +13,14 @@ export default (state = initialState, action) => {
     case GET_GOODS: {
       return {
         ...state,
-        goodsList: action.goodsList,
+        productList: action.productList,
         currentPage: action.currentPage
       }
     }
     case GET_SORTED: {
       return {
         ...state,
-        goodsList: action.goodsList,
+        productList: action.productList,
         sortType: action.sortType,
         currentPage: action.currentPage
       }
@@ -47,7 +47,7 @@ export function getCardData(currentPage) {
       .then((prodArr) =>
         dispatch({
           type: GET_GOODS,
-          goodsList: prodArr,
+          productList: prodArr,
           currentPage
         })
       )
@@ -71,7 +71,7 @@ export function getSorted(sortType, currentPage) {
       .then((prodArr) =>
         dispatch({
           type: GET_SORTED,
-          goodsList: prodArr,
+          productList: prodArr,
           sortType,
           currentPage
         })

@@ -76,7 +76,7 @@ server.get('/api/v1/sorting', async (req, res) => {
       .toArray()
     res.status(200).send(productDataSorted)
   } catch (e) {
-    console.error('Database access error. Error:', e.message)
+    console.error('Database sorting error. Error:', e.message)
   }
 })
 
@@ -88,7 +88,7 @@ server.put('/api/v1/search', async (req, res) => {
       .toArray()
     res.status(200).send(searchData)
   } catch (e) {
-    console.error('Database access error. Error:', e.message)
+    console.error('Database search error. Error:', e.message)
   }
 })
 
