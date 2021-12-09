@@ -62,9 +62,7 @@ export function addToCart(product) {
       type: ADD_TO_CART,
       sorting: '',
       basketList:
-        basketList.length === 0 || typeof findProduct === 'undefined'
-          ? [...basketList, { ...product, amount: 1 }]
-          : addProduct
+        !basketList.length || !findProduct ? [...basketList, { ...product, amount: 1 }] : addProduct
     })
   }
 }
