@@ -1,29 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setSearch, getSearch } from '../../redux/reducers/search'
+import { setSearch, getSearch, purgeSearch } from '../../redux/reducers/search'
 import Button from '../btns/btn'
 
 const SearchField = () => {
   const history = useHistory()
-  const value = useSelector((store) => store.search.searchValue)
+  const searchValue = useSelector((store) => store.search.searchValue)
+  const isDataLoad = useSelector((store) => store.search.isDataLoad)
   const dispatch = useDispatch()
+  useEffect(() => {
+    if (isDataLoad) {
+      history.push(`/search?=${searchValue}`)
+      dispatch(purgeSearch())
+    }
+    return () => {}
+  })
 
   const onChange = (e) => {
     dispatch(setSearch(e.target.value))
   }
   const searchOnClick = () => {
-    if (value.length) {
-      history.replace(`/search?=${value}`)
-      return dispatch(getSearch(value))
+    if (searchValue.length) {
+      return dispatch(getSearch(searchValue))
     }
     return null
   }
   const searchKeyPress = (e) => {
-    if (e.key === 'Enter' && value.length) {
-      history.replace(`/search?=${value}`)
-      return dispatch(getSearch(value))
+    if (e.key === 'Enter' && searchValue.length) {
+      return dispatch(getSearch(searchValue))
     }
     return null
   }
@@ -32,7 +38,7 @@ const SearchField = () => {
     <div id="search_field">
       <input
         type="search"
-        value={value}
+        value={searchValue}
         onChange={onChange}
         onKeyPress={searchKeyPress}
         autoComplete="on"

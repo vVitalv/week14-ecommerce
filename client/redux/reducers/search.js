@@ -4,7 +4,8 @@ const PURGE_SEARCH = 'PURGE_SEARCH'
 
 const initialState = {
   searchValue: '',
-  searchData: []
+  searchData: [],
+  isDataLoad: false
 }
 
 export default (state = initialState, action) => {
@@ -18,13 +19,15 @@ export default (state = initialState, action) => {
     case GET_SEARCH: {
       return {
         ...state,
-        searchData: action.searchData
+        searchData: action.searchData,
+        isDataLoad: action.isDataLoad
       }
     }
     case PURGE_SEARCH: {
       return {
         ...state,
-        searchData: action.searchData
+        searchValue: action.searchValue,
+        isDataLoad: action.isDataLoad
       }
     }
     default:
@@ -64,10 +67,6 @@ export function getSearch(searchValue) {
     })
   })
   return (dispatch) => {
-    dispatch({
-      type: PURGE_SEARCH,
-      searchData: []
-    })
     fetch('/api/v1/search', {
       method: 'PUT',
       headers: {
@@ -82,9 +81,20 @@ export function getSearch(searchValue) {
         if (searchDataArr.length) {
           dispatch({
             type: GET_SEARCH,
-            searchData: searchDataArr
+            searchData: searchDataArr,
+            isDataLoad: true
           })
         } else isNotFound()
       })
+  }
+}
+
+export function purgeSearch() {
+  return (dispatch) => {
+    dispatch({
+      type: PURGE_SEARCH,
+      searchValue: '',
+      isDataLoad: false
+    })
   }
 }
