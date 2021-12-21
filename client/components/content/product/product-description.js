@@ -15,9 +15,9 @@ const ProdDescription = (props) => {
   const productInCart = basketList.find((prod) => {
     return props.id === prod.id
   })
-    const productInSearch = searchData.find((prod) => {
-      return props.id === prod.id
-    })
+  const productInSearch = searchData.find((prod) => {
+    return props.id === prod.id
+  })
   const product = productData || productInCart || productInSearch
   const onePieceCost = (product.price * rates[currency]).toFixed(2)
   const totalCost = (onePieceCost * (productInCart ? productInCart.amount : 0)).toFixed(2)

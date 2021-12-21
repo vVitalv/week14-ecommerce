@@ -46,14 +46,15 @@ export function setSearch(searchValue) {
 
 export function getSearch(searchValue) {
   function isNotFound() {
-    const mainElem = document.querySelector('main')
-    const bodyElem = document.querySelector('.body-section')
     const notFoundElem = document.createElement('div')
+    const bodyElem = document.querySelector('.body-section')
     notFoundElem.className = 'not-found-msg'
-    notFoundElem.innerText = 'Not found. Try some "beer")'
-    bodyElem.insertBefore(notFoundElem, mainElem)
-    notFoundElem.addEventListener('animationend', () => {
-      bodyElem.removeChild(notFoundElem)
+    const notFoundInnerElem = document.createElement('div')
+    notFoundInnerElem.innerText = 'Not found. Try some "beer")'
+    notFoundElem.appendChild(notFoundInnerElem)
+    bodyElem.appendChild(notFoundElem)
+    notFoundInnerElem.addEventListener('animationend', () => {
+      notFoundElem.remove()
     })
   }
   fetch('/api/v1/log', {
