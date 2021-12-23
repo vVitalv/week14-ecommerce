@@ -29,7 +29,7 @@ const BasketButton = () => {
   const basketAmountVisible = basket.amount === 0 ? 'basket-amount_invisible' : 'basket-amount'
   const onClickFunc = () => {
     if (basketList.length) {
-      history.replace('/basket')
+      history.push('/basket')
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
