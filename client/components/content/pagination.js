@@ -20,6 +20,7 @@ const Pagination = () => {
       <Button
         operation="previous"
         disabled={currentPage === 0}
+        className="pagination-btn"
         sign="<"
         data={currentPage - 1}
         onClickFunction={changePageOnClick}
@@ -27,6 +28,7 @@ const Pagination = () => {
       <Button
         operation="-2"
         disabled={currentPage === 0}
+        className={currentPage === 0 ? 'pagination-btn pagination-btn_current' : 'pagination-btn'}
         sign={currentPage < 3 ? 1 : currentPage - 1}
         data={currentPage < 3 ? 0 : currentPage - 2}
         onClickFunction={changePageOnClick}
@@ -34,6 +36,7 @@ const Pagination = () => {
       <Button
         operation="-1"
         disabled={currentPage === 1}
+        className={currentPage === 1 ? 'pagination-btn pagination-btn_current' : 'pagination-btn'}
         sign={currentPage < 3 ? 2 : currentPage}
         data={currentPage < 3 ? 1 : currentPage - 1}
         onClickFunction={changePageOnClick}
@@ -41,6 +44,7 @@ const Pagination = () => {
       <Button
         operation="current"
         disabled={currentPage > 1}
+        className={currentPage > 1 ? 'pagination-btn pagination-btn_current' : 'pagination-btn'}
         sign={currentPage < 3 ? 3 : currentPage + 1}
         data={currentPage < 3 ? 2 : currentPage}
         onClickFunction={changePageOnClick}
@@ -48,6 +52,7 @@ const Pagination = () => {
       <Button
         operation="+1"
         disabled={productList.length < cardsOnPage}
+        className="pagination-btn"
         sign={currentPage < 3 ? 4 : currentPage + 2}
         data={currentPage < 3 ? 3 : currentPage + 1}
         onClickFunction={changePageOnClick}
@@ -55,6 +60,7 @@ const Pagination = () => {
       <Button
         operation="+2"
         disabled={productList.length < cardsOnPage}
+        className="pagination-btn"
         sign={currentPage < 3 ? 5 : currentPage + 3}
         data={currentPage < 3 ? 4 : currentPage + 2}
         onClickFunction={changePageOnClick}
@@ -62,6 +68,7 @@ const Pagination = () => {
       <Button
         operation="next"
         disabled={productList.length < cardsOnPage}
+        className="pagination-btn"
         sign=">"
         data={currentPage + 1}
         onClickFunction={changePageOnClick}
