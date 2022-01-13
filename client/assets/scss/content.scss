@@ -2,10 +2,10 @@
   @apply flex flex-wrap justify-center items-center max-w-6xl mt-36 mb-16;
 }
 .content-card {
-  @apply flex flex-col h-80 w-80 rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;
+  @apply flex flex-col w-auto rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;
   a {
     img {
-      @apply object-contain rounded-t-xl;
+      @apply object-cover h-52 w-80 rounded-t-xl;
     }
     .prod-title {
       @apply text-lg pl-2;
@@ -53,6 +53,6 @@
     }
   }
   .pagination-btn_current {
-    @apply bg-green-300 font-bold text-black;
+    @apply bg-orange-400 font-bold text-black opacity-100;
   }
 }
