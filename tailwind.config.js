@@ -1,6 +1,5 @@
 module.exports = {
-  purge: ['./client/**/*.html', './client/**/*.js', './client/**/*.scss'],
-  darkMode: false,
+  content: ['./client/**/*.html', './client/**/*.js', './client/**/*.scss'],
   theme: {
     extend: {}
   },

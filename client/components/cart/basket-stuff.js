@@ -1,9 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import BasketTable from './basket-table'
+import Button from '../btns/btn'
+import { purgeCart } from '../../redux/reducers/basket'
 
 const BasketStuff = () => {
+  const dispatch = useDispatch()
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
   const basketList = useSelector((store) => store.basket.basketList)
@@ -18,6 +21,12 @@ const BasketStuff = () => {
     { amount: 0, price: 0 }
   )
   const summaryCost = (basket.price * rate[currency]).toFixed(2)
+  const popUpOnClick = () => {
+    alert(
+      `Bless you for you donation ${summaryCost} ${currency} to the Akhmad Kadyrov Democracy Fund!`
+    )
+    return dispatch(purgeCart)
+  }
 
   return (
     <main>
@@ -39,9 +48,13 @@ const BasketStuff = () => {
           })}
         </tbody>
       </table>
-      <button type="button" id="buy-button" className="buy-btn">
-        Buy
-      </button>
+      <Button
+        operation="buy"
+        className="buy-btn"
+        sign="Buy"
+        data=""
+        onClickFunction={popUpOnClick}
+      />
     </main>
   )
 }

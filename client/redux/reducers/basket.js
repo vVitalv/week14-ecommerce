@@ -1,6 +1,7 @@
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const SORT_BY = 'SORT_BY'
+const PURGE_CART = 'PURGE_CART'
 
 const initialState = {
   basketList: [],
@@ -24,6 +25,13 @@ export default (state = initialState, action) => {
       }
     }
     case SORT_BY: {
+      return {
+        ...state,
+        basketList: action.basketList,
+        sorting: action.sorting
+      }
+    }
+    case PURGE_CART: {
       return {
         ...state,
         basketList: action.basketList,
@@ -137,11 +145,30 @@ export function sortBy(type) {
         })
       } else sortedList.reverse()
     }
-
     dispatch({
       type: SORT_BY,
       basketList: sortedList,
       sorting: type
+    })
+  }
+}
+
+export function purgeCart() {
+  fetch('/api/v1/log', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      time: new Date().toLocaleString(),
+      action: `Deal!`
+    })
+  })
+  return (dispatch) => {
+    dispatch({
+      type: PURGE_CART,
+      basketList: [],
+      sorting: ''
     })
   }
 }
