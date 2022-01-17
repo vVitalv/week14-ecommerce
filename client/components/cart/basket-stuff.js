@@ -22,10 +22,18 @@ const BasketStuff = () => {
   )
   const summaryCost = (basket.price * rate[currency]).toFixed(2)
   const popUpOnClick = () => {
-    alert(
-      `Bless you for you donation ${summaryCost} ${currency} to the Akhmad Kadyrov Democracy Fund!`
-    )
-    return dispatch(purgeCart)
+    const backingElem = document.createElement('div')
+    backingElem.className = 'backing'
+    const buyPopupElem = document.createElement('div')
+    buyPopupElem.className = 'buy-popup'
+    const confirmBtnElem = document.createElement('button')
+    confirmBtnElem.className = 'confirm-btn'
+    buyPopupElem.innerText = `Bless you for your donation ${summaryCost} ${currency} to the Akhmad Kadyrov in the name of Democracy Fund!`
+    confirmBtnElem.innerText = "You're welcome!"
+    buyPopupElem.appendChild(confirmBtnElem)
+    backingElem.appendChild(buyPopupElem)
+    document.body.appendChild(backingElem)
+    return dispatch(purgeCart())
   }
 
   return (
