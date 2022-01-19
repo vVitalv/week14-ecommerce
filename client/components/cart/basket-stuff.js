@@ -1,11 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import BasketTable from './basket-table'
 import Button from '../btns/btn'
 import { purgeCart } from '../../redux/reducers/basket'
 
 const BasketStuff = () => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
@@ -24,15 +26,23 @@ const BasketStuff = () => {
   const popUpOnClick = () => {
     const backingElem = document.createElement('div')
     backingElem.className = 'backing'
+    document.body.appendChild(backingElem)
+
     const buyPopupElem = document.createElement('div')
     buyPopupElem.className = 'buy-popup'
-    const confirmBtnElem = document.createElement('button')
-    confirmBtnElem.className = 'confirm-btn'
     buyPopupElem.innerText = `Bless you for your donation ${summaryCost} ${currency} to the Akhmad Kadyrov in the name of Democracy Fund!`
+    backingElem.appendChild(buyPopupElem)
+
+    const confirmBtnElem = document.createElement('button')
+    const removeBacking = () => {
+      history.push(`/`)
+      backingElem.remove()
+    }
+    confirmBtnElem.className = 'confirm-btn'
     confirmBtnElem.innerText = "You're welcome!"
     buyPopupElem.appendChild(confirmBtnElem)
-    backingElem.appendChild(buyPopupElem)
-    document.body.appendChild(backingElem)
+    confirmBtnElem.addEventListener('click', removeBacking)
+
     return dispatch(purgeCart())
   }
 
