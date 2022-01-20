@@ -98,8 +98,7 @@ server.get('/api/v1/currency', async (req, res) => {
       method: 'get',
       baseURL: 'https://api.exchangerate.host/latest',
       params: {
-        base: 'USD',
-        symbols: 'USD,EUR,CAD'
+        base: 'USD'
       }
     })
     res.status(200).send(data.rates)

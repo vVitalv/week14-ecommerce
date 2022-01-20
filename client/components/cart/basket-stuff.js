@@ -30,7 +30,7 @@ const BasketStuff = () => {
 
     const buyPopupElem = document.createElement('div')
     buyPopupElem.className = 'buy-popup'
-    buyPopupElem.innerText = `Bless you for your donation ${summaryCost} ${currency} to the Akhmad Kadyrov in the name of Democracy Fund!`
+    buyPopupElem.innerText = `Bless you for your donation ${summaryCost} ${currency} to the Ramzan Kadyrov Forgiveness Fund!`
     backingElem.appendChild(buyPopupElem)
 
     const confirmBtnElem = document.createElement('button')
@@ -39,7 +39,7 @@ const BasketStuff = () => {
       backingElem.remove()
     }
     confirmBtnElem.className = 'confirm-btn'
-    confirmBtnElem.innerText = "You're welcome!"
+    confirmBtnElem.innerText = "Sorry!"
     buyPopupElem.appendChild(confirmBtnElem)
     confirmBtnElem.addEventListener('click', removeBacking)
 
