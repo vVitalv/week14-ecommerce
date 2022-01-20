@@ -48,20 +48,11 @@
 
 .currency-panel {
   @apply inline-flex flex-nowrap col-span-2 sm:col-span-1 sm:row-span-2 sm:justify-self-center;
-  button {
-    @apply transition-opacity duration-300 opacity-50 h-8 w-14 md:h-12 md:w-16 border lg:border-2 text-base md:text-xl font-bold text-white;
-    &:hover {
-      @apply opacity-80;
-    }
-    &:focus {
-      @apply outline-none opacity-100;
-    }
+  p {
+    @apply text-base font-bold text-white opacity-75;
   }
-  button:first-child {
-    @apply rounded-l sm:rounded-l-md md:rounded-l-lg;
-  }
-  button:last-child {
-    @apply rounded-r sm:rounded-r-md md:rounded-r-lg;
+  select {
+    @apply bg-yellow-200 rounded-sm mx-2 font-semibold text-gray-700;
   }
 }
 

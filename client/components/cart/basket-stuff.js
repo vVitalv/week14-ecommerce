@@ -39,7 +39,7 @@ const BasketStuff = () => {
       backingElem.remove()
     }
     confirmBtnElem.className = 'confirm-btn'
-    confirmBtnElem.innerText = "Sorry!"
+    confirmBtnElem.innerText = 'Sorry!'
     buyPopupElem.appendChild(confirmBtnElem)
     confirmBtnElem.addEventListener('click', removeBacking)
 

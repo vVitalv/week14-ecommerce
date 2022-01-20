@@ -4,6 +4,7 @@ import { setCurrency } from '../../redux/reducers/currency'
 
 const CurrencyPanel = () => {
   const dispatch = useDispatch()
+  const currentCurrency = useSelector((store) => store.currency.currency)
   const rates = useSelector((store) => store.currency.rates)
   const ratesList = Object.keys(rates)
 
@@ -16,9 +17,16 @@ const CurrencyPanel = () => {
 
   return (
     <div className="currency-panel">
+      <p>Currency:</p>
       <select onChange={changeCurrency}>
-        {ratesList.map((cur, ind) => {
-          return <option key={cur + ind}>{cur}</option>
+        {ratesList.map((cur) => {
+          return cur === currentCurrency ? (
+            <option key={cur} selected>
+              {cur}
+            </option>
+          ) : (
+            <option key={cur}>{cur}</option>
+          )
         })}
       </select>
     </div>
