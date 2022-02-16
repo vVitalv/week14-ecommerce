@@ -9,8 +9,7 @@ const CurrencyPanel = () => {
   const ratesList = Object.keys(rates)
 
   const changeCurrency = (e) => {
-    const { selectedIndex } = e.target
-    const { options } = e.target
+    const { selectedIndex, options } = e.target
     const selectedCurrency = options[selectedIndex].value
     return dispatch(setCurrency(selectedCurrency))
   }

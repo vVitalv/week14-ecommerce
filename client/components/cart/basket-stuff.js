@@ -1,14 +1,15 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
+import { createPortal } from 'react-dom'
+import { useSelector } from 'react-redux'
 
 import BasketTable from './basket-table'
+import BuyBtnPortal from './basket-portal-buybtn'
 import Button from '../btns/btn'
-import { purgeCart } from '../../redux/reducers/basket'
+// import { purgeCart } from '../../redux/reducers/basket'
 
 const BasketStuff = () => {
-  const history = useHistory()
-  const dispatch = useDispatch()
+  const [ isPortalOpen, setPortalOpen ] = useState(false)
+  //  const dispatch = useDispatch()
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
   const basketList = useSelector((store) => store.basket.basketList)
@@ -23,29 +24,11 @@ const BasketStuff = () => {
     { amount: 0, price: 0 }
   )
   const summaryCost = (basket.price * rate[currency]).toFixed(2)
-  const popUpOnClick = () => {
-    const backingElem = document.createElement('div')
-    backingElem.className = 'backing'
-    document.body.appendChild(backingElem)
-
-    const buyPopupElem = document.createElement('div')
-    buyPopupElem.className = 'buy-popup'
-    buyPopupElem.innerText = `Bless you for your donation ${summaryCost} ${currency} to the Ramzan Kadyrov Forgiveness Fund!`
-    backingElem.appendChild(buyPopupElem)
-
-    const confirmBtnElem = document.createElement('button')
-    const removeBacking = () => {
-      history.push(`/`)
-      backingElem.remove()
-    }
-    confirmBtnElem.className = 'confirm-btn'
-    confirmBtnElem.innerText = 'Sorry!'
-    buyPopupElem.appendChild(confirmBtnElem)
-    confirmBtnElem.addEventListener('click', removeBacking)
+  /*  const popUpOnClick = () => {
+    createPortal(<BuyBtnPortal summaryCost={summaryCost} currency={currency} />, document.body)
 
     return dispatch(purgeCart())
-  }
-
+  } */
   return (
     <main>
       <table className="basket-table">
@@ -66,12 +49,14 @@ const BasketStuff = () => {
           })}
         </tbody>
       </table>
+      {isPortalOpen &&
+        createPortal(<BuyBtnPortal summaryCost={summaryCost} currency={currency} />, document.body)}
       <Button
         operation="buy"
         className="buy-btn"
         sign="Buy"
         data=""
-        onClickFunction={popUpOnClick}
+        onClickFunction={() => setPortalOpen(true)}
       />
     </main>
   )
