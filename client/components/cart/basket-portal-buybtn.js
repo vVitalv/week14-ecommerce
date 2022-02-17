@@ -1,11 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import { purgeCart } from '../../redux/reducers/basket'
 
 const BuyBtnPortal = (props) => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const removeBacking = () => {
+    props.setPortalOpen(false)
     history.push(`/`)
-    document.querySelector('.backing').remove()
+    return dispatch(purgeCart())
   }
 
   return (

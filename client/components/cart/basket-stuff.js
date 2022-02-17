@@ -5,11 +5,9 @@ import { useSelector } from 'react-redux'
 import BasketTable from './basket-table'
 import BuyBtnPortal from './basket-portal-buybtn'
 import Button from '../btns/btn'
-// import { purgeCart } from '../../redux/reducers/basket'
 
 const BasketStuff = () => {
-  const [ isPortalOpen, setPortalOpen ] = useState(false)
-  //  const dispatch = useDispatch()
+  const [isPortalOpen, setPortalOpen] = useState(false)
   const rate = useSelector((store) => store.currency.rates)
   const currency = useSelector((store) => store.currency.currency)
   const basketList = useSelector((store) => store.basket.basketList)
@@ -24,11 +22,7 @@ const BasketStuff = () => {
     { amount: 0, price: 0 }
   )
   const summaryCost = (basket.price * rate[currency]).toFixed(2)
-  /*  const popUpOnClick = () => {
-    createPortal(<BuyBtnPortal summaryCost={summaryCost} currency={currency} />, document.body)
 
-    return dispatch(purgeCart())
-  } */
   return (
     <main>
       <table className="basket-table">
@@ -50,7 +44,14 @@ const BasketStuff = () => {
         </tbody>
       </table>
       {isPortalOpen &&
-        createPortal(<BuyBtnPortal summaryCost={summaryCost} currency={currency} />, document.body)}
+        createPortal(
+          <BuyBtnPortal
+            summaryCost={summaryCost}
+            currency={currency}
+            setPortalOpen={setPortalOpen}
+          />,
+          document.body
+        )}
       <Button
         operation="buy"
         className="buy-btn"
