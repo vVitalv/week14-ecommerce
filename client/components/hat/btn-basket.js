@@ -7,9 +7,8 @@ import basket_full from '../../assets/images/basket-full.png'
 
 const BasketButton = () => {
   const history = useHistory()
-  const rate = useSelector((store) => store.currency.rates)
-  const currency = useSelector((store) => store.currency.currency)
-  const basketList = useSelector((store) => store.basket.basketList)
+  const { rates, currency } = useSelector((store) => store.currency)
+  const { basketList } = useSelector((store) => store.basket)
   const basket = basketList.reduce(
     (acc, rec) => {
       return {
@@ -24,7 +23,7 @@ const BasketButton = () => {
   const basketInfo =
     basket.amount === 0
       ? 'Cart empty'
-      : `total ${(basket.price * rate[currency]).toFixed(2)} ${currency}`
+      : `total ${(basket.price * rates[currency]).toFixed(2)} ${currency}`
   const basketImg = basket.amount > 0 ? basket_full : basket_empty
   const basketAmountVisible = basket.amount === 0 ? 'basket-amount_invisible' : 'basket-amount'
   const onClickFunc = () => {

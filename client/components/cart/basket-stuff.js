@@ -8,9 +8,8 @@ import Button from '../btns/btn'
 
 const BasketStuff = () => {
   const [isPortalOpen, setPortalOpen] = useState(false)
-  const rate = useSelector((store) => store.currency.rates)
-  const currency = useSelector((store) => store.currency.currency)
-  const basketList = useSelector((store) => store.basket.basketList)
+  const { rates, currency } = useSelector((store) => store.currency)
+  const { basketList } = useSelector((store) => store.basket)
   const basket = basketList.reduce(
     (acc, rec) => {
       return {
@@ -21,7 +20,7 @@ const BasketStuff = () => {
     },
     { amount: 0, price: 0 }
   )
-  const summaryCost = (basket.price * rate[currency]).toFixed(2)
+  const summaryCost = (basket.price * rates[currency]).toFixed(2)
 
   return (
     <main>
@@ -43,6 +42,13 @@ const BasketStuff = () => {
           })}
         </tbody>
       </table>
+      <Button
+        operation="buy"
+        className="buy-btn"
+        sign="Buy"
+        data=""
+        onClickFunction={() => setPortalOpen(true)}
+      />
       {isPortalOpen &&
         createPortal(
           <BuyBtnPortal
@@ -52,13 +58,6 @@ const BasketStuff = () => {
           />,
           document.body
         )}
-      <Button
-        operation="buy"
-        className="buy-btn"
-        sign="Buy"
-        data=""
-        onClickFunction={() => setPortalOpen(true)}
-      />
     </main>
   )
 }

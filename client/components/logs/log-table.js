@@ -9,7 +9,7 @@ const LogTable = () => {
   const clearOnClick = () => {
     return dispatch(clearLogs())
   }
-  const logs = useSelector((store) => store.log.logs)
+  const { logs } = useSelector((store) => store.log)
   return (
     <main>
       <table className="log-table">

@@ -5,24 +5,23 @@ import { useSelector } from 'react-redux'
 import AmountPanel from '../content/panel-amount'
 
 const BasketTable = (props) => {
-  const { productData } = props
-  const rate = useSelector((store) => store.currency.rates)
-  const currency = useSelector((store) => store.currency.currency)
+  const { id, image, title, amount, price } = props.productData
+  const { rates, currency } = useSelector((store) => store.currency)
   return (
     <tr>
       <td>
-        <Link to={`/product/${productData.id}`}>
-          <img src={productData.image} alt={productData.title} />
+        <Link to={`/product/${id}`}>
+          <img src={image} alt={title} />
         </Link>
       </td>
       <td>
-        <Link to={`/product/${productData.id}`}>{productData.title}</Link>
+        <Link to={`/product/${id}`}>{title}</Link>
       </td>
-      <td>{(productData.price * rate[currency]).toFixed(2)}</td>
+      <td>{(price * rates[currency]).toFixed(2)}</td>
       <td>
-        <AmountPanel productData={productData} />
+        <AmountPanel productData={props.productData} />
       </td>
-      <td>{(productData.price * rate[currency] * productData.amount).toFixed(2)}</td>
+      <td>{(price * rates[currency] * amount).toFixed(2)}</td>
     </tr>
   )
 }

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Card from '../../content/content-card'
 
 const SearchContent = () => {
-  const searchData = useSelector((store) => store.search.searchData)
+  const { searchData } = useSelector((store) => store.search)
 
   return (
     <main>

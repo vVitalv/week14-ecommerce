@@ -45,18 +45,6 @@ export function setSearch(searchValue) {
 }
 
 export function getSearch(searchValue) {
-  function isNotFound() {
-    const notFoundElem = document.createElement('div')
-    const bodyElem = document.querySelector('.body-section')
-    notFoundElem.className = 'not-found-msg'
-    const notFoundInnerElem = document.createElement('div')
-    notFoundInnerElem.innerText = 'Not found. Try some "beer")'
-    notFoundElem.appendChild(notFoundInnerElem)
-    bodyElem.appendChild(notFoundElem)
-    notFoundInnerElem.addEventListener('animationend', () => {
-      notFoundElem.remove()
-    })
-  }
   fetch('/api/v1/log', {
     method: 'POST',
     headers: {
@@ -79,13 +67,11 @@ export function getSearch(searchValue) {
     })
       .then((res) => res.json())
       .then((searchDataArr) => {
-        if (searchDataArr.length) {
-          dispatch({
-            type: GET_SEARCH,
-            searchData: searchDataArr,
-            isDataLoad: true
-          })
-        } else isNotFound()
+        dispatch({
+          type: GET_SEARCH,
+          searchData: searchDataArr,
+          isDataLoad: true
+        })
       })
   }
 }
