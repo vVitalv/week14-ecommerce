@@ -23,9 +23,9 @@
   }
 }
 .amount-buttons {
-  @apply inline-flex items-center space-x-2 p-2;
+  @apply inline-flex items-center sm:space-x-2 p-2;
   button {
-    @apply transition-colors duration-300 border-yellow-400 sm:border h-8 w-8 rounded-xl text-xl font-bold text-gray-700;
+    @apply transition-colors duration-300 border-yellow-400 sm:border h-8 w-4 sm:w-8 rounded-xl text-xl font-bold text-gray-700;
     &:hover {
       @apply border-yellow-300;
     }
