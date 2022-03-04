@@ -6,10 +6,15 @@ import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
 import axios from 'axios'
 import cookieParser from 'cookie-parser'
+import passport from 'passport'
+import jwt from 'jsonwebtoken'
 
+import mongooseService from './services/mongoose'
+import passportJWT from './services/passport.js'
+import User from './model/user.model'
 import config from './config'
 import Html from '../client/html'
-const mongo = require('./DB/connectDB')
+// const mongo = require('./DB/connectDB')
 
 const { readFile, writeFile } = require('fs').promises
 
@@ -20,10 +25,12 @@ let connections = []
 const port = process.env.PORT || 8090
 const server = express()
 
-mongo.mongoConnect()
+// mongo.mongoConnect()
+mongooseService.connect()
 
 const middleware = [
   cors(),
+  passport.initialize(),
   express.static(path.resolve(__dirname, '../dist/assets')),
   express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }),
   express.json({ limit: '50mb', extended: true }),
@@ -31,6 +38,8 @@ const middleware = [
 ]
 
 middleware.forEach((it) => server.use(it))
+
+passport.use('jwt', passportJWT.jwt)
 
 server.get('/api/v1/card', async (req, res) => {
   const currentPage_Header = req.get('currentPage') * 1
@@ -122,6 +131,38 @@ server.post('/api/v1/log', async (req, res) => {
     })
     .then(() => res.status(200).send('Logs updated'))
     .catch(() => res.status(500).send('Logs post unavailable'))
+})
+
+server.get('/api/v1/auth', async (req, res) => {
+  try {
+    const jwtUser = jwt.verify(req.cookies.token, config.secret)
+    const user = await User.findById(jwtUser.uid)
+
+    const payload = { uid: user.id }
+    const token = jwt.sign(payload, config.secret, { expiresIn: '48h' })
+    delete user.password
+    res.cookie('token', token, { maxAge: 1000 * 60 * 60 * 48 })
+    res.json({ status: 'ok', token, user })
+  } catch (err) {
+    console.log(err)
+    res.json({ status: 'error', err })
+  }
+}) 
+
+server.post('/api/v1/auth', async (req, res) => {
+  console.log(req.body)
+  try {
+    const user = await User.findAndValidateUser(req.body)
+
+    const payload = { uid: user.id }
+    const token = jwt.sign(payload, config.secret, { expiresIn: '48h' })
+    delete user.password
+    res.cookie('token', token, { maxAge: 1000 * 60 * 60 * 48 })
+    res.json({ status: 'ok', token, user })
+  } catch (err) {
+    console.log(err)
+    res.json({ status: 'error', err })
+  }
 })
 
 server.delete('/api/v1/log', (req, res) => {

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
 
@@ -12,6 +12,7 @@ import Product from '../components/content/product/product'
 import Basket from '../components/cart/basket'
 import Search from '../components/hat/search/search'
 import Logs from '../components/logs/logs'
+import PrivateComponent from '../components/private-route'
 import NotFound from '../components/404'
 
 import Startup from './startup'
@@ -27,8 +28,9 @@ const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  const auth = useSelector((s) => s.auth)
   const func = (props) =>
-    !!rest.user && !!rest.user.name && !!rest.token ? (
+    !!auth.user && !!auth.token ? (
       <Component {...props} />
     ) : (
       <Redirect
@@ -80,7 +82,8 @@ const RootComponent = (props) => {
             <Route exact path="/basket" component={() => <Basket />} />
             <Route exact path="/search" component={() => <Search />} />
             <Route exact path="/logs" component={() => <Logs />} />
-            <PrivateRoute exact path="/hidden-route" component={() => <Home />} />
+            <PrivateRoute exact path="/private" component={() => <PrivateComponent />} />
+            <OnlyAnonymousRoute exact path="/login" component={() => <Home />} />
             <Route component={() => <NotFound />} />
           </Switch>
         </Startup>
