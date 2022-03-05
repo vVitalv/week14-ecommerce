@@ -1,9 +1,11 @@
 import Cookies from 'universal-cookie'
-import { history } from '../history'
+import { history } from '..'
 
 const UPDATE_LOGIN = 'UPDATE_LOGIN'
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 const LOGIN = 'LOGIN'
+
+const cookies = new Cookies()
 
 const initialState = {
   email: '',
@@ -66,4 +68,4 @@ export function trySignIn() {
         history.push('/private')
       })
   }
-}  
+}

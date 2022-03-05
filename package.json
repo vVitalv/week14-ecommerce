@@ -88,7 +88,7 @@
         "core-js": "^3.15.2",
         "cors": "^2.8.5",
         "cross-env": "^7.0.3",
-        "dotenv": "^10.0.0",
+        "dotenv": "^16.0.0",
         "express": "^4.17.1",
         "history": "4.10.1",
         "image-webpack-loader": "^8.1.0",

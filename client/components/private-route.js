@@ -1,5 +1,5 @@
 import React from 'react'
-import Head from './head'
+import Head from './hat/head'
 
 const Private = () => {
   return (

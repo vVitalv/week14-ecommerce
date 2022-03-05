@@ -9,7 +9,7 @@ const cookieExtractor = (req) => {
 const jwtOptions = {
   secretOrKey: config.secret,
   jwtFromRequest: passportJWT.ExtractJwt.fromExtractors([cookieExtractor])
-} 
+}
 
 const jwtStrategy = new passportJWT.Strategy(jwtOptions, (jwtPayload, done) => {
   User.findById(jwtPayload.uid, (err, user) => {

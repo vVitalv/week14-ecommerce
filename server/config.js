@@ -1,4 +1,4 @@
-require('dotenv').config()
+import 'dotenv/config'
 
 const options = {
   port: process.env.PORT,
