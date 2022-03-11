@@ -12,9 +12,9 @@ import jwt from 'jsonwebtoken'
 import mongooseService from './services/mongoose'
 import passportJWT from './services/passport.js'
 import User from './model/user.model'
+import Product from './model/product.model'
 import config from './config'
 import Html from '../client/html'
-// const mongo = require('./DB/connectDB')
 
 const { readFile, writeFile } = require('fs').promises
 
@@ -42,16 +42,14 @@ middleware.forEach((it) => server.use(it))
 passport.use('jwt', passportJWT.jwt)
 
 server.get('/api/v1/card', async (req, res) => {
-  const currentPage_Header = req.get('currentPage') * 1
-  const cardsOnPage_Header = req.get('cardsOnPage') * 1
+  const currentPage_Header = Number(req.get('currentPage'))
+  const cardsOnPage_Header = Number(req.get('cardsOnPage'))
 
   try {
-    const productData = await mongo.prodList
-      .find({})
+    const product = await Product.find({})
       .skip(cardsOnPage_Header * currentPage_Header)
       .limit(cardsOnPage_Header)
-      .toArray()
-    res.status(200).send(productData)
+    res.status(200).send(product)
   } catch (e) {
     console.error('Database access error. Error:', e.message)
   }
@@ -77,12 +75,10 @@ server.get('/api/v1/sorting', async (req, res) => {
   }
 
   try {
-    const productDataSorted = await mongo.prodList
-      .find({})
+    const productDataSorted = await Product.find({})
       .sort(sortType)
       .skip(cardsOnPage_Header * currentPage_Header)
       .limit(cardsOnPage_Header)
-      .toArray()
     res.status(200).send(productDataSorted)
   } catch (e) {
     console.error('Database sorting error. Error:', e.message)
@@ -91,10 +87,11 @@ server.get('/api/v1/sorting', async (req, res) => {
 
 server.put('/api/v1/search', async (req, res) => {
   try {
-    const searchData = await mongo.prodList
-      .find({ $text: { $search: req.body.searchValue } }, { score: { $meta: 'textScore' } })
+    const searchData = await Product.find(
+      { $text: { $search: req.body.searchValue } },
+      { score: { $meta: 'textScore' } }
+    )
       .sort({ score: { $meta: 'textScore' } })
-      .toArray()
     res.status(200).send(searchData)
   } catch (e) {
     console.error('Database search error. Error:', e.message)
@@ -147,7 +144,7 @@ server.get('/api/v1/auth', async (req, res) => {
     console.log(err)
     res.json({ status: 'error', err })
   }
-}) 
+})
 
 server.post('/api/v1/auth', async (req, res) => {
   console.log(req.body)
