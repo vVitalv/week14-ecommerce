@@ -20,3 +20,11 @@ main {
   @apply flex flex-col items-center h-auto;
 }
 
+.backing {
+  @apply fixed inset-0 bg-black text-center bg-opacity-60 overflow-hidden;
+  animation: backing_show 0.3s ease-in;
+}
+@keyframes backing_show {
+  0% {@apply opacity-0}
+  100% {@apply opacity-60}
+}

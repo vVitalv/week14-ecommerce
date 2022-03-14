@@ -25,7 +25,6 @@ let connections = []
 const port = process.env.PORT || 8090
 const server = express()
 
-// mongo.mongoConnect()
 mongooseService.connect()
 
 const middleware = [

@@ -115,7 +115,6 @@
   @apply fixed h-16 w-32 right-2 top-40 p-2 text-slate-800 font-semibold bg-orange-100 rounded-md border border-orange-400;
   animation: animate_msg 4s ease-in-out;
 }
-
 @keyframes animate_msg {
   0% { transform: scale(0, 0); }
   15% { transform: scale(1, 1) rotate(2turn); }
@@ -123,3 +122,4 @@
   90% { transform: translateX(-20px); }
   100% { transform: translateX(150px); }
 }
+
