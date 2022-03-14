@@ -40,9 +40,12 @@
 }
 
 .login {
-  @apply font-bold text-white opacity-50 justify-self-end sm:order-3;
+  @apply opacity-50 justify-self-end sm:order-3;
   &:hover {
     @apply opacity-80;
+  }
+  .login-btn {
+    @apply font-bold text-white;
   }
 }
 
