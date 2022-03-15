@@ -15,10 +15,10 @@ const BuyBtnPortal = (props) => {
 
   return (
     <div className="backing">
-      <div className="buy-popup">
+      <div className="basket-buy-popup">
         Bless you for your donation {props.summaryCost} {props.currency} to the Ramzan Kadyrov
         Forgiveness Fund!
-        <button type="button" className="confirm-btn" onClick={removeBacking}>
+        <button type="button" className="basket-buy-popup-btn" onClick={() => removeBacking()}>
           Sorry!
         </button>
       </div>

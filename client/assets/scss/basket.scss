@@ -1,13 +1,13 @@
 .basket-underheader {
   @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75;
-  table {
+  .basket-underheader-table {
     @apply table-fixed text-gray-700 sm:font-bold w-full text-center align-middle;
-    thead {
+    .basket-underheader-thead {
       @apply text-sm sm:text-lg;
       tr {
         th {
           @apply w-1/6;
-          button {
+          .basket-underheader-button {
             @apply sm:font-bold;
           }
         }
@@ -23,7 +23,7 @@
 }
 .basket-table {
   @apply table-fixed text-gray-700 sm:font-bold w-full text-center align-middle mt-36;
-  tfoot {
+  .basket-table-tfoot {
     @apply font-bold text-sm sm:text-lg bg-yellow-400;
     tr {
       td {
@@ -34,7 +34,7 @@
       }
     }
   }
-  tbody {
+  .basket-table-tbody {
     @apply text-xs sm:text-lg sm:font-semibold;
       tr {
         @apply border-b-4 border-yellow-300 rounded-3xl bg-yellow-200;
@@ -60,13 +60,13 @@
   }
 }
 
-.buy-btn {
+.basket-buy-button {
   @apply text-3xl font-bold w-40 h-20 bg-indigo-700 rounded-xl m-6 mb-28;
 }
 
-.buy-popup {
-  @apply relative inline-flex flex-col items-center justify-around top-1/3 h-32 w-80 p-2 text-slate-800 font-semibold bg-orange-100 rounded-md border border-orange-400;
-  .confirm-btn {
+.basket-buy-popup {
+  @apply relative inline-flex flex-col items-center justify-around top-1/3 h-32 w-80 p-2 shadow-md text-slate-800 font-semibold bg-orange-100 rounded-md border border-orange-400;
+  .basket-buy-popup-btn {
     @apply bg-orange-800 rounded-sm w-2/3 mt-2 text-zinc-200 font-semibold;
   }
 }

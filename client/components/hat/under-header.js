@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import SearchField from './search-field'
 import { getSorted } from '../../redux/reducers/cardData'
-import Button from '../btns/btn'
 import sortAZ from '../../assets/images/sort-AZ.png'
 import sortZA from '../../assets/images/sort-ZA.png'
 import sortUp from '../../assets/images/sort-up.png'
@@ -19,32 +18,20 @@ const UnderHeader = () => {
     return null
   }
   return (
-    <div className="under-header">
-      <div className="sort-menu">
-        <Button
-          operation="AZsorting"
-          sign={<img src={sortAZ} alt="AZsorting" />}
-          data="AZ"
-          onClickFunction={sortOnClick}
-        />
-        <Button
-          operation="ZAsorting"
-          sign={<img src={sortZA} alt="ZAsorting" />}
-          data="ZA"
-          onClickFunction={sortOnClick}
-        />
-        <Button
-          operation="upsorting"
-          sign={<img src={sortUp} alt="upsorting" />}
-          data="up"
-          onClickFunction={sortOnClick}
-        />
-        <Button
-          operation="lowsorting"
-          sign={<img src={sortLow} alt="lowsorting" />}
-          data="low"
-          onClickFunction={sortOnClick}
-        />
+    <div className="underheader">
+      <div className="underheader-sort">
+        <button type="button" className="underheader-sort-btn" onClick={() => sortOnClick('AZ')}>
+          <img src={sortAZ} alt="AZsorting" />
+        </button>
+        <button type="button" className="underheader-sort-btn" onClick={() => sortOnClick('ZA')}>
+          <img src={sortZA} alt="ZAsorting" />
+        </button>
+        <button type="button" className="underheader-sort-btn" onClick={() => sortOnClick('up')}>
+          <img src={sortUp} alt="upsorting" />
+        </button>
+        <button type="button" className="underheader-sort-btn" onClick={() => sortOnClick('low')}>
+          <img src={sortLow} alt="lowsorting" />
+        </button>
       </div>
       <SearchField />
     </div>

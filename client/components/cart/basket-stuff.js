@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 
 import BasketTable from './basket-table'
 import BuyBtnPortal from './basket-portal-buybtn'
-import Button from '../btns/btn'
 
 const BasketStuff = () => {
   const [isPortalOpen, setPortalOpen] = useState(false)
@@ -25,7 +24,7 @@ const BasketStuff = () => {
   return (
     <main>
       <table className="basket-table">
-        <tfoot>
+        <tfoot className="basket-table-tfoot">
           <tr>
             <td />
             <td />
@@ -36,19 +35,15 @@ const BasketStuff = () => {
             </td>
           </tr>
         </tfoot>
-        <tbody>
+        <tbody className="basket-table-tbody">
           {basketList.map((product) => {
             return <BasketTable productData={product} key={`basket${product.id}`} />
           })}
         </tbody>
       </table>
-      <Button
-        operation="buy"
-        className="buy-btn"
-        sign="Buy"
-        data=""
-        onClickFunction={() => setPortalOpen(true)}
-      />
+      <button type="button" className="basket-buy-button" onClick={() => setPortalOpen(true)}>
+        Buy
+      </button>
       {isPortalOpen &&
         createPortal(
           <BuyBtnPortal

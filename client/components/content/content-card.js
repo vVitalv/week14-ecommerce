@@ -13,12 +13,12 @@ const Card = (props) => {
   return (
     <div className="content-card">
       <Link to={`/product/${productData.id}`}>
-        <img src={productData.image} alt={productData.title} />
-        <div className="prod-title">{productData.title}</div>
-        <div className="prod-description">{productData.description}</div>
+        <img className="content-card-img" src={productData.image} alt={productData.title} />
+        <div className="content-card-title">{productData.title}</div>
+        <div className="content-card-description">{productData.description}</div>
       </Link>
-      <div className="prod-amount">
-        <div className="prod-price">
+      <div className="content-card-amount">
+        <div className="content-card-price">
           {(productData.price * rate[currency]).toFixed(2)} {currency}
         </div>
         <AmountPanel productData={productData} />

@@ -1,8 +1,8 @@
 .log-underheader {
   @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75;
-  table {
+  .log-underheader-table {
     @apply table-fixed text-gray-700 font-bold w-full text-center;
-    thead {
+    .log-underheader-thead {
       @apply text-lg;
       tr {
         th {
@@ -14,7 +14,7 @@
 }
 .log-table {
   @apply table-fixed text-gray-700 font-bold w-full text-center mt-36;
-  tbody {
+  .log-table-tbody {
     @apply font-semibold;
     tr {
       @apply border-b-4 border-yellow-300 rounded-3xl bg-yellow-200;

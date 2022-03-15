@@ -4,20 +4,20 @@
 .content-card {
   @apply flex flex-col rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;
   a {
-    img {
+    .content-card-img {
       @apply object-cover h-52 w-80 rounded-t-xl;
     }
-    .prod-title {
+    .content-card-title {
       @apply text-lg pl-2;
     }
-    .prod-description {
+    .content-card-description {
       @apply text-sm pl-2;
     }
   }
 
-  .prod-amount {
+  .content-card-amount {
     @apply inline-flex justify-between;
-    .prod-price {
+    .content-card-price {
       @apply text-3xl p-2;
     }
   }
@@ -35,24 +35,5 @@
   }
   p {
     @apply w-6 text-center;
-  }
-}
-
-.pagination {
-  @apply inline-flex items-center space-x-2 mb-32;
-  .pagination-btn {
-    @apply transition-colors duration-300 border-yellow-400 border h-8 w-8 rounded-lg text-base text-gray-700;
-    &:hover:not(:disabled) {
-      @apply border-yellow-600;
-    }
-    &:focus {
-      @apply outline-none;
-    }
-    &:disabled {
-      @apply opacity-50 cursor-not-allowed;
-    }
-  }
-  .pagination-btn_current {
-    @apply bg-orange-400 font-bold text-black opacity-100;
   }
 }

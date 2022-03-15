@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import Button from '../btns/btn'
 import { clearLogs } from '../../redux/reducers/log'
 
 const LogTable = () => {
@@ -13,7 +12,7 @@ const LogTable = () => {
   return (
     <main>
       <table className="log-table">
-        <tbody>
+        <tbody className="log-table-tbody">
           {logs.map((log) => {
             return (
               <tr key={`log-${log.time}`}>
@@ -24,7 +23,9 @@ const LogTable = () => {
           })}
         </tbody>
       </table>
-      <Button operation="clear-logs" sign="Clear logs" data={null} onClickFunction={clearOnClick} />
+      <button type="button" onClick={() => clearOnClick()}>
+        Clear logs
+      </button>
     </main>
   )
 }

@@ -10,6 +10,7 @@ const Footer = () => {
       setScroll(window.scrollY)
     }
   }, [])
+  
   footerClassName =
     scroll < 200 || scroll > document.documentElement.scrollHeight - 800
       ? 'footer footer_show'

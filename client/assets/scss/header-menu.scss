@@ -51,41 +51,41 @@
 
 .currency-panel {
   @apply inline-flex flex-nowrap col-span-2 sm:col-span-1 sm:row-span-2 sm:justify-self-center;
-  p {
+  .currency-panel-p {
     @apply text-base font-bold text-white opacity-75;
   }
-  select {
+  .currency-panel-select {
     @apply bg-yellow-200 rounded-sm mx-2 font-semibold text-gray-700;
   }
 }
 
 .basket-plate {
   @apply inline-flex items-center space-x-2 col-span-2 sm:col-span-1 sm:order-4 justify-self-end;
-  p {
+  .basket-plate-info {
     @apply text-sm font-bold text-white opacity-75;
   }
-  button {
+  .basket-plate-button {
     &:focus {
       @apply outline-none;
     }
-    .basket-amount {
+    .basket-plate-amount {
       @apply absolute font-bold text-xs text-white bg-blue-500 rounded-full w-5 h-4;
     }
-    .basket-amount_invisible {
+    .basket-plate-amount_invisible {
       @apply absolute invisible;
     }
-    img {
+    .basket-plate-img {
       @apply h-8 w-8;
     }
   }
 }
 
-.under-header {
+.underheader {
   @apply inline-flex justify-between items-center h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75 px-2 sm:px-4;
 
-  .sort-menu {
+  .underheader-sort {
     @apply inline-flex space-x-4;
-    button {
+    .underheader-sort-btn {
       @apply transition-opacity duration-300 opacity-50;
       &:hover {
         @apply opacity-100;
@@ -98,14 +98,14 @@
       }
     }
   }
-  #search_field {
-    input {
+  .search-field {
+    .search-field-input {
       @apply h-6 w-28 sm:w-48 opacity-50 bg-yellow-100 rounded-md pl-2;
       &:focus {
         @apply outline-none opacity-100;
       }
     }
-    button {
+    .search-field-button {
       @apply ml-1
     }
   }
@@ -122,4 +122,3 @@
   90% { transform: translateX(-20px); }
   100% { transform: translateX(150px); }
 }
-

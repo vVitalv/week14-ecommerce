@@ -4,7 +4,6 @@ import { createPortal } from 'react-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setSearch, getSearch, purgeSearch } from '../../redux/reducers/search'
-import Button from '../btns/btn'
 import NotFoundPortal from './search-portal-notfnd'
 
 const SearchField = () => {
@@ -36,8 +35,9 @@ const SearchField = () => {
   }
 
   return (
-    <div id="search_field">
+    <div className="search-field">
       <input
+        className="search-field-input"
         type="search"
         value={searchValue}
         onChange={onChange}
@@ -45,7 +45,9 @@ const SearchField = () => {
         autoComplete="on"
         placeholder="search product"
       />
-      <Button operation="search" sign={'\u2315'} onClickFunction={searchOnClick} />
+      <button type="button" className="search-field-button" onClick={() => searchOnClick()}>
+        {'\u2315'}
+      </button>
       {isDataLoad && !searchData.length && createPortal(<NotFoundPortal />, document.body)}
     </div>
   )
