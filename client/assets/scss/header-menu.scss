@@ -112,7 +112,7 @@
 }
 
 .not-found-msg {
-  @apply fixed h-16 w-32 right-2 top-40 p-2 text-slate-800 font-semibold bg-orange-100 rounded-md border border-orange-400;
+  @apply fixed h-16 w-32 right-2 top-40 p-2 text-gray-700 font-semibold bg-amber-400 rounded-md border border-orange-400;
   animation: animate_msg 4s ease-in-out;
 }
 @keyframes animate_msg {

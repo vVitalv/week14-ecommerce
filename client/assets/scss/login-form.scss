@@ -1,7 +1,7 @@
 .login-modal {
   @apply relative inline-flex flex-col justify-center items-center top-1/3;
   .login-modal-form {
-    @apply bg-orange-400 shadow-md rounded px-8 pt-6 pb-8 mb-4;
+    @apply bg-amber-300 shadow-md rounded px-8 pt-6 pb-8 mb-4;
     .username-field {
       @apply mb-4;
       .username-field-label {
@@ -26,18 +26,18 @@
         }
       }
       .pass-field-p {
-        @apply text-fuchsia-500 text-xs italic;
+        @apply text-red-500 text-xs italic;
       }
     }
     .btn-field {
       @apply flex items-center justify-between;
       .btn-field-button {
-        @apply bg-lime-500 text-white font-bold py-2 px-4 rounded;
+        @apply bg-yellow-800 text-white font-bold py-2 px-4 rounded;
         &:focus {
           @apply outline-none;
         }
         &:hover {
-          @apply bg-lime-700;
+          @apply bg-yellow-700;
         }
       }
     }

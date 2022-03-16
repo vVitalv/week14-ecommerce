@@ -23,8 +23,13 @@
       }
     }
   }
-  &+button {
-    @apply object-right text-xl font-bold w-32 h-20 bg-indigo-700 rounded-xl m-6 mb-28;
+}
+.log-table-button {
+  @apply text-xl font-semibold w-40 h-16 self-end bg-yellow-800 text-white rounded-xl m-6 mb-28;
+  &:focus {
+    @apply outline-none;
+  }
+  &:hover {
+    @apply bg-yellow-700;
   }
 }
-

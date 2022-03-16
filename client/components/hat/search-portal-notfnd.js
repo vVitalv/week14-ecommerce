@@ -10,7 +10,7 @@ const NotFoundPortal = () => {
   }
   return (
     <div className="not-found-msg" onAnimationEnd={purge}>
-      Not found. Try some beer
+      Not found. Try some beer {'\uD83C\uDF7A'}
     </div>
   )
 }

@@ -23,7 +23,7 @@ const LogTable = () => {
           })}
         </tbody>
       </table>
-      <button type="button" onClick={() => clearOnClick()}>
+      <button type="button" className="log-table-button" onClick={() => clearOnClick()}>
         Clear logs
       </button>
     </main>
