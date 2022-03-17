@@ -25,7 +25,8 @@ const BasketButton = () => {
       ? 'Cart empty'
       : `total ${(basket.price * rates[currency]).toFixed(2)} ${currency}`
   const basketImg = basket.amount > 0 ? basket_full : basket_empty
-  const basketAmountVisible = basket.amount === 0 ? 'basket-plate-amount_invisible' : 'basket-plate-amount'
+  const basketAmountVisible =
+    basket.amount === 0 ? 'basket-plate-amount_invisible' : 'basket-plate-amount'
   const onClickFunc = () => {
     if (basketList.length) {
       history.push('/basket')

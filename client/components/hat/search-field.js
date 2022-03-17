@@ -23,13 +23,13 @@ const SearchField = () => {
   }
   const searchOnClick = () => {
     if (searchValue.length) {
-      return dispatch(getSearch(searchValue))
+      dispatch(getSearch(searchValue))
     }
     return null
   }
   const searchKeyPress = (e) => {
     if (e.key === 'Enter' && searchValue.length) {
-      return dispatch(getSearch(searchValue))
+      dispatch(getSearch(searchValue))
     }
     return null
   }
@@ -41,7 +41,7 @@ const SearchField = () => {
         type="search"
         value={searchValue}
         onChange={onChange}
-        onKeyPress={searchKeyPress}
+        onKeyPress={(e) => searchKeyPress(e)}
         autoComplete="on"
         placeholder="search product"
       />

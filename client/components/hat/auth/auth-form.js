@@ -2,12 +2,28 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateLoginField, updatePasswordField, signIn } from '../../../redux/reducers/auth'
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const dispatch = useDispatch()
   const { login, password } = useSelector((store) => store.auth)
+  const escapeModalOnKeyPress = (e) => {
+    if (e.key === 'Escape') {
+      props.setPortalOpen(false)
+    }
+  }
+  const escapeModalOnClick = (e) => {
+    if (e.target === e.currentTarget) {
+      props.setPortalOpen(false)
+    }
+  }
 
   return (
-    <div className="backing">
+    <div
+      className="backing"
+      role="textbox"
+      tabIndex="0"
+      onClickCapture={(e) => escapeModalOnClick(e)}
+      onKeyPress={(e) => escapeModalOnKeyPress(e)}
+    >
       <div className="login-modal">
         <form className="login-modal-form">
           <div className="username-field">

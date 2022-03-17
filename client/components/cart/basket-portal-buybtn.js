@@ -12,9 +12,25 @@ const BuyBtnPortal = (props) => {
     history.push(`/`)
     return dispatch(purgeCart())
   }
+  const escapeModalOnKeyPress = (e) => {
+    if (e.key === 'Escape') {
+      props.setPortalOpen(false)
+    }
+  }
+  const escapeModalOnClick = (e) => {
+    if (e.target === e.currentTarget) {
+      props.setPortalOpen(false)
+    }
+  }
 
   return (
-    <div className="backing">
+    <div
+      className="backing"
+      role="textbox"
+      tabIndex="0"
+      onClickCapture={(e) => escapeModalOnClick(e)}
+      onKeyPress={(e) => escapeModalOnKeyPress(e)}
+    >
       <div className="basket-buy-popup">
         Bless you for your donation {props.summaryCost} {props.currency} to the Ramzan Kadyrov
         Forgiveness Fund!
