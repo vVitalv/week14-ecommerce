@@ -16,7 +16,7 @@ const CurrencyPanel = () => {
   return (
     <div className="currency-panel">
       <p className="currency-panel-p">Currency:</p>
-      <select className="currency-panel-select" onChange={changeCurrency}>
+      <select className="currency-panel-select" onChange={(e) => changeCurrency(e)}>
         {ratesList.map((cur) => {
           return cur === currentCurrency ? (
             <option key={cur} selected>

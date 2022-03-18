@@ -15,7 +15,6 @@ const UnderHeader = () => {
     if (currentSortType !== sortType) {
       return dispatch(getSorted(sortType, 0))
     }
-    return null
   }
   return (
     <div className="underheader">

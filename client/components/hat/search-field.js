@@ -18,20 +18,18 @@ const SearchField = () => {
     return () => {}
   })
 
-  const onChange = (e) => {
-    dispatch(setSearch(e.target.value))
+  const searchOnChange = (e) => {
+    return dispatch(setSearch(e.target.value))
   }
   const searchOnClick = () => {
     if (searchValue.length) {
-      dispatch(getSearch(searchValue))
+      return dispatch(getSearch(searchValue))
     }
-    return null
   }
   const searchKeyPress = (e) => {
     if (e.key === 'Enter' && searchValue.length) {
-      dispatch(getSearch(searchValue))
+      return dispatch(getSearch(searchValue))
     }
-    return null
   }
 
   return (
@@ -40,7 +38,7 @@ const SearchField = () => {
         className="search-field-input"
         type="search"
         value={searchValue}
-        onChange={onChange}
+        onChange={(e) => searchOnChange(e)}
         onKeyPress={(e) => searchKeyPress(e)}
         autoComplete="on"
         placeholder="search product"

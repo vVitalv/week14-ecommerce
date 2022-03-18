@@ -19,10 +19,10 @@ const LoginForm = (props) => {
   return (
     <div
       className="backing"
-      role="textbox"
-      tabIndex="0"
-      onClickCapture={(e) => escapeModalOnClick(e)}
-      onKeyPress={(e) => escapeModalOnKeyPress(e)}
+      role="menuitem"
+      tabIndex={0}
+      onClick={(e) => escapeModalOnClick(e)}
+      onKeyDown={(e) => escapeModalOnKeyPress(e)}
     >
       <div className="login-modal">
         <form className="login-modal-form">

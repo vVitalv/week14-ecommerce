@@ -4,11 +4,10 @@ import { useSelector } from 'react-redux'
 import AmountPanel from '../panel-amount'
 
 const ProdDescription = (props) => {
-  const rates = useSelector((store) => store.currency.rates)
-  const currency = useSelector((store) => store.currency.currency)
-  const productList = useSelector((store) => store.cardData.productList)
-  const basketList = useSelector((store) => store.basket.basketList)
-  const searchData = useSelector((store) => store.search.searchData)
+  const { rates, currency } = useSelector((store) => store.currency)
+  const { productList } = useSelector((store) => store.cardData)
+  const { basketList } = useSelector((store) => store.basket)
+  const { searchData } = useSelector((store) => store.search)
   const productData = productList.find((prod) => {
     return props.id === prod.id
   })

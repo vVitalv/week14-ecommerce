@@ -5,7 +5,7 @@ import Card from './content-card'
 import Pagination from './pagination'
 
 const Content = () => {
-  const productList = useSelector((store) => store.cardData.productList)
+  const { productList } = useSelector((store) => store.cardData)
 
   return (
     <main>

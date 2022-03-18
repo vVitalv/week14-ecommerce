@@ -26,10 +26,10 @@ const BuyBtnPortal = (props) => {
   return (
     <div
       className="backing"
-      role="textbox"
-      tabIndex="0"
-      onClickCapture={(e) => escapeModalOnClick(e)}
-      onKeyPress={(e) => escapeModalOnKeyPress(e)}
+      role="menuitem"
+      tabIndex={0}
+      onClick={(e) => escapeModalOnClick(e)}
+      onKeyDown={(e) => escapeModalOnKeyPress(e)}
     >
       <div className="basket-buy-popup">
         Bless you for your donation {props.summaryCost} {props.currency} to the Ramzan Kadyrov

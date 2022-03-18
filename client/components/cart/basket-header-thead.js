@@ -6,7 +6,7 @@ import { sortBy } from '../../redux/reducers/basket'
 const CartHeaderThead = () => {
   const dispatch = useDispatch()
   const sortOnClick = (type) => {
-    dispatch(sortBy(type))
+    return dispatch(sortBy(type))
   }
 
   return (

@@ -5,9 +5,7 @@ import { useSelector } from 'react-redux'
 import AmountPanel from './panel-amount'
 
 const Card = (props) => {
-  const rate = useSelector((store) => store.currency.rates)
-  const currency = useSelector((store) => store.currency.currency)
-
+  const { rates, currency } = useSelector((store) => store.currency)
   const { productData } = props
 
   return (
@@ -19,7 +17,7 @@ const Card = (props) => {
       </Link>
       <div className="content-card-amount">
         <div className="content-card-price">
-          {(productData.price * rate[currency]).toFixed(2)} {currency}
+          {(productData.price * rates[currency]).toFixed(2)} {currency}
         </div>
         <AmountPanel productData={productData} />
       </div>

@@ -6,7 +6,7 @@ import { purgeSearch } from '../../redux/reducers/search'
 const NotFoundPortal = () => {
   const dispatch = useDispatch()
   const purge = () => {
-    dispatch(purgeSearch())
+    return dispatch(purgeSearch())
   }
   return (
     <div className="not-found-msg" onAnimationEnd={purge}>

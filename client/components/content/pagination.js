@@ -5,10 +5,13 @@ import { getCardData, getSorted } from '../../redux/reducers/cardData'
 
 const Pagination = () => {
   const dispatch = useDispatch()
-  const productList = useSelector((store) => store.cardData.productList)
-  const currentPage = useSelector((store) => store.cardData.currentPage)
-  const cardsOnPage = useSelector((store) => store.cardData.cardsOnPage)
-  const currentSortType = useSelector((store) => store.cardData.sortType)
+  const {
+    productList,
+    currentPage,
+    cardsOnPage,
+    sortType: currentSortType
+  } = useSelector((store) => store.cardData)
+
   const changePageOnClick = (nextPage) => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
     return dispatch(currentSortType ? getSorted(currentSortType, nextPage) : getCardData(nextPage))

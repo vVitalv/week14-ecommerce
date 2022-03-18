@@ -4,10 +4,10 @@ import { addToCart, removeFromCart } from '../../redux/reducers/basket'
 
 const AmountPanel = (props) => {
   const dispatch = useDispatch()
-  const basketAmount = useSelector((store) => store.basket.basketList)
+  const { basketList } = useSelector((store) => store.basket)
   const { productData } = props
 
-  const findAmount = basketAmount.find((product) => {
+  const findAmount = basketList.find((product) => {
     return productData.id === product.id
   })
   const amount = findAmount ? findAmount.amount : 0
@@ -19,7 +19,6 @@ const AmountPanel = (props) => {
     if (findAmount) {
       return dispatch(removeFromCart(cardData))
     }
-    return null
   }
 
   return (
