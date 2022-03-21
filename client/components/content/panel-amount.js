@@ -16,9 +16,7 @@ const AmountPanel = (props) => {
     return dispatch(addToCart(cardData))
   }
   const removeOnClick = (cardData) => {
-    if (findAmount) {
-      return dispatch(removeFromCart(cardData))
-    }
+    return findAmount ? dispatch(removeFromCart(cardData)) : null
   }
 
   return (

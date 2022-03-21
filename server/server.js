@@ -56,8 +56,8 @@ server.get('/api/v1/card', async (req, res) => {
 
 server.get('/api/v1/sorting', async (req, res) => {
   const sortType_Header = req.get('sortType')
-  const currentPage_Header = req.get('currentPage') * 1
-  const cardsOnPage_Header = req.get('cardsOnPage') * 1
+  const currentPage_Header = Number(req.get('currentPage'))
+  const cardsOnPage_Header = Number(req.get('cardsOnPage'))
   let sortType
   switch (sortType_Header) {
     case 'AZ':
@@ -114,16 +114,16 @@ server.get('/api/v1/currency', async (req, res) => {
 })
 
 server.get('/api/v1/log', async (req, res) => {
-  await readFile(`${__dirname}/Data/log.json`, 'utf8')
+  await readFile(`${__dirname}/data/log.json`, 'utf8')
     .then((logArr) => res.status(200).send(logArr))
     .catch((e) => console.error('Logs unavailable. Error:', e.message))
 })
 
 server.post('/api/v1/log', async (req, res) => {
-  await readFile(`${__dirname}/Data/log.json`, 'utf8')
+  await readFile(`${__dirname}/data/log.json`, 'utf8')
     .then((data) => {
       const logs = JSON.parse(data)
-      writeFile(`${__dirname}/Data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
+      writeFile(`${__dirname}/data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
     })
     .then(() => res.status(200).send('Logs updated'))
     .catch(() => res.status(500).send('Logs post unavailable'))
@@ -162,7 +162,7 @@ server.post('/api/v1/auth', async (req, res) => {
 })
 
 server.delete('/api/v1/log', (req, res) => {
-  writeFile(`${__dirname}/Data/log.json`, JSON.stringify([]), 'utf8')
+  writeFile(`${__dirname}/data/log.json`, JSON.stringify([]), 'utf8')
     .then(() => res.status(200).send('Logs cleared'))
     .catch(() => res.status(500).send('Logs clear unavailable'))
 })

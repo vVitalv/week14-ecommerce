@@ -22,14 +22,10 @@ const SearchField = () => {
     return dispatch(setSearch(e.target.value))
   }
   const searchOnClick = () => {
-    if (searchValue.length) {
-      return dispatch(getSearch(searchValue))
-    }
+    return searchValue.length ? dispatch(getSearch(searchValue)) : null
   }
   const searchKeyPress = (e) => {
-    if (e.key === 'Enter' && searchValue.length) {
-      return dispatch(getSearch(searchValue))
-    }
+    return e.key === 'Enter' && searchValue.length ? dispatch(getSearch(searchValue)) : null
   }
 
   return (

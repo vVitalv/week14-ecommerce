@@ -12,9 +12,7 @@ const UnderHeader = () => {
   const currentSortType = useSelector((store) => store.cardData.sortType)
   const dispatch = useDispatch()
   const sortOnClick = (sortType) => {
-    if (currentSortType !== sortType) {
-      return dispatch(getSorted(sortType, 0))
-    }
+    return currentSortType !== sortType ? dispatch(getSorted(sortType, 0)) : null
   }
   return (
     <div className="underheader">

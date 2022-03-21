@@ -40,14 +40,14 @@ export function updatePasswordField(password) {
 
 export function signIn() {
   return (dispatch, getState) => {
-    const { login, password } = getState().auth
+    const { email, password } = getState().auth
     fetch('/api/v1/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        login,
+        email,
         password
       })
     })
