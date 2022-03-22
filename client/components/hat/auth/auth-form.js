@@ -4,7 +4,7 @@ import { updateLoginField, updatePasswordField, signIn } from '../../../redux/re
 
 const LoginForm = (props) => {
   const dispatch = useDispatch()
-  const { login, password } = useSelector((store) => store.auth)
+  const { email, password } = useSelector((store) => store.auth)
   const escapeModalOnKeyPress = (e) => {
     if (e.key === 'Escape') {
       props.setPortalOpen(false)
@@ -33,12 +33,12 @@ const LoginForm = (props) => {
             <input
               className="username-field-input"
               id="username"
-              value={login}
+              value={email}
               onChange={(e) => {
                 dispatch(updateLoginField(e.target.value))
               }}
               type="text"
-              placeholder="Username"
+              placeholder="email"
             />
           </div>
           <div className="pass-field">

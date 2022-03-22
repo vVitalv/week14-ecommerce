@@ -11,6 +11,7 @@ import Home from '../components/home'
 import Product from '../components/content/product/product'
 import Basket from '../components/cart/basket'
 import Search from '../components/hat/search/search'
+import Registration from '../components/hat/auth/registration/registration'
 import Logs from '../components/logs/logs'
 import PrivateComponent from '../components/private-route'
 import NotFound from '../components/404'
@@ -83,7 +84,7 @@ const RootComponent = (props) => {
             <Route exact path="/search" component={() => <Search />} />
             <Route exact path="/logs" component={() => <Logs />} />
             <PrivateRoute exact path="/private" component={() => <PrivateComponent />} />
-            <OnlyAnonymousRoute exact path="/login" component={() => <Home />} />
+            <OnlyAnonymousRoute exact path="/login" component={() => <Registration />} />
             <Route component={() => <NotFound />} />
           </Switch>
         </Startup>

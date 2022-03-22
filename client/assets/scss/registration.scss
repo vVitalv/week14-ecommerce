@@ -1,0 +1,57 @@
+.registration {
+  @apply flex flex-col justify-center items-start w-full py-28 px-6;
+  .registration-header {
+    @apply font-bold text-gray-700 text-lg mb-4;
+  }
+  .registration-form {
+    @apply w-full border-y border-slate-600 px-8 pt-4 pb-4 mb-4;
+    .username-field {
+      @apply mb-4;
+      .username-field-label {
+        @apply block text-gray-700 text-sm font-bold mb-2;
+      }
+      .username-field-input {
+        @apply shadow appearance-none border rounded w-2/3 py-2 px-3 bg-yellow-200 text-gray-700 leading-tight;
+        &:focus {
+          @apply outline-none;
+        }
+      }
+    }
+    .email-field {
+      @apply mb-4;
+      .email-field-label {
+        @apply block text-gray-700 text-sm font-bold mb-2;
+      }
+      .email-field-input {
+        @apply shadow appearance-none border rounded w-2/3 py-2 px-3 bg-yellow-200 text-gray-700 leading-tight;
+        &:focus {
+          @apply outline-none;
+        }
+      }
+    }
+    .pass-field {
+      @apply mb-6;
+      .pass-field-label {
+        @apply block text-gray-700 text-sm font-bold mb-2;
+      }
+      .pass-field-input {
+        @apply shadow appearance-none border bg-yellow-200 rounded w-2/3 py-2 px-3 text-gray-700 mb-3 leading-tight;
+        &:focus {
+          @apply outline-none;
+        }
+      }
+    }
+    .btn-field {
+      @apply flex items-center justify-between;
+      .btn-field-button {
+        @apply bg-yellow-800 text-white font-bold py-2 px-4 rounded;
+        &:focus {
+          @apply outline-none;
+        }
+        &:hover {
+          @apply bg-yellow-700;
+        }
+      }
+    }
+  }
+}

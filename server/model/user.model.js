@@ -6,7 +6,13 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      validate: {
+        validator: (v) => {
+          return /.+@.+\..+/i.test(v)
+        },
+        message: (props) => `${props.value} is not a valid phone number!`
+      }
     },
     role: {
       type: [String],
@@ -15,6 +21,11 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true
+    },
+    login: {
+      type: String,
+      required: true,
+      unique: true
     }
   },
   {

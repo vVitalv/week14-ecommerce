@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Head from '../../hat/head'
-import ProdHeader from './product-header'
+import HeaderWithoutUH from '../../hat/header-without-UH'
 import ProdDescription from './product-description'
 import Footer from '../../foot/footer'
 import { setLog } from '../../../redux/reducers/log'
@@ -17,7 +17,7 @@ const Product = () => {
   return (
     <div>
       <Head title="About product" />
-      <ProdHeader />
+      <HeaderWithoutUH />
       <ProdDescription id={id} />
       <Footer />
     </div>
