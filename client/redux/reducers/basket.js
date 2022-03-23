@@ -55,8 +55,7 @@ export function addToCart(product) {
     })
   })
   return (dispatch, getState) => {
-    const store = getState()
-    const { basketList } = store.basket
+    const { basketList } = getState().basket
     const findProduct = basketList.find((rec) => {
       return product.id === rec.id
     })
@@ -87,8 +86,7 @@ export function removeFromCart(product) {
     })
   })
   return (dispatch, getState) => {
-    const store = getState()
-    const { basketList } = store.basket
+    const { basketList } = getState().basket
     const removeProduct = basketList.reduce((acc, rec) => {
       if (product.id === rec.id) {
         if (rec.amount > 1) {
@@ -118,10 +116,8 @@ export function sortBy(type) {
     })
   })
   return (dispatch, getState) => {
-    const store = getState()
-    const { basketList } = store.basket
+    const { basketList, sorting } = getState().basket
     const sortedList = [...basketList]
-    const { sorting } = store.basket
     if (type === 'name') {
       if (sorting !== 'name') {
         sortedList.sort((a, b) => {

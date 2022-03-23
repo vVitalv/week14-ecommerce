@@ -1,10 +1,15 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateLoginField, updatePasswordField, signIn } from '../../../../redux/reducers/auth'
+import {
+  updateLoginField,
+  updatePasswordField,
+  updateNameField,
+  register
+} from '../../../../redux/reducers/auth'
 
 const RegistrationForm = () => {
   const dispatch = useDispatch()
-  const { email, password } = useSelector((store) => store.auth)
+  const { email, password, name } = useSelector((store) => store.auth)
 
   return (
     <div className="registration">
@@ -17,9 +22,9 @@ const RegistrationForm = () => {
           <input
             className="username-field-input"
             id="username"
-            value={email}
+            value={name}
             onChange={(e) => {
-              dispatch(updateLoginField(e.target.value))
+              dispatch(updateNameField(e.target.value))
             }}
             type="text"
             placeholder="username"
@@ -60,7 +65,7 @@ const RegistrationForm = () => {
             className="btn-field-button"
             type="button"
             onClick={() => {
-              dispatch(signIn())
+              dispatch(register())
             }}
           >
             Register

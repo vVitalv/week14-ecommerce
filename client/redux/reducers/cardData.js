@@ -32,9 +32,7 @@ export default (state = initialState, action) => {
 
 export function getCardData(currentPage) {
   return (dispatch, getState) => {
-    const store = getState()
-    const { cardsOnPage } = store.cardData
-
+    const { cardsOnPage } = getState().cardData
     fetch('/api/v1/card', {
       method: 'GET',
       headers: {
@@ -56,8 +54,7 @@ export function getCardData(currentPage) {
 
 export function getSorted(sortType, currentPage) {
   return (dispatch, getState) => {
-    const store = getState()
-    const { cardsOnPage } = store.cardData
+    const { cardsOnPage } = getState().cardData
     fetch('/api/v1/sorting', {
       method: 'GET',
       headers: {

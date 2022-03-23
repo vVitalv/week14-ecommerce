@@ -129,7 +129,7 @@ server.post('/api/v1/log', async (req, res) => {
     .catch(() => res.status(500).send('Logs post unavailable'))
 })
 
-server.get('/api/v1/auth', async (req, res) => {
+server.post('/api/v1/regist', async (req, res) => {
   try {
     const jwtUser = jwt.verify(req.cookies.token, config.secret)
     const user = await User.findById(jwtUser.uid)

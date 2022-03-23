@@ -1,4 +1,4 @@
-const SET_SEARCH = 'SET_SEARCH'
+const UPDATE_SEARCH = 'UPDATE_SEARCH'
 const GET_SEARCH = 'GET_SEARCH'
 const PURGE_SEARCH = 'PURGE_SEARCH'
 
@@ -10,7 +10,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_SEARCH: {
+    case UPDATE_SEARCH: {
       return {
         ...state,
         searchValue: action.searchValue
@@ -36,11 +36,9 @@ export default (state = initialState, action) => {
 }
 
 export function setSearch(searchValue) {
-  return (dispatch) => {
-    dispatch({
-      type: SET_SEARCH,
-      searchValue
-    })
+  return {
+    type: UPDATE_SEARCH,
+    searchValue
   }
 }
 
