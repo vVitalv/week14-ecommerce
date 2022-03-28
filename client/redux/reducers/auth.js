@@ -5,7 +5,8 @@ const UPDATE_LOGIN = 'UPDATE_LOGIN'
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 const UPDATE_NAME = 'UPDATE_NAME'
 const LOGIN = 'LOGIN'
-const REGISTER = 'REGISTER'
+const AUTH_ERR = 'AUTH_ERR'
+const CREATED = 'CREATED'
 
 const cookies = new Cookies()
 
@@ -14,7 +15,9 @@ const initialState = {
   password: '',
   name: '',
   token: cookies.get('token'),
-  user: {}
+  user: {},
+  created: '',
+  errMessage: ''
 }
 
 export default (state = initialState, action) => {
@@ -31,8 +34,11 @@ export default (state = initialState, action) => {
     case LOGIN: {
       return { ...state, token: action.token, password: '', user: action.user }
     }
-    case REGISTER: {
-      return { ...state, token: action.token, password: '', user: action.user }
+    case AUTH_ERR: {
+      return { ...state, errMessage: action.errMessage }
+    }
+    case CREATED: {
+      return { ...state, created: action.created }
     }
     default:
       return state
@@ -66,30 +72,41 @@ export function signIn() {
     })
       .then((r) => r.json())
       .then((data) => {
-        dispatch({ type: LOGIN, token: data.token, user: data.user })
-        history.push('/private')
+        if (data.status === 'error') {
+          dispatch({ type: AUTH_ERR, errMessage: `${data.message}: ${data.errorMessage}` })
+        } else {
+          dispatch({ type: LOGIN, token: data.token, user: data.user })
+          history.push('/private')
+        }
       })
   }
 }
 
 export function register() {
   return (dispatch, getState) => {
-    const { email, password, name } = getState().auth
+    const { name, email, password } = getState().auth
     fetch('/api/v1/regist', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        name,
         email,
-        password,
-        name
+        password
       })
     })
       .then((r) => r.json())
       .then((data) => {
-        dispatch({ type: LOGIN, token: data.token, user: data.user })
-        history.push('/private')
+        if (data.status === 'error') {
+          dispatch({
+            type: AUTH_ERR,
+            errMessage: `${data.message}: ${data.errorMessage}`
+          })
+        } else {
+          dispatch({ type: CREATED, created: data.status })
+          history.push('/private')
+        }
       })
   }
 }

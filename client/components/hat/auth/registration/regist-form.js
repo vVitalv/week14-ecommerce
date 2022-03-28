@@ -9,7 +9,7 @@ import {
 
 const RegistrationForm = () => {
   const dispatch = useDispatch()
-  const { email, password, name } = useSelector((store) => store.auth)
+  const { email, password, name, errMessage } = useSelector((store) => store.auth)
 
   return (
     <div className="registration">
@@ -59,6 +59,7 @@ const RegistrationForm = () => {
             type="password"
             placeholder="******************"
           />
+          <p className="pass-field-p">{errMessage}</p>
         </div>
         <div className="btn-field">
           <button

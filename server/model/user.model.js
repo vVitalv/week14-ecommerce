@@ -7,11 +7,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      index: true,
       validate: {
         validator: (v) => {
           return /.+@.+\..+/i.test(v)
         },
-        message: (props) => `${props.value} is not a valid phone number!`
+        message: (props) => `${props.value} is not a valid email!`
       }
     },
     role: {
@@ -22,10 +23,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    login: {
+    name: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     }
   },
   {
@@ -37,15 +37,14 @@ userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next()
   }
-
-  this.password = bcrypt.hashSync(this.password)
+  const salt = 10
+  this.password = bcrypt.hashSync(this.password, salt)
 
   return next()
 })
 
 userSchema.method({
   passwordMatches(password) {
-    console.log(bcrypt.hashSync(password), this.password)
     return bcrypt.compareSync(password, this.password)
   }
 })
@@ -53,21 +52,21 @@ userSchema.method({
 userSchema.statics = {
   async findAndValidateUser({ email, password }) {
     if (!email) {
-      throw new Error('No Email')
+      throw new Error('Email is required')
     }
     if (!password) {
-      throw new Error('No Password')
+      throw new Error('Password is required')
     }
 
     const user = await this.findOne({ email }).exec()
     if (!user) {
-      throw new Error('No User')
+      throw new Error('User not found')
     }
 
     const isPasswordOk = await user.passwordMatches(password)
 
     if (!isPasswordOk) {
-      throw new Error('PasswordIncorrect')
+      throw new Error('Wrong password')
     }
 
     return user

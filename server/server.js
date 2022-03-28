@@ -29,11 +29,11 @@ mongooseService.connect()
 
 const middleware = [
   cors(),
-  passport.initialize(),
   express.static(path.resolve(__dirname, '../dist/assets')),
   express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }),
   express.json({ limit: '50mb', extended: true }),
-  cookieParser()
+  cookieParser(),
+  passport.initialize()
 ]
 
 middleware.forEach((it) => server.use(it))
@@ -89,8 +89,7 @@ server.put('/api/v1/search', async (req, res) => {
     const searchData = await Product.find(
       { $text: { $search: req.body.searchValue } },
       { score: { $meta: 'textScore' } }
-    )
-      .sort({ score: { $meta: 'textScore' } })
+    ).sort({ score: { $meta: 'textScore' } })
     res.status(200).send(searchData)
   } catch (e) {
     console.error('Database search error. Error:', e.message)
@@ -116,7 +115,7 @@ server.get('/api/v1/currency', async (req, res) => {
 server.get('/api/v1/log', async (req, res) => {
   await readFile(`${__dirname}/data/log.json`, 'utf8')
     .then((logArr) => res.status(200).send(logArr))
-    .catch((e) => console.error('Logs unavailable. Error:', e.message))
+    .catch((e) => console.error('Logs read unavailable. Error:', e.message))
 })
 
 server.post('/api/v1/log', async (req, res) => {
@@ -126,27 +125,21 @@ server.post('/api/v1/log', async (req, res) => {
       writeFile(`${__dirname}/data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
     })
     .then(() => res.status(200).send('Logs updated'))
-    .catch(() => res.status(500).send('Logs post unavailable'))
+    .catch((e) => console.error('Logs post unavailable. Error:', e.message))
 })
 
 server.post('/api/v1/regist', async (req, res) => {
   try {
-    const jwtUser = jwt.verify(req.cookies.token, config.secret)
-    const user = await User.findById(jwtUser.uid)
+    const user = await new User(req.body)
+    user.save()
 
-    const payload = { uid: user.id }
-    const token = jwt.sign(payload, config.secret, { expiresIn: '48h' })
-    delete user.password
-    res.cookie('token', token, { maxAge: 1000 * 60 * 60 * 48 })
-    res.json({ status: 'ok', token, user })
-  } catch (err) {
-    console.log(err)
-    res.json({ status: 'error', err })
+    res.status(200).send({ status: 'ok' })
+  } catch (e) {
+    res.send({ status: 'error', message: 'Creating user error', errorMessage: e.message })
   }
 })
 
 server.post('/api/v1/auth', async (req, res) => {
-  console.log(req.body)
   try {
     const user = await User.findAndValidateUser(req.body)
 
@@ -154,17 +147,16 @@ server.post('/api/v1/auth', async (req, res) => {
     const token = jwt.sign(payload, config.secret, { expiresIn: '48h' })
     delete user.password
     res.cookie('token', token, { maxAge: 1000 * 60 * 60 * 48 })
-    res.json({ status: 'ok', token, user })
-  } catch (err) {
-    console.log(err)
-    res.json({ status: 'error', err })
+    res.status(200).send({ token, user })
+  } catch (e) {
+    res.send({ status: 'error', message: 'Sign in error', errorMessage: e.message })
   }
 })
 
-server.delete('/api/v1/log', (req, res) => {
-  writeFile(`${__dirname}/data/log.json`, JSON.stringify([]), 'utf8')
+server.delete('/api/v1/log', async (req, res) => {
+  await writeFile(`${__dirname}/data/log.json`, JSON.stringify([]), 'utf8')
     .then(() => res.status(200).send('Logs cleared'))
-    .catch(() => res.status(500).send('Logs clear unavailable'))
+    .catch((e) => console.error('Logs clear unavailable. Error:'), e.message)
 })
 
 server.use('/api/', (req, res) => {
