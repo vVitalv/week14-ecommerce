@@ -20,14 +20,14 @@
         @apply block text-gray-700 text-sm font-bold mb-2;
       }
       .pass-field-input {
-        @apply shadow appearance-none border bg-yellow-200 border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight;
+        @apply shadow appearance-none border bg-yellow-200 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight;
         &:focus {
           @apply outline-none;
         }
       }
-      .pass-field-p {
-        @apply text-red-500 text-xs italic;
-      }
+    }
+    .pass-field-p {
+      @apply text-red-500 text-xs italic;
     }
     .btn-field {
       @apply flex items-center justify-between;

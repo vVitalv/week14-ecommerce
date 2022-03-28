@@ -50,7 +50,7 @@ userSchema.method({
 })
 
 userSchema.statics = {
-  async findAndValidateUser({ email, password }) {
+  async signInValidation({ email, password }) {
     if (!email) {
       throw new Error('Email is required')
     }
@@ -70,6 +70,24 @@ userSchema.statics = {
     }
 
     return user
+  },
+  async registrValidation({ name, email, password }) {
+    if (!name) {
+      throw new Error('Login is required')
+    }
+    if (!email) {
+      throw new Error('Email is required')
+    }
+    if (!password) {
+      throw new Error('Password is required')
+    }
+
+    const user = await this.findOne({ email }).exec()
+    if (user) {
+      throw new Error('User with this email already exists')
+    }
+
+    return null
   }
 }
 

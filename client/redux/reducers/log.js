@@ -37,7 +37,7 @@ export function getLogs() {
   }
 }
 
-export function setLog() {
+export function setLog(log) {
   fetch('/api/v1/log', {
     method: 'POST',
     headers: {
@@ -45,7 +45,7 @@ export function setLog() {
     },
     body: JSON.stringify({
       time: new Date().toLocaleString(),
-      action: `navigate to ${window.location.pathname}`
+      action: log
     })
   })
 }

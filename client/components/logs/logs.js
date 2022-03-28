@@ -1,20 +1,16 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 
 import Head from '../hat/head'
 import LogHeader from './log-header'
 import LogTable from './log-table'
 import Footer from '../foot/footer'
-import { getLogs, setLog } from '../../redux/reducers/log'
+import { setLog } from '../../redux/reducers/log'
 
 const Logs = () => {
-  const dispatch = useDispatch()
-
   useEffect(() => {
-    setLog()
-    dispatch(getLogs())
+    setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  }, [dispatch])
+  })
 
   return (
     <div>

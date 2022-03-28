@@ -41,6 +41,9 @@
         }
       }
     }
+    .pass-field-p {
+      @apply text-red-500 text-xs italic;
+    }
     .btn-field {
       @apply flex items-center justify-between;
       .btn-field-button {

@@ -9,9 +9,9 @@ import { setLog } from '../../redux/reducers/log'
 
 const Basket = () => {
   useEffect(() => {
-    setLog()
+    setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  }, [])
+  })
 
   const basketList = useSelector((store) => store.basket.basketList)
   const basket = basketList.reduce(

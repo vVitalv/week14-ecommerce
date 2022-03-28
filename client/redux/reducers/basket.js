@@ -1,3 +1,5 @@
+import { setLog } from "./log"
+
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const SORT_BY = 'SORT_BY'
@@ -44,16 +46,7 @@ export default (state = initialState, action) => {
 }
 
 export function addToCart(product) {
-  fetch('/api/v1/log', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      time: new Date().toLocaleString(),
-      action: `${product.title} added to cart`
-    })
-  })
+  setLog(`${product.title} added to cart`)
   return (dispatch, getState) => {
     const { basketList } = getState().basket
     const findProduct = basketList.find((rec) => {
@@ -75,16 +68,7 @@ export function addToCart(product) {
 }
 
 export function removeFromCart(product) {
-  fetch('/api/v1/log', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      time: new Date().toLocaleString(),
-      action: `${product.title} removed from cart`
-    })
-  })
+  setLog(`${product.title} removed from cart`)
   return (dispatch, getState) => {
     const { basketList } = getState().basket
     const removeProduct = basketList.reduce((acc, rec) => {
@@ -105,16 +89,7 @@ export function removeFromCart(product) {
 }
 
 export function sortBy(type) {
-  fetch('/api/v1/log', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      time: new Date().toLocaleString(),
-      action: `Cart sorted by ${type}`
-    })
-  })
+  setLog(`cart sorted by ${type}`)
   return (dispatch, getState) => {
     const { basketList, sorting } = getState().basket
     const sortedList = [...basketList]
@@ -150,16 +125,7 @@ export function sortBy(type) {
 }
 
 export function purgeCart() {
-  fetch('/api/v1/log', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      time: new Date().toLocaleString(),
-      action: `Deal!`
-    })
-  })
+  setLog('donation sent')
   return (dispatch) => {
     dispatch({
       type: PURGE_CART,

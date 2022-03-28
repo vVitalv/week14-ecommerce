@@ -1,3 +1,5 @@
+import { setLog } from "./log"
+
 const UPDATE_SEARCH = 'UPDATE_SEARCH'
 const GET_SEARCH = 'GET_SEARCH'
 const PURGE_SEARCH = 'PURGE_SEARCH'
@@ -43,16 +45,7 @@ export function setSearch(searchValue) {
 }
 
 export function getSearch(searchValue) {
-  fetch('/api/v1/log', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      time: new Date().toLocaleString(),
-      action: `searched for "${searchValue}"`
-    })
-  })
+  setLog(`searched for ${searchValue}`)
   return (dispatch) => {
     fetch('/api/v1/search', {
       method: 'PUT',

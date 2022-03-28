@@ -130,8 +130,9 @@ server.post('/api/v1/log', async (req, res) => {
 
 server.post('/api/v1/regist', async (req, res) => {
   try {
-    const user = await new User(req.body)
-    user.save()
+    await User.registrValidation(req.body)
+    const user = new User(req.body)
+    await user.save()
 
     res.status(200).send({ status: 'ok' })
   } catch (e) {
@@ -141,7 +142,7 @@ server.post('/api/v1/regist', async (req, res) => {
 
 server.post('/api/v1/auth', async (req, res) => {
   try {
-    const user = await User.findAndValidateUser(req.body)
+    const user = await User.signInValidation(req.body)
 
     const payload = { uid: user.id }
     const token = jwt.sign(payload, config.secret, { expiresIn: '48h' })

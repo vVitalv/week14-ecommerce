@@ -8,9 +8,9 @@ import { setLog } from '../../../redux/reducers/log'
 
 const Search = () => {
   useEffect(() => {
-    setLog()
+    setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  }, [])
+  })
 
   return (
     <div className="body-section">

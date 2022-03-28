@@ -9,9 +9,9 @@ import { setLog } from '../../../redux/reducers/log'
 
 const Product = () => {
   useEffect(() => {
-    setLog()
+    setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  }, [])
+  })
   const { id } = useParams()
 
   return (

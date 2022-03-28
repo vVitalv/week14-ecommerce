@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { setLog } from '../../../../redux/reducers/log'
 import {
   updateLoginField,
   updatePasswordField,
@@ -9,6 +11,10 @@ import {
 
 const RegistrationForm = () => {
   const dispatch = useDispatch()
+  useEffect(() => {
+    setLog(`navigate to ${window.location.pathname}`)
+    return () => {}
+  })
   const { email, password, name, errMessage } = useSelector((store) => store.auth)
 
   return (
@@ -59,8 +65,8 @@ const RegistrationForm = () => {
             type="password"
             placeholder="******************"
           />
-          <p className="pass-field-p">{errMessage}</p>
         </div>
+        <p className="pass-field-p">{errMessage}</p>
         <div className="btn-field">
           <button
             className="btn-field-button"

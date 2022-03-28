@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { clearLogs } from '../../redux/reducers/log'
+import { getLogs, clearLogs } from '../../redux/reducers/log'
 
 const LogTable = () => {
   const dispatch = useDispatch()
-  const clearOnClick = () => {
-    return dispatch(clearLogs())
-  }
+  useEffect(() => {
+    dispatch(getLogs())
+    return () => {}
+  }, [dispatch])
   const { logs } = useSelector((store) => store.log)
   return (
     <main>
@@ -23,7 +24,7 @@ const LogTable = () => {
           })}
         </tbody>
       </table>
-      <button type="button" className="log-table-button" onClick={() => clearOnClick()}>
+      <button type="button" className="log-table-button" onClick={() => dispatch(clearLogs())}>
         Clear logs
       </button>
     </main>

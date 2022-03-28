@@ -1,3 +1,5 @@
+import { setLog } from "./log"
+
 const GET_CURRENCY = 'GET_CURRENCY'
 const CHANGE_CURRENCY = 'CHANGE_CURRENCY'
 
@@ -26,16 +28,7 @@ export default (state = initialState, action) => {
 }
 
 export function setCurrency(currency) {
-  fetch('/api/v1/log', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      time: new Date().toLocaleString(),
-      action: `change currency to ${currency}`
-    })
-  })
+  setLog(`currency changed by ${currency}`)
   return (dispatch) => {
     dispatch({
       type: CHANGE_CURRENCY,
