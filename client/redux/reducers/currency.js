@@ -1,4 +1,4 @@
-import { setLog } from "./log"
+import { setLog } from './log'
 
 const GET_CURRENCY = 'GET_CURRENCY'
 const CHANGE_CURRENCY = 'CHANGE_CURRENCY'

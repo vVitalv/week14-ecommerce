@@ -18,7 +18,7 @@ const initialState = {
   token: cookies.get('token'),
   user: {},
   created: '',
-  errMessage: ''
+  authErrMessage: ''
 }
 
 export default (state = initialState, action) => {
@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
       return { ...state, token: action.token, password: '', user: action.user }
     }
     case AUTH_ERR: {
-      return { ...state, errMessage: action.errMessage }
+      return { ...state, authErrMessage: action.authErrMessage }
     }
     case CREATED: {
       return { ...state, created: action.created }
@@ -74,7 +74,7 @@ export function signIn() {
       .then((r) => r.json())
       .then((data) => {
         if (data.status === 'error') {
-          dispatch({ type: AUTH_ERR, errMessage: `${data.message}: ${data.errorMessage}` })
+          dispatch({ type: AUTH_ERR, authErrMessage: `${data.message}: ${data.errorMessage}` })
         } else {
           setLog(`user ${email} has been logged in`)
           dispatch({ type: LOGIN, token: data.token, user: data.user })
@@ -103,7 +103,7 @@ export function register() {
         if (data.status === 'error') {
           dispatch({
             type: AUTH_ERR,
-            errMessage: `${data.message}: ${data.errorMessage}`
+            authErrMessage: `${data.message}: ${data.errorMessage}`
           })
         } else {
           setLog(`user ${email} has been registered`)

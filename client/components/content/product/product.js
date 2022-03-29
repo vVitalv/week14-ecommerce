@@ -11,7 +11,7 @@ const Product = () => {
   useEffect(() => {
     setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  })
+  }, [])
   const { id } = useParams()
 
   return (

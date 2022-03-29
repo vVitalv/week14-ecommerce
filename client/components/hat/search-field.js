@@ -16,7 +16,7 @@ const SearchField = () => {
       dispatch(purgeSearch())
     }
     return () => {}
-  })
+  }, [isDataLoad, searchData.length])
 
   const searchOnChange = (e) => {
     return dispatch(setSearch(e.target.value))

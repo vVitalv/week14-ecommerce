@@ -50,7 +50,7 @@ server.get('/api/v1/card', async (req, res) => {
       .limit(cardsOnPage_Header)
     res.status(200).send(product)
   } catch (e) {
-    console.error('Database access error. Error:', e.message)
+    res.send({ status: 'error', message: 'DB access error', errorMessage: e.message })
   }
 })
 
@@ -80,7 +80,7 @@ server.get('/api/v1/sorting', async (req, res) => {
       .limit(cardsOnPage_Header)
     res.status(200).send(productDataSorted)
   } catch (e) {
-    console.error('Database sorting error. Error:', e.message)
+    res.send({ status: 'error', message: 'DB sorting error', errorMessage: e.message })
   }
 })
 
@@ -92,7 +92,7 @@ server.put('/api/v1/search', async (req, res) => {
     ).sort({ score: { $meta: 'textScore' } })
     res.status(200).send(searchData)
   } catch (e) {
-    console.error('Database search error. Error:', e.message)
+    res.send({ status: 'error', message: 'DB search error', errorMessage: e.message })
   }
 })
 
@@ -108,14 +108,16 @@ server.get('/api/v1/currency', async (req, res) => {
     })
     res.status(200).send(data.rates)
   } catch (e) {
-    console.error('Currency server timeout. Error:', e.message)
+    res.send({ status: 'error', message: 'Getting currencies error', errorMessage: e.message })
   }
 })
 
 server.get('/api/v1/log', async (req, res) => {
   await readFile(`${__dirname}/data/log.json`, 'utf8')
     .then((logArr) => res.status(200).send(logArr))
-    .catch((e) => console.error('Logs read unavailable. Error:', e.message))
+    .catch((e) =>
+      res.send({ status: 'error', message: 'Reading logs error', errorMessage: e.message })
+    )
 })
 
 server.post('/api/v1/log', async (req, res) => {
@@ -124,8 +126,8 @@ server.post('/api/v1/log', async (req, res) => {
       const logs = JSON.parse(data)
       writeFile(`${__dirname}/data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
     })
-    .then(() => res.status(200).send('Logs updated'))
-    .catch((e) => console.error('Logs post unavailable. Error:', e.message))
+    .then(() => res.status(200).send({ message: 'Log created' }))
+    .catch((e) => res.send({ status: 'error', message: 'Log post error', errorMessage: e.message }))
 })
 
 server.post('/api/v1/regist', async (req, res) => {
@@ -134,7 +136,7 @@ server.post('/api/v1/regist', async (req, res) => {
     const user = new User(req.body)
     await user.save()
 
-    res.status(200).send({ status: 'ok' })
+    res.status(200).send({ message: 'New user created' })
   } catch (e) {
     res.send({ status: 'error', message: 'Creating user error', errorMessage: e.message })
   }
@@ -156,8 +158,10 @@ server.post('/api/v1/auth', async (req, res) => {
 
 server.delete('/api/v1/log', async (req, res) => {
   await writeFile(`${__dirname}/data/log.json`, JSON.stringify([]), 'utf8')
-    .then(() => res.status(200).send('Logs cleared'))
-    .catch((e) => console.error('Logs clear unavailable. Error:'), e.message)
+    .then(() => res.status(200).send({ message: 'Logs cleared' }))
+    .catch((e) =>
+      res.send({ status: 'error', message: 'Clearing logs error', errorMessage: e.message })
+    )
 })
 
 server.use('/api/', (req, res) => {

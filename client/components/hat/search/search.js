@@ -10,7 +10,7 @@ const Search = () => {
   useEffect(() => {
     setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  })
+  }, [])
 
   return (
     <div className="body-section">

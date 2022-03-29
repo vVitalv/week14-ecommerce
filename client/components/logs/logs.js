@@ -10,7 +10,7 @@ const Logs = () => {
   useEffect(() => {
     setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  })
+  }, [])
 
   return (
     <div>

@@ -1,23 +1,22 @@
 const GET_LOGS = 'GET_LOGS'
 const CLEAR_LOGS = 'CLEAR_LOGS'
+const LOGS_ERR = 'LOGS_ERR'
 
 const initialState = {
-  logs: []
+  logs: [],
+  logsErrMessage: ''
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_LOGS: {
-      return {
-        ...state,
-        logs: action.logs
-      }
+      return { ...state, logs: action.logs }
     }
     case CLEAR_LOGS: {
-      return {
-        ...state,
-        logs: action.logs
-      }
+      return { ...state, logs: action.logs }
+    }
+    case LOGS_ERR: {
+      return { ...state, logsErrMessage: action.logsErrMessage }
     }
     default:
       return state
@@ -55,9 +54,19 @@ export function clearLogs() {
     fetch('/api/v1/log', {
       method: 'DELETE'
     })
-    dispatch({
-      type: CLEAR_LOGS,
-      logs: []
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === error) {
+          dispatch({
+            type: LOGS_ERR,
+            logsErrMessage: `${data.message}: ${data.errorMessage}`
+          })
+        } else {
+          dispatch({
+            type: CLEAR_LOGS,
+            logs: []
+          })
+        }
+      })
   }
 }

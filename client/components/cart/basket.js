@@ -11,7 +11,7 @@ const Basket = () => {
   useEffect(() => {
     setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  })
+  }, [])
 
   const basketList = useSelector((store) => store.basket.basketList)
   const basket = basketList.reduce(

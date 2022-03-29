@@ -14,7 +14,7 @@ const RegistrationForm = () => {
   useEffect(() => {
     setLog(`navigate to ${window.location.pathname}`)
     return () => {}
-  })
+  }, [])
   const { email, password, name, errMessage } = useSelector((store) => store.auth)
 
   return (

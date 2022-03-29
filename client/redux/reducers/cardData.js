@@ -1,4 +1,4 @@
-import { setLog } from "./log"
+import { setLog } from './log'
 
 const GET_GOODS = 'GET_GOODS'
 const GET_SORTED = 'GET_SORTED'

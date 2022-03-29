@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateLoginField, updatePasswordField, signIn } from '../../../redux/reducers/auth'
 
@@ -67,6 +68,9 @@ const LoginForm = (props) => {
             >
               Sign In
             </button>
+            <Link to="/login" className="btn-field-link">
+              Or go register
+            </Link>
           </div>
         </form>
       </div>

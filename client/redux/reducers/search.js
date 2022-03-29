@@ -1,4 +1,4 @@
-import { setLog } from "./log"
+import { setLog } from './log'
 
 const UPDATE_SEARCH = 'UPDATE_SEARCH'
 const GET_SEARCH = 'GET_SEARCH'
