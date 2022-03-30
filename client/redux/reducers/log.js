@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
       return { ...state, logs: action.logs }
     }
     case CLEAR_LOGS: {
-      return { ...state, logs: action.logs }
+      return { ...state, logs: action.logs, logsErrMessage: action.logsErrMessage }
     }
     case LOGS_ERR: {
       return { ...state, logsErrMessage: action.logsErrMessage }
@@ -27,26 +27,44 @@ export function getLogs() {
   return (dispatch) => {
     fetch('/api/v1/log')
       .then((res) => res.json())
-      .then((logArr) => {
-        dispatch({
-          type: GET_LOGS,
-          logs: logArr
-        })
+      .then((data) => {
+        if (data.status === 'error') {
+          dispatch({
+            type: LOGS_ERR,
+            logsErrMessage: `${data.message}: ${data.errorMessage}`
+          })
+        } else {
+          dispatch({
+            type: GET_LOGS,
+            logs: data.logsArr
+          })
+        }
       })
   }
 }
 
 export function setLog(log) {
-  fetch('/api/v1/log', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      time: new Date().toLocaleString(),
-      action: log
+  return (dispatch) => {
+    fetch('/api/v1/log', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        time: new Date().toLocaleString(),
+        action: log
+      })
     })
-  })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 'error') {
+          dispatch({
+            type: LOGS_ERR,
+            logsErrMessage: `${data.message}: ${data.errorMessage}`
+          })
+        }
+      })
+  }
 }
 
 export function clearLogs() {
@@ -56,7 +74,7 @@ export function clearLogs() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === error) {
+        if (data.status === 'error') {
           dispatch({
             type: LOGS_ERR,
             logsErrMessage: `${data.message}: ${data.errorMessage}`
@@ -64,7 +82,8 @@ export function clearLogs() {
         } else {
           dispatch({
             type: CLEAR_LOGS,
-            logs: []
+            logs: [],
+            logsErrMessage: data.message
           })
         }
       })

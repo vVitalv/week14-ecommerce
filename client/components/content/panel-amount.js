@@ -1,22 +1,27 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart, removeFromCart } from '../../redux/reducers/basket'
+import { setLog } from '../../redux/reducers/log'
 
 const AmountPanel = (props) => {
   const dispatch = useDispatch()
   const { basketList } = useSelector((store) => store.basket)
   const { productData } = props
 
-  const findAmount = basketList.find((product) => {
+  const productInCart = basketList.find((product) => {
     return productData.id === product.id
   })
-  const amount = findAmount ? findAmount.amount : 0
+  const amount = productInCart ? productInCart.amount : 0
 
   const addOnClick = (cardData) => {
-    return dispatch(addToCart(cardData))
+    dispatch(setLog(`${productData.title} added to cart`))
+    dispatch(addToCart(cardData))
   }
   const removeOnClick = (cardData) => {
-    return findAmount ? dispatch(removeFromCart(cardData)) : null
+    if (productInCart) {
+      dispatch(setLog(`${productData.title} removed from cart`))
+      dispatch(removeFromCart(cardData))
+    }
   }
 
   return (

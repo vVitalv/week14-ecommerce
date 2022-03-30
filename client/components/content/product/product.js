@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import Head from '../../hat/head'
 import HeaderWithoutUH from '../../hat/header-without-UH'
@@ -8,10 +9,11 @@ import Footer from '../../foot/footer'
 import { setLog } from '../../../redux/reducers/log'
 
 const Product = () => {
+  const dispatch = useDispatch()
   useEffect(() => {
-    setLog(`navigate to ${window.location.pathname}`)
+    dispatch(setLog(`navigate to ${window.location.pathname}`))
     return () => {}
-  }, [])
+  }, [dispatch])
   const { id } = useParams()
 
   return (

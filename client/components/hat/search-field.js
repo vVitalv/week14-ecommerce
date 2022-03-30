@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setSearch, getSearch, purgeSearch } from '../../redux/reducers/search'
+import { setLog } from '../../redux/reducers/log'
 import NotFoundPortal from './search-portal-notfnd'
 
 const SearchField = () => {
@@ -16,16 +17,22 @@ const SearchField = () => {
       dispatch(purgeSearch())
     }
     return () => {}
-  }, [isDataLoad, searchData.length])
+  })
 
   const searchOnChange = (e) => {
     return dispatch(setSearch(e.target.value))
   }
   const searchOnClick = () => {
-    return searchValue.length ? dispatch(getSearch(searchValue)) : null
+    if (searchValue.length) {
+      dispatch(setLog(`searched for ${searchValue}`))
+      dispatch(getSearch(searchValue))
+    }
   }
   const searchKeyPress = (e) => {
-    return e.key === 'Enter' && searchValue.length ? dispatch(getSearch(searchValue)) : null
+    if (e.key === 'Enter' && searchValue.length) {
+      dispatch(setLog(`searched for ${searchValue}`))
+      dispatch(getSearch(searchValue))
+    }
   }
 
   return (

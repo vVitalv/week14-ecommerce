@@ -1,5 +1,3 @@
-import { setLog } from './log'
-
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const SORT_BY = 'SORT_BY'
@@ -46,7 +44,6 @@ export default (state = initialState, action) => {
 }
 
 export function addToCart(product) {
-  setLog(`${product.title} added to cart`)
   return (dispatch, getState) => {
     const { basketList } = getState().basket
     const findProduct = basketList.find((rec) => {
@@ -68,7 +65,6 @@ export function addToCart(product) {
 }
 
 export function removeFromCart(product) {
-  setLog(`${product.title} removed from cart`)
   return (dispatch, getState) => {
     const { basketList } = getState().basket
     const removeProduct = basketList.reduce((acc, rec) => {
@@ -89,7 +85,6 @@ export function removeFromCart(product) {
 }
 
 export function sortBy(type) {
-  setLog(`cart sorted by ${type}`)
   return (dispatch, getState) => {
     const { basketList, sorting } = getState().basket
     const sortedList = [...basketList]
@@ -125,7 +120,6 @@ export function sortBy(type) {
 }
 
 export function purgeCart() {
-  setLog('donation sent')
   return (dispatch) => {
     dispatch({
       type: PURGE_CART,

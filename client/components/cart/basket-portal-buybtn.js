@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { purgeCart } from '../../redux/reducers/basket'
+import { setLog } from '../../redux/reducers/log'
 
 const BuyBtnPortal = (props) => {
   const history = useHistory()
@@ -10,7 +11,8 @@ const BuyBtnPortal = (props) => {
   const removeBacking = () => {
     props.setPortalOpen(false)
     history.push(`/`)
-    return dispatch(purgeCart())
+    dispatch(setLog('donation sent'))
+    dispatch(purgeCart())
   }
   const escapeModalOnKeyPress = (e) => {
     if (e.key === 'Escape') {

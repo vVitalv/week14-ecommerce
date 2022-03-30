@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import SearchField from './search-field'
 import { getSorted } from '../../redux/reducers/cardData'
+import { setLog } from '../../redux/reducers/log'
 import sortAZ from '../../assets/images/sort-AZ.png'
 import sortZA from '../../assets/images/sort-ZA.png'
 import sortUp from '../../assets/images/sort-up.png'
@@ -12,7 +13,10 @@ const UnderHeader = () => {
   const currentSortType = useSelector((store) => store.cardData.sortType)
   const dispatch = useDispatch()
   const sortOnClick = (sortType) => {
-    return currentSortType !== sortType ? dispatch(getSorted(sortType, 0)) : null
+    if (currentSortType !== sortType) {
+      dispatch(setLog(`products sorted by ${sortType}`))
+      dispatch(getSorted(sortType, 0))
+    }
   }
   return (
     <div className="underheader">

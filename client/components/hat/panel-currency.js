@@ -1,5 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
+import { setLog } from '../../redux/reducers/log'
 import { setCurrency } from '../../redux/reducers/currency'
 
 const CurrencyPanel = () => {
@@ -10,7 +12,8 @@ const CurrencyPanel = () => {
   const changeCurrency = (e) => {
     const { selectedIndex, options } = e.target
     const selectedCurrency = options[selectedIndex].value
-    return dispatch(setCurrency(selectedCurrency))
+    dispatch(setLog(`currency changed by ${selectedCurrency}`))
+    dispatch(setCurrency(selectedCurrency))
   }
 
   return (

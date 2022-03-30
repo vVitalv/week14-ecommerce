@@ -5,7 +5,7 @@ import { updateLoginField, updatePasswordField, signIn } from '../../../redux/re
 
 const LoginForm = (props) => {
   const dispatch = useDispatch()
-  const { email, password, errMessage } = useSelector((store) => store.auth)
+  const { email, password, loginErrMessage } = useSelector((store) => store.auth)
   const escapeModalOnKeyPress = (e) => {
     if (e.key === 'Escape') {
       props.setPortalOpen(false)
@@ -56,7 +56,7 @@ const LoginForm = (props) => {
               type="password"
               placeholder="******************"
             />
-            <p className="pass-field-p">{errMessage}</p>
+            <p className="pass-field-p">{loginErrMessage}</p>
           </div>
           <div className="btn-field">
             <button

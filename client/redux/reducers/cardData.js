@@ -1,13 +1,13 @@
-import { setLog } from './log'
-
 const GET_GOODS = 'GET_GOODS'
 const GET_SORTED = 'GET_SORTED'
+const GOODS_ERR = 'GOODS_ERR'
 
 const initialState = {
   productList: [],
   currentPage: 0,
   cardsOnPage: 24,
-  sortType: ''
+  sortType: '',
+  goodsErrMessage: ''
 }
 
 export default (state = initialState, action) => {
@@ -27,6 +27,12 @@ export default (state = initialState, action) => {
         currentPage: action.currentPage
       }
     }
+    case GOODS_ERR: {
+      return {
+        ...state,
+        goodsErrMessage: action.goodsErrMessage
+      }
+    }
     default:
       return state
   }
@@ -44,18 +50,24 @@ export function getCardData(currentPage) {
       }
     })
       .then((res) => res.json())
-      .then((prodArr) =>
-        dispatch({
-          type: GET_GOODS,
-          productList: prodArr,
-          currentPage
-        })
-      )
+      .then((data) => {
+        if (data.status === 'error') {
+          dispatch({
+            type: GOODS_ERR,
+            goodsErrMessage: `${data.message}: ${data.errorMessage}`
+          })
+        } else {
+          dispatch({
+            type: GET_GOODS,
+            productList: data.productsData,
+            currentPage
+          })
+        }
+      })
   }
 }
 
 export function getSorted(sortType, currentPage) {
-  setLog(`products sorted by ${sortType}`)
   return (dispatch, getState) => {
     const { cardsOnPage } = getState().cardData
     fetch('/api/v1/sorting', {
@@ -68,13 +80,20 @@ export function getSorted(sortType, currentPage) {
       }
     })
       .then((res) => res.json())
-      .then((prodArr) =>
-        dispatch({
-          type: GET_SORTED,
-          productList: prodArr,
-          sortType,
-          currentPage
-        })
-      )
+      .then((data) => {
+        if (data.status === 'error') {
+          dispatch({
+            type: GOODS_ERR,
+            goodsErrMessage: `${data.message}: ${data.errorMessage}`
+          })
+        } else {
+          dispatch({
+            type: GET_SORTED,
+            productList: data.productDataSorted,
+            sortType,
+            currentPage
+          })
+        }
+      })
   }
 }

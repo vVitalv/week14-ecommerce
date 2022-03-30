@@ -6,7 +6,8 @@ const UPDATE_LOGIN = 'UPDATE_LOGIN'
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 const UPDATE_NAME = 'UPDATE_NAME'
 const LOGIN = 'LOGIN'
-const AUTH_ERR = 'AUTH_ERR'
+const REGIST_ERR = 'REGIST_ERR'
+const LOGIN_ERR = 'LOGIN_ERR'
 const CREATED = 'CREATED'
 
 const cookies = new Cookies()
@@ -18,7 +19,8 @@ const initialState = {
   token: cookies.get('token'),
   user: {},
   created: '',
-  authErrMessage: ''
+  registErrMessage: '',
+  loginErrMessage: ''
 }
 
 export default (state = initialState, action) => {
@@ -35,8 +37,11 @@ export default (state = initialState, action) => {
     case LOGIN: {
       return { ...state, token: action.token, password: '', user: action.user }
     }
-    case AUTH_ERR: {
-      return { ...state, authErrMessage: action.authErrMessage }
+    case REGIST_ERR: {
+      return { ...state, registErrMessage: action.registErrMessage }
+    }
+    case LOGIN_ERR: {
+      return { ...state, loginErrMessage: action.loginErrMessage }
     }
     case CREATED: {
       return { ...state, created: action.created }
@@ -74,7 +79,7 @@ export function signIn() {
       .then((r) => r.json())
       .then((data) => {
         if (data.status === 'error') {
-          dispatch({ type: AUTH_ERR, authErrMessage: `${data.message}: ${data.errorMessage}` })
+          dispatch({ type: LOGIN_ERR, loginErrMessage: `${data.message}: ${data.errorMessage}` })
         } else {
           setLog(`user ${email} has been logged in`)
           dispatch({ type: LOGIN, token: data.token, user: data.user })
@@ -102,8 +107,8 @@ export function register() {
       .then((data) => {
         if (data.status === 'error') {
           dispatch({
-            type: AUTH_ERR,
-            authErrMessage: `${data.message}: ${data.errorMessage}`
+            type: REGIST_ERR,
+            registErrMessage: `${data.message}: ${data.errorMessage}`
           })
         } else {
           setLog(`user ${email} has been registered`)

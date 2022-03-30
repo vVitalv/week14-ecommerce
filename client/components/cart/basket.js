@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import BasketHeader from './basket-header'
 import Head from '../hat/head'
@@ -8,10 +8,11 @@ import Footer from '../foot/footer'
 import { setLog } from '../../redux/reducers/log'
 
 const Basket = () => {
+  const dispatch = useDispatch()
   useEffect(() => {
-    setLog(`navigate to ${window.location.pathname}`)
+    dispatch(setLog(`navigate to ${window.location.pathname}`))
     return () => {}
-  }, [])
+  }, [dispatch])
 
   const basketList = useSelector((store) => store.basket.basketList)
   const basket = basketList.reduce(

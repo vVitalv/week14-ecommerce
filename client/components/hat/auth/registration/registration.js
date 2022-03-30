@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 import Head from '../../head'
 import HeaderWithoutUH from '../../header-without-UH'
@@ -6,11 +7,12 @@ import RegistrationForm from './regist-form'
 import Footer from '../../../foot/footer'
 import { setLog } from '../../../../redux/reducers/log'
 
-const Home = () => {
+const Registration = () => {
+  const dispatch = useDispatch()
   useEffect(() => {
-    setLog()
+    dispatch(setLog(`navigate to ${window.location.pathname}`))
     return () => {}
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="body-section">
@@ -22,6 +24,6 @@ const Home = () => {
   )
 }
 
-Home.propTypes = {}
+Registration.propTypes = {}
 
-export default Home
+export default Registration

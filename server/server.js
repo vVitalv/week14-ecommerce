@@ -8,6 +8,7 @@ import axios from 'axios'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
+import { readFile, writeFile } from 'fs/promises'
 
 import mongooseService from './services/mongoose'
 import passportJWT from './services/passport.js'
@@ -15,8 +16,6 @@ import User from './model/user.model'
 import Product from './model/product.model'
 import config from './config'
 import Html from '../client/html'
-
-const { readFile, writeFile } = require('fs').promises
 
 const Root = () => ''
 
@@ -41,44 +40,44 @@ middleware.forEach((it) => server.use(it))
 passport.use('jwt', passportJWT.jwt)
 
 server.get('/api/v1/card', async (req, res) => {
-  const currentPage_Header = Number(req.get('currentPage'))
-  const cardsOnPage_Header = Number(req.get('cardsOnPage'))
+  const currentPage = Number(req.get('currentPage'))
+  const cardsOnPage = Number(req.get('cardsOnPage'))
 
   try {
-    const product = await Product.find({})
-      .skip(cardsOnPage_Header * currentPage_Header)
-      .limit(cardsOnPage_Header)
-    res.status(200).send(product)
+    const productsData = await Product.find({})
+      .skip(cardsOnPage * currentPage)
+      .limit(cardsOnPage)
+    res.status(200).send({ status: 'ok', productsData })
   } catch (e) {
     res.send({ status: 'error', message: 'DB access error', errorMessage: e.message })
   }
 })
 
 server.get('/api/v1/sorting', async (req, res) => {
-  const sortType_Header = req.get('sortType')
-  const currentPage_Header = Number(req.get('currentPage'))
-  const cardsOnPage_Header = Number(req.get('cardsOnPage'))
-  let sortType
-  switch (sortType_Header) {
+  const sortType = req.get('sortType')
+  const currentPage = Number(req.get('currentPage'))
+  const cardsOnPage = Number(req.get('cardsOnPage'))
+  let mongoSorting
+  switch (sortType) {
     case 'AZ':
-      sortType = { title: 1 }
+      mongoSorting = { title: 1 }
       break
     case 'ZA':
-      sortType = { title: -1 }
+      mongoSorting = { title: -1 }
       break
     case 'up':
-      sortType = { price: 1 }
+      mongoSorting = { price: 1 }
       break
     case 'low':
-      sortType = { price: -1 }
+      mongoSorting = { price: -1 }
   }
 
   try {
     const productDataSorted = await Product.find({})
-      .sort(sortType)
-      .skip(cardsOnPage_Header * currentPage_Header)
-      .limit(cardsOnPage_Header)
-    res.status(200).send(productDataSorted)
+      .sort(mongoSorting)
+      .skip(cardsOnPage * currentPage)
+      .limit(cardsOnPage)
+    res.status(200).send({ status: 'ok', productDataSorted })
   } catch (e) {
     res.send({ status: 'error', message: 'DB sorting error', errorMessage: e.message })
   }
@@ -106,28 +105,37 @@ server.get('/api/v1/currency', async (req, res) => {
         symbols: 'AUD,BRL,CAD,CNY,CZK,EUR,GBP,JPY,KZT,RUB,USD'
       }
     })
-    res.status(200).send(data.rates)
+    const { rates } = data
+    res.status(200).send({ status: 'ok', rates })
   } catch (e) {
     res.send({ status: 'error', message: 'Getting currencies error', errorMessage: e.message })
   }
 })
 
-server.get('/api/v1/log', async (req, res) => {
-  await readFile(`${__dirname}/data/log.json`, 'utf8')
-    .then((logArr) => res.status(200).send(logArr))
-    .catch((e) =>
-      res.send({ status: 'error', message: 'Reading logs error', errorMessage: e.message })
-    )
+server.get('/api/v1/log', (req, res) => {
+  try {
+    readFile(`${__dirname}/data/log.json`, 'utf8').then((data) => {
+      const logsArr = JSON.parse(data)
+      res.status(200).send({ status: 'ok', logsArr })
+    })
+  } catch (e) {
+    res.send({ status: 'error', message: 'Reading logs error', errorMessage: e.message })
+  }
 })
 
-server.post('/api/v1/log', async (req, res) => {
-  await readFile(`${__dirname}/data/log.json`, 'utf8')
-    .then((data) => {
-      const logs = JSON.parse(data)
-      writeFile(`${__dirname}/data/log.json`, JSON.stringify([...logs, req.body]), 'utf8')
+server.post('/api/v1/log', (req, res) => {
+  try {
+    readFile(`${__dirname}/data/log.json`, 'utf8').then((data) => {
+      const logsArr = JSON.parse(data)
+      writeFile(`${__dirname}/data/log.json`, JSON.stringify([...logsArr, req.body]), 'utf8').then(
+        () => {
+          res.status(200).send({ status: 'ok', message: 'Log created' })
+        }
+      )
     })
-    .then(() => res.status(200).send({ message: 'Log created' }))
-    .catch((e) => res.send({ status: 'error', message: 'Log post error', errorMessage: e.message }))
+  } catch (e) {
+    res.send({ status: 'error', message: 'Log post error', errorMessage: e.message })
+  }
 })
 
 server.post('/api/v1/regist', async (req, res) => {
@@ -157,11 +165,12 @@ server.post('/api/v1/auth', async (req, res) => {
 })
 
 server.delete('/api/v1/log', async (req, res) => {
-  await writeFile(`${__dirname}/data/log.json`, JSON.stringify([]), 'utf8')
-    .then(() => res.status(200).send({ message: 'Logs cleared' }))
-    .catch((e) =>
-      res.send({ status: 'error', message: 'Clearing logs error', errorMessage: e.message })
-    )
+  try {
+    await writeFile(`${__dirname}/data/log.json`, JSON.stringify([]), 'utf8')
+    res.status(200).send({ status: 'ok', message: 'Logs cleared' })
+  } catch (e) {
+    res.send({ status: 'error', message: 'Clearing logs error', errorMessage: e.message })
+  }
 })
 
 server.use('/api/', (req, res) => {
