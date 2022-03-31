@@ -1,13 +1,13 @@
 import Cookies from 'universal-cookie'
-import { history } from '..'
 
 const UPDATE_LOGIN = 'UPDATE_LOGIN'
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 const UPDATE_NAME = 'UPDATE_NAME'
 const LOGIN = 'LOGIN'
+const LOGOUT = 'LOGOUT'
+const AUTH_ERR = 'AUTH_ERR'
 const REGIST_ERR = 'REGIST_ERR'
 const LOGIN_ERR = 'LOGIN_ERR'
-const CREATED = 'CREATED'
 
 const cookies = new Cookies()
 
@@ -17,7 +17,7 @@ const initialState = {
   name: '',
   token: cookies.get('token'),
   user: {},
-  created: '',
+  authErrMessage: '',
   registErrMessage: '',
   loginErrMessage: ''
 }
@@ -36,14 +36,17 @@ export default (state = initialState, action) => {
     case LOGIN: {
       return { ...state, token: action.token, password: '', user: action.user }
     }
+    case LOGOUT: {
+      return { ...state, token: action.token, user: action.user }
+    }
     case REGIST_ERR: {
       return { ...state, registErrMessage: action.registErrMessage }
     }
     case LOGIN_ERR: {
       return { ...state, loginErrMessage: action.loginErrMessage }
     }
-    case CREATED: {
-      return { ...state, created: action.created }
+    case AUTH_ERR: {
+      return { ...state, authErrMessage: action.authErrMessage }
     }
     default:
       return state
@@ -87,7 +90,6 @@ export function signIn() {
           }, 5000)
         } else {
           dispatch({ type: LOGIN, token: data.token, user: data.user })
-          history.push('/private')
         }
       })
   }
@@ -121,9 +123,34 @@ export function register() {
             })
           }, 5000)
         } else {
-          dispatch({ type: CREATED, created: data.status })
-          history.push('/private')
+          dispatch({
+            type: REGIST_ERR,
+            registErrMessage: `${data.message}. Sign in please`
+          })
         }
       })
+  }
+}
+
+export function trySignIn() {
+  return (dispatch) => {
+    fetch('/api/v1/auth')
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.status === 'error') {
+          dispatch({
+            type: AUTH_ERR,
+            authErrMessage: `${data.message}: ${data.errorMessage}`
+          })
+        } else {
+          dispatch({ type: LOGIN, token: data.token, user: data.user })
+        }
+      })
+  }
+}
+
+export function logOut() {
+  return (dispatch) => {
+    dispatch({ type: LOGOUT, token: '', user: {} })
   }
 }

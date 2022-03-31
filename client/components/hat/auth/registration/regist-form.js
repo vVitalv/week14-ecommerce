@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import {
   updateLoginField,
@@ -9,8 +10,17 @@ import {
 } from '../../../../redux/reducers/auth'
 
 const RegistrationForm = () => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const { email, password, name, registErrMessage } = useSelector((store) => store.auth)
+  useEffect(() => {
+    if (registErrMessage === 'New user created. Sign in please') {
+      setTimeout(() => {
+        history.push('/')
+      }, 3000)
+    }
+    return () => {}
+  })
 
   return (
     <div className="registration">

@@ -4,12 +4,14 @@ import { useDispatch } from 'react-redux'
 
 import { getCardData } from '../redux/reducers/cardData'
 import { getCurrency } from '../redux/reducers/currency'
+import { trySignIn } from '../redux/reducers/auth'
 
 const Startup = (props) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCurrency())
     dispatch(getCardData(0))
+    dispatch(trySignIn())
     return () => {}
   }, [dispatch])
 

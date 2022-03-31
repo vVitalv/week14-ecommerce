@@ -144,9 +144,24 @@ server.post('/api/v1/regist', async (req, res) => {
     const user = new User(req.body)
     await user.save()
 
-    res.status(200).send({ message: 'New user created' })
+    res.status(200).send({ status: 'ok', message: 'New user created' })
   } catch (e) {
     res.send({ status: 'error', message: 'Creating user error', errorMessage: e.message })
+  }
+})
+
+server.get('/api/v1/auth', async (req, res) => {
+  try {
+    const jwtUser = jwt.verify(req.cookies.token, config.secret)
+    const user = await User.findById(jwtUser.uid)
+
+    const payload = { uid: user.id }
+    const token = jwt.sign(payload, config.secret, { expiresIn: '48h' })
+    delete user.password
+    res.cookie('token', token, { maxAge: 1000 * 60 * 60 * 48 })
+    res.status(200).send({ status: 'ok', token, user })
+  } catch (e) {
+    res.send({ status: 'error', message: 'Authentification error', errorMessage: e.message })
   }
 })
 
