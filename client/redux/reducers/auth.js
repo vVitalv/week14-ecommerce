@@ -1,6 +1,5 @@
 import Cookies from 'universal-cookie'
 import { history } from '..'
-import { setLog } from './log'
 
 const UPDATE_LOGIN = 'UPDATE_LOGIN'
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
@@ -80,8 +79,13 @@ export function signIn() {
       .then((data) => {
         if (data.status === 'error') {
           dispatch({ type: LOGIN_ERR, loginErrMessage: `${data.message}: ${data.errorMessage}` })
+          setTimeout(() => {
+            dispatch({
+              type: LOGIN_ERR,
+              loginErrMessage: ''
+            })
+          }, 5000)
         } else {
-          setLog(`user ${email} has been logged in`)
           dispatch({ type: LOGIN, token: data.token, user: data.user })
           history.push('/private')
         }
@@ -110,8 +114,13 @@ export function register() {
             type: REGIST_ERR,
             registErrMessage: `${data.message}: ${data.errorMessage}`
           })
+          setTimeout(() => {
+            dispatch({
+              type: REGIST_ERR,
+              registErrMessage: ''
+            })
+          }, 5000)
         } else {
-          setLog(`user ${email} has been registered`)
           dispatch({ type: CREATED, created: data.status })
           history.push('/private')
         }

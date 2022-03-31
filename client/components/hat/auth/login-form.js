@@ -56,7 +56,9 @@ const LoginForm = (props) => {
               type="password"
               placeholder="******************"
             />
-            <p className="pass-field-p">{loginErrMessage}</p>
+            <div className="pass-field-err">
+              <p>{loginErrMessage}</p>
+            </div>
           </div>
           <div className="btn-field">
             <button
@@ -68,9 +70,12 @@ const LoginForm = (props) => {
             >
               Sign In
             </button>
-            <Link to="/login" className="btn-field-link">
-              Or go register
-            </Link>
+            <div className="btn-field-regist">
+              <p className="btn-field-p">Or go</p>
+              <p className="btn-field-link">
+                <Link to="/registration">register</Link>
+              </p>
+            </div>
           </div>
         </form>
       </div>

@@ -60,8 +60,10 @@ const RegistrationForm = () => {
             type="password"
             placeholder="******************"
           />
+          <div className="pass-field-err">
+            <p>{registErrMessage}</p>
+          </div>
         </div>
-        <p className="pass-field-p">{registErrMessage}</p>
         <div className="btn-field">
           <button
             className="btn-field-button"

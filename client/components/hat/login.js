@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createPortal } from 'react-dom'
 
-import LoginForm from './auth/auth-form'
+import LoginForm from './auth/login-form'
 
 const Login = () => {
   const [isPortalOpen, setPortalOpen] = useState(false)

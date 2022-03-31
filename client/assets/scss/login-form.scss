@@ -15,7 +15,7 @@
       }
     }
     .pass-field {
-      @apply mb-6;
+      @apply mb-2;
       .pass-field-label {
         @apply block text-gray-700 text-sm font-bold mb-2;
       }
@@ -26,8 +26,8 @@
         }
       }
     }
-    .pass-field-p {
-      @apply text-red-500 text-xs italic;
+    .pass-field-err {
+      @apply text-red-500 text-xs italic h-4;
     }
     .btn-field {
       @apply flex items-center justify-between;
@@ -40,12 +40,19 @@
           @apply bg-yellow-700;
         }
       }
-      .btn-field-link {
-        @apply text-gray-600;
-        &:hover {
-          @apply text-blue-500;
+      .btn-field-regist {
+        @apply flex-col px-6;
+        .btn-field-p {
+          @apply text-gray-700;
+        }
+        .btn-field-link {
+          @apply text-gray-600;
+          &:hover {
+            @apply text-blue-500;
+          }
         }
       }
+
     }
   }
 }
