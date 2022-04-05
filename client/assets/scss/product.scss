@@ -4,12 +4,12 @@
     @apply sm:w-1/2 rounded-t-xl sm:rounded-t-none sm:rounded-l-3xl;
   }
   .product-description {
-    @apply sm:w-1/2 pl-6 bg-gradient-to-b sm:bg-gradient-to-r from-yellow-500 to-yellow-300;
+    @apply sm:w-1/2 pl-6 bg-gradient-to-b sm:bg-gradient-to-r from-lime-500 to-slate-300;
     p {
       @apply text-base font-semibold;
     }
     .product-title {
-      @apply text-xl pt-6 sm:text-3xl md:text-5xl font-bold text-gray-800;
+      @apply text-xl pt-6 sm:text-3xl md:text-5xl font-bold text-gray-700;
     }
   }
 }

@@ -2,7 +2,7 @@
   @apply flex flex-wrap justify-center items-center max-w-6xl mt-36 mb-16;
 }
 .content-card {
-  @apply flex flex-col rounded-xl bg-yellow-500 font-bold text-gray-700 shadow-2xl m-2;
+  @apply flex flex-col rounded-xl bg-lime-500 font-bold text-gray-700 shadow-2xl m-2;
   a {
     .content-card-img {
       @apply object-cover h-52 w-80 rounded-t-xl;
@@ -25,9 +25,9 @@
 .amount-buttons {
   @apply inline-flex items-center sm:space-x-2 p-2;
   button {
-    @apply transition-colors duration-300 border-yellow-400 sm:border h-8 w-4 sm:w-8 rounded-xl text-xl font-bold text-gray-700;
+    @apply transition-colors duration-300 border-gray-500 sm:border h-8 w-4 sm:w-8 rounded-lg text-xl font-bold text-gray-700;
     &:hover {
-      @apply border-yellow-300;
+      @apply border-gray-700;
     }
     &:focus {
       @apply outline-none;

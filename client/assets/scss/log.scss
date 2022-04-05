@@ -1,5 +1,5 @@
 .log-underheader {
-  @apply h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75;
+  @apply h-8 bg-gradient-to-b from-lime-200 to-lime-100 opacity-75;
   .log-underheader-table {
     @apply table-fixed text-gray-700 font-bold w-full text-center;
     .log-underheader-thead {
@@ -17,7 +17,7 @@
   .log-table-tbody {
     @apply font-semibold;
     tr {
-      @apply border-b-4 border-yellow-300 rounded-3xl bg-yellow-200;
+      @apply border-b-4 border-zinc-200 rounded-3xl bg-lime-300;
       td {
         @apply w-1/2;
       }
@@ -25,11 +25,11 @@
   }
 }
 .log-table-button {
-  @apply text-xl font-semibold w-40 h-16 self-end bg-yellow-800 text-white rounded-xl m-6 mb-28;
+  @apply text-xl font-semibold w-40 h-16 self-end bg-yellow-700 text-lime-100 rounded-xl m-6 mb-28;
   &:focus {
     @apply outline-none;
   }
   &:hover {
-    @apply bg-yellow-700;
+    @apply bg-yellow-600;
   }
 }

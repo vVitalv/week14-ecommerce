@@ -1,5 +1,5 @@
 .header-panel {
-  @apply grid grid-cols-4 max-w-full bg-gradient-to-b from-yellow-900 to-yellow-600 p-2 sm:px-4 gap-2 items-center;
+  @apply grid grid-cols-4 max-w-full bg-gradient-to-b from-lime-300 to-lime-200 p-2 sm:px-4 gap-2 items-center;
 }
 
 .logo-link {
@@ -16,7 +16,7 @@
     @apply inline-flex flex-nowrap;
 
     .logo-letter {
-      @apply transition ease-out duration-300 text-2xl sm:text-4xl lg:text-6xl font-extrabold text-yellow-400;
+      @apply transition ease-out duration-300 text-2xl sm:text-4xl lg:text-6xl font-extrabold text-gray-500;
     }
     .logo-letter_red:hover {
       @apply text-red-500;
@@ -40,36 +40,39 @@
 }
 
 .login {
-  @apply opacity-50 justify-self-end sm:order-3;
-  &:hover {
-    @apply opacity-80;
-  }
+  @apply justify-self-end sm:order-3;
   .login-btn {
-    @apply font-bold text-white;
+    @apply font-bold text-gray-500;
+    &:hover {
+      @apply text-gray-400;
+    }
   }
 }
 
 .currency-panel {
   @apply inline-flex flex-nowrap col-span-2 sm:col-span-1 sm:row-span-2 sm:justify-self-center;
   .currency-panel-p {
-    @apply text-base font-bold text-white opacity-75;
+    @apply text-base font-bold text-gray-500;
   }
   .currency-panel-select {
-    @apply bg-yellow-200 rounded-sm mx-2 font-semibold text-gray-700;
+    @apply bg-lime-100 rounded-sm mx-2 font-semibold text-gray-500;
+      &:focus {
+        @apply outline-none;
+    }
   }
 }
 
 .basket-plate {
   @apply inline-flex items-center space-x-2 col-span-2 sm:col-span-1 sm:order-4 justify-self-end;
   .basket-plate-info {
-    @apply text-sm font-bold text-white opacity-75;
+    @apply text-sm font-bold text-gray-500;
   }
   .basket-plate-button {
     &:focus {
       @apply outline-none;
     }
     .basket-plate-amount {
-      @apply absolute font-bold text-xs text-white bg-blue-500 rounded-full w-5 h-4;
+      @apply absolute font-bold text-xs text-lime-100 bg-blue-500 rounded-full w-5 h-4;
     }
     .basket-plate-amount_invisible {
       @apply absolute invisible;
@@ -81,7 +84,7 @@
 }
 
 .underheader {
-  @apply inline-flex justify-between items-center h-8 bg-gradient-to-b from-yellow-600 to-yellow-300 opacity-75 px-2 sm:px-4;
+  @apply inline-flex justify-between items-center h-8 bg-gradient-to-b from-lime-200 to-lime-100 opacity-75 px-2 sm:px-4;
 
   .underheader-sort {
     @apply inline-flex space-x-4;
@@ -100,19 +103,19 @@
   }
   .search-field {
     .search-field-input {
-      @apply h-6 w-28 sm:w-48 opacity-50 bg-yellow-100 rounded-md pl-2;
+      @apply h-6 w-28 sm:w-48 text-gray-500 opacity-80 bg-lime-50 rounded-md pl-2;
       &:focus {
         @apply outline-none opacity-100;
       }
     }
     .search-field-button {
-      @apply ml-1
+      @apply ml-1 opacity-80;
     }
   }
 }
 
 .not-found-msg {
-  @apply fixed h-16 w-32 right-2 top-40 p-2 text-gray-700 font-semibold bg-amber-400 rounded-md border border-orange-400;
+  @apply fixed h-16 w-32 right-2 top-40 p-2 text-gray-700 font-semibold bg-lime-300 rounded-md border border-orange-200;
   animation: animate_msg 4s ease-in-out;
 }
 @keyframes animate_msg {
