@@ -1,5 +1,5 @@
 .registration {
-  @apply flex flex-col justify-center items-start w-full py-28 px-6 text-gray-700;
+  @apply flex flex-col justify-center items-start w-full py-28 px-6 text-gray-600 dark:text-gray-300;
   .registration-header {
     @apply font-bold text-lg mb-4;
   }
@@ -11,7 +11,7 @@
         @apply block text-sm font-bold mb-2;
       }
       .username-field-input {
-        @apply shadow appearance-none border rounded w-2/3 py-2 px-3 bg-lime-100 leading-tight;
+        @apply shadow appearance-none border rounded w-2/3 py-2 px-3 bg-lime-100 dark:bg-lime-200 dark:text-gray-500 leading-tight;
         &:focus {
           @apply outline-none;
         }
@@ -23,7 +23,7 @@
         @apply block text-sm font-bold mb-2;
       }
       .email-field-input {
-        @apply shadow appearance-none border rounded w-2/3 py-2 px-3 bg-lime-100 leading-tight;
+        @apply shadow appearance-none border rounded w-2/3 py-2 px-3 bg-lime-100 dark:bg-lime-200 dark:text-gray-500 leading-tight;
         &:focus {
           @apply outline-none;
         }
@@ -35,25 +35,25 @@
         @apply block text-sm font-bold mb-2;
       }
       .pass-field-input {
-        @apply shadow appearance-none border bg-lime-100 rounded w-2/3 py-2 px-3 mb-3 leading-tight;
+        @apply shadow appearance-none border bg-lime-100 dark:bg-lime-200 dark:text-gray-500 rounded w-2/3 py-2 px-3 mb-3 leading-tight;
         &:focus {
           @apply outline-none;
         }
       }
       .pass-field-err {
-        @apply text-red-500 text-xs italic h-4;
+        @apply text-red-500 dark:text-red-300 text-xs italic h-4;
       }
     }
 
     .btn-field {
       @apply flex items-center justify-between;
       .btn-field-button {
-        @apply bg-yellow-700 text-lime-100 font-bold py-2 px-4 rounded;
+        @apply bg-yellow-700 text-lime-100 dark:bg-yellow-800 dark:text-gray-300 font-bold py-2 px-4 rounded;
         &:focus {
           @apply outline-none;
         }
         &:hover {
-          @apply bg-yellow-600;
+          @apply bg-yellow-600 dark:bg-yellow-700;
         }
       }
     }

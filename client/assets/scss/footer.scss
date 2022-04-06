@@ -1,5 +1,5 @@
 .footer {
-  @apply flex fixed inset-x-0 bottom-0 justify-between items-center h-12 max-w-full text-base font-bold text-gray-500 bg-gradient-to-t from-lime-400 to-lime-300 px-4;
+  @apply flex fixed inset-x-0 bottom-0 justify-between items-center h-12 max-w-full text-base font-bold text-gray-500 dark:text-gray-200 bg-gradient-to-t from-lime-400 to-lime-300 dark:from-slate-900 dark:to-slate-700 px-4;
 }
 .footer_hide {
   @apply transition ease-in duration-500 opacity-20;

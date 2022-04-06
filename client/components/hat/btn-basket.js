@@ -37,7 +37,7 @@ const BasketButton = () => {
   return (
     <div className="basket-plate">
       <p className="basket-plate-info">{basketInfo}</p>
-      <button className="basket-plate-button" type="button" onClick={() => onClickFunc()}>
+      <button className="basket-plate-button" type="button" onClick={onClickFunc}>
         <div className={basketAmountVisible}>{basket.amount}</div>
         <img className="basket-plate-img" src={basketImg} alt="cart" />
       </button>

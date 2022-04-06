@@ -13,7 +13,7 @@
 @import "./footer.scss";
 
 body {
-  @apply bg-zinc-200 max-w-full h-auto;
+  @apply bg-zinc-200 dark:bg-gray-600 max-w-full h-auto;
 }
 header {
   @apply flex fixed flex-col max-w-full inset-x-0 top-0;
