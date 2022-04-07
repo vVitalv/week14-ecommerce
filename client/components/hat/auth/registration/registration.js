@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 import Head from '../../head'
-import HeaderWithoutUH from '../../header-without-UH'
+import Header from '../../header'
 import RegistrationForm from './regist-form'
 import Footer from '../../../foot/footer'
 import { setLog } from '../../../../redux/reducers/log'
@@ -17,7 +17,7 @@ const Registration = () => {
   return (
     <div className="body-section">
       <Head title="Registration" />
-      <HeaderWithoutUH />
+      <Header />
       <RegistrationForm />
       <Footer />
     </div>

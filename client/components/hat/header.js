@@ -1,21 +1,20 @@
 import React from 'react'
 
-import Logotype from './logotype'
-import Login from './login'
+import Logo from './SVG-logo'
+import Login from './auth/login'
 import CurrencyPanel from './panel-currency'
 import BasketButton from './btn-basket'
-import UnderHeader from './under-header'
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header>
       <div className="header-panel">
-        <Logotype />
+        <Logo />
         <Login />
         <CurrencyPanel />
         <BasketButton />
       </div>
-      <UnderHeader />
+      {props.UH ? props.UH() : null}
     </header>
   )
 }

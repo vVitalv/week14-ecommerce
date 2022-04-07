@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import SearchField from './search-field'
+import SearchField from './search/search-field'
 import { getSorted } from '../../redux/reducers/cardData'
 import { setLog } from '../../redux/reducers/log'
 import sortAZ from '../../assets/images/sort-AZ.png'

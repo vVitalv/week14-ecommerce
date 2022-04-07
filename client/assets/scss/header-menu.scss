@@ -1,5 +1,12 @@
 .header-panel {
-  @apply grid grid-cols-4 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 p-2 sm:px-4 gap-2 items-center;
+  @apply grid grid-cols-4 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 sm:px-4 items-center;
+}
+
+.logo-SVG {
+  @apply h-28 col-span-3 sm:col-span-2 sm:row-span-2;
+  .logo-text {
+    @apply font-sans text-8xl font-black;
+  }
 }
 
 .logo-link {

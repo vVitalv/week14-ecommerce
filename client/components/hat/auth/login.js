@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import LoginForm from './auth/login-form'
-import { logOut } from '../../redux/reducers/auth'
+import LoginForm from './login-form'
+import { logOut } from '../../../redux/reducers/auth'
 
 const Login = () => {
   const { user } = useSelector((store) => store.auth)

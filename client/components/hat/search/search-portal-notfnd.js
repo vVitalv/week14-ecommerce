@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { purgeSearch } from '../../redux/reducers/search'
+import { purgeSearch } from '../../../redux/reducers/search'
 
 const NotFoundPortal = () => {
   const dispatch = useDispatch()

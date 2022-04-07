@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import BasketHeader from './basket-header'
+import Header from '../hat/header'
 import Head from '../hat/head'
 import BasketStuff from './basket-stuff'
+import CartHeaderThead from './basket-header-thead'
 import Footer from '../foot/footer'
 import { setLog } from '../../redux/reducers/log'
 
@@ -13,23 +14,12 @@ const Basket = () => {
     dispatch(setLog(`navigate to ${window.location.pathname}`))
     return () => {}
   }, [dispatch])
-
-  const basketList = useSelector((store) => store.basket.basketList)
-  const basket = basketList.reduce(
-    (acc, rec) => {
-      return {
-        ...acc,
-        amount: acc.amount + rec.amount,
-        price: acc.price + rec.price * rec.amount
-      }
-    },
-    { amount: 0, price: 0 }
-  )
+  const underHeader = () => <CartHeaderThead />
 
   return (
     <div>
       <Head title="Cart" />
-      <BasketHeader amount={basket.amount} />
+      <Header UH={underHeader} />
       <BasketStuff />
       <Footer />
     </div>

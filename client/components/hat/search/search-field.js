@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom'
 import { createPortal } from 'react-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setSearch, getSearch, purgeSearch } from '../../redux/reducers/search'
-import { setLog } from '../../redux/reducers/log'
+import { setSearch, getSearch, purgeSearch } from '../../../redux/reducers/search'
+import { setLog } from '../../../redux/reducers/log'
 import NotFoundPortal from './search-portal-notfnd'
 
 const SearchField = () => {
