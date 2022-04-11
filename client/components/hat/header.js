@@ -2,6 +2,7 @@ import React from 'react'
 
 import Logo from './SVG-logo'
 import Login from './auth/login'
+import ThemeButton from './btn-theme'
 import CurrencyPanel from './panel-currency'
 import BasketButton from './btn-basket'
 
@@ -11,6 +12,7 @@ const Header = (props) => {
       <div className="header-panel">
         <Logo />
         <Login />
+        <ThemeButton />
         <CurrencyPanel />
         <BasketButton />
       </div>

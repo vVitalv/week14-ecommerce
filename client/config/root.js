@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
 
@@ -13,7 +13,6 @@ import Basket from '../components/cart/basket'
 import Search from '../components/hat/search/search'
 import Registration from '../components/hat/auth/registration/registration'
 import Logs from '../components/logs/logs'
-import PrivateComponent from '../components/private-route'
 import NotFound from '../components/404'
 
 import Startup from './startup'
@@ -24,21 +23,6 @@ const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
       <Redirect to={{ pathname: '/' }} />
     ) : (
       <Component {...props} />
-    )
-  return <Route {...rest} render={func} />
-}
-
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const auth = useSelector((s) => s.auth)
-  const func = (props) =>
-    !!auth.user && !!auth.token ? (
-      <Component {...props} />
-    ) : (
-      <Redirect
-        to={{
-          pathname: '/registration'
-        }}
-      />
     )
   return <Route {...rest} render={func} />
 }
@@ -64,9 +48,6 @@ const defaults = {
 }
 
 OnlyAnonymousRoute.propTypes = types
-PrivateRoute.propTypes = types
-
-PrivateRoute.defaultProps = defaults
 OnlyAnonymousRoute.defaultProps = defaults
 
 const RouterSelector = (props) =>
@@ -83,7 +64,6 @@ const RootComponent = (props) => {
             <Route exact path="/basket" component={() => <Basket />} />
             <Route exact path="/search" component={() => <Search />} />
             <Route exact path="/logs" component={() => <Logs />} />
-            <PrivateRoute exact path="/private" component={() => <PrivateComponent />} />
             <OnlyAnonymousRoute exact path="/registration" component={() => <Registration />} />
             <Route component={() => <NotFound />} />
           </Switch>

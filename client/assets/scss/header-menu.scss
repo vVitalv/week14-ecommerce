@@ -1,49 +1,16 @@
 .header-panel {
-  @apply grid grid-cols-4 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 sm:px-4 items-center;
+  @apply grid grid-cols-5 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 sm:px-4 items-center;
 }
 
 .logo-SVG {
   @apply h-28 col-span-3 sm:col-span-2 sm:row-span-2;
   .logo-text {
-    @apply font-sans text-8xl font-black;
+    @apply font-sans text-8xl font-black select-none text-orange-300;
   }
 }
 
-.logo-link {
-  @apply inline-flex items-center flex-nowrap space-x-2 col-span-3 sm:col-span-2 sm:row-span-2 w-min;
-
-  .logo {
-    @apply transition ease-in duration-500 transform md:opacity-70 lg:opacity-50 h-8 w-8 sm:h-14 sm:w-16;
-    &:hover {
-      @apply opacity-100 -translate-y-1 scale-110;
-    }
-  }
-
-  .logo-text {
-    @apply inline-flex flex-nowrap;
-
-    .logo-letter {
-      @apply transition ease-out duration-300 text-2xl sm:text-4xl lg:text-6xl font-extrabold;
-    }
-    .logo-letter_red:hover {
-      @apply text-red-500;
-    }
-    .logo-letter_indigo:hover {
-      @apply text-indigo-600;
-    }
-    .logo-letter_purple:hover {
-      @apply text-purple-500;
-    }
-    .logo-letter_green:hover {
-      @apply text-green-500;
-    }
-    .logo-letter_blue:hover {
-      @apply text-blue-500;
-    }
-    .logo-letter_pink:hover {
-      @apply text-pink-600;
-    }
-  }
+.theme-btn {
+  @apply h-12;
 }
 
 .login {

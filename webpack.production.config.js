@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { v4: uuidv4 } = require('uuid')
 
-const version = uuidv4().substr(0, 7)
+const version = uuidv4().substring(0, 7)
 
 const config = {
   optimization: {
@@ -135,7 +135,7 @@ const config = {
       Object.keys(process.env).reduce(
         (res, key) => ({ ...res, [key]: JSON.stringify(process.env[key]) }),
         {
-          APP_VERSION: uuidv4().substr(0, 7),
+          APP_VERSION: uuidv4().substring(0, 7),
           ENABLE_SOCKETS: process.env.ENABLE_SOCKETS || false
         }
       )

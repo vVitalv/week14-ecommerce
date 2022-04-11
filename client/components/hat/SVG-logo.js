@@ -3,11 +3,10 @@ import React from 'react'
 const Logo = () => {
   return (
     <svg className="logo-SVG" viewBox="0 0 630 120" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="10" width="620" height="100" rx="10" ry="10" fill="gray" />
       <text x="10" y="95" className="logo-text">
         MACCARONI
       </text>
-      <g stroke="purple" strokeWidth={2} fill="none" filter="url(#shadow2)">
+      <g className="logo-g" stroke="#831843" strokeWidth={2} fill="none">
         <path
           d="M 19,34
             v 58
@@ -108,7 +107,7 @@ const Logo = () => {
         />
       </g>
       <filter id="shadow2">
-        <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="purple" />
+        <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#f9a8d4" />
       </filter>
     </svg>
   )

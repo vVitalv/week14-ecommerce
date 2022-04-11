@@ -1,7 +1,7 @@
 {
-    "name": "e-commerce",
+    "name": "maccaroni",
     "version": "0.0.2",
-    "description": "E-commerce SkillCrucial-boiler",
+    "description": "Maccaroni E-commerce",
     "engines": {
         "node": "14.18.x",
         "yarn": "1.22.x"
@@ -27,9 +27,7 @@
         "watch:server": "nodemon --legacy-watch start.js --watch server --watch client --exec \"npm run lint:server  --scripts-prepend-node-path && node\"",
         "build:prod": "cross-env NODE_ENV=production webpack --config webpack.production.config.js --progress --profile --color",
         "build:ssr": "cross-env NODE_ENV=production webpack --config webpack.ssr.config.js --progress --profile --color",
-        "heroku-postbuild": "yarn run build:prod",
-        "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "heroku-postbuild": "yarn run build:prod"
     },
     "author": "",
     "license": "MIT",
