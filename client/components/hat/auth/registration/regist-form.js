@@ -8,6 +8,7 @@ import {
   updateNameField,
   register
 } from '../../../../redux/reducers/auth'
+import { setLog } from '../../../../redux/reducers/log'
 
 const RegistrationForm = () => {
   const history = useHistory()
@@ -15,6 +16,7 @@ const RegistrationForm = () => {
   const { email, password, name, registErrMessage } = useSelector((store) => store.auth)
   useEffect(() => {
     if (registErrMessage === 'New user created. Sign in please') {
+      dispatch(setLog('created'))
       setTimeout(() => {
         history.push('/')
       }, 3000)

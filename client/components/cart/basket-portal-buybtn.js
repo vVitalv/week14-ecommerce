@@ -11,7 +11,7 @@ const BuyBtnPortal = (props) => {
   const removeBacking = () => {
     props.setPortalOpen(false)
     history.push(`/`)
-    dispatch(setLog('donation sent'))
+    dispatch(setLog(`sent the donation of ${props.summaryCost} ${props.currency}`))
     dispatch(purgeCart())
   }
   const escapeModalOnKeyPress = (e) => {

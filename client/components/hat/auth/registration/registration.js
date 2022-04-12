@@ -10,7 +10,7 @@ import { setLog } from '../../../../redux/reducers/log'
 const Registration = () => {
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(setLog(`navigate to ${window.location.pathname}`))
+    dispatch(setLog(`navigated to ${window.location.pathname}`))
     return () => {}
   }, [dispatch])
 

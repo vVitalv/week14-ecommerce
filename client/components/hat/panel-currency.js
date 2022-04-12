@@ -11,7 +11,7 @@ const CurrencyPanel = () => {
   const changeCurrency = (e) => {
     const { selectedIndex, options } = e.target
     const selectedCurrency = options[selectedIndex].value
-    dispatch(setLog(`currency changed by ${selectedCurrency}`))
+    dispatch(setLog(`changed currency by ${selectedCurrency}`))
     dispatch(setCurrency(selectedCurrency))
   }
 

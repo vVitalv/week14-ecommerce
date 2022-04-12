@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getCardData, getSorted } from '../../redux/reducers/cardData'
+import { setLog } from '../../redux/reducers/log'
 
 const Pagination = () => {
   const dispatch = useDispatch()
@@ -14,7 +15,8 @@ const Pagination = () => {
 
   const changePageOnClick = (nextPage) => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
-    return dispatch(currentSortType ? getSorted(currentSortType, nextPage) : getCardData(nextPage))
+    dispatch(currentSortType ? getSorted(currentSortType, nextPage) : getCardData(nextPage))
+    dispatch(setLog(`gone to page ${nextPage}`))
   }
 
   return (

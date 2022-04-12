@@ -14,7 +14,7 @@ const UnderHeader = () => {
   const dispatch = useDispatch()
   const sortOnClick = (sortType) => {
     if (currentSortType !== sortType) {
-      dispatch(setLog(`products sorted by ${sortType}`))
+      dispatch(setLog(`sorted products by ${sortType}`))
       dispatch(getSorted(sortType, 0))
     }
   }

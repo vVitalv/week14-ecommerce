@@ -11,11 +11,11 @@ const Logo = () => {
     if (theme === 'lime') {
       document.documentElement.classList.add('dark')
       dispatch(changeTheme('dark'))
-      dispatch(setLog('theme changed to dark'))
+      dispatch(setLog('changed theme to dark'))
     } else {
       document.documentElement.classList.remove('dark')
       dispatch(changeTheme('lime'))
-      dispatch(setLog('theme changed to lime'))
+      dispatch(setLog('changed theme to lime'))
     }
   }
 
