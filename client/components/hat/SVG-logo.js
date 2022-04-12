@@ -1,8 +1,28 @@
 import React from 'react'
 
 const Logo = () => {
+  let theme = 'lime'
+  const toggleTheme = () => {
+    const logoNeon = document.querySelector('.logo-g')
+    const logoLamp = document.querySelector('.logo-lamp')
+    if (theme === 'lime') {
+      document.documentElement.classList.add('dark')
+      logoNeon.setAttribute('filter', 'url(#shadow3)')
+      logoLamp.setAttribute('filter', 'url(#shadow2)')
+      logoNeon.setAttribute('stroke', '#f9a8d4')
+      logoLamp.setAttribute('fill-opacity', '1')
+      theme = 'dark'
+    } else {
+      document.documentElement.classList.remove('dark')
+      logoNeon.removeAttribute('filter')
+      logoLamp.removeAttribute('filter')
+      logoNeon.setAttribute('stroke', '#831843')
+      logoLamp.setAttribute('fill-opacity', '0.2')
+      theme = 'lime'
+    }
+  }
   return (
-    <svg className="logo-SVG" viewBox="0 0 630 120" xmlns="http://www.w3.org/2000/svg">
+    <svg className="logo-SVG" viewBox="0 0 660 100" xmlns="http://www.w3.org/2000/svg">
       <text x="10" y="95" className="logo-text">
         MACCARONI
       </text>
@@ -106,8 +126,57 @@ const Logo = () => {
             "
         />
       </g>
+      <g cursor="pointer" onClick={toggleTheme}>
+        <path
+          stroke="black"
+          strokeWidth={2}
+          d="M 643,0
+            v 40
+            M 637, 44
+            A 1 1 0 0 1 649,44
+            v 8
+            h -12
+            z
+            "
+        />
+        <path
+          className="logo-lamp"
+          stroke="black"
+          fill="#fde047"
+          fillOpacity={0.2}
+          d="M 638,52
+          v 7
+          A 11 13 0 1 0 648,59
+          v -7
+          z
+          "
+        />
+        <path
+          stroke="gray"
+          fill="none"
+          d="M 642,52
+          l -3,23
+          l 2,-10
+          l 2,10
+          l 2,-10
+          l 2,10
+          l -3,-23
+          "
+        />
+      </g>
       <filter id="shadow2">
-        <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#f9a8d4" />
+        <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#fde047" />
+      </filter>
+      <filter id="shadow3">
+        <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#f9a8d4">
+          <animate
+            attributeName="stdDeviation"
+            values="2;4;2;3;4"
+            keyTimes="0; 0.1; 0.5; 0.75; 1"
+            dur="4s"
+            repeatCount="indefinite"
+          />
+        </feDropShadow>
       </filter>
     </svg>
   )

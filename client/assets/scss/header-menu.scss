@@ -1,20 +1,16 @@
 .header-panel {
-  @apply grid grid-cols-5 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 sm:px-4 items-center;
+  @apply grid grid-cols-4 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 px-2 sm:px-4 items-center;
 }
 
 .logo-SVG {
-  @apply h-28 col-span-3 sm:col-span-2 sm:row-span-2;
+  @apply h-10 sm:h-16 md:h-20 col-span-3 lg:col-span-2 lg:row-span-2 lg:mb-2;
   .logo-text {
     @apply font-sans text-8xl font-black select-none text-orange-300;
   }
 }
 
-.theme-btn {
-  @apply h-12;
-}
-
 .login {
-  @apply justify-self-end sm:order-3;
+  @apply justify-self-end lg:order-3;
   .login-btn {
     @apply font-bold;
     &:hover {
@@ -24,7 +20,7 @@
 }
 
 .currency-panel {
-  @apply inline-flex flex-nowrap col-span-2 sm:col-span-1 sm:row-span-2 sm:justify-self-center;
+  @apply inline-flex flex-nowrap col-span-2 lg:col-span-1 lg:row-span-2 lg:justify-self-center mb-2 ml-2;
   .currency-panel-p {
     @apply text-base font-bold;
   }
@@ -37,7 +33,7 @@
 }
 
 .basket-plate {
-  @apply inline-flex items-center space-x-2 col-span-2 sm:col-span-1 sm:order-4 justify-self-end;
+  @apply inline-flex items-center space-x-2 col-span-2 lg:col-span-1 lg:order-4 justify-self-end mb-2;
   .basket-plate-info {
     @apply text-sm font-bold;
   }
