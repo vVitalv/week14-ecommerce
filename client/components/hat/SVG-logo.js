@@ -1,32 +1,35 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { changeTheme } from '../../redux/reducers/theme'
+import { setLog } from '../../redux/reducers/log'
 
 const Logo = () => {
-  let theme = 'lime'
+  const dispatch = useDispatch()
+  const { theme } = useSelector((store) => store.theme)
   const toggleTheme = () => {
-    const logoNeon = document.querySelector('.logo-g')
-    const logoLamp = document.querySelector('.logo-lamp')
     if (theme === 'lime') {
       document.documentElement.classList.add('dark')
-      logoNeon.setAttribute('filter', 'url(#shadow3)')
-      logoLamp.setAttribute('filter', 'url(#shadow2)')
-      logoNeon.setAttribute('stroke', '#f9a8d4')
-      logoLamp.setAttribute('fill-opacity', '1')
-      theme = 'dark'
+      dispatch(changeTheme('dark'))
+      dispatch(setLog('theme changed to dark'))
     } else {
       document.documentElement.classList.remove('dark')
-      logoNeon.removeAttribute('filter')
-      logoLamp.removeAttribute('filter')
-      logoNeon.setAttribute('stroke', '#831843')
-      logoLamp.setAttribute('fill-opacity', '0.2')
-      theme = 'lime'
+      dispatch(changeTheme('lime'))
+      dispatch(setLog('theme changed to lime'))
     }
   }
+
   return (
     <svg className="logo-SVG" viewBox="0 0 660 100" xmlns="http://www.w3.org/2000/svg">
       <text x="10" y="95" className="logo-text">
         MACCARONI
       </text>
-      <g className="logo-g" stroke="#831843" strokeWidth={2} fill="none">
+      <g
+        stroke={theme === 'dark' ? '#f9a8d4' : '#831843'}
+        strokeWidth={2}
+        fill="none"
+        filter={theme === 'dark' ? 'url(#shadow3)' : ''}
+      >
         <path
           d="M 19,34
             v 58
@@ -140,10 +143,10 @@ const Logo = () => {
             "
         />
         <path
-          className="logo-lamp"
           stroke="black"
+          filter={theme === 'dark' ? 'url(#shadow2)' : ''}
           fill="#fde047"
-          fillOpacity={0.2}
+          fillOpacity={theme === 'dark' ? '1' : '0.2'}
           d="M 638,52
           v 7
           A 11 13 0 1 0 648,59
@@ -168,11 +171,11 @@ const Logo = () => {
         <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#fde047" />
       </filter>
       <filter id="shadow3">
-        <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#f9a8d4">
+        <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#f9a8d4">
           <animate
             attributeName="stdDeviation"
-            values="2;4;2;3;4"
-            keyTimes="0; 0.1; 0.5; 0.75; 1"
+            values="2;4;4;2"
+            keyTimes="0; 0.4; 0.6; 1"
             dur="4s"
             repeatCount="indefinite"
           />

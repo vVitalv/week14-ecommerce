@@ -7,6 +7,7 @@ import basket from './basket'
 import search from './search'
 import auth from './auth'
 import log from './log'
+import theme from './theme'
 
 const createRootReducer = (history) =>
   combineReducers({
@@ -16,7 +17,8 @@ const createRootReducer = (history) =>
     basket,
     search,
     auth,
-    log
+    log,
+    theme
   })
 
 export default createRootReducer

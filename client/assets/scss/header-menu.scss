@@ -5,7 +5,7 @@
 .logo-SVG {
   @apply h-10 sm:h-16 md:h-20 col-span-3 lg:col-span-2 lg:row-span-2 lg:mb-2;
   .logo-text {
-    @apply font-sans text-8xl font-black select-none text-orange-300;
+    @apply font-sans text-8xl font-black select-none;
   }
 }
 
@@ -25,7 +25,7 @@
     @apply text-base font-bold;
   }
   .currency-panel-select {
-    @apply bg-lime-100 dark:bg-lime-200 dark:text-gray-500 rounded-sm mx-2 font-semibold;
+    @apply bg-lime-100 dark:bg-lime-200 dark:text-gray-500 rounded-sm mx-2 font-semibold scale-75;
       &:focus {
         @apply outline-none;
     }
