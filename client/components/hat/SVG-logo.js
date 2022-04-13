@@ -23,16 +23,44 @@ const Logo = () => {
   return (
     <svg className="logo-SVG" viewBox="0 0 660 100" xmlns="http://www.w3.org/2000/svg">
       <Link to="/">
-        <text x="10" y="95" className="logo-text" stroke="gray" strokeWidth={3}>
-          MACCARONI
-        </text>
+        <g className="logo-text" stroke="gray" strokeWidth={3}>
+          <text id="m-letter" x="10" y="95">
+            M
+          </text>
+          <text id="a-letter" x="94" y="95">
+            A
+          </text>
+          <text id="c-letter" x="164" y="95">
+            C
+          </text>
+          <text id="c-letter2" x="233" y="95">
+            C
+          </text>
+          <text id="a-letter2" x="303" y="95">
+            A
+          </text>
+          <text id="r-letter" x="373" y="95">
+            R
+          </text>
+          <text id="o-letter" x="441" y="95">
+            O
+          </text>
+          <text id="n-letter" x="517" y="95">
+            N
+          </text>
+          <text id="i-letter" x="591" y="95">
+            I
+          </text>
+        </g>
         <g
+          className="logo-neon"
           stroke={theme === 'dark' ? '#f9a8d4' : '#831843'}
           strokeWidth={2}
           fill="none"
           filter={theme === 'dark' ? 'url(#shadow3)' : ''}
         >
           <path
+            id="m-letter-neon"
             d="M 19,34
             v 58
             h 11
@@ -53,7 +81,7 @@ const Logo = () => {
             "
           />
           <path
-            id="a-letter"
+            id="a-letter-neon"
             d="M 121,34
             l -22,58
             h 13
@@ -70,7 +98,7 @@ const Logo = () => {
             "
           />
           <path
-            id="c-letter"
+            id="c-letter-neon"
             d="M 226,46
             A 29 31 10 1 0 226,77
             l -11,-4
@@ -78,9 +106,10 @@ const Logo = () => {
             l 8,-2
             "
           />
-          <use href="#c-letter" x="69" />
-          <use href="#a-letter" x="209" />
+          <use id="c-letter2-neon" href="#c-letter-neon" x="69" />
+          <use id="a-letter2-neon" href="#a-letter-neon" x="209" />
           <path
+            id="r-letter-neon"
             d="M 383,34
             v 58
             h 13
@@ -100,6 +129,7 @@ const Logo = () => {
             "
           />
           <path
+            id="o-letter-neon"
             d="M 462,60
             A 17 23 0 1 1 462,64
             M 449,60
@@ -107,6 +137,7 @@ const Logo = () => {
             "
           />
           <path
+            id="n-letter-neon"
             d="M 527,34
             v 58
             h 11
@@ -123,6 +154,7 @@ const Logo = () => {
             "
           />
           <path
+            id="i-letter-neon"
             d="M 603,34
             v 58
             h 12
@@ -132,13 +164,22 @@ const Logo = () => {
           />
         </g>
       </Link>
-      <g cursor="pointer" onClick={toggleTheme}>
+      <path
+        fill="none"
+        stroke="black"
+        strokeWidth={2}
+        d="M 643,0
+            v 3
+            A 1 4 0 0 0 642,15
+            A 1 3 0 0 1 643,35
+            v 3
+            "
+      />
+      <g cursor="pointer" stroke="gray" onClick={toggleTheme}>
         <path
           stroke="black"
           strokeWidth={2}
-          d="M 643,0
-            v 40
-            M 637, 44
+          d="M 637, 44
             A 1 1 0 0 1 649,44
             v 8
             h -12
@@ -146,7 +187,6 @@ const Logo = () => {
             "
         />
         <path
-          stroke="black"
           filter={theme === 'dark' ? 'url(#shadow2)' : ''}
           fill="#fde047"
           fillOpacity={theme === 'dark' ? '1' : '0.2'}
@@ -156,9 +196,16 @@ const Logo = () => {
           v -7
           z
           "
-        />
+        >
+          <animate
+            attributeName="fill-opacity"
+            begin="mouseover"
+            to="1"
+            dur="0.3s"
+            repeatCount="3"
+          />
+        </path>
         <path
-          stroke="gray"
           fill="none"
           d="M 642,52
           l -3,23

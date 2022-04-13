@@ -9,6 +9,13 @@
     font-family: sans-serif;
     font-size: 90px;
   }
+  .logo-neon {
+    &>* {
+      &:hover {
+        @apply transition-colors stroke-rose-200 duration-300 ;
+      }
+    }
+  }
 }
 
 .login {
