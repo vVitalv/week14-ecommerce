@@ -1,11 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { updateLoginField, updatePasswordField, signIn } from '../../../redux/reducers/auth'
+import { setLog } from '../../../redux/reducers/log'
 
 const LoginForm = (props) => {
   const dispatch = useDispatch()
-  const { email, password, loginErrMessage } = useSelector((store) => store.auth)
+  const { email, password, token, loginErrMessage } = useSelector((store) => store.auth)
+  useEffect(() => {
+    if (token) {
+      dispatch(setLog('logged in'))
+      props.setPortalOpen(false)
+    }
+    return () => {}
+  })
   const escapeModalOnKeyPress = (e) => {
     if (e.key === 'Escape') {
       props.setPortalOpen(false)

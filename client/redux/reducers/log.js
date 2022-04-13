@@ -45,7 +45,7 @@ export function getLogs() {
 
 export function setLog(log) {
   return (dispatch, getState) => {
-    const { name } = getState().auth
+    const { name } = getState().auth.user
     fetch('/api/v1/log', {
       method: 'POST',
       headers: {
@@ -53,7 +53,7 @@ export function setLog(log) {
       },
       body: JSON.stringify({
         time: new Date().toLocaleString(),
-        action: `${name ? 'User' + name : 'Unknow user'} has ${log}`
+        action: `${name ? `User ${name}` : 'Unknown user'} has ${log}`
       })
     })
       .then((res) => res.json())
