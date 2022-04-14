@@ -19,9 +19,11 @@ const Logo = () => {
       dispatch(setLog('changed theme to lime'))
     }
   }
+  const neonFilter = theme === 'dark' ? 'url(#shadow3)' : ''
+  const lampFilter = theme === 'dark' ? 'url(#shadow2)' : ''
 
   return (
-    <svg className="logo-SVG" viewBox="0 0 660 100" xmlns="http://www.w3.org/2000/svg">
+    <svg className="logo-SVG" viewBox="0 0 670 100" xmlns="http://www.w3.org/2000/svg">
       <Link to="/">
         <g>
           <text id="m-letter" x="10" y="95">
@@ -29,6 +31,7 @@ const Logo = () => {
           </text>
           <path
             id="m-letter-neon"
+            filter={neonFilter}
             d="M 19,34
             v 58
             h 11
@@ -49,14 +52,13 @@ const Logo = () => {
             "
           />
         </g>
-      </Link>
-      <Link to="/">
         <g>
           <text id="a-letter" x="94" y="95">
             A
           </text>
           <path
             id="a-letter-neon"
+            filter={neonFilter}
             d="M 121,34
             l -22,58
             h 13
@@ -73,14 +75,13 @@ const Logo = () => {
             "
           />
         </g>
-      </Link>
-      <Link to="/">
         <g>
           <text id="c-letter" x="164" y="95">
             C
           </text>
           <path
             id="c-letter-neon"
+            filter={neonFilter}
             d="M 226,46
             A 29 31 10 1 0 226,77
             l -11,-4
@@ -89,14 +90,13 @@ const Logo = () => {
             "
           />
         </g>
-      </Link>
-      <Link to="/">
         <g>
           <text id="c-letter2" x="233" y="95">
             C
           </text>
           <path
             id="c-letter2-neon"
+            filter={neonFilter}
             d="M 295,46
             A 29 31 10 1 0 295,77
             l -11,-4
@@ -105,14 +105,13 @@ const Logo = () => {
             "
           />
         </g>
-      </Link>
-      <Link to="/">
         <g>
           <text id="a-letter2" x="303" y="95">
             A
           </text>
           <path
             id="a-letter2-neon"
+            filter={neonFilter}
             d="M 330,34
             l -22,58
             h 13
@@ -129,14 +128,13 @@ const Logo = () => {
             "
           />
         </g>
-      </Link>
-      <Link to="/">
         <g>
           <text id="r-letter" x="373" y="95">
             R
           </text>
           <path
             id="r-letter-neon"
+            filter={neonFilter}
             d="M 383,34
             v 58
             h 13
@@ -156,14 +154,13 @@ const Logo = () => {
             "
           />
         </g>
-      </Link>
-      <Link to="/">
         <g>
           <text id="o-letter" x="441" y="95">
             O
           </text>
           <path
             id="o-letter-neon"
+            filter={neonFilter}
             d="M 462,60
             A 17 23 0 1 1 462,64
             M 449,60
@@ -171,14 +168,13 @@ const Logo = () => {
             "
           />
         </g>
-      </Link>
-      <Link to="/">
         <g>
           <text id="n-letter" x="517" y="95">
             N
           </text>
           <path
             id="n-letter-neon"
+            filter={neonFilter}
             d="M 527,34
             v 58
             h 11
@@ -195,14 +191,13 @@ const Logo = () => {
             "
           />
         </g>
-      </Link>
-      <Link to="/">
         <g>
           <text id="i-letter" x="591" y="95">
             I
           </text>
           <path
             id="i-letter-neon"
+            filter={neonFilter}
             d="M 603,34
             v 58
             h 12
@@ -214,18 +209,18 @@ const Logo = () => {
       </Link>
       <path
         className="lamp-wire"
-        d="M 643,0
+        d="M 653,0
             v 3
-            A 1 4 0 0 0 642,15
-            A 1 3 0 0 1 643,35
+            A 1 4 0 0 0 652,15
+            A 1 3 0 0 1 653,35
             v 3
             "
       />
       <g className="lamp" onClick={toggleTheme}>
         <path
           className="lamp-socket"
-          d="M 637, 44
-            A 1 1 0 0 1 649,44
+          d="M 647, 44
+            A 1 1 0 0 1 659,44
             v 8
             h -12
             z
@@ -233,16 +228,17 @@ const Logo = () => {
         />
         <path
           className="lamp-bulb"
-          d="M 638,52
+          filter={lampFilter}
+          d="M 648,52
           v 7
-          A 11 13 0 1 0 648,59
+          A 11 13 0 1 0 658,59
           v -7
           z
           "
         />
         <path
           className="lamp-glower"
-          d="M 642,52
+          d="M 652,52
           l -3,23
           l 2,-10
           l 2,10
@@ -259,9 +255,9 @@ const Logo = () => {
         <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#f9a8d4">
           <animate
             attributeName="stdDeviation"
-            values="2;4;4;2"
+            values="2;4;3;3"
             keyTimes="0; 0.4; 0.6; 1"
-            dur="4s"
+            dur="2s"
             repeatCount="indefinite"
           />
         </feDropShadow>

@@ -4,44 +4,37 @@
 
 .logo-SVG {
   @apply h-10 sm:h-16 md:h-20 col-span-3 lg:col-span-2 lg:row-span-2 lg:mb-2;
-  &>a {
-    &>g {
-      &>text {
-        @apply font-black select-none stroke-gray-400 stroke-2;
-        font-family: sans-serif;
-        font-size: 90px;
-      }
+  &>a>g {
+    &>text {
+      @apply font-black font-[sans-serif] text-[90px] select-none stroke-gray-400 stroke-[3];
+    }
+    &>path {
+      @apply stroke-pink-900 dark:stroke-pink-300 fill-[none] stroke-2;
+    }
+    &:hover {
       &>path {
-        @apply stroke-pink-900 dark:stroke-pink-300 stroke-2;
-        fill: none;
-      }
-      &:hover {
-        &>path {
-          @apply transition-colors stroke-pink-300 duration-300;
-        }
+        @apply transition-colors stroke-pink-300 duration-300 dark:stroke-blue-300;
       }
     }
   }
   .lamp-wire {
-    @apply stroke-black stroke-2;
-    fill: none;
+    @apply stroke-black fill-[none] stroke-2;
   }
   .lamp {
     @apply cursor-pointer;
     &:hover {
       .lamp-bulb {
-        @apply opacity-100;
+        @apply [fill-opacity:0.8] dark:[fill-opacity:1];
       }
     }
     .lamp-socket {
       @apply stroke-black stroke-2;
     }
     .lamp-bulb {
-      @apply fill-yellow-300 stroke-gray-500 opacity-40 dark:opacity-100;
+      @apply fill-yellow-300 stroke-gray-500 [fill-opacity:0.4] dark:[fill-opacity:1];
     }
     .lamp-glower {
-      @apply stroke-gray-500;
-      fill: none;
+      @apply stroke-gray-500 fill-[none];
     }
   }
 }
