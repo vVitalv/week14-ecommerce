@@ -23,42 +23,10 @@ const Logo = () => {
   return (
     <svg className="logo-SVG" viewBox="0 0 660 100" xmlns="http://www.w3.org/2000/svg">
       <Link to="/">
-        <g className="logo-text" stroke="gray" strokeWidth={3}>
+        <g>
           <text id="m-letter" x="10" y="95">
             M
           </text>
-          <text id="a-letter" x="94" y="95">
-            A
-          </text>
-          <text id="c-letter" x="164" y="95">
-            C
-          </text>
-          <text id="c-letter2" x="233" y="95">
-            C
-          </text>
-          <text id="a-letter2" x="303" y="95">
-            A
-          </text>
-          <text id="r-letter" x="373" y="95">
-            R
-          </text>
-          <text id="o-letter" x="441" y="95">
-            O
-          </text>
-          <text id="n-letter" x="517" y="95">
-            N
-          </text>
-          <text id="i-letter" x="591" y="95">
-            I
-          </text>
-        </g>
-        <g
-          className="logo-neon"
-          stroke={theme === 'dark' ? '#f9a8d4' : '#831843'}
-          strokeWidth={2}
-          fill="none"
-          filter={theme === 'dark' ? 'url(#shadow3)' : ''}
-        >
           <path
             id="m-letter-neon"
             d="M 19,34
@@ -80,6 +48,13 @@ const Logo = () => {
             h -17
             "
           />
+        </g>
+      </Link>
+      <Link to="/">
+        <g>
+          <text id="a-letter" x="94" y="95">
+            A
+          </text>
           <path
             id="a-letter-neon"
             d="M 121,34
@@ -97,6 +72,13 @@ const Logo = () => {
             l -9,-30
             "
           />
+        </g>
+      </Link>
+      <Link to="/">
+        <g>
+          <text id="c-letter" x="164" y="95">
+            C
+          </text>
           <path
             id="c-letter-neon"
             d="M 226,46
@@ -106,8 +88,53 @@ const Logo = () => {
             l 8,-2
             "
           />
-          <use id="c-letter2-neon" href="#c-letter-neon" x="69" />
-          <use id="a-letter2-neon" href="#a-letter-neon" x="209" />
+        </g>
+      </Link>
+      <Link to="/">
+        <g>
+          <text id="c-letter2" x="233" y="95">
+            C
+          </text>
+          <path
+            id="c-letter2-neon"
+            d="M 295,46
+            A 29 31 10 1 0 295,77
+            l -11,-4
+            A 17 23 4 1 1 284,50
+            l 8,-2
+            "
+          />
+        </g>
+      </Link>
+      <Link to="/">
+        <g>
+          <text id="a-letter2" x="303" y="95">
+            A
+          </text>
+          <path
+            id="a-letter2-neon"
+            d="M 330,34
+            l -22,58
+            h 13
+            l 3,-12
+            h 29
+            l 3,12
+            h 13
+            l -22,-58
+            h -12
+            M 336,42
+            l -9,30
+            h 24
+            l -9,-30
+            "
+          />
+        </g>
+      </Link>
+      <Link to="/">
+        <g>
+          <text id="r-letter" x="373" y="95">
+            R
+          </text>
           <path
             id="r-letter-neon"
             d="M 383,34
@@ -128,6 +155,13 @@ const Logo = () => {
             h -8
             "
           />
+        </g>
+      </Link>
+      <Link to="/">
+        <g>
+          <text id="o-letter" x="441" y="95">
+            O
+          </text>
           <path
             id="o-letter-neon"
             d="M 462,60
@@ -136,6 +170,13 @@ const Logo = () => {
             A 30 31 0 1 1 449,64
             "
           />
+        </g>
+      </Link>
+      <Link to="/">
+        <g>
+          <text id="n-letter" x="517" y="95">
+            N
+          </text>
           <path
             id="n-letter-neon"
             d="M 527,34
@@ -153,6 +194,13 @@ const Logo = () => {
             h -8
             "
           />
+        </g>
+      </Link>
+      <Link to="/">
+        <g>
+          <text id="i-letter" x="591" y="95">
+            I
+          </text>
           <path
             id="i-letter-neon"
             d="M 603,34
@@ -165,9 +213,7 @@ const Logo = () => {
         </g>
       </Link>
       <path
-        fill="none"
-        stroke="black"
-        strokeWidth={2}
+        className="lamp-wire"
         d="M 643,0
             v 3
             A 1 4 0 0 0 642,15
@@ -175,10 +221,9 @@ const Logo = () => {
             v 3
             "
       />
-      <g cursor="pointer" stroke="gray" onClick={toggleTheme}>
+      <g className="lamp" onClick={toggleTheme}>
         <path
-          stroke="black"
-          strokeWidth={2}
+          className="lamp-socket"
           d="M 637, 44
             A 1 1 0 0 1 649,44
             v 8
@@ -187,26 +232,16 @@ const Logo = () => {
             "
         />
         <path
-          filter={theme === 'dark' ? 'url(#shadow2)' : ''}
-          fill="#fde047"
-          fillOpacity={theme === 'dark' ? '1' : '0.2'}
+          className="lamp-bulb"
           d="M 638,52
           v 7
           A 11 13 0 1 0 648,59
           v -7
           z
           "
-        >
-          <animate
-            attributeName="fill-opacity"
-            begin="mouseover"
-            to="1"
-            dur="0.3s"
-            repeatCount="3"
-          />
-        </path>
+        />
         <path
-          fill="none"
+          className="lamp-glower"
           d="M 642,52
           l -3,23
           l 2,-10
