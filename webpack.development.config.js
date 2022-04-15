@@ -28,6 +28,7 @@ const config = {
   devServer: {
     hot: true,
     open: true,
+    compress: true,
     static: {
       directory: resolve(__dirname, 'dist/assets'),
       watch: true
@@ -39,7 +40,8 @@ const config = {
       overlay: {
         warnings: false,
         errors: true
-      }
+      },
+      progress: true
     },
     proxy: [
       {
@@ -149,7 +151,6 @@ const config = {
       },
       { parallel: 100 }
     ),
-
     new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(

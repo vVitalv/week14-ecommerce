@@ -35,20 +35,21 @@ export function setCurrency(currency) {
 
 export function getCurrency() {
   return (dispatch) => {
-    fetch('/api/v1/currency')
+    fetch(
+      'https://api.exchangerate.host/latest?base=USD&symbols=AUD,BRL,CAD,CNY,CZK,EUR,GBP,JPY,KZT,RUB,USD'
+    )
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === 'error') {
-          dispatch({
-            type: CURRENCY_ERR,
-            currencyErrMessage: `${data.message}: ${data.errorMessage}`
-          })
-        } else {
-          dispatch({
-            type: GET_CURRENCY,
-            rates: data.rates
-          })
-        }
+        dispatch({
+          type: GET_CURRENCY,
+          rates: data.rates
+        })
+      })
+      .catch((e) => {
+        dispatch({
+          type: CURRENCY_ERR,
+          currencyErrMessage: `Getting currencies error: ${e.message}`
+        })
       })
   }
 }

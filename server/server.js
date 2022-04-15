@@ -4,7 +4,6 @@ import cors from 'cors'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
-import axios from 'axios'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
@@ -92,23 +91,6 @@ server.put('/api/v1/search', async (req, res) => {
     res.status(200).send(searchData)
   } catch (e) {
     res.send({ status: 'error', message: 'DB search error', errorMessage: e.message })
-  }
-})
-
-server.get('/api/v1/currency', async (req, res) => {
-  try {
-    const { data } = await axios({
-      method: 'get',
-      baseURL: 'https://api.exchangerate.host/latest',
-      params: {
-        base: 'USD',
-        symbols: 'AUD,BRL,CAD,CNY,CZK,EUR,GBP,JPY,KZT,RUB,USD'
-      }
-    })
-    const { rates } = data
-    res.status(200).send({ status: 'ok', rates })
-  } catch (e) {
-    res.send({ status: 'error', message: 'Getting currencies error', errorMessage: e.message })
   }
 })
 
