@@ -26,11 +26,28 @@ const Logo = () => {
     <svg className="logo-SVG" viewBox="0 0 670 100" xmlns="http://www.w3.org/2000/svg">
       <Link to="/">
         <g>
-          <text id="m-letter" x="10" y="95">
-            M
-          </text>
+          <path
+            className="letter"
+            id="m-letter"
+            d="M 15,30
+            v 66
+            h 20
+            v -36
+            l 9,36
+            h 17
+            l 9,-36
+            v 36
+            h 20
+            v -66
+            h -29
+            l -9,38
+            l -9,-38
+            z
+            "
+          />
           <path
             id="m-letter-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 19,34
             v 58
@@ -53,11 +70,27 @@ const Logo = () => {
           />
         </g>
         <g>
-          <text id="a-letter" x="94" y="95">
-            A
-          </text>
+          <path
+            className="letter"
+            id="a-letter"
+            d="M 118,30
+            l -25,66
+            h 24
+            l 3,-12
+            h 20
+            l 3,12
+            h 24
+            l -25,-66
+            z
+            M 130,46
+            l -6,22
+            h 12
+            z
+            "
+          />
           <path
             id="a-letter-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 121,34
             l -22,58
@@ -76,11 +109,19 @@ const Logo = () => {
           />
         </g>
         <g>
-          <text id="c-letter" x="164" y="95">
-            C
-          </text>
+          <path
+            id="c-letter"
+            className="letter"
+            d="M 232,48
+            A 34 36 10 1 0 232,75
+            l -19,-7
+            A 12 18 3 1 1 213,54
+            z
+            "
+          />
           <path
             id="c-letter-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 226,46
             A 29 31 10 1 0 226,77
@@ -91,11 +132,19 @@ const Logo = () => {
           />
         </g>
         <g>
-          <text id="c-letter2" x="233" y="95">
-            C
-          </text>
+          <path
+            id="c-letter2"
+            className="letter"
+            d="M 300,48
+            A 34 36 10 1 0 300,75
+            l -19,-7
+            A 12 18 3 1 1 281,54
+            z
+            "
+          />
           <path
             id="c-letter2-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 295,46
             A 29 31 10 1 0 295,77
@@ -106,11 +155,27 @@ const Logo = () => {
           />
         </g>
         <g>
-          <text id="a-letter2" x="303" y="95">
-            A
-          </text>
+          <path
+            className="letter"
+            id="a-letter2"
+            d="M 327,30
+            l -25,66
+            h 24
+            l 3,-12
+            h 20
+            l 3,12
+            h 24
+            l -25,-66
+            z
+            M 339,46
+            l -6,22
+            h 12
+            z
+            "
+          />
           <path
             id="a-letter2-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 330,34
             l -22,58
@@ -129,11 +194,30 @@ const Logo = () => {
           />
         </g>
         <g>
-          <text id="r-letter" x="373" y="95">
-            R
-          </text>
+          <path
+            className="letter"
+            id="r-letter"
+            d="M 378,30
+            v 66
+            h 23
+            v -25
+            A 13 11 40 0 1 410,81
+            l 9,15
+            h 28
+            l -7,-12
+            A 18 6 60 0 0 428,67
+            A 21 20 10 0 0 424,30
+            z
+            M 401,45
+            v 11
+            h 12
+            A 11 7 10 0 0 413,45
+            z
+            "
+          />
           <path
             id="r-letter-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 383,34
             v 58
@@ -155,11 +239,20 @@ const Logo = () => {
           />
         </g>
         <g>
-          <text id="o-letter" x="441" y="95">
-            O
-          </text>
+          <path
+            className="letter"
+            id="o-letter"
+            d="M 466,60
+            A 13 20 0 1 1 466,64
+            z
+            M 444,60
+            A 35 35 0 1 1 444,64
+            z
+        "
+          />
           <path
             id="o-letter-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 462,60
             A 17 23 0 1 1 462,64
@@ -169,11 +262,25 @@ const Logo = () => {
           />
         </g>
         <g>
-          <text id="n-letter" x="517" y="95">
-            N
-          </text>
+          <path
+            id="n-letter"
+            className="letter"
+            d="M 522,30
+            v 66
+            h 21
+            v -34
+            l 22,35
+            h 21
+            v -66
+            h -21
+            v 34
+            l -22,-35
+            z
+            "
+          />
           <path
             id="n-letter-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 527,34
             v 58
@@ -192,11 +299,19 @@ const Logo = () => {
           />
         </g>
         <g>
-          <text id="i-letter" x="591" y="95">
-            I
-          </text>
+          <path
+            id="i-letter"
+            className="letter"
+            d="M 598,30
+            v 66
+            h 22
+            v -66
+            z
+            "
+          />
           <path
             id="i-letter-neon"
+            className="letter-neon"
             filter={neonFilter}
             d="M 603,34
             v 58
