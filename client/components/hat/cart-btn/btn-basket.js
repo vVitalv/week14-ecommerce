@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import BasketEmpty from './SVG-basket-empty'
+import BasketEmpty from './SVG-basket'
 
 const BasketButton = () => {
   const history = useHistory()
