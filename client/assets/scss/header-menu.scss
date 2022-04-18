@@ -6,17 +6,17 @@
   @apply h-10 sm:h-16 md:h-20 col-span-3 lg:col-span-2 lg:row-span-2 lg:mb-2;
   &>a>g {
     .letter {
-      @apply fill-black [fill-rule:evenodd] stroke-gray-400 stroke-[3];
+      @apply transition-colors duration-300 fill-black [fill-rule:evenodd] stroke-gray-400 stroke-[3];
     }
     .letter-neon {
-      @apply stroke-pink-900 dark:stroke-pink-300 fill-[none] stroke-2;
+      @apply transition-colors duration-300 stroke-pink-900 dark:stroke-pink-300 fill-[none] stroke-2;
     }
     &:hover {
       .letter-neon {
-        @apply transition-colors stroke-pink-300 duration-300 dark:stroke-blue-300;
+        @apply stroke-pink-300 dark:stroke-blue-300;
       }
       .letter {
-        @apply transition-colors stroke-pink-200 duration-300 dark:stroke-blue-400;
+        @apply stroke-pink-200 dark:stroke-blue-400;
       }
     }
   }
@@ -102,8 +102,20 @@
       &:focus {
         @apply outline-none opacity-70 dark:opacity-100;
       }
-      img {
-        @apply h-4 w-6 dark:invert;
+      .sorting-SVG {
+        @apply h-6 dark:invert;
+        .sort-letter {
+          @apply text-5xl font-black fill-black;
+        }
+        .sort-price {
+          @apply text-7xl font-bold fill-black;
+        }
+        .sort-path {
+          @apply fill-[none] stroke-black [stroke-width:10];
+        }
+        .sort-stair {
+          @apply stroke-black [stroke-width:15] [stroke-linecap:round];
+        }
       }
     }
   }

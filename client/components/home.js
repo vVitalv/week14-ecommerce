@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import Head from './hat/head'
 import Header from './hat/header'
-import UnderHeader from './hat/under-header'
+import UnderHeader from './hat/underhead/under-header'
 import Content from './content/content'
 import Footer from './foot/footer'
 import { setLog } from '../redux/reducers/log'
