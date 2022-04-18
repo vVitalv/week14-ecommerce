@@ -2,8 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import basket_empty from '../../assets/images/basket-empty.png'
-import basket_full from '../../assets/images/basket-full.png'
+import BasketEmpty from './SVG-basket-empty'
 
 const BasketButton = () => {
   const history = useHistory()
@@ -23,10 +22,7 @@ const BasketButton = () => {
   const basketInfo =
     basket.amount === 0
       ? 'Cart empty'
-      : `total ${(basket.price * rates[currency]).toFixed(2)} ${currency}`
-  const basketImg = basket.amount > 0 ? basket_full : basket_empty
-  const basketAmountVisible =
-    basket.amount === 0 ? 'basket-plate-amount_invisible' : 'basket-plate-amount'
+      : `Total ${(basket.price * rates[currency]).toFixed(2)} ${currency}`
   const onClickFunc = () => {
     if (basketList.length) {
       history.push('/basket')
@@ -38,8 +34,8 @@ const BasketButton = () => {
     <div className="basket-plate">
       <p className="basket-plate-info">{basketInfo}</p>
       <button className="basket-plate-button" type="button" onClick={onClickFunc}>
-        <div className={basketAmountVisible}>{basket.amount}</div>
-        <img className="basket-plate-img" src={basketImg} alt="cart" />
+        {basket.amount !== 0 ? <div className="basket-plate-amount">{basket.amount}</div> : null}
+        <BasketEmpty basketAmount={basket.amount} />
       </button>
     </div>
   )

@@ -84,7 +84,7 @@ export function removeFromCart(product) {
   }
 }
 
-export function sortBy(type) {
+export function sortCart(type) {
   return (dispatch, getState) => {
     const { basketList, sorting } = getState().basket
     const sortedList = [...basketList]

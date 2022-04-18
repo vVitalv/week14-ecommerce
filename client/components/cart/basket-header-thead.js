@@ -1,14 +1,14 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { sortBy } from '../../redux/reducers/basket'
+import { sortCart } from '../../redux/reducers/basket'
 import { setLog } from '../../redux/reducers/log'
 
 const CartHeaderThead = () => {
   const dispatch = useDispatch()
   const sortOnClick = (type) => {
     dispatch(setLog(`sorted the cart by ${type}`))
-    dispatch(sortBy(type))
+    dispatch(sortCart(type))
   }
 
   return (
