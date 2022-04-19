@@ -32,11 +32,11 @@ const BasketButton = () => {
 
   return (
     <div className="basket-plate">
-      <p className="basket-plate-info">{basketInfo}</p>
       <button className="basket-plate-button" type="button" onClick={onClickFunc}>
         {basket.amount !== 0 ? <div className="basket-plate-amount">{basket.amount}</div> : null}
         <BasketEmpty basketAmount={basket.amount} />
       </button>
+      <p className="basket-plate-info">{basketInfo}</p>
     </div>
   )
 }

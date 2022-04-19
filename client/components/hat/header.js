@@ -10,9 +10,9 @@ const Header = (props) => {
     <header>
       <div className="header-panel">
         <Logo />
+        <BasketButton />
         <Login />
         <CurrencyPanel />
-        <BasketButton />
       </div>
       {props.UH ? props.UH() : null}
     </header>

@@ -43,7 +43,7 @@
 }
 
 .login {
-  @apply justify-self-end lg:order-3;
+  @apply lg:justify-self-end;
   .login-btn {
     @apply font-bold;
     &:hover {
@@ -53,12 +53,12 @@
 }
 
 .currency-panel {
-  @apply inline-flex flex-nowrap col-span-2 lg:col-span-1 lg:row-span-2 lg:justify-self-center mb-2 ml-2;
+  @apply flex lg:justify-self-end flex-nowrap;
   .currency-panel-p {
-    @apply text-base font-bold;
+    @apply text-base font-bold mr-2;
   }
   .currency-panel-select {
-    @apply bg-lime-100 dark:bg-lime-200 dark:text-gray-500 rounded-sm mx-2 font-semibold scale-75;
+    @apply bg-lime-100 dark:bg-lime-200 dark:text-gray-500 rounded-sm font-semibold sm:scale-75 lg:scale-100;
       &:focus {
         @apply outline-none;
     }
@@ -66,19 +66,16 @@
 }
 
 .basket-plate {
-  @apply inline-flex items-center col-span-2 lg:col-span-1 lg:order-4 justify-self-end;
-  .basket-plate-info {
-    @apply text-sm font-bold mr-2;
-  }
+  @apply flex flex-col items-center row-span-2;
   .basket-plate-button {
     &:focus {
       @apply outline-none;
     }
     .basket-plate-amount {
-      @apply absolute font-extrabold right-2 text-xs text-fuchsia-500 h-4 z-10 bg-gray-200 rounded-sm bg-opacity-60;
+      @apply absolute font-extrabold right-2 text-xs text-fuchsia-500 h-5 w-5 z-10 bg-gray-200 rounded-full bg-opacity-60 dark:bg-opacity-30;
     }
     .basket-SVG {
-      @apply opacity-50 dark:opacity-80 h-8 w-8 dark:invert;
+      @apply opacity-50 dark:opacity-80 h-12 dark:invert;
       .basket-empty {
         @apply stroke-black stroke-[8] fill-[none] [stroke-linejoin:bevel] [stroke-linecap:round];
       }
@@ -89,6 +86,9 @@
         @apply opacity-70 dark:opacity-90;
       }
     }
+  }
+  .basket-plate-info {
+    @apply text-sm font-bold;
   }
 }
 
