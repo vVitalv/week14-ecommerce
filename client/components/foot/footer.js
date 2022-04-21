@@ -9,6 +9,7 @@ const Footer = () => {
     window.onscroll = () => {
       setScroll(window.scrollY)
     }
+    return () => {}
   }, [])
 
   footerClassName =

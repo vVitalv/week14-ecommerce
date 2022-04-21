@@ -20,11 +20,12 @@ const ProdDescription = (props) => {
   const product = productData || productInCart || productInSearch
   const onePieceCost = (product.price * rates[currency]).toFixed(2)
   const totalCost = (onePieceCost * (productInCart ? productInCart.amount : 0)).toFixed(2)
+  const enlargedImg = product.image.replace(/w=320/i, 'w=600').replace(/h=208/i, 'h=400')
 
   return (
     <main>
       <div className="product">
-        <img src={product.image} alt={product.title} className="product-image" />
+        <img src={enlargedImg} alt={product.title} className="product-image" />
         <div className="product-description">
           <p className="product-title">{product.title}</p>
           <br />

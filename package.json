@@ -107,6 +107,7 @@
         "redux": "^4.1.0",
         "redux-devtools-extension": "^2.13.9",
         "redux-thunk": "^2.3.0",
+        "sharp": "0.27.2",
         "sockjs": "^0.3.24",
         "sockjs-client": "^1.6.0",
         "universal-cookie": "^4.0.4",

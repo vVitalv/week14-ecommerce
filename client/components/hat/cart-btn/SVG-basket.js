@@ -22,8 +22,14 @@ const BasketEmpty = (props) => {
       <g className="basket-prod">
         {props.basketAmount > 0 && props.basketAmount < 10 ? (
           <path
-            d="M 66,46
-            A 2 6 10 0 1 90,46
+            d="M 56,46
+            A 2 5 10 0 1 90,46
+            M 75,25
+            A 5 1 10 0 0 88,28
+            A 2 1 10 0 0 75,25
+            M 71,38
+            A 5 1 10 0 0 88,40
+            A 2 1 10 0 0 71,38
             "
           />
         ) : null}
