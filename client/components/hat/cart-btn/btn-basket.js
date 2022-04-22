@@ -32,7 +32,7 @@ const BasketButton = () => {
 
   return (
     <div className="basket-plate">
-      <button className="basket-plate-button" type="button" onClick={onClickFunc}>
+      <button className="basket-plate-button" type="button" onClick={onClickFunc} aria-label="cart">
         {basket.amount !== 0 ? <div className="basket-plate-amount">{basket.amount}</div> : null}
         <BasketEmpty basketAmount={basket.amount} />
       </button>

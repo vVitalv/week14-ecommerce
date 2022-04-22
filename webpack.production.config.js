@@ -38,6 +38,7 @@ const config = {
     }
   },
   output: {
+    clean: true,
     filename: 'js/[name].bundle.js',
     path: resolve(__dirname, 'dist/assets'),
     publicPath: '/',
@@ -56,6 +57,10 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          cacheDirectory: true
+        },
         exclude: /node_modules/
       },
       {
@@ -101,18 +106,8 @@ const config = {
     new CopyWebpackPlugin(
       {
         patterns: [
-          { from: 'assets/images', to: 'images' },
-          { from: 'assets/fonts', to: 'fonts' },
-
           { from: 'assets/sitemap.xml', to: 'sitemap.xml' },
           { from: 'assets/manifest.json', to: 'manifest.json' },
-          {
-            from: 'install-sw.js',
-            to: 'js/install-sw.js',
-            transform: (content) => {
-              return content.toString().replace(/APP_VERSION/g, version)
-            }
-          },
           { from: 'assets/robots.txt', to: 'robots.txt' },
           { from: 'vendors', to: 'vendors' },
           {
@@ -120,13 +115,6 @@ const config = {
             to: 'html.js',
             transform: (content) => {
               return content.toString().replace(/COMMITHASH/g, version)
-            }
-          },
-          {
-            from: 'sw.js',
-            to: 'sw.js',
-            transform: (content) => {
-              return content.toString().replace(/APP_VERSION/g, version)
             }
           }
         ]
@@ -144,14 +132,13 @@ const config = {
       },
       threshold: 10240,
       minRatio: 0.8,
-      deleteOriginalAssets: false
+      deleteOriginalAssets: true
     }),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(
         (res, key) => ({ ...res, [key]: JSON.stringify(process.env[key]) }),
         {
-          APP_VERSION: uuidv4().substring(0, 7),
-          ENABLE_SOCKETS: process.env.ENABLE_SOCKETS || false
+          APP_VERSION: uuidv4().substring(0, 7)
         }
       )
     )

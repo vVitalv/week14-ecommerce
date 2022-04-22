@@ -58,7 +58,7 @@
     @apply text-sm lg:text-base font-bold mr-2;
   }
   .currency-panel-select {
-    @apply bg-lime-100 dark:bg-lime-200 dark:text-gray-500 rounded-sm font-semibold scale-75 lg:scale-100;
+    @apply bg-lime-100 dark:bg-lime-200 text-gray-600 dark:text-gray-700 rounded-sm font-semibold scale-75 lg:scale-100;
       &:focus {
         @apply outline-none;
     }

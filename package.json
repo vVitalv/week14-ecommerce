@@ -26,7 +26,6 @@
         "next:build": "next",
         "watch:server": "nodemon --legacy-watch start.js --watch server --watch client --exec \"npm run lint:server  --scripts-prepend-node-path && node\"",
         "build:prod": "cross-env NODE_ENV=production webpack --config webpack.production.config.js --progress --profile --color",
-        "build:ssr": "cross-env NODE_ENV=production webpack --config webpack.ssr.config.js --progress --profile --color",
         "heroku-postbuild": "yarn run build:prod"
     },
     "author": "",
@@ -71,7 +70,6 @@
         "@babel/register": "^7.17.7",
         "@babel/runtime": "^7.17.9",
         "@emotion/babel-plugin": "^11.9.2",
-        "axios": "^0.26.1",
         "babel-core": "7.0.0-bridge.0",
         "babel-eslint": "10.1.0",
         "babel-jest": "^27.5.1",
@@ -107,9 +105,6 @@
         "redux": "^4.1.0",
         "redux-devtools-extension": "^2.13.9",
         "redux-thunk": "^2.3.0",
-        "sharp": "0.27.2",
-        "sockjs": "^0.3.24",
-        "sockjs-client": "^1.6.0",
         "universal-cookie": "^4.0.4",
         "uuid": "^8.3.2"
     },
@@ -121,7 +116,6 @@
         "css-loader": "^5.2.6",
         "css-minimizer-webpack-plugin": "^3.0.2",
         "cssnano": "^5.0.6",
-        "emotion-theming": "^11.0.0",
         "eslint": "^7.30.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-config-prettier": "^8.3.0",

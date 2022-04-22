@@ -21,16 +21,40 @@ const UnderHeader = () => {
   return (
     <div className="underheader">
       <div className="underheader-sort">
-        <button type="button" className="underheader-sort-btn" onClick={() => sortOnClick('AZ')}>
+        <button
+          type="button"
+          className="underheader-sort-btn"
+          onClick={() => sortOnClick('AZ')}
+          aria-label="A-Z sorting"
+          aria-pressed={currentSortType === 'AZ'}
+        >
           <AZSorting />
         </button>
-        <button type="button" className="underheader-sort-btn" onClick={() => sortOnClick('ZA')}>
+        <button
+          type="button"
+          className="underheader-sort-btn"
+          onClick={() => sortOnClick('ZA')}
+          aria-label="Z-A sorting"
+          aria-pressed={currentSortType === 'ZA'}
+        >
           <ZASorting />
         </button>
-        <button type="button" className="underheader-sort-btn" onClick={() => sortOnClick('up')}>
+        <button
+          type="button"
+          className="underheader-sort-btn"
+          onClick={() => sortOnClick('up')}
+          aria-label="ascending price sorting"
+          aria-pressed={currentSortType === 'up'}
+        >
           <UpSorting />
         </button>
-        <button type="button" className="underheader-sort-btn" onClick={() => sortOnClick('low')}>
+        <button
+          type="button"
+          className="underheader-sort-btn"
+          onClick={() => sortOnClick('low')}
+          aria-label="descending price sorting"
+          aria-pressed={currentSortType === 'low'}
+        >
           <LowSorting />
         </button>
       </div>

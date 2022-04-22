@@ -23,8 +23,13 @@ const Logo = () => {
   const lampFilter = theme === 'dark' ? 'url(#shadow2)' : ''
 
   return (
-    <svg className="logo-SVG" viewBox="0 0 670 100" xmlns="http://www.w3.org/2000/svg">
-      <Link to="/">
+    <svg
+      className="logo-SVG"
+      viewBox="0 0 670 100"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="MACCARONI logotype"
+    >
+      <Link to="/" aria-label="home">
         <g>
           <path
             className="letter"

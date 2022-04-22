@@ -18,6 +18,7 @@ const config = {
     }
   },
   output: {
+    clean: true,
     filename: 'js/[name].bundle.js',
     path: resolve(__dirname, 'dist/assets'),
     publicPath: '/',
@@ -40,16 +41,14 @@ const config = {
       overlay: {
         warnings: false,
         errors: true
-      },
-      progress: true
+      }
     },
     proxy: [
       {
-        context: ['/api', '/auth', '/ws'],
+        context: ['/api', '/auth'],
         target: 'http://localhost:8090',
         secure: false,
-        changeOrigin: true,
-        ws: process.env.ENABLE_SOCKETS || false
+        changeOrigin: true
       }
     ]
   },
@@ -59,7 +58,8 @@ const config = {
         test: /\.(js|jsx)$/i,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env']
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          cacheDirectory: true
         },
         include: [/client/, /stories/],
         exclude: /node_modules/
@@ -118,33 +118,15 @@ const config = {
     new CopyWebpackPlugin(
       {
         patterns: [
-          { from: `${__dirname}/client/assets/images`, to: 'images' },
-          { from: `${__dirname}/client/assets/fonts`, to: 'fonts' },
-
+          { from: `${__dirname}/client/assets/robots.txt`, to: 'robots.txt' },
           { from: `${__dirname}/client/assets/sitemap.xml`, to: 'sitemap.xml' },
           { from: `${__dirname}/client/assets/manifest.json`, to: 'manifest.json' },
           { from: `${__dirname}/client/index.html`, to: 'index.html' },
-
-          {
-            from: `${__dirname}/client/install-sw.js`,
-            to: 'js/install-sw.js',
-            transform: (content) => {
-              return content.toString().replace(/APP_VERSION/g, version)
-            }
-          },
-          { from: `${__dirname}/client/assets/robots.txt`, to: 'robots.txt' },
           {
             from: `${__dirname}/client/html.js`,
             to: 'html.js',
             transform: (content) => {
               return content.toString().replace(/COMMITHASH/g, version)
-            }
-          },
-          {
-            from: `${__dirname}/client/sw.js`,
-            to: 'sw.js',
-            transform: (content) => {
-              return content.toString().replace(/APP_VERSION/g, version)
             }
           }
         ]
@@ -156,8 +138,7 @@ const config = {
       Object.keys(process.env).reduce(
         (res, key) => ({ ...res, [key]: JSON.stringify(process.env[key]) }),
         {
-          APP_VERSION: uuidv4().substring(0, 7),
-          ENABLE_SOCKETS: JSON.stringify(process.env.ENABLE_SOCKETS || false)
+          APP_VERSION: uuidv4().substring(0, 7)
         }
       )
     ),

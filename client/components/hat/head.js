@@ -6,8 +6,12 @@ const Head = (props) => (
   <Helmet>
     <title>Maccaroni - {props.title}</title>
     <meta charSet="utf-8" />
+    <meta name="description" content="Maccaroni shop" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#FF0000" />
+    <meta content="true" name="HandheldFriendly" />
+    <meta content="width" name="MobileOptimized" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name="theme-color" content="#bef264" />
   </Helmet>
 )
 
@@ -16,7 +20,7 @@ Head.propTypes = {
 }
 
 Head.defaultProps = {
-  title: 'skillcrucial'
+  title: 'Maccaroni'
 }
 
 export default Head

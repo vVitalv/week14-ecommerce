@@ -1,7 +1,6 @@
 import express from 'express'
 import path from 'path'
 import cors from 'cors'
-import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
 import cookieParser from 'cookie-parser'
@@ -17,8 +16,6 @@ import config from './config'
 import Html from '../client/html'
 
 const Root = () => ''
-
-let connections = []
 
 const port = process.env.PORT || 8090
 const server = express()
@@ -203,18 +200,6 @@ server.get('/*', (req, res) => {
   )
 })
 
-const app = server.listen(port)
+server.listen(port)
 
-if (config.isSocketsEnabled) {
-  const echo = sockjs.createServer()
-  echo.on('connection', (conn) => {
-    connections.push(conn)
-    conn.on('data', async () => {})
-
-    conn.on('close', () => {
-      connections = connections.filter((c) => c.readyState !== 3)
-    })
-  })
-  echo.installHandlers(app, { prefix: '/ws' })
-}
 console.log(`Serving at http://localhost:${port}`)
