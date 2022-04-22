@@ -375,7 +375,7 @@ const Logo = () => {
         <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#f9a8d4">
           <animate
             attributeName="stdDeviation"
-            values="2;4;3;3"
+            values="2;4;3;1"
             keyTimes="0; 0.4; 0.6; 1"
             dur="2s"
             repeatCount="indefinite"

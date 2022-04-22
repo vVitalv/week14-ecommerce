@@ -38,7 +38,6 @@ const config = {
     }
   },
   output: {
-    clean: true,
     filename: 'js/[name].bundle.js',
     path: resolve(__dirname, 'dist/assets'),
     publicPath: '/',
@@ -57,10 +56,6 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-          cacheDirectory: true
-        },
         exclude: /node_modules/
       },
       {
@@ -132,7 +127,7 @@ const config = {
       },
       threshold: 10240,
       minRatio: 0.8,
-      deleteOriginalAssets: true
+      deleteOriginalAssets: false
     }),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(
