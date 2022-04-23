@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import LazyLoad from 'react-lazyload'
+
 import AmountPanel from './panel-amount'
 
 const Card = (props) => {
@@ -10,7 +12,9 @@ const Card = (props) => {
   return (
     <div className="content-card">
       <Link to={`/product/${productData.id}`}>
-        <img className="content-card-img" src={productData.image} alt={productData.title} />
+        <LazyLoad height={208} once offset={100}>
+          <img className="content-card-img" src={productData.image} alt={productData.title} />
+        </LazyLoad>
         <div className="content-card-title">{productData.title}</div>
         <div className="content-card-description">{productData.description}</div>
       </Link>

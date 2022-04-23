@@ -11,7 +11,7 @@ const Startup = (props) => {
   useEffect(() => {
     dispatch(getCurrency())
     dispatch(getCardData(0))
-    dispatch(trySignIn())
+    setTimeout(() => dispatch(trySignIn()), 5000)
     return () => {}
   }, [dispatch])
 

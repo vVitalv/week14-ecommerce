@@ -1,8 +1,9 @@
 {
-  "name": "SkillCrucial.com",
-  "short_name": "SC",
-  "theme_color": "#8bd8bd",
-  "background_color": "#243665",
+  "name": "Maccaroni",
+  "short_name": "Macc",
+  "icons": "/images/icon.svg",
+  "theme_color": "#bef264",
+  "background_color": "#e4e4e7",
   "display": "browser",
   "scope": "/",
   "start_url": "/",

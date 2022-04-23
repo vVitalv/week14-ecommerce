@@ -10,6 +10,7 @@ const Html = ({ body }) => {
       <meta content='width' name='MobileOptimized'/>
       <meta content='yes' name='apple-mobile-web-app-capable'/>
       <meta name="theme-color" content="#bef264" />
+      <link rel="icon" href="images/icon.svg" sizes="any" type="image/svg+xml" />
       <link rel="stylesheet" type="text/css" href="/css/main.css" />
       <link rel="preload" href="https://api.exchangerate.host/latest?base=USD&symbols=AUD,BRL,CAD,CNY,CZK,EUR,GBP,JPY,KZT,RUB,USD" as="fetch" crossorigin="anonymous" />
       <link rel="preconnect" href="https://images.unsplash.com" />
