@@ -128,7 +128,7 @@ const config = {
       },
       threshold: 10240,
       minRatio: 0.8,
-      deleteOriginalAssets: false
+      deleteOriginalAssets: true
     }),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(
