@@ -12,7 +12,7 @@ const Card = (props) => {
   return (
     <div className="content-card">
       <Link to={`/product/${productData.id}`}>
-        <LazyLoad height={208} once offset={100}>
+        <LazyLoad height={208} once>
           <img className="content-card-img" src={productData.image} alt={productData.title} />
         </LazyLoad>
         <div className="content-card-title">{productData.title}</div>
