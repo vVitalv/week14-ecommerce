@@ -1,6 +1,5 @@
 import express from 'express'
 import path from 'path'
-import cors from 'cors'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
 import cookieParser from 'cookie-parser'
@@ -23,7 +22,6 @@ const server = express()
 mongooseService.connect()
 
 const middleware = [
-  cors(),
   express.static(path.resolve(__dirname, '../dist/assets')),
   express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }),
   express.json({ limit: '50mb', extended: true }),
