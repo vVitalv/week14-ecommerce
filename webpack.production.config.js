@@ -11,7 +11,6 @@ const version = uuidv4().substring(0, 7)
 
 const config = {
   optimization: {
-    minimize: true,
     minimizer: [
       '...',
       new CssMinimizerPlugin({

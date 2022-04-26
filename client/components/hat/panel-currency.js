@@ -19,6 +19,7 @@ const CurrencyPanel = () => {
     <div className="currency-panel">
       <p className="currency-panel-p">Currency:</p>
       <select
+        title="currency"
         className="currency-panel-select"
         defaultValue={currentCurrency}
         onChange={(e) => changeCurrency(e)}

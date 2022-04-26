@@ -334,6 +334,7 @@ const Logo = () => {
             A 1 4 0 0 0 652,15
             A 1 3 0 0 1 653,35
             v 3
+            v -35
             "
       />
       <g className="lamp" onClick={toggleTheme}>

@@ -1,4 +1,5 @@
 import express from 'express'
+import compression from 'compression'
 import path from 'path'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
@@ -22,6 +23,7 @@ const server = express()
 mongooseService.connect()
 
 const middleware = [
+  compression(),
   express.static(path.resolve(__dirname, '../dist/assets')),
   express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }),
   express.json({ limit: '50mb', extended: true }),
@@ -165,14 +167,9 @@ server.delete('/api/v1/log', async (req, res) => {
   }
 })
 
-server.use('/api/', (req, res) => {
-  res.status(404)
-  res.end()
-})
-
 const [htmlStart, htmlEnd] = Html({
   body: 'separator',
-  title: 'Skillcrucial - Become an IT HERO'
+  title: 'Maccaroni - Become an IT HERO'
 }).split('separator')
 
 server.get('/', (req, res) => {

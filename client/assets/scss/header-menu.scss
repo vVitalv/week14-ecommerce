@@ -6,22 +6,22 @@
   @apply h-10 sm:h-16 md:h-20 col-span-3 lg:col-span-2 lg:row-span-2;
   &>a>g {
     .letter {
-      @apply transition-colors duration-300 fill-black [fill-rule:evenodd] stroke-gray-400 opacity-70 stroke-[3];
+      @apply transition-colors duration-300 fill-yellow-700 dark:fill-neutral-900 [fill-rule:evenodd] stroke-stone-400 stroke-[3];
     }
     .letter-neon {
-      @apply transition-colors duration-300 stroke-pink-900 dark:stroke-pink-300 fill-[none] stroke-2;
+      @apply transition-colors duration-300 stroke-pink-800 dark:stroke-pink-300 fill-[none] stroke-2;
     }
     &:hover {
       .letter-neon {
         @apply stroke-pink-300 dark:stroke-blue-300;
       }
       .letter {
-        @apply stroke-pink-200 dark:stroke-blue-400;
+        @apply stroke-stone-300 dark:stroke-blue-300;
       }
     }
   }
   .lamp-wire {
-    @apply stroke-black fill-[none] stroke-2;
+    @apply stroke-neutral-600 fill-[none] stroke-2;
   }
   .lamp {
     @apply cursor-pointer;
