@@ -6,7 +6,7 @@
   @apply h-10 sm:h-16 md:h-20 col-span-3 lg:col-span-2 lg:row-span-2;
   &>a>g {
     .letter {
-      @apply transition-colors duration-300 fill-yellow-700 dark:fill-neutral-900 [fill-rule:evenodd] stroke-stone-400 stroke-[3];
+      @apply transition-colors duration-300 fill-yellow-800 dark:fill-neutral-900 [fill-rule:evenodd] stroke-stone-400 stroke-[3];
     }
     .letter-neon {
       @apply transition-colors duration-300 stroke-pink-800 dark:stroke-pink-300 fill-[none] stroke-2;

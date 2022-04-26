@@ -11,7 +11,9 @@ import { setLog } from '../redux/reducers/log'
 const Home = () => {
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(setLog(`navigated to ${window.location.pathname}`))
+    setTimeout(() => {
+      dispatch(setLog(`navigated to ${window.location.pathname}`))
+    }, 3000)
     return () => {}
   }, [dispatch])
   const underHeader = () => <UnderHeader />
