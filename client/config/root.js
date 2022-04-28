@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
-import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import store, { history } from '../redux'
 
@@ -50,13 +50,10 @@ const defaults = {
 OnlyAnonymousRoute.propTypes = types
 OnlyAnonymousRoute.defaultProps = defaults
 
-const RouterSelector = (props) =>
-  typeof window !== 'undefined' ? <ConnectedRouter {...props} /> : <StaticRouter {...props} />
-
 const RootComponent = (props) => {
   return (
     <Provider store={store}>
-      <RouterSelector history={history} location={props.location} context={props.context}>
+      <ConnectedRouter history={history} location={props.location} context={props.context}>
         <Startup>
           <Switch>
             <Route exact path="/" component={() => <Home />} />
@@ -68,7 +65,7 @@ const RootComponent = (props) => {
             <Route component={() => <NotFound />} />
           </Switch>
         </Startup>
-      </RouterSelector>
+      </ConnectedRouter>
     </Provider>
   )
 }

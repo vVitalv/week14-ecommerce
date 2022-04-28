@@ -8,7 +8,7 @@ import './assets/scss/main.scss'
 const target = document.getElementById('root')
 
 const render = (Component) => {
-  ;(module.hot ? ReactDOM.render : ReactDOM.hydrate)(
+  ReactDOM.render(
     <AppContainer>
       <Component />
     </AppContainer>,

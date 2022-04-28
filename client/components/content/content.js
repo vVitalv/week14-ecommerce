@@ -10,8 +10,8 @@ const Content = () => {
   return (
     <main>
       <div className="content">
-        {productList.map((product) => {
-          return <Card productData={product} key={product.id} />
+        {productList.map((product, index) => {
+          return <Card productData={product} productIndex={index} key={product.id} />
         })}
       </div>
       <Pagination />

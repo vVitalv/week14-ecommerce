@@ -45,7 +45,7 @@
 .login {
   @apply ml-2 lg:justify-self-end;
   .login-btn {
-    @apply text-sm lg:text-base font-bold whitespace-nowrap;
+    @apply text-xs md:text-base font-semibold whitespace-nowrap;
     &:hover {
       @apply text-gray-400 dark:text-gray-100;
     }
@@ -55,7 +55,7 @@
 .currency-panel {
   @apply flex justify-self-end col-span-2 lg:col-span-1 flex-nowrap;
   .currency-panel-p {
-    @apply text-sm lg:text-base font-bold mr-2;
+    @apply text-xs md:text-base font-semibold mr-2;
   }
   .currency-panel-select {
     @apply bg-lime-100 dark:bg-lime-200 text-gray-600 dark:text-gray-700 rounded-sm font-semibold scale-75 lg:scale-100;
@@ -88,12 +88,12 @@
     }
   }
   .basket-plate-info {
-    @apply text-sm lg:text-base font-bold;
+    @apply text-xs md:text-base font-semibold;
   }
 }
 
 .underheader {
-  @apply inline-flex justify-between items-center h-8 bg-gradient-to-b from-lime-200 to-lime-100 dark:from-slate-700 dark:to-slate-600 opacity-75 px-2 sm:px-4;
+  @apply inline-flex justify-between items-center h-8 bg-gradient-to-b from-lime-200 to-lime-100 dark:from-slate-700 dark:to-slate-600 opacity-75 px-2 sm:px-4 md:px-6;
 
   .underheader-sort {
     @apply inline-flex space-x-4;
