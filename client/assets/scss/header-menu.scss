@@ -1,9 +1,9 @@
 .header-panel {
-  @apply grid grid-cols-4 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 px-2 sm:px-4 items-center;
+  @apply grid grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 px-2 sm:px-4 items-center;
 }
 
 .logo-SVG {
-  @apply h-10 sm:h-16 md:h-20 col-span-3 lg:col-span-2 lg:row-span-2;
+  @apply h-8 sm:h-14 md:h-16 lg:h-20 col-span-3 xl:col-span-4 lg:row-span-2;
   &>a>g {
     .letter {
       @apply transition-colors duration-300 fill-yellow-800 dark:fill-neutral-900 [fill-rule:evenodd] stroke-stone-400 stroke-[3];
@@ -53,12 +53,12 @@
 }
 
 .currency-panel {
-  @apply flex justify-self-end col-span-2 lg:col-span-1 flex-nowrap;
+  @apply flex items-center justify-self-end col-span-2 lg:col-span-1 flex-nowrap;
   .currency-panel-p {
     @apply text-xs md:text-base font-semibold mr-2;
   }
   .currency-panel-select {
-    @apply bg-lime-100 dark:bg-lime-200 text-gray-600 dark:text-gray-700 rounded-sm font-semibold scale-75 lg:scale-100;
+    @apply bg-lime-100 dark:bg-lime-200 text-gray-600 dark:text-gray-700 rounded-sm font-semibold scale-50 lg:scale-100;
       &:focus {
         @apply outline-none;
     }
@@ -66,7 +66,7 @@
 }
 
 .basket-plate {
-  @apply flex flex-col items-center row-span-2 justify-self-end;
+  @apply flex flex-col items-center lg:col-span-2 row-span-2 justify-self-end;
   .basket-plate-button {
     &:focus {
       @apply outline-none;

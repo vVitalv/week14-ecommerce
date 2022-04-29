@@ -22,7 +22,7 @@ const BasketButton = () => {
   const basketInfo =
     basket.amount === 0
       ? 'Cart empty'
-      : `Total ${(basket.price * rates[currency]).toFixed(2)} ${currency}`
+      : `= ${(basket.price * rates[currency]).toFixed(2)} ${currency}`
   const onClickFunc = () => {
     if (basketList.length) {
       history.push('/basket')
