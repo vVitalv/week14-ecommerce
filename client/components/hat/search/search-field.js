@@ -13,7 +13,7 @@ const SearchField = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (isDataLoad && searchData.length) {
-      history.push(`/search?=${searchValue}`)
+      history.push(`/search/${searchValue}`)
       dispatch(purgeSearch())
     }
     return () => {}

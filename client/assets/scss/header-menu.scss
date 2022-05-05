@@ -27,14 +27,14 @@
     @apply cursor-pointer;
     &:hover {
       .lamp-bulb {
-        @apply [fill-opacity:0.8] dark:[fill-opacity:1];
+        @apply fill-yellow-200;
       }
     }
     .lamp-socket {
       @apply stroke-black stroke-2;
     }
     .lamp-bulb {
-      @apply fill-yellow-300 stroke-gray-400 [fill-opacity:0.4] dark:[fill-opacity:1];
+      @apply stroke-gray-400 fill-[none] dark:fill-yellow-200;
     }
     .lamp-glower {
       @apply stroke-gray-500 fill-[none];

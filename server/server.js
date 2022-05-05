@@ -79,13 +79,32 @@ server.get('/api/v1/sorting', async (req, res) => {
   }
 })
 
-server.put('/api/v1/search', async (req, res) => {
+server.get('/api/v1/search', async (req, res) => {
+  const searchValue = req.get('searchValue')
+  const searchSortType = req.get('sortType')
+
+  let mongoSearchSorting = { score: { $meta: 'textScore' } }
+  switch (searchSortType) {
+    case 'AZ':
+      mongoSearchSorting = { title: 1 }
+      break
+    case 'ZA':
+      mongoSearchSorting = { title: -1 }
+      break
+    case 'up':
+      mongoSearchSorting = { price: 1 }
+      break
+    case 'low':
+      mongoSearchSorting = { price: -1 }
+      break
+  }
+
   try {
     const searchData = await Product.find(
-      { $text: { $search: req.body.searchValue } },
+      { $text: { $search: searchValue } },
       { score: { $meta: 'textScore' } }
-    ).sort({ score: { $meta: 'textScore' } })
-    res.status(200).send(searchData)
+    ).sort(mongoSearchSorting)
+    res.status(200).send({status: 'ok', searchData})
   } catch (e) {
     res.send({ status: 'error', message: 'DB search error', errorMessage: e.message })
   }

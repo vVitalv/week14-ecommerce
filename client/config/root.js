@@ -59,7 +59,7 @@ const RootComponent = (props) => {
             <Route exact path="/" component={() => <Home />} />
             <Route exact path="/product/:id" component={() => <Product />} />
             <Route exact path="/basket" component={() => <Basket />} />
-            <Route exact path="/search" component={() => <Search />} />
+            <Route exact path="/search/:query" component={() => <Search />} />
             <Route exact path="/logs" component={() => <Logs />} />
             <OnlyAnonymousRoute exact path="/registration" component={() => <Registration />} />
             <Route component={() => <NotFound />} />

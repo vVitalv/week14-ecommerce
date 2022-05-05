@@ -1,11 +1,15 @@
 const UPDATE_SEARCH = 'UPDATE_SEARCH'
 const GET_SEARCH = 'GET_SEARCH'
+const SEARCH_ERR = 'SEARCH_ERR'
 const PURGE_SEARCH = 'PURGE_SEARCH'
 
 const initialState = {
   searchValue: '',
+  searchSortType: '',
+  lastSearch: '',
   searchData: [],
-  isDataLoad: false
+  isDataLoad: false,
+  searchErrMessage: ''
 }
 
 export default (state = initialState, action) => {
@@ -20,7 +24,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         searchData: action.searchData,
+        lastSearch: action.lastSearch,
+        searchSortType: action.searchSortType,
         isDataLoad: action.isDataLoad
+      }
+    }
+    case SEARCH_ERR: {
+      return {
+        ...state,
+        searchErrMessage: action.searchErrMessage
       }
     }
     case PURGE_SEARCH: {
@@ -42,24 +54,32 @@ export function setSearch(searchValue) {
   }
 }
 
-export function getSearch(searchValue) {
+export function getSearch(searchValue, searchSortType) {
   return (dispatch) => {
     fetch('/api/v1/search', {
-      method: 'PUT',
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        searchValue
-      })
+        'Content-Type': 'application/json',
+        searchValue,
+        searchSortType
+      }
     })
       .then((res) => res.json())
-      .then((searchDataArr) => {
-        dispatch({
-          type: GET_SEARCH,
-          searchData: searchDataArr,
-          isDataLoad: true
-        })
+      .then((data) => {
+        if (data.status === 'error') {
+          dispatch({
+            type: SEARCH_ERR,
+            searchErrMessage: `${data.message}: ${data.errorMessage}`
+          })
+        } else {
+          dispatch({
+            type: GET_SEARCH,
+            searchData: data.searchData,
+            searchSortType,
+            lastSearch: searchValue,
+            isDataLoad: typeof searchSortType === 'undefined'
+          })
+        }
       })
   }
 }
