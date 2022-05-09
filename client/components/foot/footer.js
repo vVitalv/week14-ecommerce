@@ -19,7 +19,12 @@ const Footer = () => {
 
   return (
     <footer className={footerClassName}>
-      <p>{'\u00A9'} 2022 SkillCrucial Wave#3</p>
+      <p>
+        {'\u00A9'} 2022 CPL.Risitas{' '}
+        <a className="sc-link" href="https://skillcrucial.com" target="_blank" rel="noreferrer">
+          SkillCrucial
+        </a>
+      </p>
       <p>
         <Link to="/logs">Logs</Link>
       </p>
