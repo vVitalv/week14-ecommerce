@@ -49,6 +49,7 @@ const LoginForm = (props) => {
               }}
               type="text"
               placeholder="email"
+              autoComplete="email"
             />
           </div>
           <div className="pass-field">
@@ -64,6 +65,7 @@ const LoginForm = (props) => {
               }}
               type="password"
               placeholder="******************"
+              autoComplete="current-password"
             />
             <div className="pass-field-err">
               <p>{loginErrMessage}</p>

@@ -41,6 +41,7 @@ const RegistrationForm = () => {
             }}
             type="text"
             placeholder="username"
+            autoComplete="username"
           />
         </div>
         <div className="email-field">
@@ -56,6 +57,7 @@ const RegistrationForm = () => {
             }}
             type="text"
             placeholder="email"
+            autoComplete="email"
           />
         </div>
         <div className="pass-field">
@@ -71,6 +73,7 @@ const RegistrationForm = () => {
             }}
             type="password"
             placeholder="******************"
+            autoComplete="new-password"
           />
           <div className="pass-field-err">
             <p>{registErrMessage}</p>
