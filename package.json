@@ -3,8 +3,8 @@
     "version": "0.0.2",
     "description": "Maccaroni E-commerce",
     "engines": {
-        "node": "14.18.x",
-        "npm": "6.14.x",
+        "node": "16.15.x",
+        "npm": "8.5.x",
         "yarn": "1.22.x"
     },
     "main": "index.js",
