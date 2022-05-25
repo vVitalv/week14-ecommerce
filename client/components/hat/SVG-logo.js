@@ -8,7 +8,7 @@ import { setLog } from '../../redux/reducers/log'
 const Logo = () => {
   const dispatch = useDispatch()
   const { theme } = useSelector((store) => store.theme)
-  const toggleTheme = () => {
+  function toggleTheme() {
     if (theme === 'lime') {
       document.documentElement.classList.add('dark')
       dispatch(changeTheme('dark'))

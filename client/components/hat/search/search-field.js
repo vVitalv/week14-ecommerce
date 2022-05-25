@@ -18,35 +18,37 @@ const SearchField = () => {
     }
     return () => {}
   })
-
-  const searchOnChange = (e) => {
-    return dispatch(setSearch(e.target.value))
+  function search() {
+    dispatch(setLog(`searched for ${searchValue}`))
+    dispatch(getSearch(searchValue))
   }
-  const searchOnClick = () => {
-    if (searchValue.length) {
-      dispatch(setLog(`searched for ${searchValue}`))
-      dispatch(getSearch(searchValue))
-    }
-  }
-  const searchKeyPress = (e) => {
-    if (e.key === 'Enter' && searchValue.length) {
-      dispatch(setLog(`searched for ${searchValue}`))
-      dispatch(getSearch(searchValue))
-    }
-  }
-
   return (
     <div className="search-field">
       <input
         className="search-field-input"
         type="search"
         value={searchValue}
-        onChange={(e) => searchOnChange(e)}
-        onKeyPress={(e) => searchKeyPress(e)}
+        onChange={(e) => {
+          return dispatch(setSearch(e.target.value))
+        }}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter' && searchValue.length) {
+            search()
+          }
+        }}
         autoComplete="on"
+        inputMode="latin"
         placeholder="search product"
       />
-      <button type="button" className="search-field-button" onClick={() => searchOnClick()}>
+      <button
+        type="button"
+        className="search-field-button"
+        onClick={() => {
+          if (searchValue.length) {
+            search()
+          }
+        }}
+      >
         {'\u2315'}
       </button>
       {isDataLoad && !searchData.length && createPortal(<NotFoundPortal />, document.body)}

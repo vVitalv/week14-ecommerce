@@ -8,12 +8,6 @@ const CurrencyPanel = () => {
   const dispatch = useDispatch()
   const { currency: currentCurrency, rates } = useSelector((store) => store.currency)
   const ratesList = Object.keys(rates)
-  const changeCurrency = (e) => {
-    const { selectedIndex, options } = e.target
-    const selectedCurrency = options[selectedIndex].value
-    dispatch(setLog(`changed currency by ${selectedCurrency}`))
-    dispatch(setCurrency(selectedCurrency))
-  }
 
   return (
     <div className="currency-panel">
@@ -22,7 +16,12 @@ const CurrencyPanel = () => {
         title="currency"
         className="currency-panel-select"
         defaultValue={currentCurrency}
-        onChange={(e) => changeCurrency(e)}
+        onChange={(e) => {
+          const { selectedIndex, options } = e.target
+          const selectedCurrency = options[selectedIndex].value
+          dispatch(setLog(`changed currency by ${selectedCurrency}`))
+          dispatch(setCurrency(selectedCurrency))
+        }}
       >
         {ratesList.map((cur) => {
           return (

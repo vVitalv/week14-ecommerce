@@ -23,7 +23,7 @@ const BasketButton = () => {
     basket.amount === 0
       ? 'Cart empty'
       : `= ${(basket.price * rates[currency]).toFixed(2)} ${currency}`
-  const onClickFunc = () => {
+  function onClickFunc() {
     if (basketList.length) {
       history.push('/basket')
       window.scrollTo({ top: 0, behavior: 'smooth' })

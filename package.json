@@ -87,7 +87,6 @@
         "dotenv": "^16.0.0",
         "express": "^4.17.1",
         "history": "4.10.1",
-        "image-webpack-loader": "^8.1.0",
         "jsonwebtoken": "^8.5.1",
         "mongodb": "^4.0.1",
         "mongoose": "^6.2.4",
@@ -125,7 +124,6 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "eslint-webpack-plugin": "^2.5.4",
         "glob": "^7.1.7",
-        "husky": "^7.0.1",
         "jest": "^27.0.6",
         "jest-cli": "^27.0.6",
         "mini-css-extract-plugin": "^2.1.0",
@@ -141,7 +139,6 @@
         "rimraf": "3.0.2",
         "sass-loader": "^12.1.0",
         "tailwindcss": "^3.0.23",
-        "thread-loader": "^3.0.4",
         "webpack": "^5.72.0",
         "webpack-cli": "^4.9.2",
         "webpack-dev-server": "^4.8.1",
@@ -153,11 +150,5 @@
             "log.json"
         ],
         "delay": 5000
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "cross-env npm run lint && npm test",
-            "pre-push": "cross-env npm run lint && npm test"
-        }
     }
 }

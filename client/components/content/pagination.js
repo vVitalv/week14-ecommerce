@@ -13,7 +13,7 @@ const Pagination = () => {
     sortType: currentSortType
   } = useSelector((store) => store.cardData)
 
-  const changePageOnClick = (nextPage) => {
+  function changePageOnClick(nextPage) {
     window.scrollTo({ top: 0, behavior: 'smooth' })
     dispatch(currentSortType ? getSorted(currentSortType, nextPage) : getCardData(nextPage))
     dispatch(setLog(`gone to page ${nextPage}`))

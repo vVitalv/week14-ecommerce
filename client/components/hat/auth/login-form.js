@@ -15,24 +15,22 @@ const LoginForm = (props) => {
     }
     return () => {}
   })
-  const escapeModalOnKeyPress = (e) => {
-    if (e.key === 'Escape') {
-      props.setPortalOpen(false)
-    }
-  }
-  const escapeModalOnClick = (e) => {
-    if (e.target === e.currentTarget) {
-      props.setPortalOpen(false)
-    }
-  }
 
   return (
     <div
       className="backing"
       role="menuitem"
       tabIndex={0}
-      onClick={(e) => escapeModalOnClick(e)}
-      onKeyDown={(e) => escapeModalOnKeyPress(e)}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          props.setPortalOpen(false)
+        }
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          props.setPortalOpen(false)
+        }
+      }}
     >
       <div className="login-modal">
         <form className="login-modal-form">

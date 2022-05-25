@@ -64,7 +64,7 @@ const config = {
               publicPath: '../'
             }
           },
-          { loader: 'css-loader', options: { importLoaders: 2, sourceMap: true } },
+          { loader: 'css-loader', options: { sourceMap: true } },
           'postcss-loader',
           'sass-loader'
         ]
@@ -72,11 +72,6 @@ const config = {
       {
         test: /\.txt$/,
         type: 'asset/source'
-      },
-      {
-        test: /\.(jpg|png|gif|svg|webp)$/,
-        loader: 'image-webpack-loader',
-        enforce: 'pre'
       },
       {
         test: /\.(jpg|png|gif|webp)$/,
@@ -102,7 +97,6 @@ const config = {
           { from: 'assets/sitemap.xml', to: 'sitemap.xml' },
           { from: 'assets/manifest.json', to: 'manifest.json' },
           { from: 'assets/robots.txt', to: 'robots.txt' },
-          { from: 'vendors', to: 'vendors' },
           {
             from: 'html.js',
             to: 'html.js',

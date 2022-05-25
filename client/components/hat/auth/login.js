@@ -10,7 +10,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const loginSign = user.name ? `${user.name} (logout)` : 'Sign in'
   const [isPortalOpen, setPortalOpen] = useState(false)
-  const onLoginClick = () => {
+  function onLoginClick() {
     if (user.name) {
       dispatch(logOut())
     } else {
@@ -19,7 +19,7 @@ const Login = () => {
   }
   return (
     <div className="login">
-      <button type="button" className="login-btn" onClick={() => onLoginClick()}>
+      <button type="button" className="login-btn" onClick={onLoginClick}>
         {loginSign}
       </button>
       {isPortalOpen && createPortal(<LoginForm setPortalOpen={setPortalOpen} />, document.body)}

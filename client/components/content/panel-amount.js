@@ -13,11 +13,11 @@ const AmountPanel = (props) => {
   })
   const amount = productInCart ? productInCart.amount : 0
 
-  const addOnClick = (cardData) => {
+  function addOnClick(cardData) {
     dispatch(setLog(`added ${productData.title} to cart`))
     dispatch(addToCart(cardData))
   }
-  const removeOnClick = (cardData) => {
+  function removeOnClick(cardData) {
     if (productInCart) {
       dispatch(setLog(`removed ${productData.title} from cart`))
       dispatch(removeFromCart(cardData))

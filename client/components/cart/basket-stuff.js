@@ -6,7 +6,7 @@ import BasketTable from './basket-table'
 import BuyBtnPortal from './basket-portal-buybtn'
 
 const BasketStuff = () => {
-  const [isPortalOpen, setPortalOpen] = useState(false)
+  const [isPortalOpen, togglePortal] = useState(false)
   const { rates, currency } = useSelector((store) => store.currency)
   const { basketList } = useSelector((store) => store.basket)
   const basket = basketList.reduce(
@@ -41,7 +41,7 @@ const BasketStuff = () => {
           })}
         </tbody>
       </table>
-      <button type="button" className="basket-buy-button" onClick={() => setPortalOpen(true)}>
+      <button type="button" className="basket-buy-button" onClick={() => togglePortal(true)}>
         Buy
       </button>
       {isPortalOpen &&
@@ -49,7 +49,7 @@ const BasketStuff = () => {
           <BuyBtnPortal
             summaryCost={summaryCost}
             currency={currency}
-            setPortalOpen={setPortalOpen}
+            togglePortal={togglePortal}
           />,
           document.body
         )}

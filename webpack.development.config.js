@@ -76,7 +76,6 @@ const config = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2,
               sourceMap: true
             }
           },
@@ -87,11 +86,6 @@ const config = {
       {
         test: /\.txt$/,
         type: 'asset/source'
-      },
-      {
-        test: /\.(jpg|png|gif|svg|webp)$/,
-        loader: 'image-webpack-loader',
-        enforce: 'pre'
       },
       {
         test: /\.(png|jpg|gif|webp)$/,

@@ -6,7 +6,7 @@ import { setLog } from '../../redux/reducers/log'
 
 const CartHeaderThead = () => {
   const dispatch = useDispatch()
-  const sortOnClick = (type) => {
+  function sortOnClick(type) {
     dispatch(setLog(`sorted the cart by ${type}`))
     dispatch(sortCart(type))
   }

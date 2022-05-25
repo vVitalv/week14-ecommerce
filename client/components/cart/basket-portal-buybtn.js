@@ -8,21 +8,11 @@ import { setLog } from '../../redux/reducers/log'
 const BuyBtnPortal = (props) => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const removeBacking = () => {
-    props.setPortalOpen(false)
+  function removeBacking() {
+    props.togglePortal(false)
     history.push(`/`)
     dispatch(setLog(`sent the donation of ${props.summaryCost} ${props.currency}`))
     dispatch(purgeCart())
-  }
-  const escapeModalOnKeyPress = (e) => {
-    if (e.key === 'Escape') {
-      props.setPortalOpen(false)
-    }
-  }
-  const escapeModalOnClick = (e) => {
-    if (e.target === e.currentTarget) {
-      props.setPortalOpen(false)
-    }
   }
 
   return (
@@ -30,13 +20,21 @@ const BuyBtnPortal = (props) => {
       className="backing"
       role="menuitem"
       tabIndex={0}
-      onClick={(e) => escapeModalOnClick(e)}
-      onKeyDown={(e) => escapeModalOnKeyPress(e)}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          props.togglePortal(false)
+        }
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          props.togglePortal(false)
+        }
+      }}
     >
       <div className="basket-buy-popup">
         Bless you for your donation {props.summaryCost} {props.currency} to the Ramzan Kadyrov
         Forgiveness Fund!
-        <button type="button" className="basket-buy-popup-btn" onClick={() => removeBacking()}>
+        <button type="button" className="basket-buy-popup-btn" onClick={removeBacking}>
           Sorry!
         </button>
       </div>

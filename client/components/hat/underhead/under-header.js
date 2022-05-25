@@ -14,7 +14,7 @@ const UnderHeader = () => {
   const currentSortType = useSelector((store) => store.cardData.sortType)
   const { searchSortType: currentSearchSortType, lastSearch } = useSelector((store) => store.search)
   const dispatch = useDispatch()
-  const sortOnClick = (sortType) => {
+  function sortOnClick(sortType) {
     if (window.location.pathname === '/') {
       if (currentSortType !== sortType) {
         dispatch(setLog(`products sorted by ${sortType}`))
