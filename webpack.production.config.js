@@ -120,7 +120,7 @@ const config = {
             from: 'html.js',
             to: 'html.js',
             transform: (content) => {
-              return content.toString().replace(/COMMITHASH/g, version)
+              return content.toString().replace(/COMMITHASH/g, APP_VERSION)
             }
           }
         ]
