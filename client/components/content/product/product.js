@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Div100vh from 'react-div-100vh'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
@@ -17,12 +18,14 @@ const Product = () => {
   const { id } = useParams()
 
   return (
-    <div>
+    <Div100vh>
       <Head title="About product" />
-      <Header />
-      <ProdDescription id={id} />
-      <Footer />
-    </div>
+      <div className="viewport">
+        <Header />
+        <ProdDescription id={id} />
+        <Footer />
+      </div>
+    </Div100vh>
   )
 }
 

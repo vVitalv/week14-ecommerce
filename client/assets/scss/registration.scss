@@ -1,5 +1,5 @@
 .registration {
-  @apply flex flex-col justify-center items-start w-full py-28 px-6 text-gray-600 dark:text-gray-300;
+  @apply absolute flex flex-col items-start w-full h-full p-6 overflow-y-auto text-gray-600 dark:text-gray-300;
   .registration-header {
     @apply font-bold text-lg mb-4;
   }

@@ -37,7 +37,6 @@ const ProdDescription = (props) => {
           <br />
           <AmountPanel productData={product} />
           <br />
-          <br />
           <p>
             Total: {totalCost} {currency}
           </p>

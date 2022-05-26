@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Div100vh from 'react-div-100vh'
 import { useDispatch } from 'react-redux'
 
 import Header from '../hat/header'
@@ -17,12 +18,14 @@ const Basket = () => {
   const underHeader = () => <CartHeaderThead />
 
   return (
-    <div>
+    <Div100vh>
       <Head title="Cart" />
-      <Header UH={underHeader} />
-      <BasketStuff />
-      <Footer />
-    </div>
+      <div className="viewport">
+        <Header UH={underHeader} />
+        <BasketStuff />
+        <Footer />
+      </div>
+    </Div100vh>
   )
 }
 

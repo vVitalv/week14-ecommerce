@@ -1,10 +1,10 @@
 .product {
-  @apply flex flex-col justify-center content-center sm:flex-row w-full px-6 py-28;
+  @apply absolute flex flex-col justify-center content-center sm:flex-row w-full h-full px-6 py-12 overflow-y-auto;
   .product-image {
     @apply sm:w-1/2 rounded-t-xl sm:rounded-t-none sm:rounded-l-3xl;
   }
   .product-description {
-    @apply sm:w-1/2 pl-6 text-gray-700 dark:text-gray-300 bg-gradient-to-b sm:bg-gradient-to-r from-lime-500 to-zinc-200 dark:from-lime-700 dark:to-gray-600;
+    @apply sm:w-1/2 pl-6 max-h-max text-gray-700 dark:text-gray-300 bg-gradient-to-b sm:bg-gradient-to-r from-lime-500 to-zinc-200 dark:from-lime-700 dark:to-gray-600;
     p {
       @apply text-base font-semibold;
     }

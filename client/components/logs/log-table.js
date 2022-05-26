@@ -12,21 +12,23 @@ const LogTable = () => {
   const { logs } = useSelector((store) => store.log)
   return (
     <main>
-      <table className="log-table">
-        <tbody className="log-table-tbody">
-          {logs.map((log) => {
-            return (
-              <tr key={`log-${log.time}`}>
-                <td>{log.time}</td>
-                <td>{log.action}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-      <button type="button" className="log-table-button" onClick={() => dispatch(clearLogs())}>
-        Clear logs
-      </button>
+      <div className="log-scroll">
+        <table className="log-table">
+          <tbody className="log-table-tbody">
+            {logs.map((log) => {
+              return (
+                <tr key={`log-${log.time}`}>
+                  <td>{log.time}</td>
+                  <td>{log.action}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+        <button type="button" className="log-table-button" onClick={() => dispatch(clearLogs())}>
+          Clear logs
+        </button>
+      </div>
     </main>
   )
 }

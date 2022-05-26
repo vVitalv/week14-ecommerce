@@ -19,7 +19,7 @@ header {
   @apply flex flex-col w-full;
 }
 main {
-  @apply relative -mt-8 grow w-full;
+  @apply relative grow w-full;
 }
 .viewport {
   @apply flex flex-col h-full w-screen;

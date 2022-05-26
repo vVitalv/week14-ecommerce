@@ -1,4 +1,5 @@
 import React from 'react'
+import Div100vh from 'react-div-100vh'
 
 import Head from '../hat/head'
 import Header from '../hat/header'
@@ -9,12 +10,14 @@ import Footer from '../foot/footer'
 const Logs = () => {
   const underHeader = () => <LogHeaderThead />
   return (
-    <div>
+    <Div100vh>
       <Head title="Logs" />
-      <Header UH={underHeader} />
-      <LogTable />
-      <Footer />
-    </div>
+      <div className="viewport">
+        <Header UH={underHeader} />
+        <LogTable />
+        <Footer />
+      </div>
+    </Div100vh>
   )
 }
 

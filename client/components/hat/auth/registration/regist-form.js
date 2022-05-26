@@ -25,73 +25,75 @@ const RegistrationForm = () => {
   })
 
   return (
-    <div className="registration">
-      <h1 className="registration-header">Please, input your registration data</h1>
-      <form className="registration-form">
-        <div className="username-field">
-          <label className="username-field-label" htmlFor="username">
-            Username
-          </label>
-          <input
-            className="username-field-input"
-            id="username"
-            value={name}
-            onChange={(e) => {
-              dispatch(updateNameField(e.target.value))
-            }}
-            type="text"
-            placeholder="username"
-            autoComplete="username"
-          />
-        </div>
-        <div className="email-field">
-          <label className="email-field-label" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="email-field-input"
-            id="email"
-            value={email}
-            onChange={(e) => {
-              dispatch(updateLoginField(e.target.value))
-            }}
-            type="text"
-            placeholder="email"
-            autoComplete="email"
-          />
-        </div>
-        <div className="pass-field">
-          <label className="pass-field-label" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="pass-field-input"
-            id="password"
-            value={password}
-            onChange={(e) => {
-              dispatch(updatePasswordField(e.target.value))
-            }}
-            type="password"
-            placeholder="******************"
-            autoComplete="new-password"
-          />
-          <div className="pass-field-err">
-            <p>{registErrMessage}</p>
+    <main>
+      <div className="registration">
+        <h1 className="registration-header">Please, input your registration data</h1>
+        <form className="registration-form">
+          <div className="username-field">
+            <label className="username-field-label" htmlFor="username">
+              Username
+            </label>
+            <input
+              className="username-field-input"
+              id="username"
+              value={name}
+              onChange={(e) => {
+                dispatch(updateNameField(e.target.value))
+              }}
+              type="text"
+              placeholder="username"
+              autoComplete="username"
+            />
           </div>
-        </div>
-        <div className="btn-field">
-          <button
-            className="btn-field-button"
-            type="button"
-            onClick={() => {
-              dispatch(register())
-            }}
-          >
-            Register
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="email-field">
+            <label className="email-field-label" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="email-field-input"
+              id="email"
+              value={email}
+              onChange={(e) => {
+                dispatch(updateLoginField(e.target.value))
+              }}
+              type="text"
+              placeholder="email"
+              autoComplete="email"
+            />
+          </div>
+          <div className="pass-field">
+            <label className="pass-field-label" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="pass-field-input"
+              id="password"
+              value={password}
+              onChange={(e) => {
+                dispatch(updatePasswordField(e.target.value))
+              }}
+              type="password"
+              placeholder="******************"
+              autoComplete="new-password"
+            />
+            <div className="pass-field-err">
+              <p>{registErrMessage}</p>
+            </div>
+          </div>
+          <div className="btn-field">
+            <button
+              className="btn-field-button"
+              type="button"
+              onClick={() => {
+                dispatch(register())
+              }}
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
   )
 }
 

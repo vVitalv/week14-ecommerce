@@ -23,36 +23,38 @@ const BasketStuff = () => {
 
   return (
     <main>
-      <table className="basket-table">
-        <tfoot className="basket-table-tfoot">
-          <tr>
-            <td />
-            <td />
-            <td />
-            <td>{basket.amount}</td>
-            <td>
-              {summaryCost} {currency}
-            </td>
-          </tr>
-        </tfoot>
-        <tbody className="basket-table-tbody">
-          {basketList.map((product) => {
-            return <BasketTable productData={product} key={`basket${product.id}`} />
-          })}
-        </tbody>
-      </table>
-      <button type="button" className="basket-buy-button" onClick={() => togglePortal(true)}>
-        Buy
-      </button>
-      {isPortalOpen &&
-        createPortal(
-          <BuyBtnPortal
-            summaryCost={summaryCost}
-            currency={currency}
-            togglePortal={togglePortal}
-          />,
-          document.body
-        )}
+      <div className="table-scroll">
+        <table className="basket-table">
+          <tfoot className="basket-table-tfoot">
+            <tr>
+              <td />
+              <td />
+              <td />
+              <td>{basket.amount}</td>
+              <td>
+                {summaryCost} {currency}
+              </td>
+            </tr>
+          </tfoot>
+          <tbody className="basket-table-tbody">
+            {basketList.map((product) => {
+              return <BasketTable productData={product} key={`basket${product.id}`} />
+            })}
+          </tbody>
+        </table>
+        <button type="button" className="basket-buy-button" onClick={() => togglePortal(true)}>
+          Buy
+        </button>
+        {isPortalOpen &&
+          createPortal(
+            <BuyBtnPortal
+              summaryCost={summaryCost}
+              currency={currency}
+              togglePortal={togglePortal}
+            />,
+            document.body
+          )}
+      </div>
     </main>
   )
 }

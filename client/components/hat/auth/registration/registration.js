@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Div100vh from 'react-div-100vh'
 import { useDispatch } from 'react-redux'
 
 import Head from '../../head'
@@ -15,12 +16,14 @@ const Registration = () => {
   }, [dispatch])
 
   return (
-    <div className="body-section">
+    <Div100vh>
       <Head title="Registration" />
-      <Header />
-      <RegistrationForm />
-      <Footer />
-    </div>
+      <div className="viewport">
+        <Header />
+        <RegistrationForm />
+        <Footer />
+      </div>
+    </Div100vh>
   )
 }
 

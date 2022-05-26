@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { Switch, Route, Redirect } from 'react-router-dom'
@@ -26,29 +25,6 @@ const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
     )
   return <Route {...rest} render={func} />
 }
-
-const types = {
-  component: PropTypes.func.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string
-  }),
-  user: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string
-  }),
-  token: PropTypes.string
-}
-
-const defaults = {
-  location: {
-    pathname: ''
-  },
-  user: null,
-  token: ''
-}
-
-OnlyAnonymousRoute.propTypes = types
-OnlyAnonymousRoute.defaultProps = defaults
 
 const RootComponent = (props) => {
   return (

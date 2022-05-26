@@ -6,15 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 require('dotenv').config()
 
-const version = 'development'
+const APP_VERSION = 'development'
 const config = {
-  stats: {
-    modules: false
-  },
-  optimization: {
-    moduleIds: 'named',
-    chunkIds: 'named'
-  },
   devtool: 'eval-source-map',
   entry: ['./main.js'],
   resolve: {
@@ -140,19 +133,14 @@ const config = {
             from: `${__dirname}/client/html.js`,
             to: 'html.js',
             transform: (content) => {
-              return content.toString().replace(/COMMITHASH/g, version)
+              return content.toString().replace(/COMMITHASH/g, APP_VERSION)
             }
           }
         ]
       },
       { parallel: 100 }
     ),
-    new ReactRefreshWebpackPlugin({
-      overlay: {
-        sockIntegration: 'wds'
-      }
-    }),
-    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(
         (res, key) => ({ ...res, [key]: JSON.stringify(process.env[key]) }),
