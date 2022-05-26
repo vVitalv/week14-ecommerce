@@ -1,5 +1,5 @@
 .header-panel {
-  @apply grid grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 max-w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 px-2 sm:px-4 items-center;
+  @apply grid grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 w-full text-gray-500 dark:text-gray-200 bg-gradient-to-b from-lime-300 to-lime-200 dark:from-slate-900 dark:to-slate-700 px-2 sm:px-4 items-center;
 }
 
 .logo-SVG {
@@ -93,7 +93,7 @@
 }
 
 .underheader {
-  @apply inline-flex justify-between items-center h-8 bg-gradient-to-b from-lime-200 to-lime-100 dark:from-slate-700 dark:to-slate-600 opacity-75 px-2 sm:px-4 md:px-6;
+  @apply flex z-20 justify-between items-center h-8 bg-gradient-to-b from-lime-200 to-lime-100 dark:from-slate-700 dark:to-slate-600 opacity-75 px-2 sm:px-4 md:px-6;
 
   .underheader-sort {
     @apply inline-flex space-x-4;

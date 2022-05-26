@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Div100vh from 'react-div-100vh'
 import { useDispatch } from 'react-redux'
 
 import Head from './hat/head'
@@ -19,12 +20,14 @@ const Home = () => {
   const underHeader = () => <UnderHeader />
 
   return (
-    <div className="body-section">
+    <Div100vh>
       <Head title="Hello" />
-      <Header UH={underHeader} />
-      <Content />
-      <Footer />
-    </div>
+      <div className="viewport">
+        <Header UH={underHeader} />
+        <Content />
+        <Footer />
+      </div>
+    </Div100vh>
   )
 }
 

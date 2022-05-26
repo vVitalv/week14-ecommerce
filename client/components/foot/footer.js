@@ -1,24 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
-  let footerClassName = 'footer'
-  const [scroll, setScroll] = useState(0)
-
-  useEffect(() => {
-    window.onscroll = () => {
-      setScroll(window.scrollY)
-    }
-    return () => {}
-  }, [])
-
-  footerClassName =
-    scroll < 200 || scroll > document.documentElement.scrollHeight - 800
-      ? 'footer footer_show'
-      : 'footer footer_hide'
-
   return (
-    <footer className={footerClassName}>
+    <footer className="footer">
       <p>
         2022 CPL.Risitas{' '}
         <a className="sc-link" href="https://skillcrucial.com" target="_blank" rel="noreferrer">

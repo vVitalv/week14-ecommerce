@@ -1,15 +1,9 @@
 .footer {
-  @apply flex fixed inset-x-0 bottom-0 justify-between items-center h-12 max-w-full text-base font-bold text-gray-500 dark:text-gray-200 bg-gradient-to-t from-lime-400 to-lime-300 dark:from-slate-900 dark:to-slate-700 px-4;
+  @apply flex justify-between items-center h-8 w-full text-base font-semibold text-gray-500 dark:text-gray-200 bg-gradient-to-t from-lime-400 to-lime-300 dark:from-slate-900 dark:to-slate-700 px-4;
     .sc-link {
       background: linear-gradient(#2563eb, #facc15);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-}
-.footer_hide {
-  @apply transition ease-in duration-500 opacity-20;
-}
-.footer_show {
-  @apply transition ease-out duration-500 opacity-100;
 }

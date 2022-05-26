@@ -10,11 +10,13 @@ const Content = () => {
   return (
     <main>
       <div className="content">
-        {productList.map((product, index) => {
-          return <Card productData={product} productIndex={index} key={product.id} />
-        })}
+        <div className="content-scroll">
+          {productList.map((product, index) => {
+            return <Card productData={product} productIndex={index} key={product.id} />
+          })}
+          <Pagination />
+        </div>
       </div>
-      <Pagination />
     </main>
   )
 }

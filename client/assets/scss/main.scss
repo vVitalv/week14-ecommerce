@@ -13,15 +13,17 @@
 @import "./footer.scss";
 
 body {
-  @apply bg-zinc-200 dark:bg-gray-600 max-w-full h-auto;
+  @apply bg-zinc-200 dark:bg-gray-600 overflow-hidden;
 }
 header {
-  @apply flex fixed flex-col max-w-full inset-x-0 top-0;
+  @apply flex flex-col w-full;
 }
 main {
-  @apply flex flex-col items-center h-auto;
+  @apply relative -mt-8 grow w-full;
 }
-
+.viewport {
+  @apply flex flex-col h-full w-screen;
+}
 .backing {
   @apply fixed inset-0 bg-black text-center bg-opacity-60 overflow-hidden;
   animation: backing_show 0.3s ease-in;

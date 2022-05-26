@@ -1,5 +1,5 @@
 .pagination {
-  @apply inline-flex items-center space-x-2 mb-32;
+  @apply flex items-center space-x-2 mt-8 pb-12;
   .pagination-btn {
     @apply transition-colors duration-300 border border-gray-500 dark:border-gray-300 h-8 w-8 rounded-lg text-base text-gray-700 dark:text-gray-300;
     &:hover:not(:disabled) {
