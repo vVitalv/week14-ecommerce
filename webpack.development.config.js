@@ -4,21 +4,27 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-const { v4: uuidv4 } = require('uuid')
 require('dotenv').config()
 
 const version = 'development'
 const config = {
+  stats: {
+    modules: false
+  },
+  optimization: {
+    moduleIds: 'named',
+    chunkIds: 'named'
+  },
   devtool: 'eval-source-map',
   entry: ['./main.js'],
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       d3: 'd3/index.js',
       'react-dom': '@hot-loader/react-dom'
     }
   },
   output: {
-    clean: true,
     filename: 'js/[name].bundle.js',
     path: resolve(__dirname, 'dist/assets'),
     publicPath: '/',
@@ -46,7 +52,7 @@ const config = {
     proxy: [
       {
         context: ['/api', '/auth'],
-        target: 'http://localhost:8090',
+        target: `http://localhost:${process.env.PORT || 8090}`,
         secure: false,
         changeOrigin: true
       }
@@ -61,11 +67,10 @@ const config = {
           presets: ['@babel/preset-env', '@babel/preset-react'],
           cacheDirectory: true
         },
-        include: [/client/, /stories/],
         exclude: /node_modules/
       },
       {
-        test: /\.(css|scss)$/i,
+        test: /\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -73,14 +78,29 @@ const config = {
               publicPath: '../'
             }
           },
+          { loader: 'css-loader', options: { sourceMap: true } },
           {
-            loader: 'css-loader',
+            loader: 'postcss-loader'
+          }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
             options: {
-              sourceMap: true
+              publicPath: '../'
             }
           },
-          'postcss-loader',
-          'sass-loader'
+          { loader: 'css-loader', options: { sourceMap: true } },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
@@ -99,7 +119,6 @@ const config = {
   },
 
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
       exclude: 'node_modules'
@@ -128,16 +147,21 @@ const config = {
       },
       { parallel: 100 }
     ),
-    new ReactRefreshWebpackPlugin(),
+    new ReactRefreshWebpackPlugin({
+      overlay: {
+        sockIntegration: 'wds'
+      }
+    }),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(
         (res, key) => ({ ...res, [key]: JSON.stringify(process.env[key]) }),
         {
-          APP_VERSION: uuidv4().substring(0, 7)
+          APP_VERSION: JSON.stringify(APP_VERSION),
+          'windows.process': { cwd: () => '' }
         }
       )
-    ),
-    new webpack.HotModuleReplacementPlugin()
+    )
   ]
 }
 

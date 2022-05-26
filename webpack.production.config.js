@@ -1,16 +1,18 @@
 const { resolve } = require('path')
 require('dotenv').config()
-
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const { v4: uuidv4 } = require('uuid')
 
-const version = uuidv4().substring(0, 7)
+const date = +new Date()
+const APP_VERSION = Buffer.from((date - (date % (1000 * 60 * 30))).toString())
+  .toString('base64')
+  .replace(/==/, '')
 
 const config = {
   optimization: {
+    minimize: true,
     minimizer: [
       '...',
       new CssMinimizerPlugin({
@@ -30,6 +32,7 @@ const config = {
     main: './main.js'
   },
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       d3: 'd3/index.js'
     }
@@ -51,12 +54,12 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/i,
-        loader: 'babel-loader',
+        test: /\.js|jsx$/,
+        use: 'babel-loader',
         exclude: /node_modules/
       },
       {
-        test: /\.(css|scss)$/i,
+        test: /\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -65,8 +68,29 @@ const config = {
             }
           },
           { loader: 'css-loader', options: { sourceMap: true } },
-          'postcss-loader',
-          'sass-loader'
+          {
+            loader: 'postcss-loader'
+          }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../'
+            }
+          },
+
+          { loader: 'css-loader', options: { sourceMap: true } },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
@@ -85,11 +109,6 @@ const config = {
   },
 
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/main.css',
-      chunkFilename: 'css/[id].css',
-      ignoreOrder: false
-    }),
     new CopyWebpackPlugin(
       {
         patterns: [
@@ -108,11 +127,16 @@ const config = {
       },
       { parallel: 100 }
     ),
+    new MiniCssExtractPlugin({
+      filename: 'css/main.css',
+      chunkFilename: 'css/[id].css',
+      ignoreOrder: false
+    }),
     new webpack.DefinePlugin(
       Object.keys(process.env).reduce(
         (res, key) => ({ ...res, [key]: JSON.stringify(process.env[key]) }),
         {
-          APP_VERSION: uuidv4().substring(0, 7)
+          APP_VERSION: JSON.stringify(APP_VERSION)
         }
       )
     )
