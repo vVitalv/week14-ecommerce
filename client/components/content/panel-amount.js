@@ -37,6 +37,4 @@ const AmountPanel = (props) => {
   )
 }
 
-AmountPanel.propTypes = {}
-
-export default React.memo(AmountPanel)
+export default AmountPanel

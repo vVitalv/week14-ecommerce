@@ -17,6 +17,4 @@ const SearchContent = () => {
   )
 }
 
-SearchContent.propTypes = {}
-
-export default React.memo(SearchContent)
+export default SearchContent

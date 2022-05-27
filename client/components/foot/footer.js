@@ -17,6 +17,4 @@ const Footer = () => {
   )
 }
 
-Footer.propTypes = {}
-
-export default React.memo(Footer)
+export default Footer

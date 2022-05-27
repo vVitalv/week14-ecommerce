@@ -29,6 +29,4 @@ const Basket = () => {
   )
 }
 
-Basket.propTypes = {}
-
-export default React.memo(Basket)
+export default Basket

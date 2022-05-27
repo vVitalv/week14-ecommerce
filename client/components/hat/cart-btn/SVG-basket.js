@@ -92,6 +92,4 @@ const BasketEmpty = (props) => {
   )
 }
 
-BasketEmpty.propTypes = {}
-
-export default React.memo(BasketEmpty)
+export default BasketEmpty

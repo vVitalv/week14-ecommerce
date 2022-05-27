@@ -16,6 +16,4 @@ const LowSorting = () => {
   )
 }
 
-LowSorting.propTypes = {}
-
-export default React.memo(LowSorting)
+export default LowSorting

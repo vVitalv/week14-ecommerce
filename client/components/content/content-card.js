@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 import AmountPanel from './panel-amount'
 
 const Card = (props) => {
-  const { rates, currency } = useSelector((store) => store.currency)
+  const { rates } = useSelector((store) => store.currency)
+  const { currency } = useSelector((store) => store.currency)
   const { productData, productIndex } = props
   const loadingType = productIndex > 8 ? 'lazy' : 'eager'
 
@@ -33,6 +34,4 @@ const Card = (props) => {
   )
 }
 
-Card.propTypes = {}
-
-export default React.memo(Card)
+export default Card

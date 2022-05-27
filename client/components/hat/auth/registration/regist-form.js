@@ -13,7 +13,10 @@ import { setLog } from '../../../../redux/reducers/log'
 const RegistrationForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const { email, password, name, registErrMessage } = useSelector((store) => store.auth)
+  const { email } = useSelector((store) => store.auth)
+  const { password } = useSelector((store) => store.auth)
+  const { name } = useSelector((store) => store.auth)
+  const { registErrMessage } = useSelector((store) => store.auth)
   useEffect(() => {
     if (registErrMessage === 'New user created. Sign in please') {
       dispatch(setLog('created'))
@@ -97,4 +100,4 @@ const RegistrationForm = () => {
   )
 }
 
-export default React.memo(RegistrationForm)
+export default RegistrationForm

@@ -6,13 +6,10 @@ import { setLog } from '../../redux/reducers/log'
 
 const Pagination = () => {
   const dispatch = useDispatch()
-  const {
-    productList,
-    currentPage,
-    cardsOnPage,
-    sortType: currentSortType
-  } = useSelector((store) => store.cardData)
-
+  const { productList } = useSelector((store) => store.cardData)
+  const { currentPage } = useSelector((store) => store.cardData)
+  const { cardsOnPage } = useSelector((store) => store.cardData)
+  const { sortType: currentSortType } = useSelector((store) => store.cardData)
   function changePageOnClick(nextPage) {
     window.scrollTo({ top: 0, behavior: 'smooth' })
     dispatch(currentSortType ? getSorted(currentSortType, nextPage) : getCardData(nextPage))
@@ -81,6 +78,4 @@ const Pagination = () => {
   )
 }
 
-Pagination.propTypes = {}
-
-export default React.memo(Pagination)
+export default Pagination

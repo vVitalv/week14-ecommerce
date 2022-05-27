@@ -52,6 +52,4 @@ const CartHeaderThead = () => {
   )
 }
 
-CartHeaderThead.propTypes = {}
-
-export default React.memo(CartHeaderThead)
+export default CartHeaderThead

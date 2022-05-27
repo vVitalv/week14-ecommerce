@@ -9,7 +9,9 @@ import NotFoundPortal from './search-portal-notfnd'
 
 const SearchField = () => {
   const history = useHistory()
-  const { searchValue, searchData, isDataLoad } = useSelector((store) => store.search)
+  const { searchValue } = useSelector((store) => store.search)
+  const { searchData } = useSelector((store) => store.search)
+  const { isDataLoad } = useSelector((store) => store.search)
   const dispatch = useDispatch()
   useEffect(() => {
     if (isDataLoad && searchData.length) {
@@ -56,6 +58,4 @@ const SearchField = () => {
   )
 }
 
-SearchField.propTypes = {}
-
-export default React.memo(SearchField)
+export default SearchField

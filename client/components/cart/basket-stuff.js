@@ -7,7 +7,8 @@ import BuyBtnPortal from './basket-portal-buybtn'
 
 const BasketStuff = () => {
   const [isPortalOpen, togglePortal] = useState(false)
-  const { rates, currency } = useSelector((store) => store.currency)
+  const { rates } = useSelector((store) => store.currency)
+  const { currency } = useSelector((store) => store.currency)
   const { basketList } = useSelector((store) => store.basket)
   const basket = basketList.reduce(
     (acc, rec) => {
@@ -59,6 +60,4 @@ const BasketStuff = () => {
   )
 }
 
-BasketStuff.propTypes = {}
-
-export default React.memo(BasketStuff)
+export default BasketStuff

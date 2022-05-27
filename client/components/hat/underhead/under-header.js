@@ -12,7 +12,8 @@ import LowSorting from './SVG-lowsorting'
 
 const UnderHeader = () => {
   const currentSortType = useSelector((store) => store.cardData.sortType)
-  const { searchSortType: currentSearchSortType, lastSearch } = useSelector((store) => store.search)
+  const currentSearchSortType = useSelector((store) => store.search.searchSortType)
+  const { lastSearch } = useSelector((store) => store.search)
   const dispatch = useDispatch()
   function sortOnClick(sortType) {
     if (window.location.pathname === '/') {
@@ -70,6 +71,4 @@ const UnderHeader = () => {
   )
 }
 
-UnderHeader.propTypes = {}
-
-export default React.memo(UnderHeader)
+export default UnderHeader

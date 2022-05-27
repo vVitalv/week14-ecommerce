@@ -6,7 +6,8 @@ import BasketEmpty from './SVG-basket'
 
 const BasketButton = () => {
   const history = useHistory()
-  const { rates, currency } = useSelector((store) => store.currency)
+  const { rates } = useSelector((store) => store.currency)
+  const { currency } = useSelector((store) => store.currency)
   const { basketList } = useSelector((store) => store.basket)
   const basket = basketList.reduce(
     (acc, rec) => {
@@ -41,6 +42,4 @@ const BasketButton = () => {
   )
 }
 
-BasketButton.propTypes = {}
-
-export default React.memo(BasketButton)
+export default BasketButton

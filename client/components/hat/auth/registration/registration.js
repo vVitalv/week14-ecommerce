@@ -27,6 +27,4 @@ const Registration = () => {
   )
 }
 
-Registration.propTypes = {}
-
 export default Registration

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid'
 
 import { getLogs, clearLogs } from '../../redux/reducers/log'
 
@@ -17,7 +18,7 @@ const LogTable = () => {
           <tbody className="log-table-tbody">
             {logs.map((log) => {
               return (
-                <tr key={`log-${log.time}`}>
+                <tr key={uuidv4()}>
                   <td>{log.time}</td>
                   <td>{log.action}</td>
                 </tr>
@@ -33,6 +34,4 @@ const LogTable = () => {
   )
 }
 
-LogTable.propTypes = {}
-
-export default React.memo(LogTable)
+export default LogTable

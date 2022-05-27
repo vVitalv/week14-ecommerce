@@ -7,7 +7,10 @@ import { setLog } from '../../../redux/reducers/log'
 
 const LoginForm = (props) => {
   const dispatch = useDispatch()
-  const { email, password, token, loginErrMessage } = useSelector((store) => store.auth)
+  const { email } = useSelector((store) => store.auth)
+  const { password } = useSelector((store) => store.auth)
+  const { token } = useSelector((store) => store.auth)
+  const { loginErrMessage } = useSelector((store) => store.auth)
   useEffect(() => {
     if (token) {
       dispatch(setLog('logged in'))

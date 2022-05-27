@@ -23,6 +23,4 @@ const ZASorting = () => {
   )
 }
 
-ZASorting.propTypes = {}
-
-export default React.memo(ZASorting)
+export default ZASorting

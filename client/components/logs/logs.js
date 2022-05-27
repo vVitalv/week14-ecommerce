@@ -21,6 +21,4 @@ const Logs = () => {
   )
 }
 
-Logs.propTypes = {}
-
-export default React.memo(Logs)
+export default Logs

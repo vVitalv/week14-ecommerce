@@ -6,7 +6,8 @@ import { setCurrency } from '../../redux/reducers/currency'
 
 const CurrencyPanel = () => {
   const dispatch = useDispatch()
-  const { currency: currentCurrency, rates } = useSelector((store) => store.currency)
+  const { currency: currentCurrency } = useSelector((store) => store.currency)
+  const { rates } = useSelector((store) => store.currency)
   const ratesList = Object.keys(rates)
 
   return (
@@ -35,6 +36,4 @@ const CurrencyPanel = () => {
   )
 }
 
-CurrencyPanel.propTypes = {}
-
-export default React.memo(CurrencyPanel)
+export default CurrencyPanel

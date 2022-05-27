@@ -6,7 +6,8 @@ import AmountPanel from '../content/panel-amount'
 
 const BasketTable = (props) => {
   const { id, image, title, amount, price } = props.productData
-  const { rates, currency } = useSelector((store) => store.currency)
+  const { rates } = useSelector((store) => store.currency)
+  const { currency } = useSelector((store) => store.currency)
   return (
     <tr>
       <td>
@@ -26,6 +27,4 @@ const BasketTable = (props) => {
   )
 }
 
-BasketTable.propTypes = {}
-
-export default React.memo(BasketTable)
+export default BasketTable

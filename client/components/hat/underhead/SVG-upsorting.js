@@ -16,6 +16,4 @@ const UpSorting = () => {
   )
 }
 
-UpSorting.propTypes = {}
-
-export default React.memo(UpSorting)
+export default UpSorting

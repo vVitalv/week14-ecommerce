@@ -42,6 +42,4 @@ const BuyBtnPortal = (props) => {
   )
 }
 
-BuyBtnPortal.propTypes = {}
-
-export default React.memo(BuyBtnPortal)
+export default BuyBtnPortal

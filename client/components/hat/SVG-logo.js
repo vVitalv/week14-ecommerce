@@ -387,6 +387,4 @@ const Logo = () => {
   )
 }
 
-Logo.propTypes = {}
-
-export default React.memo(Logo)
+export default Logo

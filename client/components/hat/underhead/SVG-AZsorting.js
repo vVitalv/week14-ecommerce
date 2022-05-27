@@ -23,6 +23,4 @@ const AZSorting = () => {
   )
 }
 
-AZSorting.propTypes = {}
-
-export default React.memo(AZSorting)
+export default AZSorting

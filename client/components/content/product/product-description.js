@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux'
 import AmountPanel from '../panel-amount'
 
 const ProdDescription = (props) => {
-  const { rates, currency } = useSelector((store) => store.currency)
+  const { rates } = useSelector((store) => store.currency)
+  const { currency } = useSelector((store) => store.currency)
   const { productList } = useSelector((store) => store.cardData)
   const { basketList } = useSelector((store) => store.basket)
   const { searchData } = useSelector((store) => store.search)
@@ -46,6 +47,4 @@ const ProdDescription = (props) => {
   )
 }
 
-ProdDescription.propTypes = {}
-
-export default React.memo(ProdDescription)
+export default ProdDescription

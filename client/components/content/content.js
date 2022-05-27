@@ -21,6 +21,4 @@ const Content = () => {
   )
 }
 
-Content.propTypes = {}
-
-export default React.memo(Content)
+export default Content

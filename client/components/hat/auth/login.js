@@ -27,6 +27,4 @@ const Login = () => {
   )
 }
 
-Login.propTypes = {}
-
-export default React.memo(Login)
+export default Login

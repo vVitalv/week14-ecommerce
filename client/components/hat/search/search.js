@@ -28,6 +28,4 @@ const Search = () => {
   )
 }
 
-Search.propTypes = {}
-
 export default Search

@@ -12,6 +12,4 @@ const NotFoundPortal = () => {
   )
 }
 
-NotFoundPortal.propTypes = {}
-
-export default React.memo(NotFoundPortal)
+export default NotFoundPortal

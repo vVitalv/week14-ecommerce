@@ -15,6 +15,4 @@ const LogHeaderThead = () => {
   )
 }
 
-LogHeaderThead.propTypes = {}
-
-export default React.memo(LogHeaderThead)
+export default LogHeaderThead
